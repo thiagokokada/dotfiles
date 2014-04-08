@@ -1,0 +1,13 @@
+[user]
+	email = thiago.mast3r@gmail.com
+	name = Thiago Kenji Okada
+[push]
+	default = simple
+[core]
+	excludesfile = /home/m45t3r/.gitignore_ignore
+	editor = vim
+	whitespace = trailing-space,space-before-tab,indent-with-non-tab
+[merge]
+	tool = gvimdiff
+[color]
+	ui = true
