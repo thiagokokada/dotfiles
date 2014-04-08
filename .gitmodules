@@ -14,3 +14,7 @@
 	path = .config/sublime-text-3/Packages/languages
 	url = git://github.com/SublimeText/Dictionaries.git
 	branch = master
+[submodule ".zsh-syntax-highlighting"]
+	path = .zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+	branch = master

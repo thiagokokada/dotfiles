@@ -51,7 +51,8 @@ HIST_STAMPS="dd/mm/yyyy"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(archlinux git git-extras history-substring-search zsh-syntax-highlighting)
+plugins=(archlinux git git-extras history-substring-search)
+source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,4 +75,3 @@ bindkey -v
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
