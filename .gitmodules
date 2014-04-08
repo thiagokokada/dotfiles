@@ -4,3 +4,6 @@
 [submodule "/home/m45t3r/.oh-my-zsh"]
 	path = /home/m45t3r/.oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".config/sublime-text-3/Packages/LaTeX-cwl"]
+	path = .config/sublime-text-3/Packages/LaTeX-cwl
+	url = git://github.com/LaTeXing/LaTeX-cwl.git
