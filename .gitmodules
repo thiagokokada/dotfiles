@@ -7,3 +7,6 @@
 [submodule ".config/sublime-text-3/Packages/LaTeX-cwl"]
 	path = .config/sublime-text-3/Packages/LaTeX-cwl
 	url = git://github.com/LaTeXing/LaTeX-cwl.git
+[submodule ".config/sublime-text-3/Packages/languages"]
+	path = .config/sublime-text-3/Packages/languages
+	url = git://github.com/SublimeText/Dictionaries.git
