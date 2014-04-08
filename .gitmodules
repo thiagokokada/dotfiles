@@ -1,8 +1,8 @@
-[submodule "/home/m45t3r/.vim/bundle/vundle"]
-	path = /home/m45t3r/.vim/bundle/vundle
+[submodule ".vim/bundle/vundle"]
+	path = .vim/bundle/vundle
 	url = git://github.com/gmarik/vundle.git
-[submodule "/home/m45t3r/.oh-my-zsh"]
-	path = /home/m45t3r/.oh-my-zsh
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
 [submodule ".config/sublime-text-3/Packages/LaTeX-cwl"]
 	path = .config/sublime-text-3/Packages/LaTeX-cwl
