@@ -33,8 +33,6 @@ Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mbbill/undotree'
 Bundle 'ervandew/supertab'
-" scripts not on GitHub
-Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 
 filetype plugin indent on     " required
 
