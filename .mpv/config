@@ -1,0 +1,6 @@
+# Write your default config options here!
+
+vo=opengl-hq,
+ao=pulse,
+osd-font-size=16
+osd-level=3
