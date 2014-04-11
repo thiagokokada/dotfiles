@@ -15,6 +15,7 @@ alias zshconfig="gvim ~/.zshrc"
 alias oh-my-zsh="cd ~/.oh-my-zsh"
 alias vimconfig="gvim ~/.vimrc"
 alias gvimconfig="gvim ~/.gvimrc"
+alias updateplugins="git submodule update --recursive --remote"
 alias charginmahlazer="source ~/.zshrc"
 
 # Set to this to use case-sensitive completion
