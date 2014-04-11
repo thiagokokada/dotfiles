@@ -66,7 +66,6 @@ export ANDROID_SWT=/usr/share/java
 # User preferences
 export PATH=$ECLIPSE_HOME:$ANDROID_SDK/platform-tools/:$ANDROID_SDK/tools/:$PATH
 export EDITOR="vim"
-bindkey -v
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
