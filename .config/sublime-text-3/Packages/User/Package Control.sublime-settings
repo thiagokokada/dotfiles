@@ -1,6 +1,7 @@
 {
 	"installed_packages":
 	[
+		"Cucumber",
 		"Gherkin (Cucumber) Formatter",
 		"Jedi - Python autocompletion",
 		"LaTeXing",
