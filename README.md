@@ -6,7 +6,7 @@ Misc configuration files from my $HOME directory ;) ...
 
 This is my repository containing some configuration files that I use on my *nix systems. Since this is to be used by myself, I sometimes hardcode strings (like my name/e-mail on my .gitconfig file), so this repo probably shouldn't be used by you without modifications.
  
-Why all files on this repo are hidden? This is because this repo is supposed to be clonned on $HOME directory directly, instead to clone to some folder and using symlinks/shell voodoo to put the files on the correct place. This has some advantages (it's easier to manage files, especially if you use Zsh+Git integration like me), but this also means it's more difficult to other people to use this repo without forking it. And well, this is a dotfile repo, so it makes sense to README.md to be a dotfile too.
+Why all files on this repo are hidden? This is because this repo is supposed to be clonned on $HOME directory directly, instead to clone to some folder and using symlinks/shell voodoo to put the files on the correct place. This has some advantages (it's easier to manage files, especially if you use Zsh+Git integration like me), but this also means it's more difficult to other people to use this repo without forking it. And well, this is a dotfile repo, so it makes sense that almost every file here is a dotfile.
 
 ## Dependencies
 
