@@ -33,6 +33,7 @@ Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mbbill/undotree'
 Bundle 'ervandew/supertab'
+Bundle 'plasticboy/vim-markdown'
 
 filetype plugin indent on     " required
 
