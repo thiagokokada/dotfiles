@@ -34,6 +34,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'mbbill/undotree'
 Bundle 'ervandew/supertab'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'svermeulen/vim-easyclip'
 
 filetype plugin indent on     " required
 
