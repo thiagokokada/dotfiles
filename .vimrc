@@ -32,7 +32,6 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mbbill/undotree'
-Bundle 'ervandew/supertab'
 Bundle 'plasticboy/vim-markdown'
 
 filetype plugin indent on     " required
@@ -48,10 +47,11 @@ let g:undotree_WindowLayout = 3
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
 
-set colorcolumn=+1	" show line to indicate character limit
-set cursorline		" highlight current line
-set number		" show line number
-set background=dark	" default terminal background
+set colorcolumn=+1	      " show line to indicate character limit
+set cursorline		      " highlight current line
+set number		          " show line number
+set background=dark 	  " default terminal background
+set clipboard=unnamedplus " alias unnamed register to the + register
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
