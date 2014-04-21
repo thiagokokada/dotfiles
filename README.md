@@ -23,7 +23,17 @@ name.
  
 ## Instalation
 
-To install, simple clone this repository on your $HOME directory. After that, you need to do a:
+The easiest way to install this (since you probably already have a $HOME directory) is to do the following:
+
+```
+  $ cd ~
+  $ git init
+  $ git remote add origin https://github.com/m45t3r/dotfiles.git
+  $ git fetch
+  $ git checkout -t origin/master
+```
+
+After that, you need to do a:
 
 ```
   $ source ~/.zshrc
