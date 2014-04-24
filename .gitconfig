@@ -11,3 +11,5 @@
 	tool = gvimdiff
 [color]
 	ui = true
+[tar "tar.xz"]
+	command = xz -c
