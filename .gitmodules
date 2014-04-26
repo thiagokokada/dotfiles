@@ -3,7 +3,7 @@
 	url = git://github.com/gmarik/vundle.git
 	branch = master
 [submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
+	path = .zsh/oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
 	branch = master
 [submodule ".config/sublime-text-3/Packages/LaTeX-cwl"]
@@ -15,10 +15,10 @@
 	url = git://github.com/SublimeText/Dictionaries.git
 	branch = master
 [submodule ".zsh-syntax-highlighting"]
-	path = .zsh-syntax-highlighting
+	path = .zsh/zsh-syntax-highlighting
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
 	branch = master
 [submodule ".zsh-completions"]
-	path = .zsh-completions
+	path = .zsh/zsh-completions
 	url = git://github.com/zsh-users/zsh-completions.git
 	branch = master
