@@ -1,6 +1,9 @@
 # Disable prompt from grml-zsh
 command -v prompt &> /dev/null && prompt off
 
+# Include zsh-completions
+fpath=($HOME/.zsh-completions/src $fpath)
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
