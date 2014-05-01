@@ -25,7 +25,6 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sensible'
 Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
 Bundle 'davidhalter/jedi-vim'
@@ -54,6 +53,7 @@ set cursorline			" highlight current line
 set number			" show line number
 set background=dark		" default terminal background
 set clipboard=unnamedplus	" alias unnamed register to the + register
+set smartcase			" only be case sensitive when it matters!
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
