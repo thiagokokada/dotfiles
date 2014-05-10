@@ -1,7 +1,6 @@
 {
 	"installed_packages":
 	[
-		"Cucumber",
 		"Gherkin (Cucumber) Formatter",
 		"Jedi - Python autocompletion",
 		"LaTeXing",
@@ -9,7 +8,6 @@
 		"Shell Command",
 		"SublimeCodeIntel",
 		"SublimeGit",
-		"Vintageous",
 		"WordCount"
 	]
 }
