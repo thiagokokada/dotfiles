@@ -70,7 +70,7 @@ export ANDROID_SDK=$HOME/Source/adt-bundle/sdk
 export ANDROID_SWT=/usr/share/java
 
 # User preferences
-export PATH=$ECLIPSE_HOME:$ANDROID_SDK/platform-tools/:$ANDROID_SDK/tools/:$PATH
+export PATH=$HOME/bin:$ECLIPSE_HOME:$ANDROID_SDK/platform-tools/:$ANDROID_SDK/tools/:$PATH
 export EDITOR="vim"
 
 # export MANPATH="/usr/local/man:$MANPATH"
