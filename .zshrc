@@ -20,8 +20,8 @@ alias vimconfig="gvim ~/.vimrc"
 alias gvimconfig="gvim ~/.gvimrc"
 alias updateplugins="git submodule update --init --recursive --remote"
 alias charginmahlazer="source ~/.zshrc"
-alias iwannaben00bproof="git update-index --no-assume-unchanged README.md LICENSE"
-alias idontwannaben00bproof="git update-index --assume-unchanged README.md LICENSE"
+alias iwannaben00bproof="git update-index --no-assume-unchanged ~/README.md ~/LICENSE"
+alias idontwannaben00bproof="git update-index --assume-unchanged ~/README.md ~/LICENSE"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
