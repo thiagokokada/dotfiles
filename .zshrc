@@ -65,12 +65,12 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # Android configuration
-export ECLIPSE_HOME=$HOME/Source/adt-bundle/eclipse 
 export ANDROID_SDK=$HOME/Source/adt-bundle/sdk
+export ANDROID_NDK=$HOME/Source/android-ndk-r9d
 export ANDROID_SWT=/usr/share/java
 
 # User preferences
-export PATH=$HOME/bin:$ECLIPSE_HOME:$ANDROID_SDK/platform-tools/:$ANDROID_SDK/tools/:$PATH
+export PATH=$HOME/bin:$HOME/Source/adt-bundle/eclipse:$HOME/Source/android-studio/bin:$ANDROID_SDK/tools/:$ANDROID_SDK/platform-tools/:$PATH
 export EDITOR="vim"
 
 # export MANPATH="/usr/local/man:$MANPATH"
