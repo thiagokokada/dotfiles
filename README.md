@@ -23,26 +23,13 @@ name.
  
 ## Instalation
 
-The easiest way to install this (since you probably already have a $HOME directory) is to do the following:
+Thanks to Dotbot it's very easy to use this repository. Simple clone this repo and execute the install script:
 
 ```
-  $ cd ~
-  $ git init
-  $ git remote add origin https://github.com/m45t3r/dotfiles.git
-  $ git fetch
-  $ git checkout -t origin/master
+./install.sh
 ```
 
-After that, you need to do a:
-
-```
-  $ source ~/.zshrc
-  $ updateplugins
-```
-
-on your $HOME directory since ```updateplugins``` is an alias to ```git submodule update --init --remote --recursive``` to install everything else. This make the update process of plugins less painful, since I only need to execute ```updateplugins``` to update every plugin I use to the lastest and greatest.
-
-As a alternative, you can clone this repo anywhere you want and create symlinks or copy anything you think you want to use. This is probably easier, but you lose the ability to auto-track your modifications with Git. This is why I recommend you to fork this repo and make your changes on your own repository.
+Of course you can simple copy/symlink what you want. But if you do that, you're on your own.
 
 After instalation you need to run 
 
