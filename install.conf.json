@@ -1,0 +1,26 @@
+[
+    {
+        "clean": ["~"]
+    },
+    {
+        "link": {
+            "~/bin": "bin/",
+            "~/.config": "config/",
+            "~/.vimrc": "vimrc",
+            "~/.gvimrc": "gvimrc",
+            "~/.vim": "vim/",
+            "~/.zshrc": "zshrc",
+            "~/.zsh": "zsh/",
+            "~/.mpv": "mpv/",
+            "~/.gitconfig": "gitconfig",
+            "~/.gitignore_global": "gitignore_global"
+        }
+    },
+    {
+        "shell": [
+            ["git submodule update --init --recursive", "Installing submodules"]
+        ]
+    }
+]
+
+
