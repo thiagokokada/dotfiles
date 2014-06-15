@@ -1,0 +1,5 @@
+# Ignore swap/backup files
+*~
+*.swp
+# Ignore Vundle plugins (this will be managed by Vundle itself instead of git)
+vim/bundle
