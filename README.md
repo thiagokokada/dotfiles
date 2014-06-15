@@ -26,7 +26,7 @@ name.
 Thanks to Dotbot it's very easy to use this repository. Simple clone this repo and execute the install script:
 
 ```
-./install.sh
+  $ ./install.sh
 ```
 
 Of course you can simple copy/symlink what you want. But if you do that, you're on your own.
