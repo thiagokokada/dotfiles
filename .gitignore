@@ -3,3 +3,5 @@
 *.swp
 # Ignore Vundle plugins (this will be managed by Vundle itself instead of git)
 vim/bundle
+# Ignore config folder (I don't want to track ALL config files)
+config/
