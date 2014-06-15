@@ -39,17 +39,3 @@ After instalation you need to run
 
 on Vim command mode to install all plugins. There is no need to do something similar to Oh-My-Zsh or Package Control since they're self contained.
 
-To finish, you probably don't want a README.md and LICENSE file on your home directory. You can delete them and use the following command to make Git ignore this change:
-
-```
-  $ idontwannaben00bproof
-```
-
-If you do need to edit either file, you can simple type:
-
-```
-  $ iwannaben00bproof
-  $ git checkout README.md LICENSE
-```
-
-And everything will work as before.
