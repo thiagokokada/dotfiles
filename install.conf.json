@@ -4,6 +4,7 @@
     },
     {
         "link": {
+            "~/.dotfiles": "",
             "~/bin": "bin/",
             "~/.config": "config/",
             "~/.vimrc": "vimrc",
@@ -18,7 +19,7 @@
     },
     {
         "shell": [
-            ["git submodule update --init --recursive", "Installing submodules"]
+            ["git submodule update --init --recursive --remote", "Installing submodules"]
         ]
     }
 ]
