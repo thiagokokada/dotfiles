@@ -4,11 +4,12 @@
 	"font_size": 12,
 	"ignored_packages":
 	[
-		"vintage",
+		"vintage"
 	],
 	"rulers":
 	[
 		80,
+		100,
 		120
 	]
 }
