@@ -45,8 +45,6 @@ let g:undotree_WindowLayout = 3
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
-" Don't try to be smart while indenting text files.
-autocmd FileType text setlocal autoindent
 
 set colorcolumn=+1		" show line to indicate character limit
 set cursorline			" highlight current line
