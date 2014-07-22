@@ -2,7 +2,9 @@
 	"installed_packages":
 	[
 		"Cucumber",
+		"Dockerfile Syntax Highlighting",
 		"Gherkin (Cucumber) Formatter",
+		"Gist",
 		"Jedi - Python autocompletion",
 		"LaTeXing",
 		"Markdown Extended",
@@ -11,6 +13,7 @@
 		"Shell Command",
 		"SublimeCodeIntel",
 		"SublimeGit",
+		"Vagrant",
 		"Vintageous",
 		"WordCount"
 	]
