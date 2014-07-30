@@ -1,0 +1,7 @@
+# Player options
+player=mpv --cache 8192
+player-no-close
+default-stream=best
+
+# Crunchyroll
+crunchyroll-username=m45t3r
