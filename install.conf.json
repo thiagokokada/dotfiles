@@ -12,7 +12,6 @@
             "~/.vim": "vim/",
             "~/.zshrc": "zshrc",
             "~/.zsh": "zsh/",
-            "~/.mpv": "mpv/",
             "~/.gitconfig": "gitconfig",
             "~/.gitignore_global": "gitignore_global"
         }
