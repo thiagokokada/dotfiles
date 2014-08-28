@@ -1,7 +1,8 @@
 # Write your default config options here!
 
-vo=opengl-hq:fbo-format=rgba16,
+vo=opengl-hq,
 ao=pulse,
+hwdec=auto
 stop-screensaver="yes"
 gapless-audio="yes"
 osd-font-size=16
