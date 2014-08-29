@@ -1,45 +1,44 @@
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" alternatively, pass a path where Vundle should install bundles
-"let path = '~/some/path/here'
-"call vundle#rc(path)
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 
-" Keep bundle commands between here and filetype plugin indent on.
-" scripts on GitHub repos
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-sleuth'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'bling/vim-airline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mbbill/undotree'
-Bundle 'plasticboy/vim-markdown'
+" installed plugins
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sleuth'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-rails.git'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mbbill/undotree'
+Plugin 'plasticboy/vim-markdown'
 
-filetype plugin indent on     " required
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
-" Put your stuff after this line
-" ---------------------------------------------------------------------------
-
-" Bundles' configuration
+" Plugins' configuration
 nnoremap <F3> :NERDTreeToggle<cr>
 nnoremap <F5> :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 3
