@@ -18,12 +18,13 @@ call vundle#rc()
 "call vundle#rc(path)
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 " Keep bundle commands between here and filetype plugin indent on.
 " scripts on GitHub repos
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-sleuth'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
@@ -47,7 +48,6 @@ let g:undotree_WindowLayout = 3
 autocmd FileType text setlocal textwidth=78
 
 set colorcolumn=+1		" show line to indicate character limit
-set cursorline			" highlight current line
 set number			" show line number
 set background=dark		" default terminal background
 set clipboard=unnamedplus	" alias unnamed register to the + register
@@ -57,4 +57,3 @@ set smartcase			" only be case sensitive when it matters!
 if has('mouse')
   set mouse=a
 endif
-
