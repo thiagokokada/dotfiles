@@ -32,7 +32,7 @@ floating_modifier $mod
 bindsym $mod+Return exec sakura
 
 # start a browser
-bindsym $mod+b exec chromium
+bindsym $mod+n exec chromium
 
 # start file manager
 bindsym $mod+m exec nautilus
@@ -51,10 +51,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -66,10 +66,10 @@ bindsym $mod+Right focus right
 workspace_auto_back_and_forth yes
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+colon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -78,7 +78,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -193,7 +193,7 @@ bindsym Ctrl+Shift+1 exec --no-startup-id setxkbmap us -variant intl
 bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap br -variant abnt2
 
 # start Network Manager applet
-# exec --no-startup-id nm-applet
+#exec_always --no-startup-id nm-applet
 
 # restore wallpaper
 exec --no-startup-id nitrogen --restore
