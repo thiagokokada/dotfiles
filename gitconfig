@@ -13,3 +13,5 @@
 	ui = true
 [tar "tar.xz"]
 	command = xz -c
+[alias]
+	gi = "!gi() { curl -s http://www.gitignore.io/api/$@ ;}; gi"
