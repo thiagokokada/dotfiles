@@ -1,16 +1,22 @@
 # This config file depends on the following programs:
-# - sakura (terminal)
-# - chromium (browser)
-# - nautilus (file manager)
-# - arandr (xrandr gui)
 # - PulseAudio (sound)
 # - NetworkManager (network)
-# - nitrogen (wallpaper) 
+# - systemd (for energy management)
 
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Default applications
+set $terminal sakura
+set $browser chromium
+set $file_manager nemo
+set $xrandr_gui arandr
+set $lock_screen i3lock
+set $music_player audacious
+set $set_wallpaper "nitrogen --restore"
+
+# using Super (Win key) instead of Alt
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -29,16 +35,16 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec sakura
+bindsym $mod+Return exec $terminal 
 
 # start a browser
-bindsym $mod+n exec chromium
+bindsym $mod+n exec $browser 
 
 # start file manager
-bindsym $mod+m exec nautilus
+bindsym $mod+m exec $file_manager
 
 # open screen configure tool
-bindsym $mod+p exec arandr
+bindsym $mod+p exec $xrandr_gui
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -143,7 +149,7 @@ bindsym $mod+Shift+r restart
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-        bindsym l exec --no-startup-id i3lock, mode "default"
+        bindsym l exec --no-startup-id $lock_screen, mode "default"
         bindsym e exec --no-startup-id "i3-msg exit", mode "default"
         bindsym s exec --no-startup-id "i3lock && systemctl suspend", mode "default"
         bindsym h exec --no-startup-id "i3lock && systemctl hibernate", mode "default"
@@ -198,18 +204,18 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # media stuff
-bindsym $mod+F9 exec "audacious --play-pause"
-bindsym $mod+F10 exec "audacious --stop"
-bindsym $mod+F11 exec "audacious --rew"
-bindsym $mod+F12 exec "audacious --fwd"
+bindsym $mod+F9 exec "$music_player --play-pause"
+bindsym $mod+F10 exec "$music_player --stop"
+bindsym $mod+F11 exec "$music_player --rew"
+bindsym $mod+F12 exec "$music_player --fwd"
 
 # keyboard layout stuff
 bindsym Ctrl+Shift+1 exec --no-startup-id setxkbmap us -variant intl
 bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap br -variant abnt2
 
 # start Network Manager applet
-#exec_always --no-startup-id nm-applet
+#exec_always --no-startup-id nm-applet # Not needed with i3-gnome
 
 # restore wallpaper
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id $set_wallpaper
 
