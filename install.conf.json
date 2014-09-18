@@ -12,6 +12,8 @@
             "~/.vim": "vim/",
             "~/.zshrc": "zshrc",
             "~/.zsh": "zsh/",
+            "~/.i3": "i3/",
+            "~/.i3status.conf": "i3status.conf",
             "~/.gitconfig": "gitconfig",
             "~/.gitignore_global": "gitignore_global"
         }
