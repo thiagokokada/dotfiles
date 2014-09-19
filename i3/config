@@ -214,9 +214,9 @@ bindsym $mod+F12 exec "$music_player --fwd"
 bindsym Ctrl+Shift+1 exec --no-startup-id setxkbmap us -variant intl
 bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap br -variant abnt2
 
-# start Network Manager applet
-#exec_always --no-startup-id nm-applet # Not needed with i3-gnome
-
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
+
+# startup programs
+exec --no-startup-id "/usr/lib/gnome-settings-daemon/gnome-settings-daemon"
 
