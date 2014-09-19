@@ -218,5 +218,6 @@ bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap br -variant abnt2
 exec --no-startup-id $set_wallpaper
 
 # startup programs
-exec --no-startup-id "/usr/lib/gnome-settings-daemon/gnome-settings-daemon"
+exec --no-startup-id nm-applet
+exec --no-startup-id dropboxd
 
