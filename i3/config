@@ -15,6 +15,7 @@ set $xrandr_gui arandr
 set $lock_screen i3lock
 set $music_player audacious
 set $set_wallpaper "nitrogen --restore"
+set $fs_screenshot "scrot ~/Imagens/%Y-%m-%d-%T-screenshot.png"
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
@@ -148,13 +149,13 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (Shift+r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
         bindsym l exec --no-startup-id $lock_screen, mode "default"
         bindsym e exec --no-startup-id "i3-msg exit", mode "default"
         bindsym s exec --no-startup-id "i3lock && systemctl suspend", mode "default"
         bindsym h exec --no-startup-id "i3lock && systemctl hibernate", mode "default"
-        bindsym r exec --no-startup-id "systemctl reboot", mode "default"
+        bindsym Shift+r exec --no-startup-id "systemctl reboot", mode "default"
         bindsym Shift+s exec --no-startup-id "systemctl poweroff", mode "default"  
 
         # back to normal: Enter or Escape
@@ -213,6 +214,9 @@ bindsym $mod+F12 exec "$music_player --fwd"
 # keyboard layout stuff
 bindsym Ctrl+Shift+1 exec --no-startup-id setxkbmap us -variant intl
 bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap br -variant abnt2
+
+# take screenshots
+bindsym Print exec $fs_screenshot
 
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
