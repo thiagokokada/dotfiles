@@ -12,7 +12,7 @@ set $terminal sakura
 set $browser chromium
 set $file_manager nemo
 set $xrandr_gui arandr
-set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -blur 0x5 /tmp/lockscreen.png && i3lock -d -I 5 -t -i /tmp/lockscreen.png"
+set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -d -I 5 -t -i /tmp/lockscreen.png"
 set $music_player audacious
 set $set_wallpaper "nitrogen --restore"
 set $fs_screenshot "scrot ~/Imagens/%Y-%m-%d-%T-screenshot.png"
