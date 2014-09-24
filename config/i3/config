@@ -223,6 +223,8 @@ bindsym Print exec $fs_screenshot
 exec --no-startup-id $set_wallpaper
 
 # startup programs
+exec --no-startup-id "xset -b"
+exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id dropboxd
 exec --no-startup-id compton --config ~/.config/compton.conf -b
