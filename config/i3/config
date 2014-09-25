@@ -128,7 +128,6 @@ bindsym $mod+0 workspace 10 misc
 
 # bind specific windows to workspace
 assign [class="Chromium"] 1 www
-assign [class="Nautilus"] 2 work
 assign [class="Audacious"] 3 media
 assign [class="mpv"] 3 media
 
