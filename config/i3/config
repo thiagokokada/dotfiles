@@ -117,30 +117,30 @@ bindsym $mod+a focus parent
 # switch to workspace
 bindsym $mod+1 workspace 1 www
 bindsym $mod+2 workspace 2 work
-bindsym $mod+3 workspace 3 media
-bindsym $mod+4 workspace 4 code
-bindsym $mod+5 workspace 5 moar
-bindsym $mod+6 workspace 6 moar
-bindsym $mod+7 workspace 7 moar
-bindsym $mod+8 workspace 8 moar
-bindsym $mod+9 workspace 9 moar
-bindsym $mod+0 workspace 10 misc
+bindsym $mod+3 workspace 3 code
+bindsym $mod+4 workspace 4 misc
+bindsym $mod+5 workspace 5 misc
+bindsym $mod+6 workspace 6 misc
+bindsym $mod+7 workspace 7 misc
+bindsym $mod+8 workspace 8 misc
+bindsym $mod+9 workspace 9 misc
+bindsym $mod+0 workspace 10 media
 
 # bind specific windows to workspace
 assign [class="Chromium"] 1 www
-assign [class="Audacious"] 3 media
-assign [class="mpv"] 3 media
+assign [class="Audacious"] 10 media
+assign [class="mpv"] 10 media
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1 www
 bindsym $mod+Shift+2 move container to workspace 2 work
-bindsym $mod+Shift+3 move container to workspace 3 media
-bindsym $mod+Shift+4 move container to workspace 4 code
-bindsym $mod+Shift+5 move container to workspace 5 moar
-bindsym $mod+Shift+6 move container to workspace 6 moar
-bindsym $mod+Shift+7 move container to workspace 7 moar
-bindsym $mod+Shift+8 move container to workspace 8 moar
-bindsym $mod+Shift+9 move container to workspace 9 moar
+bindsym $mod+Shift+3 move container to workspace 3 code
+bindsym $mod+Shift+4 move container to workspace 4 media
+bindsym $mod+Shift+5 move container to workspace 5 misc
+bindsym $mod+Shift+6 move container to workspace 6 misc
+bindsym $mod+Shift+7 move container to workspace 7 misc
+bindsym $mod+Shift+8 move container to workspace 8 misc
+bindsym $mod+Shift+9 move container to workspace 9 misc
 bindsym $mod+Shift+0 move container to workspace 10 misc
 
 # reload the configuration file
