@@ -2,6 +2,7 @@
 
 vo=opengl-hq,
 ao=pulse,
+softvol=auto
 hwdec=auto
 stop-screensaver="yes"
 gapless-audio="yes"
