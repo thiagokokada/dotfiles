@@ -15,6 +15,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-rails.git'
 Plugin 'davidhalter/jedi-vim'
@@ -22,6 +23,7 @@ Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mbbill/undotree'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'chrisbra/csv.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,6 +44,7 @@ filetype plugin indent on    " required
 nnoremap <F3> :NERDTreeToggle<cr>
 nnoremap <F5> :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 3
+let g:csv_autocmd_arrange = 1
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78

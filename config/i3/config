@@ -9,7 +9,7 @@
 
 # Default applications
 set $terminal sakura
-set $browser chromium
+set $browser google-chrome-stable
 set $file_manager nemo
 set $xrandr_gui arandr
 set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -d -I 5 -t -i /tmp/lockscreen.png"
