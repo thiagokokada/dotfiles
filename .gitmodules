@@ -25,6 +25,7 @@
 	ignore = untracked
 [submodule "dotbot"]
 	path = dotbot
+	tag = v1.2.0
 	url = git://github.com/anishathalye/dotbot.git
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/bundle/Vundle.vim
