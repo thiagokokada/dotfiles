@@ -1,0 +1,41 @@
+--- 
+- 
+  clean: 
+    - "~"
+- 
+  link: 
+    ~/.config/compton.conf: config/compton.conf
+    ~/.config/dunst: 
+      create: true
+      path: config/dunst/
+    ~/.config/i3: 
+      create: true
+      path: config/i3/
+    ~/.config/i3status: 
+      create: true
+      path: config/i3status/
+    ~/.config/livestreamer: 
+      create: true
+      path: config/livestreamer/
+    ~/.config/mpv: 
+      create: true
+      path: config/mpv/
+    ~/.config/sublime-text-3: 
+      create: true
+      path: config/sublime-text-3/
+    ~/.dotfiles: ""
+    ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
+    ~/.gvimrc: gvimrc
+    ~/.vim: vim/
+    ~/.vimrc: vimrc
+    ~/.zshrc: zshrc
+    ~/bin: bin/
+- 
+  shell: 
+    - 
+      - "curl https://sublime.wbond.net/Package%20Control.sublime-package -o config/sublime-text-3/Installed\\\\ Packages/Package\\\\ Control.sublime-package"
+      - "Installing Package Control"
+    - 
+      - "git submodule update --init --recursive --remote"
+      - "Installing/updating submodules"
