@@ -11,7 +11,6 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle pip
 antigen bundle python
-antigen bundle virtualenv
 antigen bundle history-substring-search
 antigen bundle command-not-found
 
@@ -27,7 +26,9 @@ antigen theme ys
 # Tell antigen that you're done.
 antigen apply
 
-# User configuration
+######################
+# User configuration #
+######################
 
 # Aliases
 alias zshconfig="gvim ~/.zshrc"
@@ -38,12 +39,6 @@ alias i3config="gvim ~/.config/i3/config"
 alias updateplugins="cd ~/.dotfiles; git submodule update --init --recursive --remote; cd -"
 alias charginmahlazer="source ~/.zshrc"
 
-# Android configuration
-export ANDROID_SDK=$HOME/Source/adt-bundle/sdk
-export ANDROID_NDK=$HOME/Source/android-ndk-r9d
-export ANDROID_SWT=/usr/share/java
-
-# User preferences
-export PATH=$HOME/bin:$HOME/Source/adt-bundle/eclipse:$HOME/Source/android-studio/bin:$ANDROID_SDK/tools/:$ANDROID_SDK/platform-tools/:$PATH
+# Environmental vars
 export EDITOR="vim"
 
