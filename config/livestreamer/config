@@ -1,6 +1,0 @@
-# Player options
-player=mpv --cache 8192 --demuxer-thread --demuxer-readahead-bytes=8192
-player-no-close
-default-stream=best
-player-passthrough=hls,http,rtmp
-

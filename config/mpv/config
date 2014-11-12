@@ -1,5 +1,6 @@
 # Write your default config options here!
 
+[default]
 vo=opengl-hq,
 ao=pulse,
 softvol=auto

@@ -53,8 +53,4 @@ set number			" show line number
 set background=dark		" default terminal background
 set clipboard=unnamedplus	" alias unnamed register to the + register
 set smartcase			" only be case sensitive when it matters!
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+set mouse=a                     " in most terminal emulators this works fine!
