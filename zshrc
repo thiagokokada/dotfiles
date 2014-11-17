@@ -19,9 +19,8 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle pip
 antigen bundle python
-antigen bundle history-substring-search
 antigen bundle command-not-found
-antigen bundle vi-mode
+antigen bundle history-substring-search
 
 # Github plugins
 antigen bundle rupa/z
