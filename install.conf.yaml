@@ -16,6 +16,7 @@
     ~/.gvimrc: gvimrc
     ~/.vim: vim/
     ~/.vimrc: vimrc
+    ~/.ssh: ssh
     ~/.zshrc: zshrc
 - 
   shell: 

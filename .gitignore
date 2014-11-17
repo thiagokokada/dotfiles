@@ -3,3 +3,6 @@ vim/bundle
 
 # Ignore config folder (I don't want to track ALL config files)
 config/
+
+# Ignore my SSH keys ;)
+ssh/
