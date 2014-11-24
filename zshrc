@@ -2,6 +2,11 @@
 # Workarounds #
 ###############
 
+# Start tmux by default
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
+
 # Disable prompt from grml-zsh
 command -v prompt &> /dev/null && prompt off
 
