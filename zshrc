@@ -54,5 +54,4 @@ alias charginmahlazer="source ~/.zshrc"
 
 # Environmental vars
 export EDITOR="vim"
-export KEYTIMEOUT=1
 
