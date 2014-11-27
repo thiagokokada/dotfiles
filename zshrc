@@ -2,6 +2,11 @@
 # Workarounds #
 ###############
 
+# Start tmux
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
+
 # Disable prompt from grml-zsh
 command -v prompt &> /dev/null && prompt off
 
@@ -16,7 +21,7 @@ source $HOME/.dotfiles/antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # Plugins from robbyrussell's oh-my-zsh
-antigen bundle git
+#antigen bundle git
 antigen bundle pip
 antigen bundle python
 antigen bundle command-not-found
