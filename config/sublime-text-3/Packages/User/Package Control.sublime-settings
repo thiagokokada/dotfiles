@@ -1,12 +1,13 @@
 {
 	"installed_packages":
 	[
+		"Anaconda",
 		"Dockerfile Syntax Highlighting",
 		"Gist",
-		"Jedi - Python autocompletion",
 		"LaTeXing",
 		"Markdown Preview",
 		"Modific",
+		"Package Control",
 		"Shell Command",
 		"SublimeCodeIntel",
 		"SublimeGit",
