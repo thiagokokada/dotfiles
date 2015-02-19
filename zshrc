@@ -4,40 +4,46 @@
 
 # Start tmux
 if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+  [[ ! ${TERM} =~ screen ]] && [ -z ${TMUX} ] && exec tmux
 fi
 
 # Disable prompt from grml-zsh
 command -v prompt &> /dev/null && prompt off
 
 #################
-# Antigen setup #
+# Zgen setup #
 #################
 
 # Load antigen
-source $HOME/.dotfiles/antigen/antigen.zsh
+source ${HOME}/.dotfiles/zgen/zgen.zsh
 
-# Load robbyrussell's oh-my-zsh's library
-antigen use oh-my-zsh
+# check if there's no init script
+if ! zgen saved; then
+     echo "Creating a zgen save"
 
-# Plugins from robbyrussell's oh-my-zsh
-#antigen bundle git
-antigen bundle pip
-antigen bundle python
-antigen bundle command-not-found
-antigen bundle history-substring-search
+  # Load robbyrussell's oh-my-zsh's library
+  zgen oh-my-zsh
 
-# Github plugins
-antigen bundle rupa/z
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions src
-antigen bundle kennethreitz/autoenv
+  # Plugins from robbyrussell's oh-my-zsh
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/pip
+  zgen oh-my-zsh plugins/python
+  zgen oh-my-zsh plugins/command-not-found
+  zgen oh-my-zsh plugins/history-substring-search
 
-# Load theme
-antigen theme ys
+  # Github plugins
+  zgen load rupa/z
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-completions src
+  zgen load kennethreitz/autoenv
 
-# Tell antigen that you're done
-antigen apply
+  # Load theme
+  zgen oh-my-zsh themes/ys
+
+  # Tell antigen that you're done
+  zgen save
+
+fi
 
 ######################
 # User configuration #
@@ -51,7 +57,4 @@ alias gvimconfig="gvim ~/.gvimrc"
 alias i3config="gvim ~/.config/i3/config"
 alias updateplugins="cd ~/.dotfiles; git submodule update --init --recursive --remote; cd -"
 alias charginmahlazer="source ~/.zshrc"
-
-# Environmental vars
-export EDITOR="vim"
 

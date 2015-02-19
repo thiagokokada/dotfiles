@@ -19,6 +19,7 @@
     ~/.ssh: ssh
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
+    ~/.zprofile: zprofile
 - 
   shell: 
     - 

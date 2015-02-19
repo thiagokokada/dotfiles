@@ -14,7 +14,9 @@
 	url = git://github.com/anishathalye/dotbot.git
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/bundle/Vundle.vim
+	branch = master
 	url = git://github.com/gmarik/Vundle.vim.git
-[submodule "antigen"]
-	path = antigen
-	url = https://github.com/zsh-users/antigen.git
+[submodule "zgen"]
+	path = zgen
+	branch = master
+	url = git://github.com/tarjoilija/zgen.git
