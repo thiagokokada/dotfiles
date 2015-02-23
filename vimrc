@@ -24,6 +24,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mbbill/undotree'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'chrisbra/csv.vim'
+Plugin 'vim-scripts/restore_view.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -45,6 +46,8 @@ nnoremap <F3> :NERDTreeToggle<cr>
 nnoremap <F5> :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 3
 let g:csv_autocmd_arrange = 1
+set viewoptions=cursor,folds,slash,unix
+let g:skipview_files = ['*\.vim']
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
