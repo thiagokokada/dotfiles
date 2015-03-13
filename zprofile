@@ -6,3 +6,4 @@ ZSH_TMUX_AUTOCONNECT=false
 # Environmental vars
 TERM="xterm-256color"
 EDITOR="vim"
+PATH=${HOME}/bin:${PATH}
