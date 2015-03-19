@@ -5,6 +5,13 @@
 # Disable prompt from grml-zsh
 command -v prompt &> /dev/null && prompt off
 
+# Start tmux with 256 color support
+if command -v tmux &> /dev/null; then
+  if [[ $- == *i* ]] && [ -z ${TMUX} ]; then
+    exec tmux -2
+  fi
+fi
+
 #################
 # Zgen setup #
 #################
@@ -20,7 +27,6 @@ if ! zgen saved; then
   zgen oh-my-zsh
 
   # Plugins from robbyrussell's oh-my-zsh
-  zgen oh-my-zsh plugins/tmux
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/python
