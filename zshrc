@@ -27,6 +27,7 @@ if ! zgen saved; then
   zgen oh-my-zsh
 
   # Plugins from robbyrussell's oh-my-zsh
+  zgen oh-my-zsh plugins/tmux
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/python
