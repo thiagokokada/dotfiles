@@ -7,7 +7,7 @@ command -v prompt &> /dev/null && prompt off
 
 # Start tmux with 256 color support
 if command -v tmux &> /dev/null; then
-  if [[ $- == *i* ]] && [ -z ${TMUX} ]; then
+  if [[ -o interactive ]] && [[ -z ${TMUX} ]]; then
     exec tmux -2
   fi
 fi
