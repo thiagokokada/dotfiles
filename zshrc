@@ -1,6 +1,6 @@
-###############
-# Workarounds #
-###############
+#########
+# Hacks #
+#########
 
 # Disable prompt from grml-zsh
 command -v prompt &> /dev/null && prompt off
@@ -11,6 +11,23 @@ if command -v tmux &> /dev/null; then
     exec tmux -2
   fi
 fi
+
+# Emulate Mac OSX's open
+open() {
+  if [[ ${1} = "-h" ]] || [[ -z "${@}" ]]; then
+    echo "usage: ${0} FILE [FILE ...]" 1>&2
+    return 1
+  else
+    for file in "${@}"; do
+      if [[ -f "${file}" ]]; then
+        xdg-open "${file}" &> /dev/null &
+      else
+        echo "File '"${file}"' does not exist!" 1>&2
+        return 1
+      fi
+    done
+  fi
+}
 
 #################
 # Zgen setup #
