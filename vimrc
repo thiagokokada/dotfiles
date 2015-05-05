@@ -57,3 +57,5 @@ set background=dark		" default terminal background
 set clipboard=unnamedplus	" alias unnamed register to the + register
 set smartcase			" only be case sensitive when it matters!
 set mouse=a                     " in most terminal emulators this works fine!
+set lazyredraw                  " make vim faster(?)
+set ttyfast
