@@ -43,11 +43,14 @@ filetype plugin indent on    " required
 
 " Plugins' configuration
 nnoremap <F3> :NERDTreeToggle<cr>
-nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F4> :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 3
 let g:csv_autocmd_arrange = 1
 set viewoptions=cursor,folds,slash,unix
 let g:skipview_files = ['*\.vim']
+
+" automagically remove trailing spaces
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
