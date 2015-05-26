@@ -8,6 +8,11 @@ Host valinhos
     Port 60222
 
 Host miku
-    Hostname 195.154.6.112
+    Hostname mikuchan.noip.me
     User thiagoko
+    Port 22222
+
+Host m45t3r
+    Hostname m45t3r.noip.me
+    User m45t3r
     Port 22222

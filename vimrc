@@ -51,6 +51,8 @@ let g:skipview_files = ['*\.vim']
 
 " automagically remove trailing spaces
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" enable/disable paste mode
+set pastetoggle=<F6>
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
