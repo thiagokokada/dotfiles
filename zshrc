@@ -79,3 +79,7 @@ alias i3config="gvim ~/.config/i3/config"
 alias updateplugins="cd ~/.dotfiles; git submodule update --init --recursive --remote; cd -"
 alias charginmahlazer="source ~/.zshrc"
 
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/m45t3r/google-cloud-sdk/path.zsh.inc'
+# The next line enables bash completion for gcloud.
+source '/home/m45t3r/google-cloud-sdk/completion.zsh.inc'
