@@ -45,6 +45,6 @@ alias updateplugins="cd ~/.dotfiles; git submodule update --init --recursive --r
 alias charginmahlazer="source ~/.zshrc"
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/home/m45t3r/google-cloud-sdk/path.zsh.inc'
+source '/home/m45t3r/Source/google-cloud-sdk/path.zsh.inc'
 # The next line enables bash completion for gcloud.
-source '/home/m45t3r/google-cloud-sdk/completion.zsh.inc'
+source '/home/m45t3r/Source/google-cloud-sdk/completion.zsh.inc'
