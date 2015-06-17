@@ -20,3 +20,6 @@
 	path = zgen
 	branch = master
 	url = https://github.com/tarjoilija/zgen.git
+[submodule "prezto"]
+	path = prezto
+	url = https://github.com/sorin-ionescu/prezto.git

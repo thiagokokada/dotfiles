@@ -18,13 +18,18 @@
     ~/.vimrc: vimrc
     ~/.ssh: ssh
     ~/.tmux.conf: tmux.conf
+    ~/.zprezto: prezto
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv
+    ~/.zlogin: zlogin
+    ~/.zlogout: zlogout
+    ~/.zpreztorc: zpreztorc
+    ~/.zprofile: zprofile
 - 
   shell: 
     - 
       - "curl https://sublime.wbond.net/Package%20Control.sublime-package -o ~/.config/sublime-text-3/Installed\\\ Packages/Package\\\ Control.sublime-package"
       - "Installing Package Control"
     - 
-      - "git submodule update --init --recursive --remote"
+      - "git submodule update --init --recursive"
       - "Installing/updating submodules"
