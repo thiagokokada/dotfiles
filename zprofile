@@ -1,7 +1,18 @@
 #
-# Editors
+# Aliases
+#
+alias open="xdg-open"
+alias zshconfig="gvim ~/.zshrc"
+alias vimconfig="gvim ~/.vimrc"
+alias gvimconfig="gvim ~/.gvimrc"
+alias updateplugins="pushd ~/.dotfiles; git submodule update --init --recursive --remote; popd"
+alias charginmahlazer="source ~/.zshrc"
+
+#
+# Global variables
 #
 export EDITOR='vim'
+export CLOUDSDK_PYTHON='python2'
 
 #
 # Paths
@@ -21,3 +32,8 @@ path=(
   /usr/local/{bin,sbin}
   $path
 )
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/m45t3r/Source/google-cloud-sdk/path.zsh.inc'
+# The next line enables zsh completion for gcloud.
+source '/home/m45t3r/Source/google-cloud-sdk/completion.zsh.inc'
