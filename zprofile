@@ -3,6 +3,7 @@
 #
 export EDITOR='vim'
 export CLOUDSDK_PYTHON='python2'
+export CLOUDSDK_PATH="$HOME/Source/google-cloud-sdk"
 
 #
 # Paths
@@ -23,7 +24,9 @@ path=(
   $path
 )
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/home/m45t3r/Source/google-cloud-sdk/path.zsh.inc'
-# The next line enables zsh completion for gcloud.
-source '/home/m45t3r/Source/google-cloud-sdk/completion.zsh.inc'
+if [ -d $CLOUDSDK_PATH ]; then
+  # The next line updates PATH for the Google Cloud SDK.
+  source "$CLOUDSDK_PATH/path.zsh.inc"
+  # The next line enables zsh completion for gcloud.
+  source "$CLOUDSDK_PATH/completion.zsh.inc"
+fi
