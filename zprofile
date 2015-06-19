@@ -4,6 +4,7 @@
 export EDITOR='vim'
 export CLOUDSDK_PYTHON='python2'
 export CLOUDSDK_PATH="$HOME/Source/google-cloud-sdk"
+export KEYTIMEOUT=1
 
 #
 # Paths
