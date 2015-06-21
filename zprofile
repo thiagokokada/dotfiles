@@ -1,3 +1,8 @@
+# Source system profile.
+if [[ -f '/etc/profile' ]]; then
+  emulate sh -c 'source /etc/profile'
+fi
+
 #
 # Global variables
 #
@@ -25,7 +30,7 @@ path=(
   $path
 )
 
-if [ -d $CLOUDSDK_PATH ]; then
+if [[ -d "$CLOUDSDK_PATH" ]]; then
   # The next line updates PATH for the Google Cloud SDK.
   source "$CLOUDSDK_PATH/path.zsh.inc"
   # The next line enables zsh completion for gcloud.
