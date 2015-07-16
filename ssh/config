@@ -8,7 +8,7 @@ Host valinhos
     Port 60222
 
 Host miku
-    Hostname mikuchan.noip.me
+    Hostname 195.154.6.112
     User thiagoko
     Port 22222
 
