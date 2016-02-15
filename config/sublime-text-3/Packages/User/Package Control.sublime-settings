@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Advanced CSV",
 		"Anaconda",
 		"Dockerfile Syntax Highlighting",
 		"Gist",

@@ -9,7 +9,7 @@ fi
 #
 # Aliases
 #
-alias open="xdg-open"
+alias open="o"
 alias zshconfig="gvim ~/.zshrc"
 alias vimconfig="gvim ~/.vimrc"
 alias gvimconfig="gvim ~/.gvimrc"
