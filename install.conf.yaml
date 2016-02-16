@@ -12,6 +12,8 @@
     ~/.gvimrc: gvimrc
     ~/.vim: vim/
     ~/.vimrc: vimrc
+    ~/.emacs.d: emacs.d
+    ~/.spacemacs: spacemacs
     ~/.ssh: ssh
     ~/.tmux.conf: tmux.conf
     ~/.zprezto: prezto
