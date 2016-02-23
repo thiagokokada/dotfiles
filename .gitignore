@@ -6,3 +6,6 @@ config/
 
 # Ignore my SSH keys ;)
 ssh/
+
+# Ignore zshrc.local
+zshrc.local

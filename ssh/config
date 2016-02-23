@@ -16,3 +16,9 @@ Host m45t3r
     Hostname m45t3r.noip.me
     User m45t3r
     Port 22222
+
+Host revoada
+    Hostname 143.107.45.126
+    User ubuntu
+    Port 10111
+    ForwardAgent yes
