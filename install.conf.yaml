@@ -6,6 +6,9 @@
     ~/.config/sublime-text-3:
       create: true
       path: config/sublime-text-3/
+    ~/.ssh/config:
+      create: true
+      path: ssh_config
     ~/.dotfiles: ""
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
@@ -14,7 +17,6 @@
     ~/.vimrc: vimrc
     ~/.emacs.d: emacs.d
     ~/.spacemacs: spacemacs
-    ~/.ssh: ssh
     ~/.tmux.conf: tmux.conf
     ~/.zprezto: prezto
     ~/.zshrc: zshrc
