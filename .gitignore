@@ -1,11 +1,8 @@
 # Ignore Vundle plugins (this will be managed by Vundle itself instead of git)
 vim/bundle
 
-# Ignore config folder (I don't want to track ALL config files)
-config/
-
-# Ignore my SSH keys ;)
-ssh/
+# Ignore Sublime Text subfolders
+config/sublime-text-3/*
 
 # Ignore zshrc.local
 zshrc.local

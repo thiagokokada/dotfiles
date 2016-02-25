@@ -6,6 +6,9 @@
     ~/.config/sublime-text-3:
       create: true
       path: config/sublime-text-3/
+    ~/.config/redshift.conf:
+      create: true
+      path: config/redshift.conf
     ~/.ssh/config:
       create: true
       path: ssh_config
