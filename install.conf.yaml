@@ -18,6 +18,9 @@
     ~/.gvimrc: gvimrc
     ~/.vim: vim/
     ~/.vimrc: vimrc
+    ~/.config/nvim/init.vim:
+        create: true
+        path: vimrc
     ~/.emacs.d: emacs.d
     ~/.spacemacs: spacemacs
     ~/.tmux.conf: tmux.conf

@@ -7,17 +7,14 @@ Host valinhos
     User thiago
     Port 60222
 
-Host miku
-    Hostname 195.154.6.112
-    User thiagoko
-    Port 22222
-
 Host m45t3r
     Hostname m45t3r.noip.me
     User m45t3r
     Port 22222
 
 Host revoada
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
     Hostname 143.107.45.126
     User ubuntu
     Port 10111
