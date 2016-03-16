@@ -2,7 +2,7 @@ Host *
     ServerAliveInterval 300
     ServerAliveCountMax 2
 
-Host valinhos
+Host ime-valinhos
     Hostname valinhos.ime.usp.br
     User thiago
     Port 60222
@@ -18,4 +18,9 @@ Host revoada
     Hostname 143.107.45.126
     User ubuntu
     Port 10111
+    ForwardAgent yes
+
+Host ufpel-lups
+    Hostname lups.ufpel.edu.br
+    User thiagoko
     ForwardAgent yes
