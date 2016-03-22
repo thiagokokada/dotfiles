@@ -3,6 +3,7 @@
 #
 export EDITOR='vim'
 export KEYTIMEOUT=1
+export PYTHONSTARTUP="$HOME/.pythonrc.py"
 
 #
 # Paths

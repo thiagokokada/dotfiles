@@ -24,6 +24,7 @@
     ~/.emacs.d: emacs.d
     ~/.spacemacs: spacemacs
     ~/.tmux.conf: tmux.conf
+    ~/.pythonrc.py: pythonrc.py
     ~/.zprezto: prezto
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv
