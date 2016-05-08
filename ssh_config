@@ -7,6 +7,11 @@ Host ime-valinhos
     User thiago
     Port 60222
 
+Host ime
+    Hostname ime.usp.br
+    User thiagoko
+    DynamicForward 1080
+
 Host m45t3r
     Hostname m45t3r.noip.me
     User m45t3r
@@ -18,9 +23,7 @@ Host revoada
     Hostname 143.107.45.126
     User ubuntu
     Port 10111
-    ForwardAgent yes
 
 Host ufpel-lups
     Hostname lups.ufpel.edu.br
     User thiagoko
-    ForwardAgent yes
