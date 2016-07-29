@@ -23,7 +23,6 @@ Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mbbill/undotree'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'chrisbra/csv.vim'
 Plugin 'vim-scripts/restore_view.vim'
 
 " All of your Plugins must be added before the following line

@@ -27,3 +27,7 @@ Host revoada
 Host ufpel-lups
     Hostname lups.ufpel.edu.br
     User thiagoko
+
+Host ufpel-hydra
+    ProxyCommand ssh -q ufpel-lups nc -q0 hydra 22
+    User hydra
