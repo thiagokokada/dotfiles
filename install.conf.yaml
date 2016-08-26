@@ -20,7 +20,7 @@
     ~/.vimrc: vimrc
     ~/.config/nvim/init.vim:
         create: true
-        path: vimrc
+        path: nvimrc
     ~/.emacs.d: emacs.d
     ~/.spacemacs: spacemacs
     ~/.tmux.conf: tmux.conf
@@ -34,7 +34,7 @@
     ~/.zprofile: zprofile
 - shell:
     -
-      - "curl https://sublime.wbond.net/Package%20Control.sublime-package -o ~/.config/sublime-text-3/Installed\\\ Packages/Package\\\ Control.sublime-package"
+      - "curl https://packagecontrol.io/Package%20Control.sublime-package -o ~/.config/sublime-text-3/Installed\\\ Packages/Package\\\ Control.sublime-package"
       - "Installing Package Control"
     -
       - "git submodule update --init --recursive"
