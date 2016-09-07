@@ -37,5 +37,5 @@
       - "curl https://packagecontrol.io/Package%20Control.sublime-package -o ~/.config/sublime-text-3/Installed\\\ Packages/Package\\\ Control.sublime-package"
       - "Installing Package Control"
     -
-      - "git submodule update --init --recursive"
+      - "git submodule update --init"
       - "Installing/updating submodules"
