@@ -1,28 +1,7 @@
-[submodule "config/sublime-text-3/Packages/LaTeX-cwl"]
-	path = config/sublime-text-3/Packages/LaTeX-cwl
-	url = https://github.com/LaTeXing/LaTeX-cwl.git
-	branch = master
-	ignore = untracked
-[submodule "config/sublime-text-3/Packages/languages"]
-	path = config/sublime-text-3/Packages/languages
-	url = https://github.com/SublimeText/Dictionaries.git
-	branch = master
-	ignore = untracked
-[submodule "dotbot"]
-	path = dotbot
-	branch = master
-	url = https://github.com/anishathalye/dotbot.git
 [submodule "vim/bundle/Vundle.vim"]
-	path = vim/bundle/Vundle.vim
+	path = vim/.vim/bundle/Vundle.vim
 	branch = master
 	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "zgen"]
-	path = zgen
-	branch = master
-	url = https://github.com/tarjoilija/zgen.git
 [submodule "prezto"]
-	path = prezto
+	path = zsh/.zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
-[submodule "emacs.d"]
-	path = emacs.d
-	url = https://github.com/syl20bnr/spacemacs
