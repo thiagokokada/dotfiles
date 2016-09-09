@@ -5,7 +5,7 @@
 # - Nitrogen (wallpaper)
 # - Scrot (lock screen)
 # - Dunst (notification)
-# - dmenu (launcher)
+# - dmenu/rofi (launcher)
 
 # i3 config file (v4)
 #
@@ -61,7 +61,8 @@ bindsym Mod1+F4      kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop # much faster than the above
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+x exec --no-startup-id rofi -show window
 
 # change focus
 bindsym $mod+Left focus left
@@ -197,7 +198,7 @@ set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
 mode "$mode_keyboard" {
         bindsym u exec --no-startup-id setxkbmap us -variant intl
         bindsym b exec --no-startup-id setxkbmap br -variant abnt2
-        
+
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -214,6 +215,6 @@ exec --no-startup-id $set_wallpaper
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id dropboxd
-exec --no-startup-id compton -b
+exec --no-startup-id compton
 exec --no-startup-id redshift
 
