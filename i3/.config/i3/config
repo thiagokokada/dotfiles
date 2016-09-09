@@ -51,8 +51,9 @@ bindsym $mod+m exec $file_manager
 # open screen configure tool
 bindsym $mod+p exec $xrandr_gui
 
-# ill focused window
+# kill focused window
 bindsym $mod+Shift+q kill
+bindsym Mod1+F4      kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
