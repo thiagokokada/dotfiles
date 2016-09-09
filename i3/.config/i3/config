@@ -36,6 +36,9 @@ font pango:DejaVu Sans Mono 8
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
+# Disable window title
+for_window [class="^.*"] border pixel 1
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
