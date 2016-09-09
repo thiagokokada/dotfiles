@@ -136,10 +136,10 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (Shift+r) reboot, (Shift+s) shutdown
+set $mode_system System [l]ock, logou[t], [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
         bindsym l exec --no-startup-id $lock_screen, mode "default"
-        bindsym e exec --no-startup-id "i3-msg exit", mode "default"
+        bindsym t exec --no-startup-id "i3-msg exit", mode "default"
         bindsym s exec --no-startup-id "i3lock && systemctl suspend", mode "default"
         bindsym h exec --no-startup-id "i3lock && systemctl hibernate", mode "default"
         bindsym Shift+r exec --no-startup-id "systemctl reboot", mode "default"
@@ -168,7 +168,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -194,8 +193,16 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # keyboard layout stuff
-bindsym Ctrl+Shift+1 exec --no-startup-id setxkbmap us -variant intl
-bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap br -variant abnt2
+set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
+mode "$mode_keyboard" {
+        bindsym u exec --no-startup-id setxkbmap us -variant intl
+        bindsym b exec --no-startup-id setxkbmap br -variant abnt2
+        
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+b mode "$mode_keyboard"
 
 # take screenshots
 bindsym Print exec $fs_screenshot
