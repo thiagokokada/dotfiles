@@ -9,6 +9,7 @@
 general {
         colors = true
         interval = 1
+        output_format = i3bar
 }
 
 order += "cpu_temperature 0"
