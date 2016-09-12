@@ -140,6 +140,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# system power management
 set $mode_system System [l]ock, logou[t], [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
         bindsym l exec --no-startup-id $lock_screen, mode "default"
@@ -154,6 +155,9 @@ mode "$mode_system" {
         bindsym Escape mode "default"
 }
 bindsym $mod+Escape mode "$mode_system"
+
+# shortcut to lock screen
+bindsym $mod+l exec --no-startup-id $lock_screen
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
