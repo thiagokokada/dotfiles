@@ -69,6 +69,12 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+x exec --no-startup-id rofi -show window
 
 # change focus
+# j, k, l, ç or ;
+bindcode $mod+44 focus left
+bindcode $mod+45 focus down
+bindcode $mod+46 focus up
+bindcode $mod+47 focus right
+# arrow keys
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -78,6 +84,12 @@ bindsym $mod+Right focus right
 workspace_auto_back_and_forth yes
 
 # move focused window
+# j, k, l, ç or ;
+bindcode $mod+Shift+44 move left
+bindcode $mod+Shift+45 move down
+bindcode $mod+Shift+46 move up
+bindcode $mod+Shift+47 move right
+# arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -113,10 +125,10 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1 www
-bindsym $mod+2 workspace 2 work
-bindsym $mod+3 workspace 3 code
-bindsym $mod+4 workspace 4 misc
+bindsym $mod+1 workspace 1 term
+bindsym $mod+2 workspace 2 www
+bindsym $mod+3 workspace 3 work
+bindsym $mod+4 workspace 4 code
 bindsym $mod+5 workspace 5 misc
 bindsym $mod+6 workspace 6 misc
 bindsym $mod+7 workspace 7 misc
@@ -125,10 +137,10 @@ bindsym $mod+9 workspace 9 misc
 bindsym $mod+0 workspace 10 media
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1 www
-bindsym $mod+Shift+2 move container to workspace 2 work
-bindsym $mod+Shift+3 move container to workspace 3 code
-bindsym $mod+Shift+4 move container to workspace 4 misc
+bindsym $mod+Shift+1 move container to workspace 1 term
+bindsym $mod+Shift+2 move container to workspace 2 www
+bindsym $mod+Shift+3 move container to workspace 3 work
+bindsym $mod+Shift+4 move container to workspace 4 code
 bindsym $mod+Shift+5 move container to workspace 5 misc
 bindsym $mod+Shift+6 move container to workspace 6 misc
 bindsym $mod+Shift+7 move container to workspace 7 misc
@@ -162,16 +174,21 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # shortcut to lock screen
-bindsym $mod+l exec --no-startup-id $lock_screen
+bindsym Ctrl+Mod1+l exec --no-startup-id $lock_screen
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
+        # j, k, l, ç or ;
+        bindcode 44 resize shrink width 10 px or 10 ppt
+        bindcode 45 resize grow height 10 px or 10 ppt
+        bindcode 46 resize shrink height 10 px or 10 ppt
+        bindcode 47 resize grow width 10 px or 10 ppt
+
+        # arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
