@@ -1,0 +1,6 @@
+# Ignore view folder
+view/
+# Ignore vim-plug folder
+plugged/
+# Ignore .netrwhist file
+.netrwhist

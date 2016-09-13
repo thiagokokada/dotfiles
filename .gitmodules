@@ -1,7 +1,6 @@
-[submodule "vim/bundle/Vundle.vim"]
-	path = vim/.vim/bundle/Vundle.vim
-	branch = master
-	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "prezto"]
 	path = zsh/.zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "vim-plug"]
+	path = .vim-plug
+	url = https://github.com/junegunn/vim-plug
