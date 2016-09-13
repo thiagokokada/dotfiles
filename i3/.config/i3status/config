@@ -23,6 +23,8 @@ order += "arch_updates"
 
 sysdata {
         format = "C: {cpu_usage}% T: {cpu_temp} M: {mem_used_percent}%"
+        med_threshould = 60
+        high_threshould = 90
 }
 
 net_rate {
