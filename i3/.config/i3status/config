@@ -12,18 +12,14 @@ general {
         output_format = i3bar
 }
 
-order += "arch_updates"
 order += "sysdata"
 order += "net_rate"
 order += "disk /"
 order += "battery 0"
 order += "volume master"
-order += "tztime local"
 order += "keyboard_layout"
-
-arch_updates {
-        include_aur = True
-}
+order += "tztime local"
+order += "arch_updates"
 
 sysdata {
         format = "C: {cpu_usage}% T: {cpu_temp} M: {mem_used_percent}%"
@@ -52,10 +48,14 @@ volume master {
         mixer_idx = 0
 }
 
+keyboard_layout {
+        cache_timeout = 2
+}
+
 tztime local {
         format = "%d-%m-%Y %H:%M:%S"
 }
 
-keyboard_layout {
-        cache_timeout = 2
+arch_updates {
+        include_aur = True
 }
