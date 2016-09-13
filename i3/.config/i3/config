@@ -223,8 +223,8 @@ bindsym XF86AudioPrev exec playerctl previous
 # keyboard layout stuff
 set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
 mode "$mode_keyboard" {
-        bindsym u exec --no-startup-id setxkbmap us -variant intl, mode "default"
-        bindsym b exec --no-startup-id setxkbmap br -variant abnt2, mode "default"
+        bindsym u mode "default", exec --no-startup-id setxkbmap us -variant intl
+        bindsym b mode "default", exec --no-startup-id setxkbmap br -variant abnt2
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
