@@ -3,9 +3,10 @@
 # - NetworkManager (network)
 # - systemd (for energy management)
 # - Nitrogen (wallpaper)
-# - Scrot (lock screen)
-# - Dunst (notification)
+# - i3lock/Scrot (lock screen)
+# - dunst (notification)
 # - dmenu/rofi (launcher)
+# - py3status (status bar)
 
 # i3 config file (v4)
 #
@@ -144,11 +145,11 @@ bindsym $mod+Shift+r restart
 set $mode_system System [l]ock, logou[t], [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
         bindsym l exec --no-startup-id $lock_screen, mode "default"
-        bindsym t exec --no-startup-id "i3-msg exit", mode "default"
-        bindsym s exec --no-startup-id "i3lock && systemctl suspend", mode "default"
-        bindsym h exec --no-startup-id "i3lock && systemctl hibernate", mode "default"
-        bindsym Shift+r exec --no-startup-id "systemctl reboot", mode "default"
-        bindsym Shift+s exec --no-startup-id "systemctl poweroff", mode "default"
+        bindsym t exec --no-startup-id i3-msg exit, mode "default"
+        bindsym s exec --no-startup-id $lock_screen, exec --no-startup-id sleep 1 && systemctl suspend, mode "defaul"
+        bindsym h exec --no-startup-id $lock_screen, exec --no-startup-id sleep 1 && systemctl hibernate, mode "default"
+        bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -178,12 +179,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Start py3status to display status bar
 bar {
-        #status_command i3status
-        #tray_output primary
-        status_command exec ~/.config/i3/scripts/net-speed.sh
+        status_command py3status
 }
 
 # Pulse Audio controls
@@ -204,8 +202,8 @@ bindsym XF86AudioPrev exec playerctl previous
 # keyboard layout stuff
 set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
 mode "$mode_keyboard" {
-        bindsym u exec --no-startup-id setxkbmap us -variant intl
-        bindsym b exec --no-startup-id setxkbmap br -variant abnt2
+        bindsym u exec --no-startup-id setxkbmap us -variant intl, mode "default"
+        bindsym b exec --no-startup-id setxkbmap br -variant abnt2, mode "default"
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
