@@ -12,7 +12,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# Default applications
+# default applications
 set $terminal sakura
 set $browser chromium
 set $file_manager caja
@@ -37,10 +37,10 @@ font pango:DejaVu Sans Mono 8
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-# Disable window title
+# disable window title
 for_window [class="^.*"] border pixel 1
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
@@ -136,6 +136,10 @@ bindsym $mod+Shift+8 move container to workspace 8 misc
 bindsym $mod+Shift+9 move container to workspace 9 misc
 bindsym $mod+Shift+0 move container to workspace 10 media
 
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -179,7 +183,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Start py3status to display status bar
+# start py3status to display status bar
 bar {
         status_command py3status
 }

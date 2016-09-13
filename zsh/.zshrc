@@ -10,9 +10,15 @@ fi
 # Aliases
 #
 alias open="o"
-alias zshconfig="gvim ~/.zshrc"
-alias vimconfig="gvim ~/.vimrc"
-alias gvimconfig="gvim ~/.gvimrc"
+alias zshconfig="vim ~/.zshrc"
+if [[ -s "~/.vimrc" ]]; then
+  alias vimconfig="vim ~/.vimrc"
+  alias gvimconfig="vim ~/.gvimrc"
+fi
+if [[ -s "~/.config/i3/config" ]]; then
+  alias i3config="vim ~/.config/i3/config"
+  alias i3status="vim ~/.config/i3status/config"
+fi
 alias updateplugins="cd ~/.dotfiles; git submodule update --remote; cd -"
 alias initplugins="cd ~/.dotfiles; git submodule update --init --recursive; cd -"
 alias charginmahlazer="source ~/.zshrc"
