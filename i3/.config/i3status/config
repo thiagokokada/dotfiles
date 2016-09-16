@@ -60,4 +60,5 @@ tztime local {
 
 arch_updates {
         include_aur = True
+        format = "UPD: {pacman}/{aur}"
 }
