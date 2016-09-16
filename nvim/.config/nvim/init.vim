@@ -8,9 +8,11 @@ Plug 'vim-scripts/restore_view.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'neomake/neomake'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'zchee/deoplete-jedi', { 'for': 'python'}
 call plug#end()
 
 """"""""""""""""""""""""
@@ -26,6 +28,8 @@ nnoremap <F4> :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 3
 " jedi-vim
 let g:jedi#smart_auto_mappings = 0
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 """"""""
 " misc "
