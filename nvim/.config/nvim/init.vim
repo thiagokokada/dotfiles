@@ -21,6 +21,8 @@ call plug#end()
 " Neomake
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
+let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
+let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
 " NERDTree
 nnoremap <F3> :NERDTreeToggle<cr>
 " Undotree
