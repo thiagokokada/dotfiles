@@ -28,8 +28,9 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'syntax-highlighting' \
   'history-substring-search' \
-  'tmux' \
-  'python'
+  'git' \
+  'python' \
+  'tmux'
 
 #
 # Editor
