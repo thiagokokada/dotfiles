@@ -16,7 +16,6 @@
 set $terminal sakura
 set $browser chromium
 set $file_manager caja
-set $xrandr_gui arandr
 set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -d -I 5 -t -i /tmp/lockscreen.png"
 set $music_player audacious
 set $set_wallpaper "nitrogen --restore"
@@ -51,9 +50,6 @@ bindsym $mod+n exec $browser
 
 # start file manager
 bindsym $mod+m exec $file_manager
-
-# open screen configure tool
-bindsym $mod+p exec $xrandr_gui
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -186,7 +182,7 @@ mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
-        bindsym 4l resize grow width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -205,20 +201,26 @@ bar {
         status_command py3status
 }
 
+# rotate desktop
+bindsym Ctrl+Mod1+Left exec --no-startup-id ~/.config/i3/scripts/rotate_desktop.sh left
+bindsym Ctrl+Mod1+Down exec --no-startup-id ~/.config/i3/scripts/rotate_desktop.sh inverted
+bindsym Ctrl+Mod1+Up exec --no-startup-id ~/.config/i3/scripts/rotate_desktop.sh normal
+bindsym Ctrl+Mod1+Right exec --no-startup-id ~/.config/i3/scripts/rotate_desktop.sh right
+
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
 
 # media stuff
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play
+bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # keyboard layout stuff
 set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
