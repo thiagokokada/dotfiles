@@ -6,6 +6,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'bling/vim-airline'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
