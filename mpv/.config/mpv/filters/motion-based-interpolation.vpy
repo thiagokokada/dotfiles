@@ -10,9 +10,9 @@ max_mp = 2.5 * (10**6)  # 2.5 megapixels
 th_block_diff  = int(8*8*6.25)
 # (threshold/255)% blocks have to change to consider this a scene change
 # (= no motion compensation), default 130
-th_block_changed  = 12
+th_block_changed  = 65
 # size of blocks the analyse step is performed on
-blocksize = 16
+blocksize = 32
 
 # assume display_fps to be bogus when not in a certain range
 target_num = display_fps if display_fps < max_fps else max_fps
