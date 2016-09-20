@@ -14,8 +14,8 @@ th_block_changed  = 65
 # size of blocks the analyse step is performed on
 blocksize = 32
 
-# assume display_fps to be bogus when not in a certain range
-target_num = display_fps if display_fps < max_fps else max_fps
+# double initial FPS, and let mpv interpolation handle the rest
+target_num = container_fps * 2 if container_fps * 2 < max_fps else max_fps
 target_num = int(target_num * 1e6)
 target_den = int(1e6)
 source_num = int(container_fps * 1e6)
