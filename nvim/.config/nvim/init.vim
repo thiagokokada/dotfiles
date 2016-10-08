@@ -3,6 +3,7 @@
 """""""""""
 call plug#begin()
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'ctrlpvim/ctrlp.vim'

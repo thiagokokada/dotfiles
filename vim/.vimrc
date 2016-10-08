@@ -7,20 +7,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'bling/vim-airline'
 Plug 'vim-scripts/restore_view.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 call plug#end()
-
-""""""""""""""""""""""""
-" plugin configuration "
-""""""""""""""""""""""""
-" NERDTree
-nnoremap <F3> :NERDTreeToggle<cr>
-" Undotree
-nnoremap <F4> :UndotreeToggle<cr>
-let g:undotree_WindowLayout = 3
 
 """"""""
 " misc "
