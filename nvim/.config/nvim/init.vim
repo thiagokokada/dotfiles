@@ -13,7 +13,8 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'neomake/neomake'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python'}
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 call plug#end()
 
 """"""""""""""""""""""""

@@ -15,7 +15,7 @@
 # default applications
 set $terminal sakura
 set $browser chromium
-set $file_manager caja
+set $file_manager nautilus
 set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -e -d -I 5 -t -i /tmp/lockscreen.png"
 set $music_player audacious
 set $set_wallpaper "nitrogen --restore"
@@ -61,7 +61,7 @@ bindsym Mod1+F4      kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+x exec --no-startup-id rofi -show window
 
 # change focus
@@ -243,7 +243,7 @@ exec --no-startup-id $set_wallpaper
 # startup programs
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
-exec --no-startup-id caja-dropbox start
+exec --no-startup-id dropbox
 exec --no-startup-id compton
 exec --no-startup-id redshift-gtk
 
