@@ -10,7 +10,6 @@ Plug 'vim-scripts/restore_view.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 call plug#end()
 
@@ -22,8 +21,6 @@ nnoremap <F3> :NERDTreeToggle<cr>
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 3
-" jedi-vim
-let g:jedi#smart_auto_mappings = 0
 
 """"""""
 " misc "
