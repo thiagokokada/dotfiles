@@ -2,31 +2,36 @@
 " plugins "
 """""""""""
 call plug#begin()
-Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
-Plug 'dietsche/vim-lastplace'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'dietsche/vim-lastplace'
 Plug 'jiangmiao/auto-pairs'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plug 'morhetz/gruvbox'
+Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'neomake/neomake'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 call plug#end()
 
 """"""""""""""""""""""""
 " plugin configuration "
 """"""""""""""""""""""""
+" deoplete
+let g:deoplete#enable_at_startup = 1
 " gruvbox
 set termguicolors
 set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
+" jedi-vim
+let g:jedi#smart_auto_mappings = 0
 " Neomake
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
@@ -37,10 +42,6 @@ nnoremap <F3> :NERDTreeToggle<cr>
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 3
-" jedi-vim
-let g:jedi#smart_auto_mappings = 0
-" deoplete
-let g:deoplete#enable_at_startup = 1
 
 """"""""
 " misc "
