@@ -6,7 +6,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
-Plug 'vim-scripts/restore_view.vim'
+Plug 'dietsche/vim-lastplace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
@@ -51,3 +51,5 @@ let g:deoplete#enable_at_startup = 1
 set pastetoggle=<F6>
 " show line number
 set number
+" show vertical column
+set colorcolumn=81,121
