@@ -4,9 +4,6 @@
 " vim-plug setup
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-sleuth'
-Plug 'bling/vim-airline'
-Plug 'vim-scripts/restore_view.vim'
 call plug#end()
 
 """"""""

@@ -2,6 +2,7 @@
 " plugins "
 """""""""""
 call plug#begin()
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
@@ -21,6 +22,11 @@ call plug#end()
 """"""""""""""""""""""""
 " plugin configuration "
 """"""""""""""""""""""""
+" gruvbox
+set termguicolors
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
 " Neomake
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
