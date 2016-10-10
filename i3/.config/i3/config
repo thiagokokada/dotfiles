@@ -123,9 +123,9 @@ bindsym $mod+z focus child
 # switch to workspace
 bindsym $mod+1 workspace "1 term"
 bindsym $mod+2 workspace "2 www"
-bindsym $mod+3 workspace "3 work"
-bindsym $mod+4 workspace "4 docs"
-bindsym $mod+5 workspace "5 misc"
+bindsym $mod+3 workspace "3 dev"
+bindsym $mod+4 workspace "4 work"
+bindsym $mod+5 workspace "5 docs"
 bindsym $mod+6 workspace "6 misc"
 bindsym $mod+7 workspace "7 misc"
 bindsym $mod+8 workspace "8 misc"

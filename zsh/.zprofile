@@ -3,6 +3,7 @@
 #
 export EDITOR='nvim'
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
+export GEM_HOME=~/.gem
 
 #
 # Paths
