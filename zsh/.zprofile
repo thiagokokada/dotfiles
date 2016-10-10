@@ -1,8 +1,7 @@
 #
 # Global variables
 #
-export EDITOR='vim'
-export KEYTIMEOUT=1
+export EDITOR='nvim'
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 
 #
@@ -23,7 +22,3 @@ path=(
   ~/.local/bin
   $path
 )
-
-if which ruby >/dev/null && which gem >/dev/null; then
-  PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-fi

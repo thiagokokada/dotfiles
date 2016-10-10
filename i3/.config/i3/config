@@ -13,7 +13,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal sakura
+set $terminal "sakura -l"
 set $browser chromium
 set $file_manager nautilus
 set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -e -d -I 5 -t -i /tmp/lockscreen.png"

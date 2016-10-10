@@ -5,10 +5,10 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore_ignore
-	editor = vim
+	editor = nvim
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab
 [merge]
-	tool = gvimdiff
+	tool = nvim -d
 [color]
 	ui = true
 [tar "tar.xz"]

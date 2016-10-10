@@ -30,6 +30,7 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'git' \
   'python' \
+  'ruby' \
   'tmux'
 
 #
