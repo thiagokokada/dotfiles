@@ -2,8 +2,11 @@
 # Global variables
 #
 export EDITOR='nvim'
-export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export GEM_HOME=~/.gem
+
+if [ -f "$HOME/.pythonrc.py" ]; then
+  export PYTHONSTARTUP="$HOME/.pythonrc.py"
+fi
 
 #
 # Paths
