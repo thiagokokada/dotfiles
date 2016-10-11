@@ -4,6 +4,7 @@
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'dietsche/vim-lastplace'
