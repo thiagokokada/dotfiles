@@ -41,7 +41,7 @@ let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
 set undofile
-set undodir='$HOME/.config/nvim/undotree'
+set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
 
 """"""""
