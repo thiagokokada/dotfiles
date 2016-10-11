@@ -1,2 +1,4 @@
 # Ignore plugins folder
 plugged/
+# Ignore .netrwhist file
+.netrwhist

@@ -40,7 +40,8 @@ let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
 let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
-let g:undotree_WindowLayout = 3
+set undofile
+set undodir='$HOME/.config/nvim/undotree'
 
 """"""""
 " misc "
