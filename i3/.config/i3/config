@@ -193,7 +193,16 @@ bindsym $mod+r mode "resize"
 
 # start py3status to display status bar
 bar {
-        status_command py3status
+  status_command py3status
+  colors {
+    separator #969896
+    background #1d1f21
+    statusline #c5c8c6
+    focused_workspace #81a2be #81a2be #1d1f21
+    active_workspace #373b41 #373b41 #ffffff
+    inactive_workspace #282a2e #282a2e #969896
+    urgent_workspace #cc6666 #cc6666 #ffffff
+  }
 }
 
 # rotate desktop
@@ -244,3 +253,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id dropbox
 exec --no-startup-id redshift-gtk
 exec --no-startup-id i3-msg "workspace 1 term; exec $terminal"
+
+client.focused #81a2be #81a2be #1d1f21 #282a2e
+client.focused_inactive #373b41 #373b41 #969896 #282a2e
+client.unfocused #282a2e #282a2e #969896 #282a2e
+client.urgent #373b41 #cc6666 #ffffff #cc6666
