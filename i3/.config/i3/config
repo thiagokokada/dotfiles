@@ -16,10 +16,10 @@
 set $terminal "sakura -l"
 set $browser chromium
 set $file_manager nautilus
-set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -e -d -I 5 -t -i /tmp/lockscreen.png"
+set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -I 5 -eti /tmp/lockscreen.png"
 set $music_player audacious
 set $set_wallpaper "nitrogen --restore"
-set $fs_screenshot "scrot ~/Imagens/%Y-%m-%d-%T-screenshot.png"
+set $fs_screenshot "scrot ~/Images/%Y-%m-%d-%T-screenshot.png"
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
@@ -153,8 +153,8 @@ set $mode_system System [l]ock, logou[t], [s]uspend, [h]ibernate, [R]eboot, [S]h
 mode "$mode_system" {
         bindsym l mode "default", exec $lock_screen
         bindsym t mode "default", exec i3-msg exit
-        bindsym s mode "default", exec $lock_screen, exec --no-startup-id sleep 1 && systemctl suspend
-        bindsym h mode "default", exec $lock_screen, exec --no-startup-id sleep 1 && systemctl hibernate
+        bindsym s mode "default", exec $lock_screen, exec sleep 1 && systemctl suspend
+        bindsym h mode "default", exec $lock_screen, exec sleep 1 && systemctl hibernate
         bindsym Shift+r mode "default", exec systemctl reboot
         bindsym Shift+s mode "default", exec systemctl poweroff
 
