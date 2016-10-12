@@ -232,6 +232,9 @@ bindsym $mod+b mode "$mode_keyboard"
 # take screenshots
 bindsym Print exec $fs_screenshot
 
+# start compositor (since i3 does not support natively)
+exec --no-startup-id compton
+
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
 
@@ -239,6 +242,5 @@ exec --no-startup-id $set_wallpaper
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id dropbox
-exec --no-startup-id compton
 exec --no-startup-id redshift-gtk
 exec --no-startup-id i3-msg "workspace 1 term; exec $terminal"
