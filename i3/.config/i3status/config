@@ -15,6 +15,7 @@ order += "volume master"
 order += "keyboard_layout"
 order += "tztime local"
 order += "arch_updates"
+order += "xrandr"
 
 sysdata {
         format = " {cpu_usage}% {mem_used}/{mem_total} GB"
@@ -31,7 +32,7 @@ battery_level {
         cache_timeout = 5
         battery_id = 0
         blocks = ""
-        charging_character = "⚡"
+        charging_character = ""
         format = "{icon} {percent}%"
         format_notify_charging = "Charging ({percent}%), finishing in: {time_remaining}"
         format_notify_discharging = "Time remaining: {time_remaining}"
@@ -63,4 +64,8 @@ tztime local {
 arch_updates {
         include_aur = True
         format = " {pacman}/{aur}"
+}
+
+xrandr {
+        cache_timeout = 2
 }
