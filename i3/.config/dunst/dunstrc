@@ -1,5 +1,5 @@
 [global]
-    font = DejaVu Sans Mono 8
+    font = Roboto 8
 
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -21,7 +21,7 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "<b>%a: %s</b>\n%b\n%p"
+    format = "<b>%s</b>\n%b\n%p"
 
     # Sort messages by urgency.
     sort = yes

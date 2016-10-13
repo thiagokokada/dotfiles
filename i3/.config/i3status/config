@@ -8,9 +8,9 @@ general {
 }
 
 order += "sysdata"
+order += "disk /"
 order += "battery_level"
 order += "net_rate"
-order += "disk /"
 order += "volume master"
 order += "keyboard_layout"
 order += "tztime local"
@@ -22,20 +22,25 @@ sysdata {
         high_threshould = 90
 }
 
+disk "/" {
+        prefix_type = "custom"
+        format = " %avail"
+}
+
 battery_level {
         cache_timeout = 5
         battery_id = 0
         blocks = ""
         charging_character = "⚡"
-        format = "{icon} {time_remaining}"
+        format = "{icon} {percent}%"
+        format_notify_charging = "Charging ({percent}%), finishing in: {time_remaining}"
+        format_notify_discharging = "Time remaining: {time_remaining}"
+        notification = true
+        notify_low_level = true
 }
 
 net_rate {
         format = "{down} {up}"
-}
-
-disk "/" {
-        format = " %avail"
 }
 
 volume master {

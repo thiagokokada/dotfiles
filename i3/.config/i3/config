@@ -214,6 +214,7 @@ bindsym $mod+r mode "resize"
 
 # start py3status to display status bar
 bar {
+  position top
   status_command py3status
   # status bar color theme
   colors {
