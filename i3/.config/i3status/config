@@ -1,11 +1,6 @@
 # i3status configuration file.
 # see "man i3status" for documentation.
 
-# It is important that this file is edited as UTF-8.
-# The following line should contain a sharp s:
-# ß
-# If the above line is not correctly displayed, fix your editor first!
-
 general {
         colors = true
         interval = 1
@@ -13,38 +8,39 @@ general {
 }
 
 order += "sysdata"
+order += "battery_level"
 order += "net_rate"
 order += "disk /"
-order += "battery 0"
 order += "volume master"
 order += "keyboard_layout"
 order += "tztime local"
 order += "arch_updates"
 
 sysdata {
-        format = "C: {cpu_usage}% T: {cpu_temp} M: {mem_used_percent}%"
+        format = " {cpu_usage}% {mem_used}/{mem_total} GB"
         med_threshould = 60
         high_threshould = 90
 }
 
-net_rate {
-        format = "{down}/{up}"
+battery_level {
+        cache_timeout = 5
+        battery_id = 0
+        blocks = ""
+        charging_character = "⚡"
+        format = "{icon} {time_remaining}"
 }
 
-battery 0 {
-        format = "%status %percentage %remaining"
-        threshold_type = percentage
-        low_threshold = 10
-        last_full_capacity = true
+net_rate {
+        format = "{down} {up}"
 }
 
 disk "/" {
-        format = "%avail"
+        format = " %avail"
 }
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
+        format = " %volume"
+        format_muted = ""
         device = "default"
         mixer = "Master"
         mixer_idx = 0
@@ -52,13 +48,14 @@ volume master {
 
 keyboard_layout {
         cache_timeout = 2
+        format = " {layout}"
 }
 
 tztime local {
-        format = "%d-%m-%Y %H:%M:%S"
+        format = " %d-%m-%Y  %H:%M:%S"
 }
 
 arch_updates {
         include_aur = True
-        format = "UPD: {pacman}/{aur}"
+        format = " {pacman}/{aur}"
 }
