@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # rotate_desktop.sh
 #
@@ -10,11 +10,9 @@
 #   https://wiki.ubuntu.com/X/InputCoordinateTransformation
 #
 
-set -eu
-
 # Configure these to match your hardware (names taken from `xrandr` and
 # `xinput` output).
-XDISPLAY='LVDS-1'
+XDISPLAY='LVDS1'
 TOUCHPAD='ETPS/2 Elantech Touchpad'
 TOUCHSCREEN='Atmel Atmel maXTouch Digitizer'
 
@@ -24,7 +22,7 @@ if [ -z "${1-}" ]; then
   exit 1
 fi
 
-function do_rotate
+do_rotate()
 {
   # Function parameters
   local output=$1
@@ -56,4 +54,3 @@ function do_rotate
 }
 
 do_rotate $XDISPLAY $1
-

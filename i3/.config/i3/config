@@ -16,7 +16,7 @@
 set $terminal "sakura -l"
 set $browser chromium
 set $file_manager nautilus
-set $lock_screen "scrot /tmp/lockscreen.png && convert /tmp/lockscreen.png -scale 10% -scale 1000% /tmp/lockscreen.png && i3lock -I 5 -eti /tmp/lockscreen.png"
+set $lock_screen "~/.config/i3/scripts/lock_screen.sh"
 set $music_player audacious
 set $set_wallpaper "nitrogen --restore"
 set $fs_screenshot "scrot ~/Images/%Y-%m-%d-%T-screenshot.png"

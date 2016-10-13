@@ -56,5 +56,7 @@ let undotree_WindowLayout = 3
 set pastetoggle=<F6>
 " show line number
 set number
+" global registers
+set clipboard=unnamedplus
 " show vertical column
 set colorcolumn=81,121
