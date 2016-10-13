@@ -228,12 +228,6 @@ bar {
   }
 }
 
-# rotate desktop
-bindsym Ctrl+Mod1+Left exec ~/.config/i3/scripts/rotate_desktop.sh left
-bindsym Ctrl+Mod1+Down exec ~/.config/i3/scripts/rotate_desktop.sh inverted
-bindsym Ctrl+Mod1+Up exec ~/.config/i3/scripts/rotate_desktop.sh normal
-bindsym Ctrl+Mod1+Right exec ~/.config/i3/scripts/rotate_desktop.sh right
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
