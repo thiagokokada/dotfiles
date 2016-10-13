@@ -4,3 +4,6 @@
 [submodule "vim-plug"]
 	path = .vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "i3/.config/i3/scripts/i3lock-fancy"]
+	path = i3/.config/i3/scripts/i3lock-fancy
+	url = https://github.com/meskarune/i3lock-fancy
