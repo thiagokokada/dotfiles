@@ -3,7 +3,7 @@
 # - NetworkManager (network)
 # - systemd (for energy management)
 # - Nitrogen (wallpaper)
-# - i3lock/Scrot (lock screen)
+# - i3lock/Scrot/imagemagick/xautolock (lock screen)
 # - dunst (notification)
 # - dmenu/rofi (launcher)
 # - py3status (status bar)
@@ -13,12 +13,12 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal "sakura -l"
+set $terminal sakura -l
 set $browser chromium
 set $file_manager nautilus
 set $lock_screen "~/.config/i3/scripts/i3lock-fancy/lock"
 set $music_player audacious
-set $set_wallpaper "nitrogen --restore"
+set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot ~/Images/%Y-%m-%d-%T-screenshot.png"
 
 # using Super (Win key) instead of Alt
@@ -52,9 +52,6 @@ bindsym Mod1+F4      kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+x exec --no-startup-id rofi -show window
@@ -194,6 +191,7 @@ bindsym $mod+r mode "resize"
 # start py3status to display status bar
 bar {
   status_command py3status
+  # status bar color theme
   colors {
     separator #969896
     background #1d1f21
@@ -247,13 +245,19 @@ exec --no-startup-id compton
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
 
-# startup programs
+# notification manager
 exec --no-startup-id dunst
+
+# automatic lock screen if inactive
+exec --no-startup-id xautolock -detectsleep -time 10 -locker $lock_screen
+
+# misc startup programs
 exec --no-startup-id nm-applet
 exec --no-startup-id dropbox
 exec --no-startup-id redshift-gtk
 exec --no-startup-id i3-msg "workspace 1 term; exec $terminal"
 
+# color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
 client.focused_inactive #373b41 #373b41 #969896 #282a2e
 client.unfocused #282a2e #282a2e #969896 #282a2e
