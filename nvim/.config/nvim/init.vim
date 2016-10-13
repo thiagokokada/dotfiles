@@ -40,7 +40,7 @@ autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
 let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
 let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
-let g:neomake_ruby_rubocop_maker = { 'args': ['--except', 'StringLiterals,LineLength,Documentation'], }
+let g:neomake_ruby_rubocop_maker = { 'args': ['--except', 'StringLiterals,LineLength,Documentation,TrailingWhitespace'], }
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
 set undofile
