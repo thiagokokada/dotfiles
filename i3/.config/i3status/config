@@ -41,7 +41,7 @@ battery_level {
 }
 
 net_rate {
-        format = "{down} {up}"
+        format = " {down}  {up}"
 }
 
 volume master {
@@ -54,7 +54,7 @@ volume master {
 
 keyboard_layout {
         cache_timeout = 2
-        format = " {layout}"
+        format = "  {layout}"
 }
 
 tztime local {
