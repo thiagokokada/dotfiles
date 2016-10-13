@@ -15,7 +15,7 @@
 # default applications
 set $terminal sakura -l
 set $browser chromium
-set $file_manager nautilus
+set $file_manager sakura -x ranger
 set $lock_screen "~/.config/i3/scripts/i3lock-fancy/lock"
 set $music_player audacious
 set $set_wallpaper nitrogen --restore
