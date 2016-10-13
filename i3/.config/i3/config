@@ -112,29 +112,41 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
+# workspace names
+set $ws1  "1 term"
+set $ws2  "2 www"
+set $ws3  "3 dev"
+set $ws4  "4 dev"
+set $ws5  "5 work"
+set $ws6  "6 docs"
+set $ws7  "7 misc"
+set $ws8  "8 misc"
+set $ws9  "9 misc"
+set $ws10 "10 media"
+
 # switch to workspace
-bindsym $mod+1 workspace "1 term"
-bindsym $mod+2 workspace "2 www"
-bindsym $mod+3 workspace "3 dev"
-bindsym $mod+4 workspace "4 dev"
-bindsym $mod+5 workspace "5 work"
-bindsym $mod+6 workspace "6 docs"
-bindsym $mod+7 workspace "7 misc"
-bindsym $mod+8 workspace "8 misc"
-bindsym $mod+9 workspace "9 misc"
-bindsym $mod+0 workspace "10 media"
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace "1 term"
-bindsym $mod+Shift+2 move container to workspace "2 www"
-bindsym $mod+Shift+3 move container to workspace "3 work"
-bindsym $mod+Shift+4 move container to workspace "4 docs"
-bindsym $mod+Shift+5 move container to workspace "5 misc"
-bindsym $mod+Shift+6 move container to workspace "6 misc"
-bindsym $mod+Shift+7 move container to workspace "7 misc"
-bindsym $mod+Shift+8 move container to workspace "8 misc"
-bindsym $mod+Shift+9 move container to workspace "9 misc"
-bindsym $mod+Shift+0 move container to workspace "10 media"
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -255,7 +267,7 @@ exec --no-startup-id xautolock -detectsleep -time 10 -locker $lock_screen
 exec --no-startup-id nm-applet
 exec --no-startup-id dropbox
 exec --no-startup-id redshift-gtk
-exec --no-startup-id i3-msg "workspace 1 term; exec $terminal"
+exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
