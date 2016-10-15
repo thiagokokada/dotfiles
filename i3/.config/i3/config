@@ -16,10 +16,10 @@
 set $terminal sakura -l
 set $browser chromium
 set $file_manager sakura -x ranger
-set $lock_screen "~/.config/i3/scripts/i3lock-fancy/lock"
+set $lock_screen "$HOME/.config/i3/scripts/i3lock-fancy/lock"
 set $music_player audacious
 set $set_wallpaper nitrogen --restore
-set $fs_screenshot "scrot ~/Images/%Y-%m-%d-%T-screenshot.png"
+set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
@@ -240,16 +240,16 @@ bar {
   }
 }
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+# volume control
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
-# screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+# screen brightness control
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
-# media stuff
+# media control
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
@@ -280,7 +280,9 @@ exec --no-startup-id $set_wallpaper
 exec --no-startup-id dunst
 
 # automatic lock screen if inactive
-exec --no-startup-id xautolock -detectsleep -time 10 -locker $lock_screen
+exec --no-startup-id xautolock -detectsleep -time 10 \
+  -notify 10 -notifier "notify-send 'Locking screen in 10 seconds'" \
+  -locker $lock_screen &
 
 # misc startup programs
 exec --no-startup-id nm-applet
