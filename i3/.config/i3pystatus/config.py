@@ -46,7 +46,7 @@ status.register(
     alert=True,
     alert_percentage=15,
     status={
-        "CHR": "⚡",
+        "CHR": "",
         "DPL": "",
         "DIS": "",
         "FULL": "",
