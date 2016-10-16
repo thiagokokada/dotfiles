@@ -16,7 +16,7 @@
 set $terminal sakura -l
 set $browser chromium
 set $file_manager sakura -x ranger
-set $lock_screen "$HOME/.config/i3/scripts/i3lock-fancy/lock"
+set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
 set $music_player audacious
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
