@@ -75,6 +75,12 @@ status.register(
     format=" {avg1} {avg5}"
 )
 
+status.register(
+    "temp",
+    file="/sys/class/thermal/thermal_zone7/temp",
+    format=" {temp}°C"
+)
+
 # show focused window title
 status.register(
     "window_title",
