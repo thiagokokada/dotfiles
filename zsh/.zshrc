@@ -17,11 +17,12 @@ zplug "modules/spectrum", from:prezto
 zplug "modules/utility", from:prezto
 zplug "modules/completion", from:prezto
 zplug "modules/history-substring-search", from:prezto
+zplug "modules/ssh", from:prezto
 zplug "modules/tmux", from:prezto
 zplug "modules/git", from:prezto
-
-# oh-my-zsh
-zplug "plugins/ssh", from:oh-my-zsh
+zplug "modules/ruby", from:prezto
+zplug "modules/rails", from:prezto
+zplug "modules/python", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
