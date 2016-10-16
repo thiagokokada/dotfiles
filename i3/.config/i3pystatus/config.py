@@ -13,7 +13,7 @@ status.register(
 # show clock
 status.register(
     "clock",
-    format=" %a %d-%m-%y  %H:%M:%S"
+    format=" %a %d/%m  %H:%M:%S"
 )
 
 # show/change current keyboard layout
