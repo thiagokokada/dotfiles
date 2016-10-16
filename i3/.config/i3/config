@@ -224,10 +224,11 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# start py3status to display status bar
+# start i3pystatus to display status bar
 bar {
   position top
-  status_command py3status
+  status_command $HOME/.config/i3pystatus/venv/bin/python \
+    $HOME/.config/i3pystatus/config.py
   # status bar color theme
   colors {
     separator #969896

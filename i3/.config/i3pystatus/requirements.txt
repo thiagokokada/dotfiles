@@ -1,0 +1,5 @@
+colour
+i3pystatus
+netifaces
+psutil
+i3ipc
