@@ -6,8 +6,3 @@
     zcompile "$zcompdump"
   fi
 } &!
-
-# Auto start X11
-if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ] && [ -f "$HOME/.xinitrc" ]; then
-  exec startx
-fi
