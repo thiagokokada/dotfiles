@@ -33,8 +33,8 @@ status.register(
 # show network speed
 status.register(
     "network",
-    format_up="{interface}  {bytes_recv}KiB/s  {bytes_sent}KiB/s",
-    format_down="{interface} ",
+    format_up="{interface:.2}  {bytes_recv}K  {bytes_sent}K",
+    format_down="{interface:.2} ",
     interface="wlp2s0"
 )
 
@@ -57,13 +57,13 @@ status.register(
 status.register(
     "disk",
     path="/",
-    format=" {avail}GiB"
+    format=" {avail}G"
 )
 
 # show available memory
 status.register(
     "mem",
-    format=" {avail_mem}GiB",
+    format=" {avail_mem}G",
     warn_percentage=70,
     alert_percentage=90,
     divisor=1024**3
