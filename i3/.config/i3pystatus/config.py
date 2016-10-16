@@ -42,14 +42,14 @@ status.register(
 status.register(
     "battery",
     interval=5,
-    format="[{status} ]{percentage:.0f}%",
+    format="[{status} ]{percentage:.0f}% {remaining}",
     alert=True,
     alert_percentage=15,
     status={
-        "CHR": "",
+        "CHR": "⚡",
         "DPL": "",
-        "DIS": "",
-        "FULL": "",
+        "DIS": "",
+        "FULL": "",
     }
 )
 
