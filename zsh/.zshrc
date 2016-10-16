@@ -31,6 +31,7 @@ zplug "zsh-users/zsh-history-substring-search", nice:19
 
 # misc
 zplug "rupa/z", use:z.sh
+zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 

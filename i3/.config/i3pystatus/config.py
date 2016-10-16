@@ -71,8 +71,8 @@ status.register(
 
 # show cpu usage
 status.register(
-    "cpu_usage",
-    format=" {usage:02}%"
+    "load",
+    format=" {avg1} {avg5}"
 )
 
 # show focused window title
