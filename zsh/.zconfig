@@ -1,0 +1,10 @@
+# prezto
+zstyle ':prezto:*:*' color 'yes'
+zstyle ':prezto:module:editor' key-bindings 'vi'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:git:status:ignore' submodules 'all'
+
+# powerlevel9k
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
+# vim: ft=zsh
