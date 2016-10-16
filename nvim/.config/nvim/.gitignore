@@ -1,4 +1,5 @@
-# Ignore plugins folder
+# Ignore vim-plug dirs
+autoload/
 plugged/
 # Ignore .netrwhist file
 .netrwhist
