@@ -45,13 +45,13 @@ if ! zplug check --verbose; then
     fi
 fi
 
+# source plugin/shell configuration
+source ~/.zconfig
+
 # Then, source plugins and add commands to $PATH
 zplug load
 
 # Post-plugin configuration
-
-# source plugin/shell configuration
-source ~/.zconfig
 
 # source .zshrc.local, if exists
 if [ -f "$HOME/.zshrc.local" ]; then
