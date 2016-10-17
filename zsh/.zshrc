@@ -35,7 +35,8 @@ zplug "zsh-users/zsh-history-substring-search", nice:19
 zplug "rupa/z", use:z.sh
 zplug "junegunn/fzf", use:"shell/*.zsh", nice:18
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, \
+  if: "[[ $TERM == *256color ]]"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
