@@ -21,6 +21,10 @@ set $music_player audacious
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
 
+# i3pystatus path
+set $status_bar "$HOME/.config/i3pystatus/venv/bin/python \
+$HOME/.config/i3pystatus/config.py"
+
 # using Super (Win key) instead of Alt
 set $mod Mod4
 
@@ -227,8 +231,7 @@ bindsym $mod+r mode "resize"
 # start i3pystatus to display status bar
 bar {
   position top
-  status_command $HOME/.config/i3pystatus/venv/bin/python \
-    $HOME/.config/i3pystatus/config.py
+  status_command $status_bar
   # status bar color theme
   colors {
     separator #969896
@@ -247,8 +250,10 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # screen brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && \
+pkill -SIGUSR1 -f $status_bar
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && \
+pkill -SIGUSR1 -f $status_bar
 
 # media control
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -282,8 +287,8 @@ exec --no-startup-id dunst
 
 # automatic lock screen if inactive
 exec --no-startup-id xautolock -detectsleep -time 10 \
-  -notify 10 -notifier "notify-send 'Locking screen in 10 seconds'" \
-  -corners 0-00 -locker $lock_screen &
+-notify 10 -notifier "notify-send 'Locking screen in 10 seconds'" \
+-corners 0-00 -locker $lock_screen &
 
 # misc startup programs
 exec --no-startup-id nm-applet
