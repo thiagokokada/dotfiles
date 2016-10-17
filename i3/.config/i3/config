@@ -205,7 +205,7 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
+mode "Resize" {
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -226,7 +226,7 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "Resize"
 
 # start i3pystatus to display status bar
 bar {
