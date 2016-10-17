@@ -17,7 +17,7 @@ zplug "modules/spectrum", from:prezto
 zplug "modules/utility", from:prezto
 zplug "modules/completion", from:prezto
 zplug "modules/history-substring-search", from:prezto
-zplug "modules/ssh", from:prezto
+zplug "modules/ssh", from:prezto, nice:5
 zplug "modules/tmux", from:prezto
 zplug "modules/git", from:prezto
 zplug "modules/ruby", from:prezto
