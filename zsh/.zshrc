@@ -25,20 +25,17 @@ zplug "modules/python", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", nice:17
+zplug "zsh-users/zsh-syntax-highlighting", nice:16
 # using the keybindings from prezto, however loads the newer
 # functions from zsh-users
-zplug "modules/history-substring-search", from:prezto, nice:18
+zplug "modules/history-substring-search", from:prezto, nice:17
 zplug "zsh-users/zsh-history-substring-search", nice:19
 
 # misc
 zplug "rupa/z", use:z.sh
-zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
+zplug "junegunn/fzf", use:"shell/*.zsh", nice:18
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-
-# source plugin/shell configuration
-source ~/.zconfig
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -50,3 +47,13 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+# Post-plugin configuration
+
+# source plugin/shell configuration
+source ~/.zconfig
+
+# source .zshrc.local, if exists
+if [ -f "$HOME/.zshrc.local" ]; then
+  source "$HOME/.zshrc.local"
+fi
