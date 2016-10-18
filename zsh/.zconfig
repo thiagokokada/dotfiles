@@ -8,6 +8,7 @@ zstyle ':prezto:module:ssh:load' identities '/dev/null'
 # powerlevel9k
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv virtualenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status)
 
 # aliases
 alias http-serve="/usr/bin/python3 -m http.server"

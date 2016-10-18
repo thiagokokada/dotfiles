@@ -1,24 +1,26 @@
 #!/bin/sh
 
-# Run this script to boostrap i3pystatus virtual environment
+##############################################################
+# Run this script to boostrap i3pystatus virtual environment #
+##############################################################
 
-set -e
+BASE_PATH=`pwd`
+VENV_PATH="${BASE_PATH}/venv"
+VENV_BIN_PATH="${VENV_PATH}/bin"
+PY_LIB_PATH="lib/python3.[0-9]/site-packages"
+GOBJECT_USR_PATH="/usr/${PY_LIB_PATH}/gi"
 
-GI_PATH="/usr/lib/python3*/site-packages/gi"
-
-activate() {
-	source "venv/bin/activate"
-}
-
-if [ ! -d "venv" ]; then
-	virtualenv3 venv
-	activate
-	pip install -r requirements.txt
-	if [ -d ${GI_PATH} ]; then
-		ln -s ${GI_PATH} venv/lib/python3*/site-packages/
-	else
-		echo "python-gobject is not installed! No notifications." 1>&2
-	fi
+if [ ! -d "${VENV_PATH}" ]; then
+    echo "Creating virtualenv and installing dependencies..."
+    virtualenv3 "${VENV_PATH}"
+    ${VENV_BIN_PATH}/pip install -r "${BASE_PATH}/requirements.txt"
+    if [ -f ${GOBJECT_USR_PATH}/__init__.py ]; then
+        ln -s ${GOBJECT_USR_PATH} ${VENV_PATH}/${PY_LIB_PATH}
+    else
+        echo "WARNING: python-gobject not installed! No notifications." 1>&2
+    fi
+    echo "Finished ipy3status setup. Please restart i3."
 else
-	echo "Virtualenv already set-up. Skipping." 1>&2
+    echo "Virtualenv already set up. Nothing to do." 1>&2
+    exit 1
 fi
