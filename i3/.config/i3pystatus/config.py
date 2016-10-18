@@ -1,5 +1,20 @@
 from i3pystatus import Status
+from i3pystatus.network import Network, sysfs_interface_up
 from i3pystatus.updates import pacman, cower
+
+
+class MyNetwork(Network):
+    """
+    Modified Network class that automatic switch interface in case of
+    the current interface is down.
+    """
+    on_upscroll = None
+    on_downscroll = None
+
+    def run(self):
+        super().run()
+        if not sysfs_interface_up(self.interface, self.unknown_up):
+            self.cycle_interface()
 
 status = Status()
 
@@ -38,10 +53,10 @@ status.register(
 
 # show network speed
 status.register(
-    "network",
+    MyNetwork,
     format_up="{interface:.2}  {bytes_recv}K  {bytes_sent}K",
     format_down="{interface:.2} ",
-    interface="wlp2s0",
+    interface="enp3s0",
 )
 
 # show battery status
