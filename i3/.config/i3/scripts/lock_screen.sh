@@ -1,10 +1,11 @@
 #!/bin/sh
 
 TEMP_FILE=/tmp/lock_screen.png
+DPMS_VALUES=`xset q | awk 'BEGIN{FPAT="[0-9]+"} /Standby/{print $1, $2, $3}'`
 
 clean_up() {
 	rm -f $TEMP_FILE
-	xset dpms 0 0 0
+	xset dpms ${DPMS_VALUES}
 }
 
 trap clean_up SIGHUP SIGINT SIGTERM
