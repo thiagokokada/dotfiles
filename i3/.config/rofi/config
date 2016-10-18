@@ -3,8 +3,9 @@
 ! ------------------------------------------------------------------------------
 rofi.color-enabled: true
 rofi.color-window: #1d1f21, #1d1f21, #969896
-rofi.color-normal: #1d1f21, #c1c1c1, #1d1f21, #394249, #ffffff
-rofi.color-active: #1d1f21, #81a2be, #1d1f21, #394249, #80cbc4
-rofi.color-urgent: #1d1f21, #373b41, #1d1f21, #394249, #ff1844
+rofi.color-normal: #1d1f21, #c5c8c6, #1d1f21, #394249, #e5e8e6
+rofi.color-active: #1d1f21, #81a2be, #1d1f21, #394249, #a1c2de
+rofi.color-urgent: #1d1f21, #cc6666, #1d1f21, #394249, #ec8686
+rofi.separator-style: solid
 
 ! vim: ft=xdefaults
