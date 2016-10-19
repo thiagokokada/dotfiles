@@ -141,7 +141,7 @@ status.register(
     AnyPlayerCtl,
     format='{status} {artist} - {title}',
     format_not_running=' Not running',
-    status={'playing': '', 'paused': ''},
+    status={'playing': '', 'paused': ''},
 )
 
 status.run()
