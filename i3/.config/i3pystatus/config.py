@@ -1,6 +1,9 @@
-from i3pystatus import Status
+from i3pystatus import Status, formatp
 from i3pystatus.network import Network, sysfs_interface_up
+from i3pystatus.spotify import Spotify
 from i3pystatus.updates import pacman, cower
+
+from gi.repository import Playerctl
 
 
 class MyNetwork(Network):
@@ -15,6 +18,37 @@ class MyNetwork(Network):
         super().run()
         if not sysfs_interface_up(self.interface, self.unknown_up):
             self.cycle_interface()
+
+
+class AnyPlayerCtl(Spotify):
+    """
+    Hack to allow Spotify module to be used with any player supported
+    by playerctl.
+    """
+    player_name = None
+
+    def run(self):
+        try:
+            self.player = Playerctl.Player(player_name=self.player_name)
+
+            response = self.get_info(self.player)
+
+            fdict = {
+                'status': self.status[response['status'].lower()],
+                'title': response["title"],
+                'album': response.get('album', ''),
+                'artist': response.get('artist', ''),
+                'length': response.get('length', 0),
+            }
+            self.data = fdict
+            self.output = {"full_text": formatp(self.format, **fdict),
+                           "color": self.color}
+        except:
+            self.output = {"full_text": self.format_not_running,
+                           "color": self.color_not_running}
+            if hasattr(self, "data"):
+                del self.data
+
 
 status = Status()
 
@@ -96,16 +130,18 @@ status.register(
     format=" {avg1} {avg5}",
 )
 
+# show CPU temperature
 status.register(
     "temp",
     format=" {temp}°C",
     file="/sys/class/thermal/thermal_zone7/temp",
 )
 
-# show focused window title
 status.register(
-    "window_title",
-    max_width=79,
+    AnyPlayerCtl,
+    format='{status} {artist} - {title}',
+    format_not_running=' Not running',
+    status={'playing': '', 'paused': ''},
 )
 
 status.run()
