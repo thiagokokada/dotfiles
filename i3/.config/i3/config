@@ -270,10 +270,14 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && \
 pkill -SIGUSR1 -f $status_bar
 
 # media control
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioStop exec playerctl stop
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause && \
+pkill -SIGUSR1 -f $status_bar
+bindsym XF86AudioStop exec playerctl stop && \
+pkill -SIGUSR1 -f $status_bar
+bindsym XF86AudioNext exec playerctl next && \
+pkill -SIGUSR1 -f $status_bar
+bindsym XF86AudioPrev exec playerctl previous && \
+pkill -SIGUSR1 -f $status_bar
 
 # keyboard layout stuff
 set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
