@@ -22,7 +22,7 @@ set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
 
 # i3pystatus path
-set $status_bar "$HOME/.config/i3pystatus/venv/bin/python \
+set $status_bar "$HOME/.config/i3pystatus/i3pystatus_venv/bin/python \
 $HOME/.config/i3pystatus/config.py"
 
 # using Super (Win key) instead of Alt
@@ -304,8 +304,9 @@ exec --no-startup-id $set_wallpaper
 exec --no-startup-id dunst
 
 # automatic lock screen if inactive
-exec --no-startup-id xautolock -detectsleep -time 10 \
--notify 10 -notifier "notify-send 'Locking screen in 10 seconds'" \
+exec --no-startup-id xautolock -detectsleep -time 10 -notify 10 \
+-notifier "notify-send -u critical -t 10000 -a 'xautolock' \
+'Locking screen' '10 seconds remaining'" \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
