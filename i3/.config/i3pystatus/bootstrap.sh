@@ -5,7 +5,7 @@
 ##############################################################
 
 BASE_PATH=`pwd`
-VENV_PATH="${BASE_PATH}/venv"
+VENV_PATH="${BASE_PATH}/i3pystatus_venv"
 VENV_BIN_PATH="${VENV_PATH}/bin"
 PY_LIB_PATH="lib/python3.[0-9]/site-packages"
 GOBJECT_USR_PATH="/usr/${PY_LIB_PATH}/gi"
@@ -20,7 +20,4 @@ if [ ! -d "${VENV_PATH}" ]; then
         echo "WARNING: python-gobject not installed! No notifications." 1>&2
     fi
     echo "Finished ipy3status setup. Please restart i3."
-else
-    echo "Virtualenv already set up. Nothing to do." 1>&2
-    exit 1
 fi
