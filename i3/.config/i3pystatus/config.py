@@ -87,7 +87,7 @@ status.register(
 # show battery status
 status.register(
     battery,
-    format="{bar} [{status} ]{percentage:.0f}% {remaining}",
+    format="{bar} {percentage:.0f}%[ {remaining}][ {status}]",
     interval=5,
     alert=True,
     alert_percentage=15,
