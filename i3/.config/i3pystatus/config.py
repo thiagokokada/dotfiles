@@ -126,6 +126,7 @@ status.register(
     "temp",
     format=" {temp}°C",
     file="/sys/class/thermal/thermal_zone7/temp",
+    alert_temp=70,
 )
 
 # show current music info
