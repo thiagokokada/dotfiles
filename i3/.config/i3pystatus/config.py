@@ -1,7 +1,6 @@
 from i3pystatus import Status, battery
 from i3pystatus.network import Network, sysfs_interface_up
 from i3pystatus.updates import pacman, cower
-from i3pystatus.weather import weathercom
 
 
 class MyNetwork(Network):
@@ -41,18 +40,8 @@ status.register(
 # show clock
 status.register(
     "clock",
-    format=["  %H:%M:%S", " %a %d/%m"],
+    format=" %a %d/%m  %H:%M:%S",
     on_rightclick="scroll_format",
-)
-# show weather
-status.register(
-    "weather",
-    format="{icon} {current_temp}{temp_unit}",
-    refresh_icon="",
-    colorize=True,
-    backend=weathercom.Weathercom(
-        location_code="BRXX0232:1:BR"
-    ),
 )
 
 # show/change current keyboard layout
