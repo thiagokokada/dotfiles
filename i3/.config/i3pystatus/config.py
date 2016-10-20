@@ -1,4 +1,4 @@
-from i3pystatus import Status
+from i3pystatus import Status, battery
 from i3pystatus.network import Network, sysfs_interface_up
 from i3pystatus.updates import pacman, cower
 
@@ -17,6 +17,17 @@ class MyNetwork(Network):
             self.cycle_interface()
 
 
+def make_bar(percentage):
+    """Modified function make_bar to substitute the original one"""
+    bars = ['', '', '', '', '']
+    base = 100 / len(bars)
+    index = round(percentage / base) - 1
+    return bars[index]
+
+
+# Inject it in battery module, so it will display unicode icons instead
+# of the (ugly) default bars
+battery.make_bar = make_bar
 status = Status()
 
 # show updates in pacman/aur
@@ -62,16 +73,16 @@ status.register(
 
 # show battery status
 status.register(
-    "battery",
-    format="[{status} ]{percentage:.0f}% {remaining}",
+    battery,
+    format="{bar} [{status} ]{remaining}",
     interval=5,
     alert=True,
     alert_percentage=15,
     status={
         "CHR": "",
-        "DPL": "",
-        "DIS": "",
-        "FULL": "",
+        "DPL": "",
+        "DIS": "",
+        "FULL": "",
     },
 )
 
@@ -106,8 +117,8 @@ status.register(
 
 status.register(
     "spotify",
-    format='{status} {artist} - {title}',
-    format_not_running=' Not running',
+    format='{status} [{artist} - {title} \[{length}\]]',
+    format_not_running='',
     status={
         'playing': '',
         'paused': '',
