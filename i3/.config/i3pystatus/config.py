@@ -131,7 +131,7 @@ status.register(
 
 # show current music info
 status.register(
-    "spotify",
+    "playerctl",
     format='{status} [{artist} - {title} \[{length}\]]',
     format_not_running='',
     status={
@@ -141,8 +141,8 @@ status.register(
     },
     on_leftclick="playerctl play-pause",
     on_rightclick="playerctl next",
-    on_upscroll="playerctl next",
-    on_downscroll="playerctl previous",
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 status.run()
