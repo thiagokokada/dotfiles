@@ -2,3 +2,4 @@ colour
 -e git+https://github.com/m45t3r/i3pystatus@playerctl#egg=i3pystatus
 netifaces
 psutil
+basiciw

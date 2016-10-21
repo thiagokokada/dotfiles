@@ -306,7 +306,6 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 10 \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
-exec --no-startup-id nm-applet
 exec --no-startup-id dropbox
 exec --no-startup-id redshift-gtk
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"

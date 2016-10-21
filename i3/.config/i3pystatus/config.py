@@ -40,7 +40,7 @@ status.register(
 # show clock
 status.register(
     "clock",
-    format=" %a %d/%m  %H:%M:%S",
+    format=[" %H:%M:%S", " %a %d/%m"],
     on_rightclick="scroll_format",
 )
 
@@ -68,9 +68,10 @@ status.register(
 # show network speed
 status.register(
     MyNetwork,
-    format_up="{interface:.2}  {bytes_recv}K  {bytes_sent}K",
-    format_down="{interface:.2} ",
+    format_up="[ {essid} \[{quality}%\] ] {bytes_recv}K  {bytes_sent}K",
+    format_down=" {interface}",
     interface="enp3s0",
+    on_leftclick="sakura -x nmtui",
 )
 
 # show battery status
