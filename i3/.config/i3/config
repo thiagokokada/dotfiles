@@ -1,11 +1,10 @@
 # This config file depends on the following programs:
 # - PulseAudio (sound)
-# - NetworkManager (network)
 # - systemd (for energy management)
 # - Nitrogen (wallpaper)
 # - i3lock/Scrot/imagemagick/xautolock (lock screen)
 # - dunst (notification)
-# - dmenu/rofi (launcher)
+# - rofi (launcher)
 # - py3status (status bar)
 
 # i3 config file (v4)
@@ -19,7 +18,6 @@ set $file_manager sakura -x ranger
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
-set $dmenu rofi -run dmenu
 
 # i3pystatus path
 set $status_bar "$HOME/.config/i3pystatus/venv/bin/python \
@@ -56,8 +54,9 @@ bindsym $mod+m exec $file_manager
 bindsym $mod+Shift+q kill
 bindsym Mod1+F4 kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec $dmenu
+# start rofi in dmenu mode
+bindsym $mod+d exec rofi -show run
+bindsym $mod+x exec rofi -show window
 
 # change focus
 # vi-like
