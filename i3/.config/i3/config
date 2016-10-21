@@ -17,12 +17,12 @@ set $terminal sakura -l
 set $browser chromium
 set $file_manager sakura -x ranger
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
-set $music_player audacious
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
+set $dmenu rofi -run dmenu
 
 # i3pystatus path
-set $status_bar "$HOME/.config/i3pystatus/i3pystatus_venv/bin/python \
+set $status_bar "$HOME/.config/i3pystatus/venv/bin/python \
 $HOME/.config/i3pystatus/config.py"
 
 # using Super (Win key) instead of Alt
@@ -32,7 +32,6 @@ set $mod Mod4
 set $alt Mod1
 
 # Font for window titles and i3-status
-# font pango:DejaVu Sans Mono 8
 font pango:Roboto Condensed, FontAwesome 8
 
 # disable window title
@@ -58,10 +57,7 @@ bindsym $mod+Shift+q kill
 bindsym Mod1+F4 kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+x exec --no-startup-id rofi -show window
+bindsym $mod+d exec $dmenu
 
 # change focus
 # vi-like

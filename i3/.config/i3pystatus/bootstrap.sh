@@ -5,7 +5,7 @@
 ##############################################################
 
 BASE_PATH=`pwd`
-VENV_PATH="${BASE_PATH}/i3pystatus_venv"
+VENV_PATH="${BASE_PATH}/venv"
 VENV_BIN_PATH="${VENV_PATH}/bin"
 PY_LIB_PATH="lib/python3.[0-9]/site-packages"
 GOBJECT_USR_PATH="/usr/${PY_LIB_PATH}/gi"
