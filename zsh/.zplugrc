@@ -31,7 +31,7 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:18
 zplug "zsh-users/zsh-history-substring-search", nice:19
 
 # misc
-zplug "kennethreitz/autoenv", use:activate.sh
+zplug "Tarrasch/zsh-autoenv"
 zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
 # zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 
