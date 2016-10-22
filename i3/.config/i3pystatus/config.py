@@ -20,8 +20,8 @@ class MyNetwork(Network):
 def make_bar(percentage):
     """Modified function make_bar to substitute the original one"""
     bars = ['', '', '', '', '']
-    base = 100 / len(bars)
-    index = round(percentage / base) - 1
+    base = 100 / (len(bars) - 1)
+    index = round(percentage / base)
     return bars[index]
 
 

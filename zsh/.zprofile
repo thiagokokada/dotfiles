@@ -29,7 +29,14 @@ path=(
   $path
 )
 
-# Auto start X11
-if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ] && [ -f "$HOME/.xinitrc" ]; then
-  exec startx
+# Auto start X11, providing kind of a primitive display manager
+if [ -z "$DISPLAY" ]; then
+  case "$(fgconsole)" in
+    1)
+      [ -f "$HOME/.xinitrc" ] && exec startx
+      ;;
+    2)
+      [ -f "/usr/bin/sway" ] && exec sway
+      ;;
+  esac
 fi
