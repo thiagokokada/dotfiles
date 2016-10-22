@@ -3,6 +3,8 @@
 #
 export EDITOR='nvim'
 export GEM_HOME=~/.gem
+export NPM_PACKAGES="$HOME/.npm-packages"
+export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 if [ -f "$HOME/.pythonrc.py" ]; then
   export PYTHONSTARTUP="$HOME/.pythonrc.py"
@@ -13,17 +15,17 @@ fi
 #
 
 # Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+typeset -gU cdpath fpath mailpath manpath path
 
-# Set the the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
+manpath=(
+  "$NPM_PACKAGES/share/man:$(manpath)"
+)
 
-# Set the list of directories that Zsh searches for programs.
 path=(
   ~/bin
   ~/.local/bin
+  $HOME/.gem/ruby/*/bin
+  $NPM_PACKAGES/bin
   $path
 )
 
