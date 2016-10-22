@@ -79,8 +79,7 @@ status.register(
     battery,
     format="{bar} {percentage:.0f}%[ {remaining}][ {status}]",
     interval=5,
-    alert=True,
-    alert_percentage=15,
+    alert_percentage=10,
     status={
         "CHR": "",
         "DPL": "",

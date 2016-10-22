@@ -14,11 +14,12 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
@@ -55,6 +56,10 @@ nnoremap <F4> :UndotreeToggle<cr>
 set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
+" fzf
+map <C-p> :Files<cr>
+nmap <C-p> :Files<cr>
+nmap <Leader>c :Commits<cr>
 
 """"""""
 " misc "
