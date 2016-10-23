@@ -34,6 +34,10 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:18
 # zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
 zplug "Tarrasch/zsh-autoenv"
+zplug "schischi/xcwd", \
+  as:command, \
+  hook-build:"make", \
+  use:"xcwd"
 
 # configuration here needs to be processed before zplug load
 # prezto

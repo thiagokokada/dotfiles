@@ -1,20 +1,5 @@
 from i3pystatus import Status, battery
-from i3pystatus.network import Network, sysfs_interface_up
 from i3pystatus.updates import pacman, cower
-
-
-class MyNetwork(Network):
-    """
-    Modified Network class that automatic switch interface in case of
-    the current interface is down.
-    """
-    on_upscroll = None
-    on_downscroll = None
-
-    def run(self):
-        super().run()
-        if not sysfs_interface_up(self.interface, self.unknown_up):
-            self.cycle_interface()
 
 
 def make_bar(percentage):
@@ -67,10 +52,11 @@ status.register(
 
 # show network speed
 status.register(
-    MyNetwork,
+    "network",
     format_up="[ {essid} \[{quality}%\] ] {bytes_recv}K  {bytes_sent}K",
     format_down=" {interface}",
     interface="enp3s0",
+    next_if_down=True,
     on_leftclick="sakura -x nmtui",
 )
 

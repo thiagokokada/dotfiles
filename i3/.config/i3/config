@@ -12,9 +12,9 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal sakura -l
+set $terminal sakura -ld "`xcwd`"
 set $browser chromium
-set $file_manager sakura -x ranger
+set $file_manager pcmanfm "`xcwd`"
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
@@ -308,7 +308,6 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 10 \
 exec --no-startup-id dropbox
 exec --no-startup-id redshift-gtk
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
-exec --no-startup-id i3-msg "workspace $ws2; exec $file_manager"
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
