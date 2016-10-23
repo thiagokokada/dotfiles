@@ -82,7 +82,7 @@ status.register(
 # show disk available space
 status.register(
     "disk",
-    format=" {avail}G",
+    format=" {avail:.1f}G",
     path="/",
 )
 
@@ -105,7 +105,7 @@ status.register(
 # show CPU temperature
 status.register(
     "temp",
-    format=" {temp}°C",
+    format=" {temp:.0f}°C",
     file="/sys/class/thermal/thermal_zone7/temp",
     alert_temp=70,
 )
