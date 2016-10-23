@@ -47,7 +47,12 @@ status.register(
 status.register(
     "backlight",
     format=" {percentage}%",
-    backlight="intel_backlight",
+)
+
+# show/control screen brightness
+status.register(
+    "redshift",
+    format_inhibit=["", ""],
 )
 
 # show network speed
@@ -94,6 +99,7 @@ status.register(
 status.register(
     "load",
     format=" {avg1} {avg5}",
+    interval=5,
 )
 
 # show CPU temperature
