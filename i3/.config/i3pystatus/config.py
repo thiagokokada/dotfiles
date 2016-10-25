@@ -46,6 +46,7 @@ status.register(
 # show/control screen brightness
 status.register(
     "backlight",
+    interval=1,
     format=" {percentage}%",
 )
 
@@ -63,6 +64,8 @@ status.register(
     interface="enp3s0",
     next_if_down=True,
     on_leftclick="sakura -x nmtui",
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 # show battery status

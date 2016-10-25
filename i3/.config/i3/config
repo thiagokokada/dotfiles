@@ -260,20 +260,14 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # screen brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && \
-pkill -SIGUSR1 -f $status_bar
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 # media control
-bindsym XF86AudioPlay exec playerctl play-pause && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioStop exec playerctl stop && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioNext exec playerctl next && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioPrev exec playerctl previous && \
-pkill -SIGUSR1 -f $status_bar
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # keyboard layout stuff
 set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
