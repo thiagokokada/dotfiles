@@ -1,8 +1,2 @@
-# Ignore Vundle plugins (this will be managed by Vundle itself instead of git)
-vim/bundle
-
-# Ignore Sublime Text subfolders
-config/sublime-text-3/*
-
 # Ignore zshrc.local
 zshrc.local
