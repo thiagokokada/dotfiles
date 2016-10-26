@@ -300,9 +300,9 @@ exec --no-startup-id $set_wallpaper
 exec --no-startup-id dunst
 
 # automatic lock screen if inactive
-exec --no-startup-id xautolock -detectsleep -time 10 -notify 10 \
--notifier "notify-send -u critical -t 10000 -a 'xautolock' \
-'Locking screen' '10 seconds remaining'" \
+exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
+-notifier "notify-send -u normal -t 30000 -a 'xautolock' \
+'Locking screen' '30 seconds remaining'" \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs

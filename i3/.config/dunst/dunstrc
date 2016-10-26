@@ -24,7 +24,7 @@
 
 [frame]
     width = 1
-    color = "#282a2e"
+    color = "#282A2E"
 
 [shortcuts]
     close = ctrl+space
@@ -34,17 +34,17 @@
 
 [urgency_low]
     background = "#1D1F21"
-    foreground = "#E3C7AF"
+    foreground = "#C5C8C6"
     timeout = 5
 
 [urgency_normal]
     background = "#1D1F21"
-    foreground = "#E3C7AF"
+    foreground = "#C5C8C6"
     timeout = 20
 
 [urgency_critical]
     background = "#1D1F21"
-    foreground = "#E3C7AF"
+    foreground = "#C5C8C6"
     timeout = 0
 
 # vim: ft=cfg
