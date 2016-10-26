@@ -1,31 +1,37 @@
 [options]
 font = Inconsolata 13
 
-# Solarized dark color scheme
 [colors]
-foreground = rgba(161, 178, 180, 1.0)
-foreground_bold = rgba(238, 232, 213, 1.0)
-foreground_dim = rgba(136, 136, 136, 1.0)
-background = rgba(0, 43, 54, 0.9)
-cursor = rgba(177, 191, 191, 1.0)
+# Base16 Tomorrow
+# Scheme: Chris Kempson (http://chriskempson.com)
 
-# if unset, will reverse foreground and background
-#highlight = #839496
+foreground      = rgba(197, 200, 198, 1.0)
+foreground_bold = rgba(197, 200, 198, 1.0)
+cursor          = rgba(197, 200, 198, 1.0)
+background	= rgba(29, 31, 33, 0.9)
 
-# colors from color0 to color254 can be set
-color0 = #073642
-color1 = #dc322f
-color2 = #859900
-color3 = #b58900
-color4 = #268bd2
-color5 = #d33682
-color6 = #2aa198
-color7 = #eee8d5
-color8 = #002b36
-color9 = #cb4b16
-color10 = #586e75
-color11 = #657b83
-color12 = #839496
-color13 = #6c71c4
-color14 = #93a1a1
-color15 = #fdf6e3
+# 16 color space
+color0  = #1d1f21
+color1  = #cc6666
+color2  = #b5bd68
+color3  = #f0c674
+color4  = #81a2be
+color5  = #b294bb
+color6  = #8abeb7
+color7  = #c5c8c6
+color8  = #969896
+color9  = #cc6666
+color10 = #b5bd68
+color11 = #f0c674
+color12 = #81a2be
+color13 = #b294bb
+color14 = #8abeb7
+color15 = #ffffff
+
+# 256 color space
+color16 = #de935f
+color17 = #a3685a
+color18 = #282a2e
+color19 = #373b41
+color20 = #b4b7b4
+color21 = #e0e0e0
