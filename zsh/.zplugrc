@@ -10,7 +10,7 @@ source ~/.zplug/init.zsh
 # zsh theme, disabled when terminal does not support 256 colors
 zplug "bhilburn/powerlevel9k", \
   use:"powerlevel9k.zsh-theme", \
-  if: "[[ $TERM == *256color ]]"
+  if: "[ `tput colors` -ge 256 ]"
 
 # prezto
 zplug "modules/completion", from:prezto

@@ -46,7 +46,6 @@ status.register(
 # show/control screen brightness
 status.register(
     "backlight",
-    interval=1,
     format=" {percentage}%",
 )
 
