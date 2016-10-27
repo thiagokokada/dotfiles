@@ -91,7 +91,7 @@ status.register(
 # show available memory
 status.register(
     "mem",
-    format=" {avail_mem}G",
+    format=" {avail_mem}G",
     warn_percentage=70,
     alert_percentage=90,
     divisor=1024**3,
@@ -100,14 +100,14 @@ status.register(
 # show cpu usage
 status.register(
     "load",
-    format=" {avg1} {avg5}",
+    format=" {avg1} {avg5}",
     interval=5,
 )
 
 # show CPU temperature
 status.register(
     "temp",
-    format=" {temp:.0f}°C",
+    format=" {temp:.0f}°C",
     file="/sys/class/thermal/thermal_zone7/temp",
     alert_temp=70,
 )
