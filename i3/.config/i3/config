@@ -18,7 +18,7 @@ set $file_manager pcmanfm "`xcwd`"
 set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
 $HOME/.config/i3/scripts/lock_screen.py"
 set $set_wallpaper nitrogen --restore
-set $fs_screenshot "scrot $HOME/Images/%Y-%m-%d-%T-screenshot.png"
+set $fs_screenshot "scrot `xdg-user-dir PICTURES`/%Y-%m-%d-%T-screenshot.png"
 
 # i3pystatus path
 set $status_bar "$HOME/.config/i3pystatus/venv/bin/python \
