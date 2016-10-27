@@ -26,7 +26,7 @@ status.register(
 status.register(
     "clock",
     format=[" %H:%M:%S", " %a %d/%m"],
-    on_rightclick="scroll_format",
+    on_leftclick="scroll_format",
 )
 
 # show/change current keyboard layout
