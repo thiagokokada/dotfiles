@@ -62,7 +62,7 @@ status.register(
     format_down=" {interface}",
     interface="enp3s0",
     next_if_down=True,
-    on_leftclick="sakura -x nmtui",
+    on_leftclick="termite -e nmtui",
     on_upscroll=None,
     on_downscroll=None,
 )
