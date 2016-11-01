@@ -14,9 +14,8 @@
 # default applications
 set $terminal termite -d "`xcwd`"
 set $browser chromium
-set $file_manager pcmanfm "`xcwd`"
-set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
-$HOME/.config/i3/scripts/lock_screen.py"
+set $file_manager nautilus "`xcwd`"
+set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot `xdg-user-dir PICTURES`/%Y-%m-%d-%T-screenshot.png"
 
