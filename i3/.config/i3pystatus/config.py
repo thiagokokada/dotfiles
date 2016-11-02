@@ -33,7 +33,7 @@ status.register(
 status.register(
     "xkblayout",
     format="  {name}",
-    layouts=["br", "us"],
+    layouts=["br", "us intl"],
 )
 
 # show/change volume using PA
