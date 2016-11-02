@@ -184,7 +184,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system power management
-set $mode_system System [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
+set $mode_system Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
     bindsym l mode "default", exec $lock_screen
     bindsym e mode "default", exec i3-msg exit
