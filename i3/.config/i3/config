@@ -224,18 +224,36 @@ mode "Resize" {
 bindsym $mod+r mode "Resize"
 
 # external screen management
-set $mode_display Screen [v]ga on, [h]dmi on, v[g]a off, h[d]mi off
-mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym g exec --no-startup-id xrandr --output VGA1 --auto --off && $set_wallpaper, mode "default"
-    bindsym d exec --no-startup-id xrandr --output HDMI1 --auto --off && $set_wallpaper, mode "default"
+set $display_layout_vga Display VGA:  ,  , [o]ff
+mode "$display_layout_vga" {
+    bindsym Left exec xrandr --output VGA1 --auto --left-of LVDS1 && $set_wallpaper, mode "default"
+    bindsym Right exec xrandr --output VGA1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
+    bindsym o exec xrandr --output VGA1 --auto --off && $set_wallpaper, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $display_layout_hdmi Display HDMI:  ,  , [o]ff
+mode "$display_layout_hdmi" {
+    bindsym Left exec xrandr --output HDMI1 --auto --left-of LVDS1 && $set_wallpaper, mode "default"
+    bindsym Right exec xrandr --output HDMI1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
+    bindsym o exec xrandr --output HDMI1 --auto --off && $set_wallpaper, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $display_mode Screen [v]ga, [h]dmi
+mode "$display_mode" {
+    bindsym v mode "$display_layout_vga"
+    bindsym h mode "$display_layout_hdmi"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+p mode "$mode_display"
+bindsym $mod+p mode "$display_mode"
 
 # start i3pystatus to display status bar
 bar {
