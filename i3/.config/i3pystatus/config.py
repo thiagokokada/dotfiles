@@ -137,6 +137,8 @@ status.register(
         'stop': '',
     },
     hide_inactive=True,
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 status.run()
