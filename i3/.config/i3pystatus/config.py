@@ -41,6 +41,7 @@ status.register(
     "pulseaudio",
     format=" {volume}%",
     format_muted=" Mute",
+    on_leftclick="pavucontrol",
 )
 
 # show/control screen brightness
@@ -114,18 +115,28 @@ status.register(
 
 # show current music info
 status.register(
-    "playerctl",
-    format='{status} [{artist} - {title} \[{length}\]]',
-    format_not_running='',
+    "now_playing",
+    format='{status} [{artist} - {title} \[{song_length}\]]',
     status={
-        'playing': '',
-        'paused': '',
-        'stopped': '',
+        'play': '',
+        'pause': '',
+        'stop': '',
     },
     on_leftclick="playerctl play-pause",
     on_rightclick="playerctl next",
     on_upscroll=None,
     on_downscroll=None,
+)
+
+status.register(
+    "mpd",
+    format='{status} [{artist} - {title} \[{song_length}\]]',
+    status={
+        'play': '',
+        'pause': '',
+        'stop': '',
+    },
+    hide_inactive=True,
 )
 
 status.run()

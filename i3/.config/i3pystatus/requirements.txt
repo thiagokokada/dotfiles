@@ -3,3 +3,4 @@ colour
 netifaces
 psutil
 basiciw
+dbus-python

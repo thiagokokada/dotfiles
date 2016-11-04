@@ -23,7 +23,7 @@ manpath=(
 
 path=(
   ~/.zplug/bin
-  ~/bin
+  ~/.local/bin
   $HOME/.gem/ruby/*/bin
   $NPM_PACKAGES/bin
   $path
