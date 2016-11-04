@@ -283,13 +283,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && \
 pkill -SIGUSR1 -f $status_bar
 
 # media control
-bindsym XF86AudioPlay exec playerctl play-pause && \
+bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle && \
 pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioStop exec playerctl stop && \
+bindsym XF86AudioStop exec playerctl stop || mpc stop && \
 pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioNext exec playerctl next && \
+bindsym XF86AudioNext exec playerctl next || mpc next && \
 pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioPrev exec playerctl previous && \
+bindsym XF86AudioPrev exec playerctl previous || mpc prev && \
 pkill -SIGUSR1 -f $status_bar
 
 # keyboard layout stuff
