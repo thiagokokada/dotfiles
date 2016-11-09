@@ -45,13 +45,15 @@ if type gem > /dev/null; then
 fi
 
 # Auto start X11, providing kind of a primitive display manager
-if [ -z "$DISPLAY" ]; then
+XINITRC="$HOME/.xinitrc"
+
+if [ -z "$DISPLAY" ] || [ -f "$XINITRC" ]; then
   case "$(fgconsole)" in
     1)
-      [ -f "$HOME/.xinitrc" ] && exec startx
+      exec startx "$XINITRC" i3
       ;;
     2)
-      [ -f "/usr/bin/sway" ] && exec gnome-session
+      exec startx "$XINITRC" gnome
       ;;
   esac
 fi
