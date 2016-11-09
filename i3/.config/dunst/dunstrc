@@ -12,7 +12,6 @@
     geometry = "200x5-6+30"
     transparency = 0
     idle_threshold = 120
-    monitor = 0
     follow = mouse
     sticky_history = yes
     line_height = 0
