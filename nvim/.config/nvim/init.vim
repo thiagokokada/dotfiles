@@ -12,7 +12,6 @@ endif
 """""""""""
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
-Plug 'alvan/vim-closetag'
 Plug 'bling/vim-airline'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
