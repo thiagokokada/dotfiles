@@ -29,13 +29,19 @@ path=(
 if type npm > /dev/null; then
   export NPM_PACKAGES="$HOME/.npm-packages"
   export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-  export PATH="$NPM_PACKAGES/bin:$PATH"
+  path=(
+    $NPM_PACKAGES/bin
+    $path
+  )
 fi
 
 # Check if ruby-gem is installed, if yes then import it to PATH
 if type gem > /dev/null; then
   export GEM_HOME="$HOME/.gem"
-  export PATH="$GEM_HOME/ruby/*/bin:$PATH"
+  path=(
+    $GEM_HOME/ruby/*/bin
+    $path
+  )
 fi
 
 # Auto start X11, providing kind of a primitive display manager
