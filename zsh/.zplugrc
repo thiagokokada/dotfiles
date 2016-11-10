@@ -19,20 +19,21 @@ zplug "bhilburn/powerlevel9k", \
   if: "[ `tput colors` -ge 256 ]"
 
 # prezto
-zplug "modules/completion", from:prezto
 zplug "modules/directory", from:prezto
-zplug "modules/editor", from:prezto
 zplug "modules/environment", from:prezto
 zplug "modules/helper", from:prezto
 zplug "modules/history", from:prezto
-zplug "modules/history-substring-search", from:prezto # only for setup
 zplug "modules/spectrum", from:prezto
 zplug "modules/ssh", from:prezto
 zplug "modules/terminal", from:prezto
 zplug "modules/utility", from:prezto
 
+# oh-my-zsh
+zplug "plugins/vi-mode", from:oh-my-zsh
+
 # zsh-users
-zplug "zsh-users/zsh-completions", use:""
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search", nice:19
 zplug "zsh-users/zsh-syntax-highlighting", nice:18
 
@@ -48,8 +49,6 @@ zplug "schischi/xcwd", \
 # configuration here needs to be processed before zplug load
 # prezto
 zstyle ':prezto:*' color 'yes'
-zstyle ':prezto:module:editor' dot-expansion 'yes'
-zstyle ':prezto:module:editor' key-bindings 'vi'
 zstyle ':prezto:module:ssh:load' identities '/dev/null'
 zstyle ':prezto:module:terminal' auto-title 'yes'
 zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
