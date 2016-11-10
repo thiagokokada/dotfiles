@@ -2,6 +2,8 @@
 # Global variables
 #
 export EDITOR="nvim"
+export VISUAL="$EDITOR"
+export PAGER="less"
 
 # Added .pythonrc only if it exists
 if [ -f "$HOME/.pythonrc.py" ]; then
