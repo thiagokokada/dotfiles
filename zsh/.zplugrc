@@ -18,19 +18,12 @@ zplug "bhilburn/powerlevel9k", \
   use:"powerlevel9k.zsh-theme", \
   if: "[ `tput colors` -ge 256 ]"
 
-# prezto
-zplug "modules/directory", from:prezto
-zplug "modules/environment", from:prezto
-zplug "modules/helper", from:prezto
-zplug "modules/history", from:prezto
-zplug "modules/spectrum", from:prezto
-zplug "modules/ssh", from:prezto
-zplug "modules/terminal", from:prezto
-zplug "modules/utility", from:prezto
-
 # oh-my-zsh
-zplug "robbyrussell/oh-my-zsh", use:"lib/key-bindings.zsh"
+zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh" # Load oh-my-zsh base
 zplug "plugins/vi-mode", from:oh-my-zsh
+
+# prezto
+zplug "modules/ssh", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
@@ -49,11 +42,7 @@ zplug "schischi/xcwd", \
 
 # configuration here needs to be processed before zplug load
 # prezto
-zstyle ':prezto:*' color 'yes'
 zstyle ':prezto:module:ssh:load' identities '/dev/null'
-zstyle ':prezto:module:terminal' auto-title 'yes'
-zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
-zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
