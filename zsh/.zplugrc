@@ -1,11 +1,17 @@
+# define zplug location
+export ZPLUG_HOME="$HOME/.zplug"
+
 # check if zplug is installed, if not install it
-if [[ ! -d ~/.zplug ]]; then
-  git clone https://github.com/zplug/zplug ~/.zplug
-  source ~/.zplug/init.zsh && zplug update --self
+if [[ ! -d "$ZPLUG_HOME" ]]; then
+  git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
+  source "$ZPLUG_HOME/init.zsh" && zplug update --self
 fi
 
 # source zplug/zplug
-source ~/.zplug/init.zsh
+source "$ZPLUG_HOME/init.zsh"
+
+# let zplug manage zplug
+zplug "zplug/zplug"
 
 # zsh theme, disabled when terminal does not support 256 colors
 zplug "bhilburn/powerlevel9k", \

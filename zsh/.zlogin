@@ -1,8 +1,13 @@
-# Execute code that does not affect the current session in the background.
-{
-  # Compile the completion dump to increase startup speed.
-  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
-    zcompile "$zcompdump"
-  fi
-} &!
+# Auto start X11, providing kind of a primitive display manager
+XINITRC="$HOME/.xinitrc"
+
+if [ -z "$DISPLAY" ] || [ -f "$XINITRC" ]; then
+  case "$(fgconsole)" in
+    1)
+      exec startx "$XINITRC" i3
+      ;;
+    2)
+      exec startx "$XINITRC" gnome
+      ;;
+  esac
+fi
