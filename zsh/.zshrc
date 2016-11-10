@@ -6,24 +6,6 @@ source ~/.zplugrc
 # for vi mode
 export KEYTIMEOUT=1
 
-# make home/end/insert/del works as expect
-bindkey "${terminfo[khome]}" beginning-of-line
-bindkey "${terminfo[kend]}"  end-of-line
-bindkey "${terminfo[kich1]}" overwrite-mode
-bindkey "${terminfo[kdch1]}" delete-char
-
-# make sure the terminal is in application mode, when zle is active
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-    function zle-line-init () {
-        echoti smkx
-    }
-    function zle-line-finish () {
-        echoti rmkx
-    }
-    zle -N zle-line-init
-    zle -N zle-line-finish
-fi
-
 # history-substring-search
 bindkey "${terminfo[kcuu1]}" history-substring-search-up
 bindkey "${terminfo[kcud1]}" history-substring-search-down

@@ -29,6 +29,7 @@ zplug "modules/terminal", from:prezto
 zplug "modules/utility", from:prezto
 
 # oh-my-zsh
+zplug "robbyrussell/oh-my-zsh", use:"lib/key-bindings.zsh"
 zplug "plugins/vi-mode", from:oh-my-zsh
 
 # zsh-users
