@@ -7,6 +7,7 @@ source ~/.zplugrc
 export KEYTIMEOUT=1
 
 # fzf
+export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
 export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"
 
 # history-substring-search
