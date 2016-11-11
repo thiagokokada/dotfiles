@@ -6,6 +6,9 @@ source ~/.zplugrc
 # for vi mode
 export KEYTIMEOUT=1
 
+# fzf
+export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"
+
 # history-substring-search
 bindkey "${terminfo[kcuu1]}" history-substring-search-up
 bindkey "${terminfo[kcud1]}" history-substring-search-down
