@@ -7,7 +7,7 @@ if [ -z "$DISPLAY" ] && [ -f "$XINITRC" ]; then
       exec startx "$XINITRC" i3
       ;;
     2)
-      exec startx "$XINITRC" gnome
+      exec startx "$XINITRC" gnome-session
       ;;
   esac
 fi
