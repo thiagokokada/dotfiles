@@ -72,7 +72,6 @@ status.register(
 status.register(
     battery,
     format="{bar} {percentage:.0f}%[ {remaining}][ {status}]",
-    interval=5,
     alert_percentage=10,
     status={
         "CHR": "",
@@ -102,7 +101,6 @@ status.register(
 status.register(
     "load",
     format=" {avg1} {avg5}",
-    interval=5,
 )
 
 # show CPU temperature

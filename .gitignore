@@ -1,5 +1,8 @@
 # Ignore zshrc.local
 zshrc.local
 
-# Ignore python virtualenvs
+# Ignore Python's virtualenvs
 venv/
+
+# Ignore Python's cache dir
+__pycache__/

@@ -20,7 +20,7 @@ set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot `xdg-user-dir PICTURES`/%Y-%m-%d-%T-screenshot.png"
 
 # i3pystatus path
-set $status_bar "$HOME/.config/i3pystatus/venv/bin/python \
+set $status_bar "$HOME/.config/i3pystatus/venv/bin/i3pystatus -c \
 $HOME/.config/i3pystatus/config.py"
 
 # using Super (Win key) instead of Alt
@@ -293,10 +293,12 @@ bindsym XF86AudioPrev exec playerctl previous || mpc prev && \
 pkill -SIGUSR1 -f $status_bar
 
 # keyboard layout stuff
-set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
+set $mode_keyboard Keyboard layout: [b]r, [u]s-intl
 mode "$mode_keyboard" {
-    bindsym u mode "default", exec setxkbmap us -variant intl
-    bindsym b mode "default", exec setxkbmap br -variant abnt2
+    bindsym u mode "default", exec setxkbmap us -variant intl \
+    && pkill -SIGUSR1 -f $status_bar
+    bindsym b mode "default", exec setxkbmap br \
+    && pkill -SIGUSR1 -f $status_bar
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
