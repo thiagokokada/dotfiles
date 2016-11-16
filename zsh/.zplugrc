@@ -27,7 +27,7 @@ zplug "modules/ssh", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-autosuggestions", at:features/async
 zplug "zsh-users/zsh-history-substring-search", nice:19
 zplug "zsh-users/zsh-syntax-highlighting", nice:18
 

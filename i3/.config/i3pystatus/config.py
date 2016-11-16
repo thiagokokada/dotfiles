@@ -10,9 +10,11 @@ def make_bar(percentage):
     return bars[index]
 
 
-# Inject it in battery module, so it will display unicode icons instead
+# inject it in battery module, so it will display unicode icons instead
 # of the (ugly) default bars
 battery.make_bar = make_bar
+
+# create i3pystatus instance
 status = Status()
 
 # show updates in pacman/aur
@@ -63,7 +65,7 @@ status.register(
     format_down=" {interface}",
     interface="enp3s0",
     next_if_down=True,
-    on_leftclick="termite -e nmtui",
+    on_leftclick="termite -e 'sudo wifi-menu'",
     on_upscroll=None,
     on_downscroll=None,
 )
@@ -112,14 +114,17 @@ status.register(
 )
 
 # show current music info
+player_format = '{status} [{artist} - {title} \[{song_length}\]]'
+player_status = {
+    'play': '',
+    'pause': '',
+    'stop': '',
+}
+
 status.register(
     "now_playing",
-    format='{status} [{artist} - {title} \[{song_length}\]]',
-    status={
-        'play': '',
-        'pause': '',
-        'stop': '',
-    },
+    format=player_format,
+    status=player_status,
     on_leftclick="playerctl play-pause",
     on_rightclick="playerctl next",
     on_upscroll=None,
@@ -128,12 +133,8 @@ status.register(
 
 status.register(
     "mpd",
-    format='{status} [{artist} - {title} \[{song_length}\]]',
-    status={
-        'play': '',
-        'pause': '',
-        'stop': '',
-    },
+    format=player_format,
+    status=player_status,
     hide_inactive=True,
     on_upscroll=None,
     on_downscroll=None,
