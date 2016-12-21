@@ -1,25 +1,33 @@
+unset ZPLUG_CACHE_FILE
+
 # define zplug location
 export ZPLUG_HOME="$HOME/.zplug"
 
 # check if zplug is installed, if not install it
 if [[ ! -d "$ZPLUG_HOME" ]]; then
   git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
-  source "$ZPLUG_HOME/init.zsh" && zplug update --self
 fi
 
 # source zplug/zplug
 source "$ZPLUG_HOME/init.zsh"
 
 # let zplug manage zplug
-zplug "zplug/zplug"
+# zplug "zplug/zplug"
 
 # zsh theme, disabled when terminal does not support 256 colors
-zplug "bhilburn/powerlevel9k", \
-  use:"powerlevel9k.zsh-theme", \
-  if: "[ `tput colors` -ge 256 ]"
+if [ `tput colors` -ge 256 ]; then
+  zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
+fi
 
 # oh-my-zsh
-zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh" # Load oh-my-zsh base
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+zplug "lib/grep", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/misc", from:oh-my-zsh
+zplug "lib/termsupport", from:oh-my-zsh
+zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 
 # prezto
@@ -28,12 +36,12 @@ zplug "modules/ssh", from:prezto
 # zsh-users
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions", at:features/async
-zplug "zsh-users/zsh-history-substring-search", nice:19
-zplug "zsh-users/zsh-syntax-highlighting", nice:18
+zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # misc
 # zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
+zplug "junegunn/fzf", use:"shell/*.zsh", defer:1
 zplug "Tarrasch/zsh-autoenv"
 zplug "schischi/xcwd", \
   as:command, \

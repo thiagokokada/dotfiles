@@ -28,6 +28,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs status)
 alias open="xdg-open "$@" &>/dev/null"
 alias charginmahlazer="source ~/.zshrc"
 alias nvimdiff="nvim -d"
+alias gk="gitk &> /dev/null &"
+alias ssh="TERM=xterm ssh"
 
 # source .zshrc.local, if exists
 if [ -f "$HOME/.zshrc.local" ]; then
