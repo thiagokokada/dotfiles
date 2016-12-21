@@ -14,9 +14,12 @@ source "$ZPLUG_HOME/init.zsh"
 # let zplug manage zplug
 # zplug "zplug/zplug"
 
-# zsh theme, disabled when terminal does not support 256 colors
 if [ `tput colors` -ge 256 ]; then
+  # 256 colors themes
   zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
+else
+  # fallback when 256 colors are unavailable (i.e. Linux's TTY)
+  zplug "themes/steeef", from:oh-my-zsh
 fi
 
 # oh-my-zsh
