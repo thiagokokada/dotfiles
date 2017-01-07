@@ -3,16 +3,13 @@ unset ZPLUG_CACHE_FILE
 # define zplug location
 export ZPLUG_HOME="$HOME/.zplug"
 
-# check if zplug is installed, if not install it
+# clone zplug if necessary
 if [[ ! -d "$ZPLUG_HOME" ]]; then
   git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
 fi
 
 # source zplug/zplug
 source "$ZPLUG_HOME/init.zsh"
-
-# let zplug manage zplug
-# zplug "zplug/zplug"
 
 if [ `tput colors` -ge 256 ]; then
   # 256 colors themes
@@ -21,6 +18,9 @@ else
   # fallback when 256 colors are unavailable (i.e. Linux's TTY)
   zplug "themes/steeef", from:oh-my-zsh
 fi
+
+# let zplug manage zplug
+zplug "zplug/zplug"
 
 # oh-my-zsh
 zplug "lib/completion", from:oh-my-zsh
@@ -53,7 +53,6 @@ zplug "schischi/xcwd", \
   hook-build:"make", \
   use:"xcwd"
 
-# configuration here needs to be processed before zplug load
 # prezto
 zstyle ':prezto:module:ssh:load' identities '/dev/null'
 
