@@ -10,7 +10,7 @@ VENV_BIN_PATH="${VENV_PATH}/bin"
 
 if [ ! -d "${VENV_PATH}" ]; then
     echo "Creating virtualenv and installing dependencies..."
-    python -m venv --system-site-packages "${VENV_PATH}"
+    python -m venv "${VENV_PATH}"
     ${VENV_BIN_PATH}/python -m pip install -r "${BASE_PATH}/requirements.txt"
     echo "Finished ipy3status setup. Please restart i3."
 else

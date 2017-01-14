@@ -34,7 +34,7 @@ status.register(
 # show/change current keyboard layout
 status.register(
     "xkblayout",
-    format="  {name}",
+    format="  {symbol}",
     layouts=["br", "us intl"],
 )
 

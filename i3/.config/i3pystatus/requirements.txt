@@ -1,5 +1,8 @@
+-e git+https://github.com/enkore/i3pystatus@master#egg=i3pystatus
+#-e git+https://github.com/m45t3r/i3pystatus@master#egg=i3pystatus # my fork to test PRs
 colour
--e git+https://github.com/m45t3r/i3pystatus@redshift_new_controller#egg=i3pystatus
 netifaces
 psutil
 basiciw
+xkbgroup
+dbus-python
