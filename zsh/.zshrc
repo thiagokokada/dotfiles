@@ -19,6 +19,10 @@ bindkey -M vicmd 'j' history-substring-search-down
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
 
+# edit current line
+autoload -Uz edit-command-line
+bindkey '^v' edit-command-line
+
 # powerlevel9k
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv virtualenv vcs)

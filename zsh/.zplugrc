@@ -23,17 +23,7 @@ fi
 zplug "zplug/zplug"
 
 # oh-my-zsh
-zplug "lib/completion", from:oh-my-zsh
-zplug "lib/compfix", from:oh-my-zsh
-zplug "lib/directories", from:oh-my-zsh
-zplug "lib/functions", from:oh-my-zsh
-zplug "lib/grep", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
-zplug "lib/key-bindings", from:oh-my-zsh
-zplug "lib/misc", from:oh-my-zsh
-zplug "lib/termsupport", from:oh-my-zsh
-zplug "lib/theme-and-appearance", from:oh-my-zsh
-zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "lib/*", from:oh-my-zsh
 
 # prezto
 zplug "modules/ssh", from:prezto
