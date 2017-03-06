@@ -45,11 +45,17 @@ if type go > /dev/null; then
   )
 fi
 
-# Check if rvm is installed, and added it to the PATH
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  source "$HOME/.rvm/scripts/rvm"
+# Put gem and rbenv in PATH, if exists
+if type gem > /dev/null; then
   path=(
-    $HOME/rvm/bin
+    $HOME/.gem/bin
+    $path
+  )
+fi
+
+if [ -d "$HOME/.rbenv/bin" ]; then
+  path=(
+    $HOME/.rbenv/bin
     $path
   )
 fi

@@ -35,6 +35,11 @@ alias nvimdiff="nvim -d"
 alias gk="gitk &> /dev/null &"
 alias ssh="TERM=xterm ssh"
 
+# load rbenv helper
+if type rbenv > /dev/null; then
+  eval "$(rbenv init -)"
+fi
+
 # allow VTE based terminals to open new tabs on current directory
 if [ -f "/etc/profile.d/vte.sh" ]; then
   source "/etc/profile.d/vte.sh"
