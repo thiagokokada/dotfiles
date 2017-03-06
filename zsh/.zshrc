@@ -35,6 +35,11 @@ alias nvimdiff="nvim -d"
 alias gk="gitk &> /dev/null &"
 alias ssh="TERM=xterm ssh"
 
+# allow VTE based terminals to open new tabs on current directory
+if [ -f "/etc/profile.d/vte.sh" ]; then
+  source "/etc/profile.d/vte.sh"
+fi
+
 # source .zshrc.local, if exists
 if [ -f "$HOME/.zshrc.local" ]; then
   source "$HOME/.zshrc.local"

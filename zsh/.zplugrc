@@ -38,10 +38,6 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:1
 zplug "Tarrasch/zsh-autoenv"
-zplug "schischi/xcwd", \
-  as:command, \
-  hook-build:"make", \
-  use:"xcwd"
 
 # prezto
 zstyle ':prezto:module:ssh:load' identities '/dev/null'

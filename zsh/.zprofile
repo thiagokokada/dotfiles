@@ -22,7 +22,6 @@ manpath=(
 )
 
 path=(
-  ~/.zplug/bin
   ~/.local/bin
   $path
 )
@@ -37,11 +36,20 @@ if type npm > /dev/null; then
   )
 fi
 
-# Check if ruby-gem is installed, if yes then import it to PATH
-if type gem > /dev/null; then
-  export GEM_HOME="$HOME/.gem"
+# Check if go is installed, if yes import it to PATH
+if type go > /dev/null; then
+  export GOPATH="$HOME/.go"
   path=(
-    $GEM_HOME/ruby/*/bin
+    $GOPATH/bin
+    $path
+  )
+fi
+
+# Check if rvm is installed, and added it to the PATH
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+  path=(
+    $HOME/rvm/bin
     $path
   )
 fi

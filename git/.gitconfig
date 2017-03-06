@@ -15,3 +15,5 @@
 	command = xz -c
 [alias]
 	gi = "!gi() { curl -s http://www.gitignore.io/api/$@ ;}; gi"
+[http "https://gopkg.in"]
+	followRedirects = true

@@ -14,5 +14,6 @@ if [ ! -d "${VENV_PATH}" ]; then
     ${VENV_BIN_PATH}/python -m pip install -r "${BASE_PATH}/requirements.txt"
     echo "Finished ipy3status setup. Please restart i3."
 else
-    echo "Virtualenv already setup, skipping..." 1>&2
+    echo "Virtualenv already installed, updating..."
+    ${VENV_BIN_PATH}/python -m pip install -U -r "${BASE_PATH}/requirements.txt"
 fi
