@@ -26,6 +26,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
@@ -37,8 +38,6 @@ call plug#end()
 """"""""""""""""""""""""
 " airline
 let g:airline_powerline_fonts = 1
-" closetag
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " gruvbox
