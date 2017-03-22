@@ -35,6 +35,8 @@ call plug#end()
 """"""""""""""""""""""""
 " plugin configuration "
 """"""""""""""""""""""""
+" airline
+let g:airline_powerline_fonts = 1
 " closetag
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 " deoplete
