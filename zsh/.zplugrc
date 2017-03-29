@@ -14,6 +14,7 @@ source "$ZPLUG_HOME/init.zsh"
 if [ `tput colors` -ge 256 ]; then
   # 256 colors themes
   zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
+  zplug "zsh-users/zsh-autosuggestions"
 else
   # fallback when 256 colors are unavailable (i.e. Linux's TTY)
   zplug "themes/steeef", from:oh-my-zsh
@@ -33,7 +34,6 @@ zplug "modules/ssh", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions", at:features/async
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
