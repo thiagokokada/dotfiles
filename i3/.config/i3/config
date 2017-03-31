@@ -1,12 +1,3 @@
-# This config file depends on the following programs:
-# - PulseAudio (sound)
-# - systemd (for energy management)
-# - Nitrogen (wallpaper)
-# - i3lock/Scrot/imagemagick/xautolock (lock screen)
-# - dunst (notification)
-# - rofi (launcher)
-# - py3status (status bar)
-
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -30,7 +21,7 @@ set $mod Mod4
 set $alt Mod1
 
 # Font for window titles and i3-status
-font pango:Roboto Condensed, FontAwesome 8
+font pango:Roboto, FontAwesome 8
 
 # disable window title
 for_window [class="^.*"] border pixel 1

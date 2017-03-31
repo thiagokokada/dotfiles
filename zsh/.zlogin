@@ -1,15 +1,18 @@
 # Auto start X11, providing kind of a primitive display manager
 XINITRC="$HOME/.xinitrc"
 
-if [ -z "$DISPLAY" ] && [ -f "$XINITRC" ]; then
+if [ -z "$DISPLAY" ]; then
   case "$XDG_VTNR" in
     1)
-      exec startx "$XINITRC" i3
+      [ -f "$XINITRC" ] && exec startx "$XINITRC" i3
       ;;
     2)
-      exec startx "$XINITRC" gnome-session
+      export QT_QPA_PLATFORM=wayland
+      exec sway
+      ;;
+    3)
+      export QT_QPA_PLATFORM=wayland
+      exec dbus-run-session -- gnome-shell --display-server --wayland
       ;;
   esac
 fi
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
