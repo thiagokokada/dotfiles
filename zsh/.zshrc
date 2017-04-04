@@ -33,8 +33,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs status)
 alias open="open_command"
 alias charginmahlazer="source ~/.zshrc"
 alias nvimdiff="nvim -d"
-alias gk="open_command gk"
-alias ssh="TERM=xterm ssh"
+alias gk="gitk &>/dev/null &"
+alias archup="pacaur -Syu --devel --needed"
 
 # allow VTE based terminals to open new tabs on current directory
 if [ -f "/etc/profile.d/vte.sh" ]; then

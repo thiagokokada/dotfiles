@@ -125,10 +125,6 @@ status.register(
     "now_playing",
     format=player_format,
     status=player_status,
-    on_leftclick="playerctl play-pause",
-    on_rightclick="playerctl next",
-    on_upscroll=None,
-    on_downscroll=None,
 )
 
 status.register(
