@@ -44,3 +44,13 @@ if type go > /dev/null; then
     $path
   )
 fi
+
+# Load rbenv if it exists
+export RBENV_PATH="$HOME/.rbenv"
+if [ -d $RBENV_PATH ]; then
+  path=(
+    $RBENV_PATH/bin
+    $path
+  )
+  eval "$(rbenv init --no-rehash - zsh)"
+fi
