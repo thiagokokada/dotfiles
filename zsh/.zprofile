@@ -44,18 +44,3 @@ if type go > /dev/null; then
     $path
   )
 fi
-
-# Put gem and rbenv in PATH, if exists
-if type gem > /dev/null; then
-  path=(
-    $HOME/.gem/bin
-    $path
-  )
-fi
-
-if [ -d "$HOME/.rbenv/bin" ]; then
-  path=(
-    $HOME/.rbenv/bin
-    $path
-  )
-fi
