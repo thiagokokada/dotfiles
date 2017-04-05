@@ -18,7 +18,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # edit current line
 autoload -Uz edit-command-line

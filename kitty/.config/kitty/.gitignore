@@ -1,0 +1,2 @@
+# JSON files are used as runtime cache files in kitty
+*.json

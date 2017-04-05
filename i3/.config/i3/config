@@ -3,7 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal termite -d `xcwd`
+set $terminal kitty -d `xcwd`
 set $browser chromium
 set $file_manager nautilus `xcwd`
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
