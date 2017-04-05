@@ -30,11 +30,13 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs status)
 
 # aliases
-alias open="open_command"
-alias charginmahlazer="source ~/.zshrc"
-alias nvimdiff="nvim -d"
-alias gk="gitk &>/dev/null &"
 alias archup="pacaur -Syu --devel --needed"
+alias charginmahlazer="source ~/.zshrc"
+alias gk="gitk &>/dev/null &"
+alias http-server="python3 -m http.server"
+alias nvimdiff="nvim -d"
+alias open="open_command"
+alias ssh="TERM=xterm ssh"
 
 # allow VTE based terminals to open new tabs on current directory
 if [ -f "/etc/profile.d/vte.sh" ]; then

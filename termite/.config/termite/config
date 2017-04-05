@@ -1,0 +1,37 @@
+[options]
+font = Hack 10
+
+[colors]
+# Base16 Tomorrow
+# Scheme: Chris Kempson (http://chriskempson.com)
+
+foreground      = rgba(197, 200, 198, 1.0)
+foreground_bold = rgba(197, 200, 198, 1.0)
+cursor          = rgba(197, 200, 198, 1.0)
+background	= rgba(29, 31, 33, 0.9)
+
+# 16 color space
+color0  = #1d1f21
+color1  = #cc6666
+color2  = #b5bd68
+color3  = #f0c674
+color4  = #81a2be
+color5  = #b294bb
+color6  = #8abeb7
+color7  = #c5c8c6
+color8  = #969896
+color9  = #cc6666
+color10 = #b5bd68
+color11 = #f0c674
+color12 = #81a2be
+color13 = #b294bb
+color14 = #8abeb7
+color15 = #ffffff
+
+# 256 color space
+color16 = #de935f
+color17 = #a3685a
+color18 = #282a2e
+color19 = #373b41
+color20 = #b4b7b4
+color21 = #e0e0e0
