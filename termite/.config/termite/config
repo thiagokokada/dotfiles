@@ -1,5 +1,6 @@
 [options]
 font = Hack 10
+scrollback_lines = 10000
 
 [colors]
 # Base16 Tomorrow
