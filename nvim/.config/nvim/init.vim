@@ -13,6 +13,7 @@ endif
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
+Plug 'brooth/far.vim'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'dietsche/vim-lastplace'

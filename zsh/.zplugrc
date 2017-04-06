@@ -25,10 +25,11 @@ zplug "zplug/zplug"
 
 # oh-my-zsh
 zplug "lib/*", from:oh-my-zsh
+zplug "plugins/bundler", from:oh-my-zsh
+zplug "plugins/rbenv", from:oh-my-zsh
 
 # prezto
 zplug "modules/ssh", from:prezto
-zplug "modules/ruby", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
