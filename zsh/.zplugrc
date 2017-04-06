@@ -28,6 +28,7 @@ zplug "lib/*", from:oh-my-zsh
 
 # prezto
 zplug "modules/ssh", from:prezto
+zplug "modules/ruby", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
