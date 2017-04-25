@@ -37,13 +37,9 @@ alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
 alias open="open_command"
 alias ssh="TERM=xterm ssh"
+alias rg="rg -g '!*.min.*'"
 
-# allow VTE based terminals to open new tabs on current directory
-if [ -f "/etc/profile.d/vte.sh" ]; then
-  source "/etc/profile.d/vte.sh"
-fi
-
-# source .zshrc.local, if exists
-if [ -f "$HOME/.zshrc.local" ]; then
-  source "$HOME/.zshrc.local"
-fi
+# source contents from ~/.zshrc.d
+for file in $HOME/.zshrc.d/*; do
+  source "$file"
+done

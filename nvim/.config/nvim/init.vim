@@ -54,6 +54,7 @@ let g:neomake_open_list = 2
 let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
 let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
 let g:neomake_ruby_rubocop_maker = { 'args': ['--except', 'StringLiterals,LineLength,Documentation,TrailingWhitespace'], }
+let g:neomake_ruby_enabled_makers = ['mri']
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
 set undofile
@@ -68,7 +69,7 @@ nmap <Leader>c :Commits<cr>
 " misc "
 """"""""
 " automagically remove trailing spaces
-:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " enable/disable paste mode
 set pastetoggle=<F6>
 " show line number
