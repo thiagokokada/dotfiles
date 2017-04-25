@@ -1,19 +1,16 @@
-'''
-Save this file and add the following line to your ~/.bashrc"
-export PYTHONSTARTUP="$HOME/.pythonrc"
-'''
+import atexit
 import os
 import readline
 import rlcompleter
-import atexit
+import sys
+from pprint import pprint
 
-history_file = os.path.join(os.environ['HOME'], '.python_history')
+# Use python history file in REPL
+histfile = os.path.join(os.path.expanduser("~"), '.python_history')
 try:
-    readline.read_history_file(history_file)
-except IOError:
+    readline.read_history_file(histfile)
+except FileNotFoundError:
     pass
+readline.set_history_length(10000)
 readline.parse_and_bind("tab: complete")
-readline.set_history_length(1000)
-atexit.register(readline.write_history_file, history_file)
-
-del readline, rlcompleter, atexit, history_file
+atexit.register(readline.write_history_file, histfile)
