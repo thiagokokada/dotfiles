@@ -11,20 +11,27 @@ fi
 # source zplug/zplug
 source "$ZPLUG_HOME/init.zsh"
 
+# let zplug manage zplug
+zplug "zplug/zplug"
+
 if [ `tput colors` -ge 256 ]; then
-  # 256 colors themes
-  zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
+  # 256 colors
+  zplug "sindresorhus/pure", use:pure.zsh, as:theme
   zplug "zsh-users/zsh-autosuggestions"
 else
   # fallback when 256 colors are unavailable (i.e. Linux's TTY)
   zplug "themes/steeef", from:oh-my-zsh
 fi
 
-# let zplug manage zplug
-zplug "zplug/zplug"
-
 # oh-my-zsh
-zplug "lib/*", from:oh-my-zsh
+zplug "lib/compfix", from:oh-my-zsh
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+zplug "lib/grep", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/spectrum", from:oh-my-zsh
+zplug "lib/termsupport", from:oh-my-zsh
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/rbenv", from:oh-my-zsh
 
@@ -39,6 +46,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # misc
 # zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:1
+zplug "mafredri/zsh-async"
 zplug "Tarrasch/zsh-autoenv"
 
 # prezto

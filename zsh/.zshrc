@@ -3,6 +3,22 @@ source ~/.zplugrc
 
 # post configuration
 
+# jobs
+setopt long_list_jobs
+
+# recognize comments
+setopt interactivecomments
+
+# pager
+export PAGER="less"
+export LESS="-R"
+
+# load smart urls
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+
 # for vi mode
 export KEYTIMEOUT=1
 
@@ -17,6 +33,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # zsh-autosuggestions
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
 bindkey '^ ' autosuggest-accept
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
@@ -34,10 +51,11 @@ alias archup="pacaur -Syu --devel --needed"
 alias charginmahlazer="source ~/.zshrc"
 alias gk="gitk &>/dev/null &"
 alias http-server="python3 -m http.server"
+alias ls="ls --color=auto"
 alias nvimdiff="nvim -d"
 alias open="open_command"
-alias ssh="TERM=xterm ssh"
 alias rg="rg -g '!*.min.*'"
+alias ssh="TERM=xterm ssh"
 
 # source contents from ~/.zshrc.d
 for file in $HOME/.zshrc.d/*; do

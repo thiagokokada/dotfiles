@@ -3,7 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal kitty -d `xcwd`
+set $terminal termite -d `xcwd`
 set $browser chromium
 set $file_manager nautilus `xcwd`
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
@@ -217,9 +217,9 @@ bindsym $mod+r mode "Resize"
 # external screen management
 set $display_layout_vga Display VGA:  ,  , [o]ff
 mode "$display_layout_vga" {
-    bindsym Left exec xrandr --output VGA1 --auto --left-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym Right exec xrandr --output VGA1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym o exec xrandr --output VGA1 --auto --off && $set_wallpaper, mode "default"
+    bindsym Left exec xrandr --output VGA-1 --auto --left-of LVDS-1 && $set_wallpaper, mode "default"
+    bindsym Right exec xrandr --output VGA-1 --auto --right-of LVDS-1 && $set_wallpaper, mode "default"
+    bindsym o exec xrandr --output VGA-1 --auto --off && $set_wallpaper, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -227,9 +227,9 @@ mode "$display_layout_vga" {
 
 set $display_layout_hdmi Display HDMI:  ,  , [o]ff
 mode "$display_layout_hdmi" {
-    bindsym Left exec xrandr --output HDMI1 --auto --left-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym Right exec xrandr --output HDMI1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym o exec xrandr --output HDMI1 --auto --off && $set_wallpaper, mode "default"
+    bindsym Left exec xrandr --output HDMI-1 --auto --left-of LVDS-1 && $set_wallpaper, mode "default"
+    bindsym Right exec xrandr --output HDMI-1 --auto --right-of LVDS-1 && $set_wallpaper, mode "default"
+    bindsym o exec xrandr --output HDMI-1 --auto --off && $set_wallpaper, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

@@ -13,7 +13,11 @@
 	ui = true
 [tar "tar.xz"]
 	command = xz -c
-[alias]
-	gi = "!gi() { curl -s http://www.gitignore.io/api/$@ ;}; gi"
 [http "https://gopkg.in"]
 	followRedirects = true
+
+[commit]
+	template = ~/.gitmessage
+[alias]
+	branch-cleanup = "!git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d #"
+	gi = "!gi() { curl -s http://www.gitignore.io/api/$@ ;}; gi"
