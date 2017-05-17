@@ -8,10 +8,6 @@ if [ -z "$DISPLAY" ]; then
       ;;
     2)
       export QT_QPA_PLATFORM=wayland
-      exec sway
-      ;;
-    3)
-      export QT_QPA_PLATFORM=wayland
       exec dbus-run-session -- gnome-shell --display-server --wayland
       ;;
   esac
