@@ -4,6 +4,8 @@ ffmpeg
 i3-wm
 i3lock
 lxappearance
+maim
+moreutils
 nautilus
 networkmanager
 nitrogen
@@ -13,7 +15,6 @@ pulseaudio
 pulseaudio-alsa
 python
 rofi
-scrot
 termite
 ttf-roboto
 xautolock

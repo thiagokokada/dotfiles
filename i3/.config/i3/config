@@ -8,7 +8,8 @@ set $browser chromium
 set $file_manager nautilus `xcwd`
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
 set $set_wallpaper nitrogen --restore
-set $fs_screenshot "scrot `xdg-user-dir PICTURES`/%Y-%m-%d-%T-screenshot.png"
+set $fs_screenshot "maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png"
+set $area_screenshot "maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png"
 
 # i3pystatus path
 set $status_bar "$HOME/.config/i3pystatus/venv/bin/i3pystatus -c \
@@ -298,6 +299,9 @@ pkill -SIGUSR1 -f $status_bar
 
 # take screenshots
 bindsym Print exec $fs_screenshot
+
+# take screenshot area
+bindsym $mod+Print exec $area_screenshot
 
 # start compositor (since i3 does not support natively)
 exec --no-startup-id compton

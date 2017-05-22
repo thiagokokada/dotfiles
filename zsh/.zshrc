@@ -53,7 +53,7 @@ alias gk="gitk &>/dev/null &"
 alias http-server="python3 -m http.server"
 alias ls="ls --color=auto"
 alias nvimdiff="nvim -d"
-alias open="open_command"
+alias open="xdg-open"
 alias rg="rg -g '!*.min.*'"
 alias ssh="TERM=xterm ssh"
 
