@@ -1,11 +1,4 @@
 #
-# Global variables
-#
-export EDITOR="nvim"
-export VISUAL="$EDITOR"
-export PAGER="less"
-
-#
 # Paths
 #
 

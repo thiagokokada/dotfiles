@@ -10,6 +10,8 @@ setopt long_list_jobs
 setopt interactivecomments
 
 # pager
+export EDITOR="nvim"
+export VISUAL="nvim"
 export PAGER="less"
 export LESS="-R"
 
@@ -18,9 +20,6 @@ autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
-
-# for vi mode
-export KEYTIMEOUT=1
 
 # fzf
 export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
@@ -40,6 +39,10 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 # edit current line
 autoload -Uz edit-command-line
 bindkey '^v' edit-command-line
+
+# oh-my-zsh
+zstyle ':omz:plugins:ssh-agent' agent-forwarding 'on'
+zstyle ':omz:plugins:ssh-agent' identities '/dev/null'
 
 # powerlevel9k
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true

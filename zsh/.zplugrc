@@ -34,9 +34,7 @@ zplug "lib/spectrum", from:oh-my-zsh
 zplug "lib/termsupport", from:oh-my-zsh
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/rbenv", from:oh-my-zsh
-
-# prezto
-zplug "modules/ssh", from:prezto
+zplug "plugins/ssh-agent", from:oh-my-zsh
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
@@ -48,9 +46,6 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:1
 zplug "mafredri/zsh-async"
 zplug "Tarrasch/zsh-autoenv"
-
-# prezto
-zstyle ':prezto:module:ssh:load' identities '/dev/null'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
