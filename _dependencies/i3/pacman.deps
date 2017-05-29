@@ -18,5 +18,7 @@ rofi
 termite
 ttf-roboto
 xautolock
-xorg-apps
+xorg-xdpyinfo
 xorg-xinit
+xorg-xkill
+xorg-xset

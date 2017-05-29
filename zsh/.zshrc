@@ -40,10 +40,6 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 autoload -Uz edit-command-line
 bindkey '^v' edit-command-line
 
-# oh-my-zsh
-zstyle ':omz:plugins:ssh-agent' agent-forwarding 'on'
-zstyle ':omz:plugins:ssh-agent' identities '/dev/null'
-
 # powerlevel9k
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv virtualenv vcs)
