@@ -8,9 +8,6 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
 
-# prezto
-zstyle ':prezto:module:ssh:load' identities '/dev/null'
-
 # fzf
 export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
 export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"

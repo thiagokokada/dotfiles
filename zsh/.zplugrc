@@ -31,7 +31,6 @@ zplug "modules/history", from:prezto
 zplug "modules/directory", from:prezto
 zplug "modules/spectrum", from:prezto
 zplug "modules/completion", from:prezto
-zplug "modules/ssh", from:prezto
 
 # zsh-users
 zplug "zsh-users/zsh-completions"
