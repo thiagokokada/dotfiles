@@ -11,6 +11,8 @@ endif
 " plugins "
 """""""""""
 call plug#begin()
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
@@ -22,8 +24,7 @@ Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
-Plug 'Raimondi/delimitMate'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'szw/vim-tags'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -64,6 +65,8 @@ let undotree_WindowLayout = 3
 map <C-p> :Files<cr>
 nmap <C-p> :Files<cr>
 nmap <Leader>c :Commits<cr>
+" ctags
+let g:vim_tags_auto_generate = 1
 
 """"""""
 " misc "

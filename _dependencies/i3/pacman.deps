@@ -14,6 +14,7 @@ playerctl
 pulseaudio
 pulseaudio-alsa
 python
+qalculate-gtk
 rofi
 termite
 ttf-roboto
