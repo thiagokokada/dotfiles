@@ -3,23 +3,13 @@ source ~/.zplugrc
 
 # post configuration
 
-# jobs
-setopt long_list_jobs
-
-# recognize comments
-setopt interactivecomments
-
 # pager
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
-export LESS="-R"
 
-# load smart urls
-autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
-autoload -Uz url-quote-magic
-zle -N self-insert url-quote-magic
+# prezto
+zstyle ':prezto:module:ssh:load' identities '/dev/null'
 
 # fzf
 export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
@@ -49,6 +39,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs status)
 alias archup="pacaur -Syu --devel --needed"
 alias charginmahlazer="source ~/.zshrc"
 alias gk="gitk &>/dev/null &"
+alias grep="grep --color=auto"
 alias http-server="python3 -m http.server"
 alias ls="ls --color=auto"
 alias nvimdiff="nvim -d"
