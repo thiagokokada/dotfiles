@@ -14,14 +14,8 @@ source "$ZPLUG_HOME/init.zsh"
 # let zplug manage zplug
 zplug "zplug/zplug"
 
-if [ `tput colors` -ge 256 ]; then
-  # 256 colors
-  zplug "sindresorhus/pure", use:pure.zsh, as:theme
-  zplug "zsh-users/zsh-autosuggestions"
-else
-  # fallback when 256 colors are unavailable (i.e. Linux's TTY)
-  zplug "themes/steeef", from:oh-my-zsh
-fi
+# theme
+zplug "sindresorhus/pure", use:"{async,pure}.zsh", as:theme
 
 # prezto
 zplug "modules/environment", from:prezto
@@ -33,6 +27,7 @@ zplug "modules/spectrum", from:prezto
 zplug "modules/completion", from:prezto
 
 # zsh-users
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -40,7 +35,6 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # misc
 # zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:1
-zplug "mafredri/zsh-async"
 zplug "Tarrasch/zsh-autoenv"
 
 # Install plugins if there are plugins that have not been installed
