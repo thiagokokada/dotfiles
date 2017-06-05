@@ -11,28 +11,34 @@ endif
 " plugins "
 """""""""""
 call plug#begin()
-Plug 'Raimondi/delimitMate'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" general
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'szw/vim-tags'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
+" python
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" ruby
+Plug 'itmammoth/run-rspec.vim', { 'for': 'ruby' }
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" scss
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 call plug#end()
 
 """"""""""""""""""""""""
@@ -54,7 +60,6 @@ autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
 let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
 let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
-let g:neomake_ruby_rubocop_maker = { 'args': ['--except', 'StringLiterals,LineLength,Documentation,TrailingWhitespace'], }
 let g:neomake_ruby_enabled_makers = ['mri']
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
@@ -62,11 +67,16 @@ set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
 " fzf
-map <C-p> :Files<cr>
-nmap <C-p> :Files<cr>
-nmap <Leader>c :Commits<cr>
+nnoremap <C-p> :Files<cr>
+nnoremap <Leader>c :Commits<cr>
 " ctags
 let g:vim_tags_auto_generate = 1
+" vim-rspec
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+nnoremap <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = "!bundle exec rspec {spec}"
 
 """"""""
 " misc "
