@@ -37,3 +37,8 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-init
     zle -N zle-line-finish
 fi
+
+# edit current line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
