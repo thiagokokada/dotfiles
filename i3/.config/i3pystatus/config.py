@@ -107,10 +107,8 @@ status.register(
 
 # show CPU temperature
 status.register(
-    "temp",
-    format=" {temp:.0f}°C",
-    file="/sys/class/thermal/thermal_zone7/temp",
-    alert_temp=70,
+   "temp",
+    lm_sensors_enabled=True,
 )
 
 # show current music info

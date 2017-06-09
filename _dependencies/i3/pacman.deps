@@ -3,6 +3,7 @@ dunst
 ffmpeg
 i3-wm
 i3lock
+lm_sensors
 lxappearance
 maim
 moreutils
@@ -15,9 +16,11 @@ pulseaudio
 pulseaudio-alsa
 python
 qalculate-gtk
+redshift
 rofi
 termite
 ttf-roboto
+wireless_tools
 xautolock
 xorg-xdpyinfo
 xorg-xinit
