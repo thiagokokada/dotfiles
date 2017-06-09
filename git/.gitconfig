@@ -4,7 +4,7 @@
 [push]
 	default = simple
 [core]
-	excludesfile = ~/.gitignore_ignore
+	excludesfile = ~/.gitignore_global
 	editor = nvim
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab
 [merge]
@@ -15,9 +15,7 @@
 	command = xz -c
 [http "https://gopkg.in"]
 	followRedirects = true
-
 [commit]
 	template = ~/.gitmessage
 [alias]
 	branch-cleanup = "!git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d #"
-	gi = "!gi() { curl -s http://www.gitignore.io/api/$@ ;}; gi"

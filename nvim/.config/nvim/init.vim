@@ -91,3 +91,8 @@ set number
 set clipboard=unnamedplus
 " show vertical column
 set colorcolumn=81,121
+" easier window moviment
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
