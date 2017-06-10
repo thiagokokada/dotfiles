@@ -2,10 +2,10 @@
 source "${ZDOTDIR:-${HOME}}/.zit"
 
 # load modules
-zit-install "https://github.com/Eriner/zim/" ".zim" "init.zsh"
-zit-install "https://github.com/Tarrasch/zsh-autoenv" \
-  ".zit.d/zsh-autoenv" "init.zsh"
-zit-install "https://github.com/zsh-users/zsh-autosuggestions" \
+zit-install-load "https://github.com/Eriner/zim/" ".zim"
+zit-install-load "https://github.com/Tarrasch/zsh-autoenv" \
+  ".zit.d/zsh-autoenv" "autoenv.zsh"
+zit-install-load "https://github.com/zsh-users/zsh-autosuggestions" \
   ".zit.d/zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
 # pager
