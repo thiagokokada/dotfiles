@@ -58,7 +58,7 @@
   done
 
   # compile .zmodules files
-  for file in "$HOME/.zmodules.d/**/*.zsh"; do
+  for file in "$HOME/.zit.d/**/*.zsh"; do
     zcompare ${file}
   done
 
