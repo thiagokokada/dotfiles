@@ -1,5 +1,12 @@
+# load module manager
+source "${ZDOTDIR:-${HOME}}/.zit"
+
 # load modules
-source "${ZDOTDIR:-${HOME}}/.zmodule"
+zit-install "https://github.com/Eriner/zim/" ".zim" "init.zsh"
+zit-install "https://github.com/Tarrasch/zsh-autoenv" \
+  ".zit.d/zsh-autoenv" "init.zsh"
+zit-install "https://github.com/zsh-users/zsh-autosuggestions" \
+  ".zit.d/zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
 # pager
 export EDITOR="nvim"

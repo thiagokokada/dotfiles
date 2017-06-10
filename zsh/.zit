@@ -1,0 +1,36 @@
+#################################
+# minimal module loader for zsh #
+#################################
+
+declare -a ZIT_MODULE_DIRS
+
+# module loader
+zit-install() {
+  local git_repo="${1}"
+  local module_dir="${ZDOTDIR:-${HOME}}/${2}"
+  local dot_zsh="${3}"
+
+  # clone module
+  [[ ! -d "${module_dir}" ]] && \
+    echo "Installing ${module_dir}" && \
+    git clone --recursive "${git_repo}" "${module_dir}" && \
+    echo
+  # load module in zsh
+  eval source "${module_dir}/${dot_zsh}"
+  # added to global dir array for updater
+  ZIT_MODULE_DIRS+=("${module_dir}")
+}
+
+# updater
+zit-update() {
+  # update each module in array
+  for module in ${ZIT_MODULE_DIRS}; do
+    pushd "${module}"
+    echo "Updating ${module}"
+    git pull --rebase
+    echo
+    popd
+  done
+}
+
+# vim: ft=zsh
