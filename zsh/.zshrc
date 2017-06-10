@@ -1,5 +1,5 @@
 # load module manager
-source "${ZDOTDIR:-${HOME}}/.zit"
+source "${ZDOTDIR:-${HOME}}/.zit.zsh"
 
 # load modules
 zit-install-load "https://github.com/Eriner/zim/" ".zim"
