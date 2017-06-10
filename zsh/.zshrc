@@ -1,11 +1,16 @@
-# load module manager
-source "${ZDOTDIR:-${HOME}}/.zit.zsh"
+# load zit
+ZIT_DIR_PATH="${HOME}/.zit"
+if [[ ! -d $ZIT_DIR_PATH ]]; then
+  git clone "https://github.com/m45t3r/zit" "$ZIT_DIR_PATH"
+fi
+source "${ZIT_DIR_PATH}/zit.zsh"
 
 # load modules
-zit-install-load "https://github.com/Eriner/zim/" ".zim"
-zit-install-load "https://github.com/Tarrasch/zsh-autoenv" \
+zit-lo ".zit"
+zit-il "https://github.com/Eriner/zim/" ".zim"
+zit-il "https://github.com/Tarrasch/zsh-autoenv" \
   ".zit.d/zsh-autoenv" "autoenv.zsh"
-zit-install-load "https://github.com/zsh-users/zsh-autosuggestions" \
+zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
   ".zit.d/zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
 # pager
@@ -14,10 +19,12 @@ export VISUAL="nvim"
 export PAGER="less"
 
 # fzf
-export FZF_KEY_BINDINGS="/usr/share/fzf/key-bindings.zsh"
-export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
-export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"
-[[ -s "$FZF_KEY_BINDINGS" ]] && source "$FZF_KEY_BINDINGS"
+FZF_KEY_BINDINGS="/usr/share/fzf/key-bindings.zsh"
+if [[ -s "${FZF_KEY_BINDINGS}" ]]; then
+  source "${FZF_KEY_BINDINGS}"
+  export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
+  export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"
+fi
 
 # zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
