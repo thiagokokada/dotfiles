@@ -6,12 +6,28 @@ fi
 source "${ZIT_DIR_PATH}/zit.zsh"
 
 # load modules
-zit-lo ".zit"
-zit-il "https://github.com/Eriner/zim/" ".zim"
+export ZIT_MODULES_PATH="${HOME}/.zit.d"
+
+# Zim
+source "${HOME}/.zimrc"
+zit-in "https://github.com/Eriner/zim" "zim"
+zit-lo "zim" "modules/directory/init.zsh"
+zit-lo "zim" "modules/environment/init.zsh"
+zit-lo "zim" "modules/git/init.zsh"
+zit-lo "zim" "modules/git-info/init.zsh"
+zit-lo "zim" "modules/history/init.zsh"
+zit-lo "zim" "modules/utility/init.zsh"
+zit-lo "zim" "modules/ssh/init.zsh"
+zit-lo "zim" "modules/syntax-highlighting/init.zsh"
+zit-lo "zim" "modules/history-substring-search/init.zsh"
+zit-lo "zim" "modules/prompt/init.zsh"
+zit-lo "zim" "modules/completion/init.zsh"
+
+# Misx
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
-  ".zit.d/zsh-autoenv" "autoenv.zsh"
+  "zsh-autoenv" "autoenv.zsh"
 zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
-  ".zit.d/zsh-autosuggestions" "zsh-autosuggestions.zsh"
+  "zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
 # pager
 export EDITOR="nvim"
@@ -30,6 +46,11 @@ fi
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 bindkey '^ ' autosuggest-accept
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+# edit current line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
 
 # aliases
 alias archup="pacaur -Syu --devel --needed"

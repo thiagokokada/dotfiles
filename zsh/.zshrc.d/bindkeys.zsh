@@ -1,5 +1,4 @@
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
+# Partial fix until ZSH 5.3.2
 typeset -A key
 
 key[Home]="$terminfo[khome]"
@@ -7,8 +6,6 @@ key[End]="$terminfo[kend]"
 key[Insert]="$terminfo[kich1]"
 key[Backspace]="$terminfo[kbs]"
 key[Delete]="$terminfo[kdch1]"
-key[Up]="$terminfo[kcuu1]"
-key[Down]="$terminfo[kcud1]"
 key[Left]="$terminfo[kcub1]"
 key[Right]="$terminfo[kcuf1]"
 key[PageUp]="$terminfo[kpp]"
@@ -20,8 +17,6 @@ key[PageDown]="$terminfo[knp]"
 [[ -n "$key[Insert]"    ]] && bindkey -- "$key[Insert]"    overwrite-mode
 [[ -n "$key[Backspace]" ]] && bindkey -- "$key[Backspace]" backward-delete-char
 [[ -n "$key[Delete]"    ]] && bindkey -- "$key[Delete]"    delete-char
-[[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        history-substring-search-up
-[[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      history-substring-search-down
 [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
 
@@ -38,7 +33,3 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-finish
 fi
 
-# edit current line
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey '^v' edit-command-line

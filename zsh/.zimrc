@@ -22,6 +22,8 @@ zmodules=(directory \
           prompt \
           completion)
 
+fpath=(${${zmodules}:\
++${ZIT_MODULES_PATH}/zim/modules/${^zmodules}/functions(/FN)} ${fpath})
 
 ###################
 # MODULE SETTINGS #
