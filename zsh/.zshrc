@@ -4,6 +4,7 @@ if [[ ! -d $ZIT_DIR_PATH ]]; then
   git clone "https://github.com/m45t3r/zit" "$ZIT_DIR_PATH"
 fi
 source "${ZIT_DIR_PATH}/zit.zsh"
+zit-lo ".zit" "zit.zsh"
 
 # load modules
 export ZIT_MODULES_PATH="${HOME}/.zit.d"
@@ -23,7 +24,7 @@ zit-lo "zim" "modules/history-substring-search/init.zsh"
 zit-lo "zim" "modules/prompt/init.zsh"
 zit-lo "zim" "modules/completion/init.zsh"
 
-# Misx
+# Misc
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
   "zsh-autoenv" "autoenv.zsh"
 zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
