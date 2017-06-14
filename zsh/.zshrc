@@ -66,6 +66,6 @@ alias rg="rg -g '!*.min.*'"
 alias ssh="TERM=xterm ssh"
 
 # source contents from ~/.zshrc.d
-for file in $HOME/.zshrc.d/*; do
-  source "$file"
+for file in ${HOME}/.zshrc.d/*.zsh; do
+  source ${file}
 done

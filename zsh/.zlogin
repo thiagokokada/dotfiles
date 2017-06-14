@@ -53,12 +53,13 @@
   zcompare ${zim_mods}/history-substring-search/external/zsh-history-substring-search.zsh
 
   # compile .zshrc.d
-  for file in "$HOME/.zshrc.d/*.zsh"; do
+  for file in ${HOME}/.zshrc.d/*.zsh; do
     zcompare ${file}
   done
 
   # compile .zit files
-  for file in "$HOME/.zit*/**/*.zsh"; do
+  zcompare ${HOME}/.zit/zit.zsh
+  for file in ${HOME}/.zit.d/**/*.zsh; do
     zcompare ${file}
   done
 
@@ -66,7 +67,7 @@
 
 # Source a zlogin file depending of the current TTY
 # Example: /home/m45t3r/.tty1_zlogin
-if [ -z "$DISPLAY" ]; then
-  TTY_LOGIN="$HOME/.tty${XDG_VTNR}_login.zsh"
-  [ -f "$TTY_LOGIN" ] && source "$TTY_LOGIN"
+if [ -z "${DISPLAY}" ]; then
+  TTY_LOGIN="${HOME}/.tty${XDG_VTNR}_login.zsh"
+  [ -f "${TTY_LOGIN}" ] && source "${TTY_LOGIN}"
 fi
