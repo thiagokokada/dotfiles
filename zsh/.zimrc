@@ -22,9 +22,6 @@ zmodules=(directory \
           prompt \
           completion)
 
-fpath=(${${zmodules}:\
-+${ZIT_MODULES_PATH}/zim/modules/${^zmodules}/functions(/FN)} ${fpath})
-
 ###################
 # MODULE SETTINGS #
 ###################
@@ -89,3 +86,5 @@ zhighlighters=(main brackets cursor)
 
 # Load these ssh identities with the ssh module
 zssh_ids=(/dev/null)
+
+# vim: ft=zsh

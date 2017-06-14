@@ -1,34 +1,5 @@
-# load zit
-ZIT_DIR_PATH="${HOME}/.zit"
-if [[ ! -d $ZIT_DIR_PATH ]]; then
-  git clone "https://github.com/m45t3r/zit" "$ZIT_DIR_PATH"
-fi
-source "${ZIT_DIR_PATH}/zit.zsh"
-zit-lo ".zit" "zit.zsh"
-
-# load modules
-export ZIT_MODULES_PATH="${HOME}/.zit.d"
-
-# Zim
-source "${HOME}/.zimrc"
-zit-in "https://github.com/Eriner/zim" "zim"
-zit-lo "zim" "modules/directory/init.zsh"
-zit-lo "zim" "modules/environment/init.zsh"
-zit-lo "zim" "modules/git/init.zsh"
-zit-lo "zim" "modules/git-info/init.zsh"
-zit-lo "zim" "modules/history/init.zsh"
-zit-lo "zim" "modules/utility/init.zsh"
-zit-lo "zim" "modules/ssh/init.zsh"
-zit-lo "zim" "modules/syntax-highlighting/init.zsh"
-zit-lo "zim" "modules/history-substring-search/init.zsh"
-zit-lo "zim" "modules/prompt/init.zsh"
-zit-lo "zim" "modules/completion/init.zsh"
-
-# Misc
-zit-il "https://github.com/Tarrasch/zsh-autoenv" \
-  "zsh-autoenv" "autoenv.zsh"
-zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
-  "zsh-autosuggestions" "zsh-autosuggestions.zsh"
+# load Zit config
+source "${HOME}/.zitrc"
 
 # pager
 export EDITOR="nvim"
