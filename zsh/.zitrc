@@ -28,6 +28,7 @@ zit-lo "zim" "modules/prompt/init.zsh"
 zit-lo "zim" "modules/completion/init.zsh"
 
 # Misc
+zit-il "https://github.com/supercrabtree/k" "k" "k.sh"
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
   "zsh-autoenv" "autoenv.zsh"
 zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
