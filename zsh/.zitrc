@@ -34,4 +34,8 @@ zit-il "https://github.com/Tarrasch/zsh-autoenv" \
 zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
   "zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
+# Script to compile ZSH files
+# Should be called last
+zit-lo "zit" "extras/compile-zsh-files.zsh"
+
 # vim: ft=zsh
