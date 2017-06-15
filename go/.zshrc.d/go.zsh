@@ -1,5 +1,5 @@
-export GOPATH="$HOME/.go"
+export GOPATH="${HOME}/.go"
 path=(
-  $GOPATH/bin
-  $path
+  ${GOPATH}/bin
+  ${path}
 )

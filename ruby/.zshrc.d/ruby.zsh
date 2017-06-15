@@ -1,10 +1,12 @@
-export RBENV_ROOT="$HOME/.rbenv"
-export PATH="$RBENV_ROOT/bin:$PATH"
+export RBENV_ROOT="${ZIT_MODULES_PATH}/rbenv"
 
-if [ ! -d "$RBENV_ROOT" ]; then
-  git clone https://github.com/rbenv/rbenv.git "$RBENV_ROOT"
-  git clone https://github.com/rbenv/ruby-build.git "$RBENV_ROOT/plugins/ruby-build"
-fi
+path=(
+  ${RBENV_ROOT}/bin
+  ${path}
+)
+
+zit-in "https://github.com/rbenv/rbenv.git" "rbenv"
+zit-in "https://github.com/rbenv/ruby-build" "rbenv/plugins/ruby-build"
 
 eval "$(rbenv init --no-rehash - zsh)"
 

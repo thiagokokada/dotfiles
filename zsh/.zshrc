@@ -1,6 +1,9 @@
 # load Zit config
 source "${HOME}/.zitrc"
 
+# try to correct the spelling of commands
+setopt CORRECT
+
 # pager
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -27,14 +30,15 @@ bindkey '^v' edit-command-line
 # aliases
 alias archup="pacaur -Syu --devel --needed"
 alias charginmahlazer="source ~/.zshrc"
-alias gk="gitk &>/dev/null &"
+alias gk="gitk &!"
 alias grep="grep --color=auto"
 alias http-server="python3 -m http.server"
 alias ls="ls --color=auto"
 alias nvimdiff="nvim -d"
-alias open="xdg-open"
 alias rg="rg -g '!*.min.*'"
 alias ssh="TERM=xterm ssh"
+
+open() { xdg-open "${@}" &> /dev/null &! }
 
 # source contents from ~/.zshrc.d
 for file in ${HOME}/.zshrc.d/*.zsh; do
