@@ -22,6 +22,7 @@ zmodules=(directory \
           ssh \
           syntax-highlighting \
           history-substring-search \
+          autosuggestions \
           prompt \
           completion)
 zprompt_theme='pure'
@@ -43,6 +44,7 @@ zit-lo "zim" "modules/utility/init.zsh"
 zit-lo "zim" "modules/ssh/init.zsh"
 zit-lo "zim" "modules/syntax-highlighting/init.zsh"
 zit-lo "zim" "modules/history-substring-search/init.zsh"
+zit-lo "zim" "modules/autosuggestions/init.zsh"
 zit-lo "zim" "modules/prompt/init.zsh"
 zit-lo "zim" "modules/completion/init.zsh"
 
@@ -50,8 +52,6 @@ zit-lo "zim" "modules/completion/init.zsh"
 zit-il "https://github.com/supercrabtree/k" "k" "k.sh"
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
   "zsh-autoenv" "autoenv.zsh"
-zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
-  "zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
 # Script to compile ZSH files
 # Should be called last
