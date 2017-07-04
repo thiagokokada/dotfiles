@@ -44,7 +44,7 @@ bindsym $mod+m exec $file_manager
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym Mod1+F4 kill
+bindsym $alt+F4 kill
 
 # start rofi in dmenu mode
 bindsym $mod+d exec rofi -show run
@@ -323,7 +323,7 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 
 # misc startup programs
 exec --no-startup-id dropbox
-exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
+exec --no-startup-id nm-applet
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
