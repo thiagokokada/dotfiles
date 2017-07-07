@@ -68,6 +68,7 @@ set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
 " fzf
 nnoremap <C-p> :Files<cr>
+nnoremap <C-b> :Buffers<cr>
 nnoremap <Leader>c :Commits<cr>
 " ctags
 let g:vim_tags_auto_generate = 1
