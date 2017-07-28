@@ -17,6 +17,7 @@ Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
+Plug 'hashivim/vim-terraform'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
@@ -78,6 +79,8 @@ nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!bundle exec rspec {spec}"
+" far.vim
+let g:far#source = "agnvim"
 
 """"""""
 " misc "
