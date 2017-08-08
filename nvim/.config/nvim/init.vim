@@ -18,6 +18,7 @@ Plug 'brooth/far.vim'
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
+Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
@@ -32,12 +33,10 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
 " python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 " ruby
-Plug 'itmammoth/run-rspec.vim', { 'for': 'ruby' }
-Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 " scss
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 call plug#end()
@@ -61,7 +60,7 @@ autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
 let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
 let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
-let g:neomake_ruby_enabled_makers = ['mri']
+let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
 " Undotree
 nnoremap <F4> :UndotreeToggle<cr>
 set undofile
@@ -81,6 +80,12 @@ nnoremap <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!bundle exec rspec {spec}"
 " far.vim
 let g:far#source = "agnvim"
+" vim-test
+nnoremap <silent> <leader>t :TestNearest<CR>
+nnoremap <silent> <leader>T :TestFile<CR>
+nnoremap <silent> <leader>a :TestSuite<CR>
+nnoremap <silent> <leader>l :TestLast<CR>
+nnoremap <silent> <leader>g :TestVisit<CR>
 
 """"""""
 " misc "
@@ -95,8 +100,20 @@ set number
 set clipboard=unnamedplus
 " show vertical column
 set colorcolumn=81,121
+" neovim terminal
+nnoremap <silent> <leader><Space> :terminal<CR>
+tnoremap <Esc> <C-\><C-n>
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
 " easier window moviment
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
