@@ -2,7 +2,9 @@
 source "${HOME}/.zitrc"
 
 # try to correct the spelling of commands
-setopt CORRECT
+setopt correct
+# allow # in interactive mode
+setopt interactivecomments
 
 # pager
 export EDITOR="nvim"
