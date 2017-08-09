@@ -30,7 +30,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
+Plug 'justinmk/vim-dirvish'
 " python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
@@ -48,12 +49,22 @@ call plug#end()
 let g:airline_powerline_fonts = 1
 " deoplete
 let g:deoplete#enable_at_startup = 1
+" dirvish
+let g:dirvish_mode = ':sort ,^.*[\/],'
+" ctags
+let g:vim_tags_auto_generate = 1
+" far.vim
+let g:far#source = "agnvim"
+" fzf
+nnoremap <C-p> :Files<cr>
+nnoremap <C-b> :Buffers<cr>
+nnoremap <Leader>c :Commits<cr>
 " gruvbox
 set termguicolors
 set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
-" jedi-vim
+" jedi
 let g:jedi#smart_auto_mappings = 0
 " Neomake
 autocmd! BufWritePost * Neomake
@@ -66,20 +77,12 @@ nnoremap <F4> :UndotreeToggle<cr>
 set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
-" fzf
-nnoremap <C-p> :Files<cr>
-nnoremap <C-b> :Buffers<cr>
-nnoremap <Leader>c :Commits<cr>
-" ctags
-let g:vim_tags_auto_generate = 1
 " vim-rspec
 nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!bundle exec rspec {spec}"
-" far.vim
-let g:far#source = "agnvim"
 " vim-test
 nnoremap <silent> <leader>t :TestNearest<CR>
 nnoremap <silent> <leader>T :TestFile<CR>
