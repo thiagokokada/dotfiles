@@ -30,7 +30,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
-" Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-dirvish'
 " python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -54,7 +53,7 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 " ctags
 let g:vim_tags_auto_generate = 1
 " far.vim
-let g:far#source = "agnvim"
+let g:far#source = 'agnvim'
 " fzf
 nnoremap <C-p> :Files<cr>
 nnoremap <C-b> :Buffers<cr>
@@ -82,8 +81,9 @@ nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "!bundle exec rspec {spec}"
+let g:rspec_command = '!bundle exec rspec {spec}'
 " vim-test
+let test#strategy = 'neovim'
 nnoremap <silent> <leader>t :TestNearest<CR>
 nnoremap <silent> <leader>T :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
