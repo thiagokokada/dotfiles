@@ -99,8 +99,11 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set pastetoggle=<F6>
 " show line number
 set number
-" global registers
-set clipboard=unnamedplus
+" copy and paste
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pa
 " show vertical column
 set colorcolumn=81,121
 " neovim terminal
