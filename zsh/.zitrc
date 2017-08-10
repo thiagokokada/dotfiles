@@ -17,6 +17,7 @@ zmodules=(directory \
           git \
           git-info \
           history \
+          input \
           utility \
           meta \
           ssh \
@@ -40,6 +41,7 @@ zit-lo "zim" "modules/environment/init.zsh"
 zit-lo "zim" "modules/git/init.zsh"
 zit-lo "zim" "modules/git-info/init.zsh"
 zit-lo "zim" "modules/history/init.zsh"
+zit-lo "zim" "modules/input/init.zsh"
 zit-lo "zim" "modules/utility/init.zsh"
 zit-lo "zim" "modules/ssh/init.zsh"
 zit-lo "zim" "modules/syntax-highlighting/init.zsh"
