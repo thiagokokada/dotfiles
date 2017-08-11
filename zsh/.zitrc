@@ -15,7 +15,6 @@ zit-in "https://github.com/Eriner/zim" "zim"
 zmodules=(directory \
           environment \
           git \
-          git-info \
           history \
           input \
           utility \
