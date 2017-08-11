@@ -30,9 +30,12 @@ ztermtitle='%n@%m:%~'
 zdouble_dot_expand='true'
 zhighlighters=(main brackets cursor)
 zssh_ids=(/dev/null)
-fpath=(${${zmodules}:+${ZIT_MODULES_PATH}/zim/modules/${^zmodules}/functions(/FN)} ${fpath})
+fpath=(
+  ${${zmodules}:+${ZIT_MODULES_PATH}/zim/modules/${^zmodules}/functions(/FN)}
+  ${fpath}
+)
 
-## modules
+## load zim modules
 for zmodule in ${zmodules}; do
   zit-lo "zim" "modules/${zmodule}/init.zsh"
 done
