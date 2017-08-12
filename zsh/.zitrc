@@ -12,7 +12,8 @@ zit-lo "zit" "zit.zsh"
 zit-in "https://github.com/Eriner/zim" "zim"
 
 ## configuration
-zmodules=(directory \
+zmodules=(archive \
+          directory \
           environment \
           git \
           history \
@@ -38,6 +39,16 @@ fpath=(
 for zmodule in ${zmodules}; do
   zit-lo "zim" "modules/${zmodule}/init.zsh"
 done
+
+function {
+  local function_glob='^([_.]*|prompt_*_setup|README*)(-.N:t)'
+
+  setopt LOCAL_OPTIONS EXTENDED_GLOB
+
+  for mod_function in ${ZIT_MODULES_PATH}/zim/modules/${^zmodules}/functions/${~function_glob}; do
+    autoload -Uz ${mod_function}
+  done
+}
 
 # misc
 zit-il "https://github.com/supercrabtree/k" "k" "k.sh"
