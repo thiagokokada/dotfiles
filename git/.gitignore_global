@@ -10,3 +10,7 @@ Session.vim
 
 # Sublime Text
 *.sublime-workspace
+
+# Ignore vagrant
+*.log
+.vagrant
