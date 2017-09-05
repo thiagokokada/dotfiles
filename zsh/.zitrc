@@ -9,52 +9,8 @@ source "${ZIT_MODULES_PATH}/zit/zit.zsh"
 zit-lo "zit" "zit.zsh"
 
 # zim
-zit-in "https://github.com/Eriner/zim" "zim"
-
-## configuration
 export ZIM_HOME="${ZIT_MODULES_PATH}/zim"
-zmodules=(archive \
-          directory \
-          environment \
-          git \
-          history \
-          input \
-          utility \
-          ssh \
-          syntax-highlighting \
-          history-substring-search \
-          autosuggestions \
-          prompt \
-          completion)
-zprompt_theme='pure'
-ztermtitle='%n@%m:%~'
-zdouble_dot_expand='true'
-zhighlighters=(main brackets cursor)
-zssh_ids=(/dev/null)
-fpath=(
-  ${${zmodules}:+${ZIM_HOME}/modules/${^zmodules}/functions(/FN)}
-  ${fpath}
-)
-
-## load zim modules
-function {
-  local zmodule
-
-  for zmodule in ${zmodules}; do
-    zit-lo "zim" "modules/${zmodule}/init.zsh"
-  done
-}
-
-function {
-  local function_glob='^([_.]*|prompt_*_setup|README*)(-.N:t)'
-  local mod_function
-
-  setopt LOCAL_OPTIONS EXTENDED_GLOB
-
-  for mod_function in ${ZIM_HOME}/modules/${^zmodules}/functions/${~function_glob}; do
-    autoload -Uz ${mod_function}
-  done
-}
+zit-il "https://github.com/Eriner/zim" "zim" "init.zsh"
 
 # misc
 zit-il "https://github.com/supercrabtree/k" "k" "k.sh"

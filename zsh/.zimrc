@@ -1,0 +1,20 @@
+zmodules=(archive \
+          directory \
+          environment \
+          git \
+          history \
+          input \
+          utility \
+          ssh \
+          syntax-highlighting \
+          history-substring-search \
+          autosuggestions \
+          prompt \
+          completion)
+zprompt_theme='pure'
+ztermtitle='%n@%m:%~'
+zdouble_dot_expand='true'
+zhighlighters=(main brackets cursor)
+zssh_ids=(/dev/null)
+
+# vim: ft=zsh
