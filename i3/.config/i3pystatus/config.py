@@ -31,11 +31,12 @@ status.register(
     on_leftclick="scroll_format",
 )
 
-# show/change current keyboard layout
+# show current keyboard layout
 status.register(
-    "xkblayout",
-    format="  {symbol}",
-    layouts=["br", "us intl"],
+    "shell",
+    command="setxkbmap -query | awk -F ': *' '/layout/ { print toupper($2) }'",
+    interval=5,
+    format="  {output}",
 )
 
 # show/change volume using PA
