@@ -6,7 +6,7 @@ fi
 source "${ZIT_MODULES_PATH}/zit/zit.zsh"
 
 # let zit manage zit
-zit-lo "zit" "zit.zsh"
+zit-in "https://github.com/m45t3r/zit" "zit"
 
 # zim
 export ZIM_HOME="${ZIT_MODULES_PATH}/zim"
