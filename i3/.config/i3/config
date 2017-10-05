@@ -4,7 +4,7 @@
 
 # default applications
 set $terminal termite
-set $browser chromium
+set $browser firefox
 set $file_manager nautilus
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
 set $set_wallpaper nitrogen --restore
@@ -124,7 +124,7 @@ bindsym $mod+z focus child
 # font awesome
 set $ws1  "1:  "
 set $ws2  "2:  "
-set $ws3  "3:  "
+set $ws3  "3:  "
 set $ws4  "4:  "
 set $ws5  "5:  "
 set $ws6  "6:  "

@@ -109,6 +109,7 @@ status.register(
 # show CPU temperature
 status.register(
    "temp",
+   format=" {temp:.0f}°C",
     lm_sensors_enabled=True,
 )
 
