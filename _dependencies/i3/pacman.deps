@@ -15,6 +15,7 @@ pulseaudio
 pulseaudio-alsa
 python
 qalculate-gtk
+qt5-styleplugins
 redshift
 rofi
 termite
