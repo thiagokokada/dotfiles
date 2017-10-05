@@ -1,3 +1,5 @@
+from glob import glob
+
 from i3pystatus import Status, battery
 from i3pystatus.updates import pacman, cower
 
@@ -100,17 +102,18 @@ status.register(
     divisor=1024**3,
 )
 
-# show cpu usage
+# show cpu usage]
 status.register(
     "load",
     format=" {avg1} {avg5}",
 )
 
 # show CPU temperature
+cpu_file = sorted(glob("/sys/class/thermal/thermal_zone*/temp"))[0]
 status.register(
-   "temp",
-   format=" {temp:.0f}°C",
-    lm_sensors_enabled=True,
+    "temp",
+    file=cpu_file,
+    format=" {temp:.0f}°C",
 )
 
 # show current music info
