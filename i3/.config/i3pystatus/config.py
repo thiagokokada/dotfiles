@@ -11,6 +11,12 @@ def make_bar(percentage):
     index = round(percentage / base)
     return bars[index]
 
+def get_cpu_temp_file(path, match):
+    for p in glob(path):
+        with open("{}/type".format(p)) as f:
+            if f.readline().rstrip() == match:
+                return "{}/temp".format(p)
+
 
 # inject it in battery module, so it will display unicode icons instead
 # of the (ugly) default bars
@@ -109,10 +115,10 @@ status.register(
 )
 
 # show CPU temperature
-cpu_file = sorted(glob("/sys/class/thermal/thermal_zone*/temp"))[0]
+cpu_temp_file = get_cpu_temp_file("/sys/class/thermal/thermal_zone*", "x86_pkg_temp")
 status.register(
     "temp",
-    file=cpu_file,
+    file=cpu_temp_file,
     format=" {temp:.0f}°C",
 )
 
