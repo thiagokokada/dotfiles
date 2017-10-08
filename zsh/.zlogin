@@ -4,7 +4,7 @@ runx() {
   local tty="${XDG_VTNR}"
   local display=":${tty}"
 
-  exec xinit "${program}" -- "${display}" "vt${XDG_VTNR}" -keeptty &>! "/tmp/tty${tty}_login.log"
+  exec xinit "${program}" -- "${display}" "vt${tty}" -keeptty &>! "/tmp/tty${tty}_login.log"
 }
 
 # Source a zlogin file depending of the current TTY
