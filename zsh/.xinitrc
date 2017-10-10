@@ -31,4 +31,4 @@ if [ -d "${xinitrcd}" ] ; then
  unset f
 fi
 
-exec "${1}"
+exec ${@}

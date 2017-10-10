@@ -1,10 +1,9 @@
 # Simplified version of startx
 runx() {
-  local program="${1}"
   local tty="${XDG_VTNR}"
-  local display=":${tty}"
+  local tmpfile=$(mktemp --tmpdir "tty${tty}_login.XXXXXXXX.log")
 
-  exec xinit "${program}" -- "${display}" "vt${tty}" -keeptty &>! "/tmp/tty${tty}_login.log"
+  exec xinit ${@} -- ":${tty}" "vt${tty}" -keeptty &>! "${tmpfile}"
 }
 
 # Source a zlogin file depending of the current TTY
