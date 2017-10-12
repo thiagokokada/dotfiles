@@ -6,14 +6,13 @@
 set $terminal termite
 set $browser firefox
 set $file_manager nautilus
-set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
+set $lock_screen "$HOME/.config/i3/scripts/lock_screen/venv/bin/python $HOME/.config/i3/scripts/lock_screen/lock_screen.py"
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png"
 set $area_screenshot "maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png"
 
 # i3pystatus path
-set $status_bar "$HOME/.config/i3pystatus/venv/bin/i3pystatus -c \
-$HOME/.config/i3pystatus/config.py"
+set $status_bar "$HOME/.config/i3pystatus/venv/bin/i3pystatus -c $HOME/.config/i3pystatus/config.py"
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
