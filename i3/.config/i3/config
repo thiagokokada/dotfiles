@@ -109,21 +109,9 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # workspace names
-# text
-# set $ws1  "1 term"
-# set $ws2  "2 files"
-# set $ws3  "3 www"
-# set $ws4  "4 dev"
-# set $ws5  "5 dev"
-# set $ws6  "6 docs"
-# set $ws7  "7 notes"
-# set $ws8  "8 msg"
-# set $ws9  "9 misc"
-# set $ws10 "10 media"
-# font awesome
-set $ws1  "1:  "
+set $ws1  "1:  "
 set $ws2  "2:  "
-set $ws3  "3:  "
+set $ws3  "3:  "
 set $ws4  "4:  "
 set $ws5  "5:  "
 set $ws6  "6:  "
