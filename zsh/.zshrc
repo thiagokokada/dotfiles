@@ -35,6 +35,7 @@ alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
 alias rg="rg -g '!*.min.*'"
 alias ssh="TERM=xterm ssh"
+alias remove-broken-symbolic-links="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 
 open() { xdg-open "${@}" &> /dev/null &! }
 
