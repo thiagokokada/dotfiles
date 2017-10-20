@@ -6,4 +6,9 @@ export XKB_DEFAULT_LAYOUT=br,us
 export XKB_DEFAULT_VARIANT=abnt2,intl
 export XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle,
 
-sway
+tty="${XDG_VTNR}"
+tmpfile=$(mktemp --tmpdir "tty${tty}_login.XXXXXXXX.log")
+
+sway &>! "${tmpfile}"
+
+logout
