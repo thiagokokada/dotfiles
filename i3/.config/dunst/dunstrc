@@ -1,6 +1,6 @@
 [global]
     font = "Roboto 8"
-    allow_markup = yes
+    markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
     indicate_hidden = yes
@@ -20,10 +20,8 @@
     horizontal_padding = 8
     separator_color = "#969896"
     startup_notification = false
-
-[frame]
-    width = 1
-    color = "#282A2E"
+    frame_width = 1
+    frame_color = "#282A2E"
 
 [shortcuts]
     close = ctrl+space
