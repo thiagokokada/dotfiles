@@ -207,12 +207,6 @@ bar {
     }
 }
 
-input "2:14:ETPS/2_Elantech_Touchpad" {
-    tap enabled
-    natural_scroll enabled
-    dwt enabled
-}
-
 # volume control
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
@@ -238,14 +232,22 @@ pkill -SIGUSR1 -f $status_bar
 bindsym Print exec $fs_screenshot
 
 # notification manager
-exec --no-startup-id dunst
+exec dunst
 
 # misc startup programs
-exec --no-startup-id dropbox
-exec --no-startup-id nm-applet
+exec dropbox
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
 client.focused_inactive #373b41 #373b41 #969896 #282a2e
 client.unfocused #282a2e #282a2e #969896 #282a2e
 client.urgent #373b41 #cc6666 #ffffff #cc6666
+
+# sway specific options
+output LVDS-1 bg ~/.lvds-1.png fill
+output HDMI-1 bg ~/.hdmi-1.png fill
+input "2:14:ETPS/2_Elantech_Touchpad" {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
