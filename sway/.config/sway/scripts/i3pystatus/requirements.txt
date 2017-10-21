@@ -1,0 +1,7 @@
+-e git+https://github.com/enkore/i3pystatus@master#egg=i3pystatus
+-e git+https://github.com/bastienleonard/pysensors@master#egg=sensors
+basiciw
+colour
+dbus-python
+netifaces
+psutil

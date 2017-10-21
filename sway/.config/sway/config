@@ -10,7 +10,7 @@ set $lock_screen swaylock
 set $fs_screenshot swaygrab
 
 # i3pystatus path
-set $status_bar "$HOME/.config/i3pystatus/venv/bin/i3pystatus -c $HOME/.config/i3pystatus/config.py"
+set $status_bar "$HOME/.config/sway/scripts/i3pystatus/venv/bin/i3pystatus -c $HOME/.config/sway/scripts/i3pystatus/config.py"
 
 # using Super (Win key) instead of Alt
 set $mod Mod4

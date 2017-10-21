@@ -12,7 +12,7 @@ set $fs_screenshot "maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-scree
 set $area_screenshot "maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png"
 
 # i3pystatus path
-set $status_bar "$HOME/.config/i3pystatus/venv/bin/i3pystatus -c $HOME/.config/i3pystatus/config.py"
+set $status_bar "$HOME/.config/i3/scripts/i3pystatus/venv/bin/i3pystatus -c $HOME/.config/i3/scripts/i3pystatus/config.py"
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
