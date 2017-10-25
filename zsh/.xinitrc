@@ -5,23 +5,16 @@ usermodmap="${HOME}/.Xmodmap"
 sysresources="/etc/X11/xinit/.Xresources"
 sysmodmap="/etc/X11/xinit/.Xmodmap"
 xinitrcd="/etc/X11/xinit/xinitrc.d/"
+xinitrc_local="${HOME}/.xinitrc.local"
 
 # merge in defaults and keymaps
-if [ -f "${sysresources}" ]; then
-    xrdb -merge "${sysresources}"
-fi
+for file in "${sysresources}" "${userresources}"; do
+  xrdb -merge "${file}"
+done
 
-if [ -f "${sysmodmap}" ]; then
-    xmodmap "${sysmodmap}"
-fi
-
-if [ -f "${userresources}" ]; then
-    xrdb -merge "${userresources}"
-fi
-
-if [ -f "${usermodmap}" ]; then
-    xmodmap "${usermodmap}"
-fi
+for file in "${sysmodmap}" "${usermodmap}"; do
+  xmodmap "${file}"
+done
 
 # start some nice programs
 if [ -d "${xinitrcd}" ] ; then
@@ -31,4 +24,8 @@ if [ -d "${xinitrcd}" ] ; then
  unset f
 fi
 
-exec ${@}
+if [ -f "${xinitrc_local}" ]; then
+  . "${xinitrc_local}"
+fi
+
+exec "${@}"
