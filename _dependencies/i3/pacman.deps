@@ -1,5 +1,4 @@
 dunst
-ffmpeg
 firefox
 i3-wm
 i3lock
@@ -10,6 +9,7 @@ nautilus
 network-manager-applet
 networkmanager
 nitrogen
+otf-font-awesome
 pavucontrol
 playerctl
 pulseaudio

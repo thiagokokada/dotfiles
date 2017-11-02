@@ -163,7 +163,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system power management
-set $mode_system Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
+set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
     bindsym l mode "default", exec $lock_screen
     bindsym e mode "default", exec i3-msg exit
@@ -179,7 +179,8 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
-mode "Resize" {
+set $resize  : [h]  , [j]  , [k]  , [l] 
+mode "$resize" {
     # Pressing left will shrink the window’s width.
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
@@ -200,39 +201,23 @@ mode "Resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "Resize"
+bindsym $mod+r mode "$resize"
 
 # external screen management
-set $display_layout_vga Display VGA:  ,  , [o]ff
-mode "$display_layout_vga" {
-    bindsym Left exec xrandr --output VGA-1 --auto --left-of LVDS-1 && $set_wallpaper, mode "default"
-    bindsym Right exec xrandr --output VGA-1 --auto --right-of LVDS-1 && $set_wallpaper, mode "default"
-    bindsym o exec xrandr --output VGA-1 --auto --off && $set_wallpaper, mode "default"
+set $display_layout  :  ,  ,  ,  , [d]uplicate, [m]irror, [o]ff
+mode "$display_layout" {
+    bindsym Left exec mons -e left && $set_wallpaper, mode "default"
+    bindsym Down exec mons -e down && $set_wallpaper, mode "default"
+    bindsym Up exec mons -e up && $set_wallpaper, mode "default"
+    bindsym Right exec mons -e right && $set_wallpaper, mode "default"
+    bindsym d exec mons -d && $set_wallpaper, mode "default"
+    bindsym m exec mons -m && $set_wallpaper, mode "default"
+    bindsym o exec mons -o && $set_wallpaper, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-set $display_layout_hdmi Display HDMI:  ,  , [o]ff
-mode "$display_layout_hdmi" {
-    bindsym Left exec xrandr --output HDMI-1 --auto --left-of LVDS-1 && $set_wallpaper, mode "default"
-    bindsym Right exec xrandr --output HDMI-1 --auto --right-of LVDS-1 && $set_wallpaper, mode "default"
-    bindsym o exec xrandr --output HDMI-1 --auto --off && $set_wallpaper, mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-set $display_mode Screen [v]ga, [h]dmi
-mode "$display_mode" {
-    bindsym v mode "$display_layout_vga"
-    bindsym h mode "$display_layout_hdmi"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+p mode "$display_mode"
+bindsym $mod+p mode "$display_layout"
 
 # start i3pystatus to display status bar
 bar {
@@ -303,7 +288,10 @@ exec --no-startup-id dunst
 exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -notifier "notify-send -u normal -t 30000 -a 'xautolock' \
 'Locking screen' '30 seconds remaining'" \
--corners 0-00 -locker $lock_screen &
+-corners 0-00 -locker $lock_screen
+
+# daemon to manager multiple monitors
+exec --no-startup-id mons -a
 
 # misc startup programs
 exec --no-startup-id dropbox
