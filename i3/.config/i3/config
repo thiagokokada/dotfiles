@@ -24,7 +24,7 @@ set $alt Mod1
 font pango:Roboto, FontAwesome 8
 
 # disable window title
-for_window [class="^.*"] border pixel 1
+new_window pixel 1
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
