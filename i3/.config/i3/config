@@ -204,14 +204,15 @@ mode "$resize" {
 bindsym $mod+r mode "$resize"
 
 # external screen management
-set $display_layout  :  ,  ,  ,  , [d]uplicate, [m]irror, [o]ff
+set $display_layout  :  ,  ,  ,  , [d]uplicate, [m]irror, [s]econd-only, [o]ff
 mode "$display_layout" {
     bindsym Left mode "default" exec mons -e left && $set_wallpaper
-    bindsym Down mode "default" exec mons -e down && $set_wallpaper
-    bindsym Up mode "default" exec mons -e up && $set_wallpaper
+    bindsym Down mode "default" exec mons -e bottom && $set_wallpaper
+    bindsym Up mode "default" exec mons -e top && $set_wallpaper
     bindsym Right mode "default" exec mons -e right && $set_wallpaper
     bindsym d mode "default" exec mons -d && $set_wallpaper
     bindsym m mode "default" exec mons -m && $set_wallpaper
+    bindsym s mode "default" exec mons -s && $set_wallpaper
     bindsym o mode "default" exec mons -o && $set_wallpaper
 
     bindsym Return mode "default"
