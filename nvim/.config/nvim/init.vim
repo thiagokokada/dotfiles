@@ -20,6 +20,7 @@ Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
@@ -44,6 +45,9 @@ call plug#end()
 """"""""""""""""""""""""
 " plugin configuration "
 """"""""""""""""""""""""
+
+" ack
+let g:ackprg = 'ag --vimgrep'
 " airline
 let g:airline_powerline_fonts = 1
 " deoplete

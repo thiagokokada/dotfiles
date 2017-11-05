@@ -12,10 +12,13 @@ def make_bar(percentage):
     return bars[index]
 
 def get_cpu_temp_file(path, match):
+    """Try to find which CPU file is the correct one"""
     for p in glob(path):
         with open("{}/type".format(p)) as f:
             if f.readline().rstrip() == match:
                 return "{}/temp".format(p)
+    # failed to find a match, returns the first one
+    return "{}/temp".format(sorted(glob(path))[0])
 
 
 # inject it in battery module, so it will display unicode icons instead
@@ -84,6 +87,7 @@ status.register(
     battery,
     format="{bar} {percentage:.0f}%[ {remaining}][ {status}]",
     alert_percentage=10,
+    not_present_text="ON POWER ",
     status={
         "CHR": "",
         "DPL": "",
