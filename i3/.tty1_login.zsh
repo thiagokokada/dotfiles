@@ -2,7 +2,6 @@
 export QT_QPA_PLATFORMTHEME=gtk2
 
 # Fix "`+c" => ç instead of ć
-export QT_IM_MODULE=cedilla
-export GTK_IM_MODULE=cedilla
+export LC_CTYPE=pt_BR.UTF-8
 
 runx i3
