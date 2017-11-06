@@ -11,6 +11,7 @@ networkmanager
 nitrogen
 otf-font-awesome
 pavucontrol
+perl-file-mimeinfo
 playerctl
 pulseaudio
 pulseaudio-alsa
