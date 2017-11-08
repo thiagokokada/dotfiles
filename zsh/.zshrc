@@ -18,7 +18,6 @@ if [[ -s "${FZF_KEY_BINDINGS}" ]]; then
 fi
 
 # zsh-autosuggestions
-ZSH_AUTOSUGGEST_USE_ASYNC=1
 bindkey '^ ' autosuggest-accept
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
