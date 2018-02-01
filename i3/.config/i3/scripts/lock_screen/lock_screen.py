@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from subprocess import check_call, CalledProcessError
+from subprocess import call
 from tempfile import NamedTemporaryFile
 
 from dpms import DPMS
@@ -29,12 +29,7 @@ with NamedTemporaryFile(suffix=".png") as tempfile:
     img.save(tempfile.name, optimize=False, compress_level=1)
     # Set monitor timeout to SCREEN_TIMEOUT
     dpms.SetTimeouts(*SCREEN_TIMEOUT)
-    try:
-        # Load image in i3lock
-        check_call(["i3lock", "-nei", tempfile.name])
-    except CalledProcessError:
-        # Something went wrong, lock it anyway
-        check_call(["i3lock", "-ne"])
-    finally:
-        # Restore DPMS settings
-        dpms.SetTimeouts(*current_timeouts)
+    # Load image in i3lock
+    call(["i3lock", "-nei", tempfile.name])
+    # Restore DPMS settings
+    dpms.SetTimeouts(*current_timeouts)
