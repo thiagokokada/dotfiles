@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
 Plug 'dietsche/vim-lastplace'
+Plug 'elixir-editors/vim-elixir'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'janko-m/vim-test'
@@ -97,6 +98,8 @@ nnoremap <silent> <leader>g :TestVisit<CR>
 """"""""
 " misc "
 """"""""
+" unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " enable/disable paste mode
