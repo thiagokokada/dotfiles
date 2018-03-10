@@ -1,6 +1,9 @@
+arc-gtk-theme
+arc-icon-theme
 dunst
 firefox
-i3-wm
+gtk-engine-murrine
+i3-gaps
 i3lock
 lxappearance
 maim

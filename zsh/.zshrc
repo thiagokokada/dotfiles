@@ -27,7 +27,7 @@ zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # aliases
-alias archup="pacaur -Syu --devel --needed"
+alias archup="trizen -Syu"
 alias charginmahlazer="source ~/.zshrc"
 alias gk="gitk &!"
 alias http-server="python3 -m http.server"
