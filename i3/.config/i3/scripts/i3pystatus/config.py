@@ -1,4 +1,6 @@
+import json
 from glob import glob
+from subprocess import run, PIPE
 
 from i3pystatus import Status, battery
 from i3pystatus.updates import pacman, cower
@@ -11,6 +13,7 @@ def make_bar(percentage):
     index = round(percentage / base)
     return bars[index]
 
+
 def get_cpu_temp_file(path, match):
     """Try to find which CPU file is the correct one"""
     for p in glob(path):
@@ -19,6 +22,23 @@ def get_cpu_temp_file(path, match):
                 return "{}/temp".format(p)
     # failed to find a match, returns the first one
     return "{}/temp".format(sorted(glob(path))[0])
+
+
+def get_mounted_block_devices(excludes = []):
+    """Find all mounted devices in the system"""
+    try:
+        p = run(["lsblk", "-J", "-o", "MOUNTPOINT", "-x", "MOUNTPOINT"], stdout=PIPE)
+        j = json.loads(p.stdout)
+
+        # {'blockdevices': [{'mountpoint': None}, {'mountpoint': '/'}, {'mountpoint': '/boot'}]}
+        result = [x["mountpoint"] for x in j["blockdevices"] if x["mountpoint"] is not None]
+        for exclude in excludes:
+            result = filter(lambda x: x != exclude, result)
+
+        return list(result)
+    except:
+        # there is some error, returns / at least
+        return ["/"]
 
 
 # inject it in battery module, so it will display unicode icons instead
@@ -97,11 +117,13 @@ status.register(
 )
 
 # show disk available space
-status.register(
-    "disk",
-    format=" {avail:.1f}G",
-    path="/",
-)
+mounted_block_devices = get_mounted_block_devices(excludes=["/boot"])
+for block_device in mounted_block_devices[::-1]:
+    status.register(
+        "disk",
+        format=" {avail:.1f}G",
+        path=block_device
+    )
 
 # show available memory
 status.register(
