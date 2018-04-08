@@ -27,13 +27,13 @@ zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # aliases
-alias archup="trizen -Syu"
+alias archup="aurman -Syu"
 alias charginmahlazer="source ~/.zshrc"
 alias gk="gitk &!"
 alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
 alias rg="rg -g '!*.min.*'"
-alias ssh="TERM=xterm ssh"
+alias ssh="TERM=xterm-256color ssh"
 alias remove-broken-symbolic-links="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 
 open() { xdg-open "${@}" &> /dev/null &! }

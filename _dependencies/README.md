@@ -5,4 +5,4 @@ the usage of the dotfiles contained in this repository. It has a similar
 organization as the root repository, however instead of using stow it is
 possible to pass the output to your package manager, i.e.
 
-    # trizen -S `cat i3/*.deps`
+    # aurman -S `cat i3/*.deps`
