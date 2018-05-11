@@ -12,6 +12,8 @@ endif
 """""""""""
 call plug#begin()
 " general
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
@@ -21,19 +23,19 @@ Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
+Plug 'justinmk/vim-dirvish'
+Plug 'leafgarland/typescript-vim'
 Plug 'mbbill/undotree'
+Plug 'mileszs/ack.vim'
+Plug 'moll/vim-node'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
-Plug 'Raimondi/delimitMate'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'szw/vim-tags'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
-Plug 'justinmk/vim-dirvish'
 " python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
