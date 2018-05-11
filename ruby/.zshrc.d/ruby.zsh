@@ -1,15 +1,3 @@
-export RBENV_ROOT="${ZIT_MODULES_PATH}/rbenv"
-
-path=(
-  ${RBENV_ROOT}/bin
-  ${path}
-)
-
-zit-in "https://github.com/rbenv/rbenv.git" "rbenv"
-zit-in "https://github.com/rbenv/ruby-build" "rbenv/plugins/ruby-build"
-
-eval "$(rbenv init --no-rehash - zsh)"
-
 alias be="bundle exec"
 alias bl="bundle list"
 alias bp="bundle package"
