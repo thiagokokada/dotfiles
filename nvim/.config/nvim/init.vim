@@ -51,7 +51,7 @@ call plug#end()
 """"""""""""""""""""""""
 
 " ack
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'rg --vimgrep'
 " airline
 let g:airline_powerline_fonts = 1
 " deoplete
@@ -63,6 +63,8 @@ let g:vim_tags_auto_generate = 1
 " far.vim
 let g:far#source = 'agnvim'
 " fzf
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 nnoremap <C-p> :Files<cr>
 nnoremap <C-b> :Buffers<cr>
 nnoremap <Leader>c :Commits<cr>
@@ -106,9 +108,11 @@ nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " enable/disable paste mode
-set pastetoggle=<F6>
+set pastetoggle=<F2>
 " show line number
 set number
+" live substitutions as you type
+set inccommand=nosplit
 " copy and paste
 vmap <C-c> "+yi
 vmap <C-x> "+c
