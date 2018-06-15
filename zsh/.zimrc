@@ -1,16 +1,15 @@
-zmodules=(archive \
-          directory \
+zmodules=(directory \
           environment \
           git \
           history \
           input \
           utility \
           ssh \
+          prompt \
+          completion \
           syntax-highlighting \
           history-substring-search \
-          autosuggestions \
-          prompt \
-          completion)
+          autosuggestions)
 zprompt_theme='pure'
 ztermtitle='%n@%m:%~'
 zdouble_dot_expand='true'
