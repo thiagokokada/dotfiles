@@ -12,38 +12,31 @@ endif
 """""""""""
 call plug#begin()
 " general
-Plug 'Raimondi/delimitMate'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
 Plug 'dietsche/vim-lastplace'
-Plug 'elixir-editors/vim-elixir'
 Plug 'godlygeek/tabular'
-Plug 'hashivim/vim-terraform'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
-Plug 'leafgarland/typescript-vim'
 Plug 'mbbill/undotree'
 Plug 'mileszs/ack.vim'
-Plug 'moll/vim-node'
 Plug 'morhetz/gruvbox'
-Plug 'neomake/neomake'
+Plug 'Raimondi/delimitMate'
+Plug 'sheerun/vim-polyglot'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-syntax'
 Plug 'szw/vim-tags'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
+Plug 'w0rp/ale'
 " python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-" ruby
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-" scss
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 call plug#end()
 
 """"""""""""""""""""""""
@@ -75,23 +68,11 @@ let g:gruvbox_italic=1
 colorscheme gruvbox
 " jedi
 let g:jedi#smart_auto_mappings = 0
-" Neomake
-autocmd! BufWritePost * Neomake
-let g:neomake_open_list = 2
-let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
-let g:neomake_python_pylint_maker = { 'args': ['--ignore=missing-docstring'], }
-let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
 " Undotree
-nnoremap <F4> :UndotreeToggle<cr>
+nnoremap <F5> :UndotreeToggle<cr>
 set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
-" vim-rspec
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
-nnoremap <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = '!bundle exec rspec {spec}'
 " vim-test
 let test#strategy = 'neovim'
 nnoremap <silent> <leader>t :TestNearest<CR>
@@ -106,7 +87,7 @@ nnoremap <silent> <leader>g :TestVisit<CR>
 " unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " enable/disable paste mode
 set pastetoggle=<F2>
 " show line number
