@@ -87,10 +87,10 @@ protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
 # May be set to "disable" (completely disable DHT), "off" (do not start DHT),
 # "auto" (start and stop DHT as needed), or "on" (start DHT immediately).
 # The default is "off". For DHT to work, a session directory must be defined.
-# 
+#
 dht.mode.set = auto
 
-# UDP port to use for DHT. 
+# UDP port to use for DHT.
 #
 dht.port.set = 60002
 
@@ -118,5 +118,11 @@ system.file.allocate.set = 1
 #  is used. A hex value may be used for non-standard settings.  (`tos`)
 # Possible values: `[default|lowdelay|throughput|reliability|mincost]` or a hex value.
 network.tos.set = mincost
+
+# Loads unwanted peers from external text file into IPv4 Filter every day, e.g.:
+#   - https://silo.glasz.org/antip2p.list.gz (https://gist.github.com/glaszig/bf96beccf4694ae25d4f1f7cc6224985)
+#   - https://www.wael.name/wael.list.p2p.gz (https://www.wael.name/other/best-blocklist/)
+schedule2 = load_ipv4_filter, 0, 24:00:00, "ipv4_filter.load=(cat,(session.path),antip2p.list),unwanted"
+#schedule2 = load_ipv4_filter, 0, 24:00:00, "ipv4_filter.load=(cat,(session.path),Wael-Blacklist-v8.dat),unwanted"
 
 # vim: set syntax=conf:
