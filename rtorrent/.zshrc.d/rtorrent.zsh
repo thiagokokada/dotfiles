@@ -1,1 +1,1 @@
-alias rt="tmux -L rt attach -t rt"
+alias rt="tmux attach -t rtorrent"
