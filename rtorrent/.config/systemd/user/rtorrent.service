@@ -6,7 +6,7 @@ After=network.target
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/tmux -2 new-session -d -s rtorrent rtorrent
-ExecStop=/usr/bin/tmux kill-session -t rtorrent
+ExecStop=/usr/bin/killall -w -SIGINT rtorrent
 
 [Install]
 WantedBy=default.target
