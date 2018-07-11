@@ -9,4 +9,4 @@ venv:
 	python -m venv venv
 
 clean:
-	rm -rf venv
+	rm -rf venv __pycache__
