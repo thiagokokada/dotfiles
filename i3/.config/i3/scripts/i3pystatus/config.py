@@ -88,6 +88,7 @@ status.register(
 status.register(
     "redshift",
     format_inhibit=["", ""],
+    redshift_parameters=["-P"]
 )
 
 # show network speed
