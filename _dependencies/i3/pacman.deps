@@ -8,13 +8,14 @@ i3lock
 lxappearance
 maim
 moreutils
-nautilus
 nethogs
 network-manager-applet
 networkmanager
 nitrogen
 otf-font-awesome
+pacman-contrib
 pavucontrol
+pcmanfm-gtk3
 perl-file-mimeinfo
 playerctl
 pulseaudio
