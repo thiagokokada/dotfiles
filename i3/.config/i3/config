@@ -49,9 +49,6 @@ bindsym $alt+F4 kill
 bindsym $mod+d exec rofi -show run
 bindsym $mod+x exec rofi -show window
 
-# start rofi in calculator mode
-bindsym $mod+c exec rofi -show calc -modi "calc:qalc +u8 -nocurrencies"
-
 # change focus
 # vi-like
 bindsym $mod+h focus left

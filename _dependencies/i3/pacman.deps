@@ -3,11 +3,12 @@ arc-icon-theme
 dunst
 firefox
 gtk-engine-murrine
+gnome-themes-standard
 i3-gaps
 i3lock
+kitty
 lxappearance
 maim
-moreutils
 nautilus
 nethogs
 network-manager-applet
@@ -21,11 +22,10 @@ playerctl
 pulseaudio
 pulseaudio-alsa
 python
-qalculate-gtk
 qt5-styleplugins
 redshift
 rofi
-termite
+ttf-hack
 ttf-roboto
 wireless_tools
 xautolock
