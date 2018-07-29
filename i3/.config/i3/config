@@ -3,7 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal termite
+set $terminal kitty -1
 set $browser firefox
 set $file_manager nautilus
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen/venv/bin/python $HOME/.config/i3/scripts/lock_screen/lock_screen.py"
