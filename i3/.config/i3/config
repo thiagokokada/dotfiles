@@ -289,8 +289,7 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -corners 0-00 -locker $lock_screen
 
 # misc startup programs
-exec --no-startup-id dropbox
-exec --no-startup-id nm-applet
+exec --no-startup-id "$HOME/.config/i3/scripts/startup.sh"
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
