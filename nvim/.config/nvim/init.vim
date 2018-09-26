@@ -34,10 +34,14 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
+" clojure
+Plug 'bhurlow/vim-parinfer'
+Plug 'tpope/vim-fireplace'
 " python
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
 call plug#end()
 
 """"""""""""""""""""""""
@@ -46,6 +50,9 @@ call plug#end()
 
 " ack
 let g:ackprg = 'rg --vimgrep'
+" ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
 " airline
 let g:airline_powerline_fonts = 1
 " deoplete
