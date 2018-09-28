@@ -38,7 +38,9 @@ Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 " clojure
 Plug 'bhurlow/vim-parinfer'
+Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-salve'
 " python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
