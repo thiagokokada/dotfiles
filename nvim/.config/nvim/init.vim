@@ -19,12 +19,13 @@ Plug 'dietsche/vim-lastplace'
 Plug 'gioele/vim-autoswap'
 Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
+Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
-Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
@@ -37,7 +38,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 " clojure
-Plug 'bhurlow/vim-parinfer'
+Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release' }
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-salve'
@@ -78,6 +79,8 @@ let g:gruvbox_italic=1
 colorscheme gruvbox
 " jedi
 let g:jedi#smart_auto_mappings = 0
+" rainbow
+let g:rainbow_active = 1
 " Undotree
 nnoremap <F5> :UndotreeToggle<cr>
 set undofile
@@ -97,9 +100,9 @@ nnoremap <silent> <leader>g :TestVisit<CR>
 " unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
-nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " enable/disable paste mode
-set pastetoggle=<F2>
+set pastetoggle=<F4>
 " show line number
 set number
 " live substitutions as you type
@@ -119,7 +122,7 @@ tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
-" easier window moviment
+" window movement mappings
 inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
