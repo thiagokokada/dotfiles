@@ -31,11 +31,13 @@ def get_mounted_block_devices(excludes = []):
         j = json.loads(p.stdout)
 
         # {'blockdevices': [{'mountpoint': None}, {'mountpoint': '/'}, {'mountpoint': '/boot'}]}
-        result = [x["mountpoint"] for x in j["blockdevices"] if x["mountpoint"] is not None]
-        for exclude in excludes:
-            result = filter(lambda x: x != exclude, result)
+        result = []
+        for entry in j["blockdevices"]:
+        	mountpoint = entry["mountpoint"]
+        	if mountpoint and mountpoint not in excludes:
+        		result.append(mountpoint)
 
-        return list(result)
+        return result
     except:
         # there is some error, returns / at least
         return ["/"]
@@ -67,7 +69,7 @@ status.register(
     "shell",
     command="setxkbmap -query | awk -F ': *' '/layout/ { print toupper($2) }'",
     interval=5,
-    format="  {output}",
+    format=" {output}",
 )
 
 # show/change volume using PA
