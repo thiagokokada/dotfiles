@@ -12,6 +12,9 @@ zit-in "https://github.com/m45t3r/zit" "zit"
 export ZIM_HOME="${ZIT_MODULES_PATH}/zim"
 zit-il "https://github.com/Eriner/zim" "zim" "init.zsh"
 
+# powerlevel9k
+zit-il "https://github.com/bhilburn/powerlevel9k" "powerlevel9k" "powerlevel9k.zsh-theme"
+
 # misc
 zit-il "https://github.com/supercrabtree/k" "k" "k.sh"
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
