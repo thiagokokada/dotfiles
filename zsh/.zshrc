@@ -13,7 +13,7 @@ export PAGER="less"
 export POWERLEVEL9K_VI_INSERT_MODE_STRING=""
 export POWERLEVEL9K_VI_COMMAND_MODE_STRING="NORMAL"
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
 
 # fzf
 FZF_KEY_BINDINGS="/usr/share/fzf/key-bindings.zsh"

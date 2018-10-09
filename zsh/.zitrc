@@ -13,7 +13,10 @@ export ZIM_HOME="${ZIT_MODULES_PATH}/zim"
 zit-il "https://github.com/Eriner/zim" "zim" "init.zsh"
 
 # powerlevel9k
-zit-il "https://github.com/bhilburn/powerlevel9k" "powerlevel9k" "powerlevel9k.zsh-theme"
+# load only if terminal supports at least 256 colors
+if [[ $(tput colors) -ge 256 ]]; then
+  zit-il "https://github.com/bhilburn/powerlevel9k" "powerlevel9k" "powerlevel9k.zsh-theme"
+fi
 
 # misc
 zit-il "https://github.com/supercrabtree/k" "k" "k.sh"
