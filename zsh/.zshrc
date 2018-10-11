@@ -10,11 +10,9 @@ export VISUAL="nvim"
 export PAGER="less"
 
 # powerlevel9k
-POWERLEVEL9K_VI_INSERT_MODE_STRING=""
-POWERLEVEL9K_VI_COMMAND_MODE_STRING="NORMAL"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
+export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 # fzf
 FZF_KEY_BINDINGS="/usr/share/fzf/key-bindings.zsh"
@@ -24,17 +22,14 @@ if [[ -s "${FZF_KEY_BINDINGS}" ]]; then
   export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"
 fi
 
-# vi-mode
-bindkey -v
-
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # edit current line
-zle -N edit-command-line
 autoload -Uz edit-command-line
-bindkey -M vicmd 'v' edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
 
 # aliases
 alias gk="gitk &!"
