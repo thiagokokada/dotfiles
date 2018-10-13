@@ -33,9 +33,9 @@ def get_mounted_block_devices(excludes = []):
         # {'blockdevices': [{'mountpoint': None}, {'mountpoint': '/'}, {'mountpoint': '/boot'}]}
         result = []
         for entry in j["blockdevices"]:
-        	mountpoint = entry["mountpoint"]
-        	if mountpoint and mountpoint not in excludes:
-        		result.append(mountpoint)
+            mountpoint = entry["mountpoint"]
+            if mountpoint and mountpoint not in excludes:
+                result.append(mountpoint)
 
         return result
     except:
@@ -137,7 +137,7 @@ status.register(
     divisor=1024**3,
 )
 
-# show cpu usage]
+# show cpu usage
 status.register(
     "load",
     format=" {avg1} {avg5}",
@@ -149,6 +149,12 @@ status.register(
     "temp",
     file=cpu_temp_file,
     format=" {temp:.0f}°C",
+)
+
+# show CPU clock
+status.register(
+    "cpu_freq",
+    format=" {avgg}"
 )
 
 # show current music info
