@@ -20,16 +20,19 @@ with mss() as sct:
     # Get raw pixels of the screen
     sct_img = sct.grab(monitor)
     # Create Image object using Pillow
-    img = Image.frombytes("RGB", sct_img.size, sct_img.rgb)
-    # Apply filters to Image
-    img = img.filter(ImageFilter.GaussianBlur(radius=GAUSSIAN_BLUR_RADIUS))
+    image = Image.frombytes("RGB", sct_img.size, sct_img.rgb)
 
 with NamedTemporaryFile(suffix=".png") as tempfile:
-    # Save temporary file
-    img.save(tempfile.name, optimize=False, compress_level=1)
-    # Set monitor timeout to SCREEN_TIMEOUT
-    dpms.SetTimeouts(*SCREEN_TIMEOUT)
-    # Load image in i3lock
-    call(["i3lock", "-nei", tempfile.name])
-    # Restore DPMS settings
-    dpms.SetTimeouts(*current_timeouts)
+    # Apply filters to Image and save temporary file
+    image \
+        .filter(ImageFilter.GaussianBlur(radius=GAUSSIAN_BLUR_RADIUS)) \
+        .save(tempfile.name, optimize=False, compress_level=1)
+
+    try:
+        # Set monitor timeout to SCREEN_TIMEOUT
+        dpms.SetTimeouts(*SCREEN_TIMEOUT)
+        # Load image in i3lock
+        call(["i3lock", "-nei", tempfile.name])
+    finally:
+        # Restore DPMS settings
+        dpms.SetTimeouts(*current_timeouts)
