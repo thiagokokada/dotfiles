@@ -31,7 +31,7 @@ ratio.upload.set=500M
 
 # Default directory to save the downloaded torrents.
 #
-directory.default.set = ~/Downloads
+directory.default.set = /mnt/archive/thiagoko/Downloads
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
