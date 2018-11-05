@@ -5,11 +5,11 @@
 # default applications
 set $terminal kitty -1
 set $browser firefox
-set $file_manager nautilus
-set $lock_screen "$HOME/.config/i3/scripts/lock_screen/venv/bin/python $HOME/.config/i3/scripts/lock_screen/lock_screen.py"
+set $file_manager pcmanfm
+set $lock_screen $HOME/.config/i3/scripts/lock_screen/venv/bin/python $HOME/.config/i3/scripts/lock_screen/lock_screen.py
 set $set_wallpaper nitrogen --restore
-set $fs_screenshot "maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png"
-set $area_screenshot "maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png"
+set $fs_screenshot maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png
+set $area_screenshot maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png
 
 # i3pystatus path
 set $status_bar "$HOME/.config/i3/scripts/i3pystatus/venv/bin/python $HOME/.config/i3/scripts/i3pystatus/config.py"
