@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+# Command to update everything
+(( $+commands[yay] )) && yay
+(( $+commands[flatpak] )) && flatpak update
+(( $+commands[nvim] )) && nvim -c PlugUpdate -c qall
+zit-update

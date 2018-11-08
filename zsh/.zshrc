@@ -41,6 +41,8 @@ alias ln-clean-up="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 open() { xdg-open "${@}" &> /dev/null &! }
 
 # source contents from ~/.zshrc.d
-for file in ${HOME}/.zshrc.d/*.zsh; do
-  source ${file}
-done
+if [[ -d ${HOME}/.zshrc.d/ ]]; then
+  for file in ${HOME}/.zshrc.d/*.zsh; do
+    source ${file}
+  done
+fi
