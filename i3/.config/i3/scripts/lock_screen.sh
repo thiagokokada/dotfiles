@@ -15,4 +15,4 @@ trap clean_up HUP INT TERM EXIT
 
 ffmpeg -loglevel quiet -y -s "${RESOLUTION}" -f x11grab -i "${DISPLAY}" -vframes 1 -vf 'gblur=sigma=8' "${TEMP_FILE}"
 xset +dpms dpms "${SCREEN_TIMEOUT}" "${SCREEN_TIMEOUT}" "${SCREEN_TIMEOUT}"
-i3lock -ei "${TEMP_FILE}"
+i3lock -nei "${TEMP_FILE}"

@@ -175,8 +175,8 @@ set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboo
 mode "$mode_system" {
     bindsym l mode "default" exec $lock_screen
     bindsym e mode "default" exec i3-msg exit
-    bindsym s mode "default" exec $lock_screen && systemctl suspend
-    bindsym h mode "default" exec $lock_screen && systemctl hibernate
+    bindsym s mode "default" exec $lock_screen; exec sleep 2 && systemctl suspend
+    bindsym h mode "default" exec $lock_screen; exec sleep 2 && systemctl hibernate
     bindsym Shift+r mode "default" exec systemctl reboot
     bindsym Shift+s mode "default" exec systemctl poweroff
 

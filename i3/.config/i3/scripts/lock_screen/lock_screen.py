@@ -32,7 +32,7 @@ with NamedTemporaryFile(suffix=".png") as tempfile:
         # Set monitor timeout to SCREEN_TIMEOUT
         dpms.SetTimeouts(*SCREEN_TIMEOUT)
         # Load image in i3lock
-        call(["i3lock", "-ei", tempfile.name])
+        call(["i3lock", "-nei", tempfile.name])
     finally:
         # Restore DPMS settings
         dpms.SetTimeouts(*current_timeouts)
