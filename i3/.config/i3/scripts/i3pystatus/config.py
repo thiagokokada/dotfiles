@@ -53,7 +53,7 @@ status = Status()
 # show updates in pacman/aur
 status.register(
     "updates",
-    format=" {Pacman}/{Cower}",
+    format=" {Pacman}/{Cower}",
     backends=[pacman.Pacman(), cower.Cower()],
 )
 
@@ -96,7 +96,7 @@ status.register(
 # show network speed
 status.register(
     "network",
-    format_up="[ {essid} \[{quality}%\] ] {bytes_recv}K  {bytes_sent}K",
+    format_up="[ {essid} \[{quality}%\]]  {bytes_recv}K  {bytes_sent}K",
     format_down=" {interface}",
     interface="enp3s0",
     next_if_down=True,
@@ -110,7 +110,7 @@ status.register(
     battery,
     format="{bar} {percentage:.0f}%[ {remaining}][ {status}]",
     alert_percentage=10,
-    not_present_text="ON POWER ",
+    not_present_text=" ON POWER",
     status={
         "CHR": "",
         "DPL": "",
@@ -154,7 +154,7 @@ status.register(
 # show CPU clock
 status.register(
     "cpu_freq",
-    format=" {avgg}"
+    format=" {avgg}"
 )
 
 # show current music info
