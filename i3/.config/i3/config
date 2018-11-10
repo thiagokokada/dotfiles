@@ -3,16 +3,16 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal kitty -1
-set $browser firefox
-set $file_manager pcmanfm
-set $lock_screen $HOME/.config/i3/scripts/lock_screen.sh
-set $set_wallpaper nitrogen --restore
-set $fs_screenshot maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png
-set $area_screenshot maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png
+set $terminal "kitty -1"
+set $browser "firefox"
+set $file_manager "pcmanfm"
+set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
+set $set_wallpaper "nitrogen --restore"
+set $fs_screenshot "maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png && notify-send -u normal -t 5000 'Full screenshot taken'"
+set $area_screenshot "maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png && notify-send -u normal -t 5000 'Area screenshot taken'"
 
 # i3pystatus path
-set $status_bar $HOME/.config/i3/scripts/i3pystatus/venv/bin/python $HOME/.config/i3/scripts/i3pystatus/config.py
+set $status_bar "$HOME/.config/i3/scripts/i3pystatus/venv/bin/python $HOME/.config/i3/scripts/i3pystatus/config.py"
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
