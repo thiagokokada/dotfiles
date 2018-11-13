@@ -36,11 +36,12 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 " clojure
-Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release' }
+Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-salve'
