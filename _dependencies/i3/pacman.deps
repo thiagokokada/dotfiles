@@ -30,9 +30,9 @@ rofi
 ttf-hack
 ttf-roboto
 wireless_tools
-xautolock
 xorg-xdpyinfo
 xorg-xinit
 xorg-xkill
 xorg-xrandr
 xorg-xset
+xss-lock
