@@ -124,7 +124,7 @@ mounted_block_devices = get_mounted_block_devices(excludes=["/boot"])
 for block_device in mounted_block_devices[::-1]:
     status.register(
         "disk",
-        format=" {avail:.1f}G",
+        format=" " + block_device + " {avail:.1f}G",
         path=block_device
     )
 
