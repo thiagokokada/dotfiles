@@ -17,10 +17,10 @@ Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
 Plug 'dietsche/vim-lastplace'
 Plug 'gioele/vim-autoswap'
-Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
@@ -96,10 +96,17 @@ nnoremap <silent> <leader>T :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
 nnoremap <silent> <leader>g :TestVisit<CR>
+" vim-fireplace
+nnoremap <Leader>e :%Eval<CR>
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 """"""""
 " misc "
 """"""""
+" reload config file
+nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
 " unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
