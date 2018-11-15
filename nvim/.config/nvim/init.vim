@@ -42,6 +42,7 @@ Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 " clojure
 Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'snoe/clj-refactor.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-salve'
@@ -101,6 +102,9 @@ nnoremap <Leader>e :%Eval<CR>
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+" clj-refactor
+let g:clj_refactor_prune_ns_form = 0
+let g:clj_refactor_prefix_rewriting = 0
 
 """"""""
 " misc "
