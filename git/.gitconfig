@@ -20,3 +20,5 @@
 [alias]
 	branch-cleanup = "!git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d #"
 	pushf = push --force-with-lease
+[include]
+	path = ~/.gitconfig.local
