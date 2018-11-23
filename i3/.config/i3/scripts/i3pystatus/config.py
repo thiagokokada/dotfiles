@@ -77,6 +77,7 @@ status.register(
 status.register(
     "backlight",
     format=" {percentage}%",
+    format_no_backlight=" DISABLED",
 )
 
 # show/control screen brightness
