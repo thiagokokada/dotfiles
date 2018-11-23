@@ -1,7 +1,9 @@
 import json
 from glob import glob
+from pathlib import Path
 from subprocess import run, PIPE
 
+import psutil
 from i3pystatus import Status, battery
 from i3pystatus.updates import pacman, cower
 
@@ -14,33 +16,24 @@ def make_bar(percentage):
     return bars[index]
 
 
-def get_cpu_temp_file(path, match):
+def get_cpu_temp_file(dir_path, filename, match):
     """Try to find which CPU file is the correct one"""
-    for p in glob(path):
-        with open("{}/type".format(p)) as f:
+    dir = Path(dir_path)
+    for p in dir.glob(filename):
+        with open(p / "type") as f:
             if f.readline().rstrip() == match:
-                return "{}/temp".format(p)
+                return p / "temp"
     # failed to find a match, returns the first one
-    return "{}/temp".format(sorted(glob(path))[0])
+    return sorted(dir.glob(filename))[0] / "temp"
 
 
 def get_mounted_block_devices(excludes = []):
     """Find all mounted devices in the system"""
-    try:
-        p = run(["lsblk", "-J", "-o", "MOUNTPOINT", "-x", "MOUNTPOINT"], stdout=PIPE)
-        j = json.loads(p.stdout)
-
-        # {'blockdevices': [{'mountpoint': None}, {'mountpoint': '/'}, {'mountpoint': '/boot'}]}
-        result = []
-        for entry in j["blockdevices"]:
-            mountpoint = entry["mountpoint"]
-            if mountpoint and mountpoint not in excludes:
-                result.append(mountpoint)
-
-        return result
-    except:
-        # there is some error, returns / at least
-        return ["/"]
+    result = []
+    for disk in psutil.disk_partitions():
+        if disk.mountpoint not in excludes:
+            result.append(disk.mountpoint)
+    return result
 
 
 # inject it in battery module, so it will display unicode icons instead
@@ -144,7 +137,7 @@ status.register(
 )
 
 # show CPU temperature
-cpu_temp_file = get_cpu_temp_file("/sys/class/thermal/thermal_zone*", "x86_pkg_temp")
+cpu_temp_file = get_cpu_temp_file("/sys/class/thermal", "thermal_zone*", "x86_pkg_temp")
 status.register(
     "temp",
     file=cpu_temp_file,
