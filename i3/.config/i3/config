@@ -5,7 +5,7 @@
 # default applications
 set $terminal "kitty -1 --instance-group $DISPLAY"
 set $browser "firefox"
-set $file_manager "pcmanfm"
+set $file_manager "kitty ranger"
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
 set $set_wallpaper "nitrogen --restore"
 set $fs_screenshot "maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png && notify-send -u normal -t 5000 'Full screenshot taken'"
