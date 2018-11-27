@@ -3,7 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal "kitty -1"
+set $terminal "kitty -1 --instance-group $DISPLAY"
 set $browser "firefox"
 set $file_manager "pcmanfm"
 set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
