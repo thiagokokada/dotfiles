@@ -35,7 +35,6 @@ bindkey '^v' edit-command-line
 alias gk="gitk &!"
 alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
-alias ssh="TERM=xterm-256color ssh"
 alias ln-clean-up="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 
 open() { xdg-open "${@}" &> /dev/null &! }
