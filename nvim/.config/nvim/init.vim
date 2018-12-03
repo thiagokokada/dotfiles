@@ -41,11 +41,11 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 " clojure
+Plug 'clojure-vim/clj-refactor.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'gregspurrier/vim-midje'
+Plug 'guns/vim-clojure-highlight' | Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'snoe/clj-refactor.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-salve'
+Plug 'tpope/vim-classpath' | Plug 'tpope/vim-salve' | Plug 'tpope/vim-fireplace'
 " python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
@@ -99,6 +99,10 @@ nnoremap <silent> <leader>l :TestLast<CR>
 nnoremap <silent> <leader>g :TestVisit<CR>
 " vim-fireplace
 nnoremap <Leader>e :%Eval<CR>
+" Go to definition remap
+map gd [<C-d>
+" Go to definition on a new tab
+map gD <C-w>gd
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
