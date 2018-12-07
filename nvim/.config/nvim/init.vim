@@ -13,6 +13,7 @@ endif
 call plug#begin()
 " general
 Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
 Plug 'dietsche/vim-lastplace'
@@ -98,10 +99,11 @@ nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
 nnoremap <silent> <leader>g :TestVisit<CR>
 " vim-fireplace
+"" Eval
 nnoremap <Leader>e :%Eval<CR>
-" Go to definition remap
+"" Go to definition remap
 map gd [<C-d>
-" Go to definition on a new tab
+"" Go to definition on a new tab
 map gD <C-w>gd
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
@@ -109,6 +111,8 @@ nmap ga <Plug>(EasyAlign)
 " clj-refactor
 let g:clj_refactor_prune_ns_form = 0
 let g:clj_refactor_prefix_rewriting = 0
+" vim-clojure-highlight
+map <Leader>H :ClojureHighlightReferences<CR>
 
 """"""""
 " misc "

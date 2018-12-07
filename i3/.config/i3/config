@@ -316,3 +316,5 @@ client.urgent #373b41 #cc6666 #ffffff #cc6666
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
+
+for_window [class="^Peek$"] move scratchpad
