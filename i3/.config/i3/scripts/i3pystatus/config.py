@@ -4,16 +4,8 @@ from pathlib import Path
 from subprocess import run, PIPE
 
 import psutil
-from i3pystatus import Status, battery
-from i3pystatus.updates import pacman, cower
-
-
-def make_bar(percentage):
-    """Modified function make_bar to substitute the original one"""
-    bars = ['', '', '', '', '']
-    base = 100 / (len(bars) - 1)
-    index = round(percentage / base)
-    return bars[index]
+from i3pystatus import Status
+from i3pystatus.updates import pacman, auracle
 
 
 def get_cpu_temp_file(dir_path, filename, match):
@@ -36,18 +28,14 @@ def get_mounted_block_devices(excludes = []):
     return result
 
 
-# inject it in battery module, so it will display unicode icons instead
-# of the (ugly) default bars
-battery.make_bar = make_bar
-
 # create i3pystatus instance
 status = Status()
 
 # show updates in pacman/aur
 status.register(
     "updates",
-    format=" {Pacman}/{Cower}",
-    backends=[pacman.Pacman(), cower.Cower()],
+    format=" {Pacman}/{Auracle}",
+    backends=[pacman.Pacman(), auracle.Auracle()],
 )
 
 # show clock
@@ -98,18 +86,23 @@ status.register(
     on_upscroll=None,
     on_downscroll=None,
 )
-
 # show battery status
 status.register(
-    battery,
-    format="{bar} {percentage:.0f}%[ {remaining}][ {status}]",
+    "battery",
+    format="{levels} {percentage:.0f}%[ {remaining}][ {status}]",
     alert_percentage=10,
     not_present_text=" ON POWER",
+    levels={
+        10: '',
+        25: '',
+        50: '',
+        75: '',
+    },
     status={
         "CHR": "",
         "DPL": "",
         "DIS": "",
-        "FULL": "",
+        "FULL": "  ",
     },
 )
 
@@ -119,7 +112,7 @@ for block_device in mounted_block_devices[::-1]:
     status.register(
         "disk",
         format=" " + block_device + " {avail:.1f}G",
-        path=block_device
+        path=block_device,
     )
 
 # show available memory
@@ -148,11 +141,11 @@ status.register(
 # show CPU clock
 status.register(
     "cpu_freq",
-    format=" {avgg}"
+    format=" {avgg}",
 )
 
 # show current music info
-player_format = '{status} [{artist} - {title} \[{song_length}\]]'
+player_format = "{status} [{artist} - {title} \[{song_length}\]]"
 player_status = {
     'play': '',
     'pause': '',
