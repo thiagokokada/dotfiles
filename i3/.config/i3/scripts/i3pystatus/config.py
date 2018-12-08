@@ -1,7 +1,4 @@
-import json
-from glob import glob
 from pathlib import Path
-from subprocess import run, PIPE
 
 import psutil
 from i3pystatus import Status
@@ -19,7 +16,7 @@ def get_cpu_temp_file(dir_path, filename, match):
     return sorted(dir.glob(filename))[0] / "temp"
 
 
-def get_mounted_block_devices(excludes = []):
+def get_mounted_block_devices(excludes=[]):
     """Find all mounted devices in the system"""
     result = []
     for disk in psutil.disk_partitions():
@@ -86,23 +83,23 @@ status.register(
     on_upscroll=None,
     on_downscroll=None,
 )
+
 # show battery status
 status.register(
     "battery",
-    format="{levels} {percentage:.0f}%[ {remaining}][ {status}]",
+    format="{status}{percentage:.0f}%[ {remaining}]",
     alert_percentage=10,
     not_present_text=" ON POWER",
     levels={
-        10: '',
-        25: '',
-        50: '',
-        75: '',
+        25: " ",
+        50: " ",
+        75: " ",
+        90: " "
     },
     status={
-        "CHR": "",
-        "DPL": "",
-        "DIS": "",
-        "FULL": "  ",
+        "CHR": " ",
+        "DPL": " ",
+        "FULL": " ",
     },
 )
 
@@ -131,7 +128,9 @@ status.register(
 )
 
 # show CPU temperature
-cpu_temp_file = get_cpu_temp_file("/sys/class/thermal", "thermal_zone*", "x86_pkg_temp")
+cpu_temp_file = get_cpu_temp_file("/sys/class/thermal",
+                                  "thermal_zone*",
+                                  "x86_pkg_temp")
 status.register(
     "temp",
     file=cpu_temp_file,
