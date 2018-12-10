@@ -89,17 +89,17 @@ status.register(
     "battery",
     format="{status}{percentage:.0f}%[ {remaining}]",
     alert_percentage=10,
-    not_present_text=" ON POWER",
+    not_present_text=" ON",
     levels={
+        10: " ",
         25: " ",
         50: " ",
         75: " ",
-        90: " "
     },
     status={
         "CHR": " ",
         "DPL": " ",
-        "FULL": " ",
+        "FULL": " ",
     },
 )
 
