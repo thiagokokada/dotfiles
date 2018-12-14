@@ -39,14 +39,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 " clojure
+Plug 'clojure-vim/async-clj-omni'
 Plug 'clojure-vim/clj-refactor.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'gregspurrier/vim-midje'
-Plug 'guns/vim-clojure-highlight' | Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'tpope/vim-classpath' | Plug 'tpope/vim-salve' | Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-sexp-mappings-for-regular-people' | Plug 'guns/vim-sexp'
+Plug 'tpope/vim-fireplace' | Plug 'tpope/vim-classpath' | Plug 'tpope/vim-salve'
 " python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
@@ -65,6 +65,8 @@ let g:ale_lint_on_enter = 0
 let g:airline_powerline_fonts = 1
 " deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 " dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
 " ctags
@@ -111,8 +113,6 @@ nmap ga <Plug>(EasyAlign)
 " clj-refactor
 let g:clj_refactor_prune_ns_form = 0
 let g:clj_refactor_prefix_rewriting = 0
-" vim-clojure-highlight
-map <Leader>H :ClojureHighlightReferences<CR>
 
 """"""""
 " misc "
