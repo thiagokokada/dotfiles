@@ -4,5 +4,6 @@ neovim
 powerline-fonts
 python-neovim
 python2-neovim
+ripgrep
 rust
 xclip

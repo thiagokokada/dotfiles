@@ -25,7 +25,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
-Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -56,8 +55,6 @@ call plug#end()
 " plugin configuration "
 """"""""""""""""""""""""
 
-" ack
-let g:ackprg = 'rg --vimgrep'
 " ale
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
@@ -72,11 +69,12 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 " ctags
 let g:vim_tags_auto_generate = 1
 " far.vim
-let g:far#source = 'agnvim'
+let g:far#source = 'rgnvim'
 " fzf
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-nnoremap <C-p> :Files<cr>
+nnoremap <C-p> :GFiles<cr>
+nnoremap <C-f> :Files<cr>
 nnoremap <C-b> :Buffers<cr>
 nnoremap <Leader>c :Commits<cr>
 " gruvbox
