@@ -22,7 +22,6 @@ Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'justinmk/vim-dirvish'
 Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
@@ -40,6 +39,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
 " clojure
 Plug 'clojure-vim/async-clj-omni'
@@ -64,8 +64,6 @@ let g:airline_powerline_fonts = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
-" dirvish
-let g:dirvish_mode = ':sort ,^.*[\/],'
 " ctags
 let g:vim_tags_auto_generate = 1
 " far.vim
