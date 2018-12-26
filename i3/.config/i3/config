@@ -176,7 +176,7 @@ bindsym $mod+Shift+r restart
 set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown, enable [a]utolock, [d]isable autolock
 mode "$mode_system" {
     bindsym l mode "default" exec loginctl lock-session
-    bindsym e mode "default" exec loginctl terminate-user $USER
+    bindsym e mode "default" exec loginctl terminate-session $XDG_SESSION_ID
     bindsym s mode "default" exec systemctl suspend
     bindsym h mode "default" exec systemctl hibernate
     bindsym Shift+r mode "default" exec systemctl reboot
@@ -249,33 +249,25 @@ bar {
 }
 
 # volume control
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && py3-cmd refresh volume_status
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && py3-cmd refresh volume_status
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && py3-cmd refresh volume_status
 
 # screen brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && \
-pkill -SIGUSR1 -f $status_bar
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && py3-cmd refresh backlight
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && py3-cmd refresh backlight
 
 # media control
-bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioStop exec playerctl stop || mpc stop && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioNext exec playerctl next || mpc next && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioPrev exec playerctl previous || mpc prev && \
-pkill -SIGUSR1 -f $status_bar
+bindsym XF86AudioPlay exec playerctl play-pause && py3-cmd refresh mpris
+bindsym XF86AudioStop exec playerctl stop && py3-cmd refresh mpris
+bindsym XF86AudioNext exec playerctl next && py3-cmd refresh mpris
+bindsym XF86AudioPrev exec playerctl previous && py3-cmd refresh mpris
 
 # keyboard layout stuff
 set $mode_keyboard : [b]r, [u]s-intl
 mode "$mode_keyboard" {
-    bindsym u mode "default" exec setxkbmap us -variant intl \
-    && pkill -SIGUSR1 -f $status_bar
-    bindsym b mode "default" exec setxkbmap br \
-    && pkill -SIGUSR1 -f $status_bar
+    bindsym u mode "default" exec setxkbmap us -variant intl && py3-cmd refresh keyboard_layout
+    bindsym b mode "default" exec setxkbmap br && py3-cmd refresh keyboard_layout
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
