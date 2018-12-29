@@ -49,16 +49,18 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (python27Full.withPackages(ps: with ps; [ pydbus pygobject3 py3status pip requests tkinter virtualenv ]))
-    (python36Full.withPackages(ps: with ps; [ pip requests tkinter virtualenv ]))
+    (python27Full.withPackages(ps: with ps; [ pip requests tkinter virtualenv ]))
+    (python36Full.withPackages(ps: with ps; [ i3ipc pydbus pygobject3 py3status pip requests tkinter virtualenv ]))
     arc-icon-theme
     arc-theme
+    blueman
     compton
     curl
     dunst
     ffmpeg
     ffmpegthumbnailer
     firefox
+    fzf
     gcc
     gitFull
     glxinfo
@@ -71,6 +73,7 @@
     kde-gtk-config
     kitty
     libnotify
+    linuxPackages.cpupower
     lm_sensors
     lshw
     maim
@@ -79,6 +82,7 @@
     nitrogen
     pciutils
     playerctl
+    powertop
     psmisc
     ranger
     redshift
@@ -87,6 +91,7 @@
     termite
     vim
     wget
+    xclip
     xdg-user-dirs
     xorg.xbacklight
     xorg.xdpyinfo
@@ -96,22 +101,25 @@
     xss-lock
   ];
 
-  fonts.fonts = with pkgs; [
-    cantarell-fonts
-    corefonts
-    dejavu_fonts
-    font-awesome_4
-    font-awesome_5
-    hack-font
-    inconsolata
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    powerline-fonts
-    roboto
-    source-code-pro
-    ttf_bitstream_vera
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      cantarell-fonts
+      corefonts
+      dejavu_fonts
+      font-awesome_4
+      font-awesome_5
+      hack-font
+      inconsolata
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      powerline-fonts
+      roboto
+      source-code-pro
+      ttf_bitstream_vera
+    ];
+    # fontconfig.dpi = 110;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -134,7 +142,10 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -195,7 +206,14 @@
   };
 
   # Enable TLP to reduce energy consumption.
-  services.tlp.enable = true;
+  services.tlp = {
+    enable = true;
+    extraConfig = ''
+      # Enable powersave governor
+      CPU_SCALING_GOVERNOR_ON_AC=powersave
+      CPU_SCALING_GOVERNOR_ON_BAT=powersave
+    '';
+  };
 
   # Trim SSD periodically.
   services.fstrim = {
