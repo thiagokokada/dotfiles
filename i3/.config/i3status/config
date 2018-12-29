@@ -44,13 +44,24 @@ diskdata {
 }
 
 group network {
+	online_status {
+		cache_timeout = 5
+		icon_on = " ON"
+		icon_off = " "
+	}
+
 	net_rate {
 		cache_timeout = 5
-		format = " {interface}: {down} {up}"
-		format_no_connection = " "
+		format = " {interface}:  {down}  {up}"
+		format_no_connection = " "
+		format_value = "{value:1.0f}{unit}"
 	}
+
 	wifi {
-		format = " {bitrate} {signal_percent} {ssid}| "
+		cache_timeout = 5
+		format = " {ssid}: {signal_percent} {freq_ghz}| "
+		bitrate_bad = 0
+		bitrate_degraded = 0
 	}
 }
 
@@ -73,6 +84,7 @@ dpms {
 
 backlight {
 	format = " {level}%"
+	hide_when_unavailable = true
 }
 
 volume_status {
