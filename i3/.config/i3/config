@@ -15,7 +15,7 @@ set $autolock_off xset s off -dpms
 set $mons $HOME/.config/i3/scripts/mons.sh
 
 # status bar
-set $status_bar "py3status -c $HOME/.config/i3/i3status.conf"
+set $status_bar py3status
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
