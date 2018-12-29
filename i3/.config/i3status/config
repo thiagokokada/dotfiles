@@ -11,8 +11,7 @@ order += "battery_level"
 order += "dpms"
 order += "backlight"
 order += "volume_status"
-order += "tztime date"
-order += "tztime hour"
+order += "group time"
 
 mpris {
 	icon_previous = ""
@@ -23,7 +22,7 @@ mpris {
 	state_pause = ""
 	state_play = ""
 	state_stop = ""
-	format_none = " NO PLAYER"
+	format_none = " "
 	format = "{previous}{toggle}{next} {state} [{artist} - ][{title}]"
 }
 
@@ -46,7 +45,7 @@ diskdata {
 net_rate {
 	cache_timeout = 5
 	format = " {interface}: {down} {up}"
-	format_no_connection = " NO CONNECTION"
+	format_no_connection = " "
 }
 
 battery_level {
@@ -75,10 +74,12 @@ volume_status {
 	format_muted = " Mute"
 }
 
-tztime date {
-	format = " %a %e"
-}
+group time {
+	tztime hour {
+		format = " %H:%M:%S"
+	}
 
-tztime hour {
-	format = " %H:%M:%S"
+	tztime date {
+		format = " %a %d/%m"
+	}
 }
