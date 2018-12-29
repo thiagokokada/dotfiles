@@ -256,8 +256,8 @@ bindsym XF86AudioLowerVolume exec $volume lower && py3-cmd refresh volume_status
 bindsym XF86AudioMute exec $volume mute && py3-cmd refresh volume_status
 
 # screen brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && py3-cmd refresh backlight
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && py3-cmd refresh backlight
+bindsym XF86MonBrightnessUp exec light -A 5% && py3-cmd refresh backlight
+bindsym XF86MonBrightnessDown exec light -U 5% && py3-cmd refresh backlight
 
 # media control
 bindsym XF86AudioPlay exec playerctl play-pause && py3-cmd refresh mpris

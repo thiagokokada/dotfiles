@@ -92,6 +92,7 @@ dpms {
 backlight {
 	format = " {level}%"
 	hide_when_unavailable = true
+	command = "light"
 }
 
 volume_status {
