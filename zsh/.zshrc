@@ -14,14 +14,6 @@ export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
 export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
-# fzf
-FZF_KEY_BINDINGS="/usr/share/fzf/key-bindings.zsh"
-if [[ -s "${FZF_KEY_BINDINGS}" ]]; then
-  source "${FZF_KEY_BINDINGS}"
-  export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
-  export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"
-fi
-
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
