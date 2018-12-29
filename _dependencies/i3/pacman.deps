@@ -12,7 +12,6 @@ i3lock
 kitty
 lxappearance
 maim
-nethogs
 network-manager-applet
 networkmanager
 nitrogen
@@ -23,6 +22,7 @@ pcmanfm
 perl-file-mimeinfo
 playerctl
 pulseaudio-alsa
+py3status
 python
 qt5-styleplugins
 redshift
