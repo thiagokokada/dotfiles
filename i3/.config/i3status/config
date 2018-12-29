@@ -1,11 +1,12 @@
 # py3status config file
 
+order += "window_title"
 order += "mpris"
 order += "sysdata load"
 order += "sysdata mem"
 order += "sysdata temp"
 order += "diskdata"
-order += "net_rate"
+order += "group network"
 order += "keyboard_layout"
 order += "battery_level"
 order += "dpms"
@@ -42,10 +43,15 @@ diskdata {
 	format = " {disk}: {free}GB"
 }
 
-net_rate {
-	cache_timeout = 5
-	format = " {interface}: {down} {up}"
-	format_no_connection = " "
+group network {
+	net_rate {
+		cache_timeout = 5
+		format = " {interface}: {down} {up}"
+		format_no_connection = " "
+	}
+	wifi {
+		format = " {bitrate} {signal_percent} {ssid}| "
+	}
 }
 
 battery_level {
