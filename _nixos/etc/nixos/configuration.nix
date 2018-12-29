@@ -67,6 +67,7 @@
     gnumake
     gtk-engine-murrine
     htop
+    iw
     kde-gtk-config
     kitty
     libnotify
@@ -77,8 +78,8 @@
     neovim
     nitrogen
     pciutils
-    psmisc
     playerctl
+    psmisc
     ranger
     redshift
     rofi
@@ -164,12 +165,21 @@
   };
 
   # Nvidia binary-blob settings.
-  # services.xserver.videoDrivers = [ "nvidia" ];
-  # hardware.nvidia.optimus_prime.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.optimus_prime.enable = true;
+  hardware.nvidia.modesetting.enable = true;
   # Bus ID of the NVIDIA GPU. You can find it using lspci
-  # hardware.nvidia.optimus_prime.nvidiaBusId = "PCI:1:0:0";
+  hardware.nvidia.optimus_prime.nvidiaBusId = "PCI:1:0:0";
   # Bus ID of the Intel GPU. You can find it using lspci
-  # hardware.nvidia.optimus_prime.intelBusId = "PCI:0:2:0";
+  hardware.nvidia.optimus_prime.intelBusId = "PCI:0:2:0";
+  # Enable bumblebee to turn down NVIDIA card.
+  # hardware.bumblebee.enable = true;
+
+  # Enable CPU microcode for Intel.
+  hardware.cpu.intel.updateMicrocode = true;
+
+  # Enable bluetooth.
+  hardware.bluetooth.enable = true;
 
   # Enable dconf.
   programs.dconf.enable = true;
@@ -192,6 +202,9 @@
     enable = true;
     interval = "weekly";
   };
+
+  # Enable systemd NTP daemon.
+  services.timesyncd.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.thiagoko = {
