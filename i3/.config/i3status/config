@@ -46,20 +46,20 @@ diskdata {
 group network {
 	online_status {
 		cache_timeout = 5
-		icon_on = " ON"
-		icon_off = " "
+		icon_on = " ON"
+		icon_off = " "
 	}
 
 	net_rate {
 		cache_timeout = 5
-		format = " {interface}:  {down}  {up}"
-		format_no_connection = " "
+		format = " {interface}:  {down}  {up}"
+		format_no_connection = " "
 		format_value = "{value:1.0f}{unit}"
 	}
 
 	wifi {
 		cache_timeout = 5
-		format = " {ssid}: {signal_percent} {freq_ghz}| "
+		format = " {ssid}: {signal_percent} {bitrate}| "
 		bitrate_bad = 0
 		bitrate_degraded = 0
 	}
