@@ -12,6 +12,7 @@ set $fs_screenshot maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screen
 set $area_screenshot maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png && notify-send -u normal -t 5000 'Area screenshot taken'
 set $autolock_on xset s 600 +dpms
 set $autolock_off xset s off -dpms
+set $volume $HOME/.config/i3/scripts/pavol.sh
 set $mons $HOME/.config/i3/scripts/mons.sh
 
 # status bar
@@ -250,9 +251,9 @@ bar {
 }
 
 # volume control
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && py3-cmd refresh volume_status
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && py3-cmd refresh volume_status
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && py3-cmd refresh volume_status
+bindsym XF86AudioRaiseVolume exec $volume raise && py3-cmd refresh volume_status
+bindsym XF86AudioLowerVolume exec $volume lower && py3-cmd refresh volume_status
+bindsym XF86AudioMute exec $volume mute && py3-cmd refresh volume_status
 
 # screen brightness control
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && py3-cmd refresh backlight
