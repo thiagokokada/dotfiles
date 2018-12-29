@@ -1,1 +1,1 @@
-runx i3
+exec xinit i3 -- ":${XDG_VTNR}" "vt${XDG_VTNR}" -keeptty
