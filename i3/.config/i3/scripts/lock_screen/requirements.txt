@@ -1,4 +1,0 @@
--e git+https://github.com/m45t3r/python-dpms#egg=dpms
-mss==3.0.1
-olefile==0.44
-Pillow-SIMD==4.3.0.post0
