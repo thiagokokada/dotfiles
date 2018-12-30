@@ -44,6 +44,13 @@
     defaultLocale = "en_US.UTF-8";
   };
 
+  # Change some default locales.
+  environment.variables = {
+    LC_CTYPE = "pt_BR.UTF-8"; # Fix ç in us-intl
+    LC_TIME = "pt_BR.UTF-8";
+    LC_COLLATE = "C";
+  };
+
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
