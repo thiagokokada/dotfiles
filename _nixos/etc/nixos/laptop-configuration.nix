@@ -11,7 +11,6 @@
   # Enable blk-mq.
   boot.kernelParams = [
     "scsi_mod.use_blk_mq=1"
-    "dm_mod.use_blk_mq=1"
   ];
 
   # Install laptop related packages.

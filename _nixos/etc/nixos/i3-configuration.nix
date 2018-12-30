@@ -22,7 +22,6 @@
     gnome3.gnome-themes-standard
     gtk-engine-murrine
     iw
-    kde-gtk-config
     kitty
     libnotify
     lm_sensors
@@ -101,9 +100,16 @@
 
   # Configure special programs (i.e. hardware access).
   programs = {
+    # Enable dconf.
     dconf.enable = true;
+
+    # Backlight control.
     light.enable = true;
 
+    # Enable Qt5 integration.
+    qt5ct.enable = true;
+
+    # Enable firejail.
     firejail = {
       enable = true;
       wrappedBinaries = {
