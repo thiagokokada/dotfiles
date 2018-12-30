@@ -3,7 +3,16 @@
 {
   # Install i3 related packages.
   environment.systemPackages = with pkgs; [
-    (python36.withPackages(ps: with ps; [ i3ipc pydbus pygobject3 py3status ]))
+    (python36Packages.py3status.overrideAttrs (oldAttrs: {
+      propagatedBuildInputs = [
+        python36Packages.i3ipc
+        python36Packages.pydbus
+        python36Packages.pygobject3
+        python36Packages.pytz
+        python36Packages.requests
+        python36Packages.tzlocal
+      ];
+    }))
     arc-icon-theme
     arc-theme
     compton
