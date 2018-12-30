@@ -11,10 +11,8 @@
     ffmpeg
     ffmpegthumbnailer
     firefox
-    fzf
     gnome3.file-roller
     gnome3.gnome-themes-standard
-    gnumake
     gtk-engine-murrine
     iw
     kde-gtk-config
