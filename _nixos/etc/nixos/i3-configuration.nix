@@ -13,6 +13,7 @@
     arc-icon-theme
     arc-theme
     compton
+    dropbox-cli
     dunst
     ffmpeg
     ffmpegthumbnailer
