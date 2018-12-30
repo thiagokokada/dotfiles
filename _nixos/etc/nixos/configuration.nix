@@ -11,6 +11,7 @@
       ./laptop-configuration.nix
       ./i3-configuration.nix
       ./cli-configuration.nix
+      ./game-configuration.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
