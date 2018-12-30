@@ -27,11 +27,23 @@
 
   # Configure special hardware in laptops.
   hardware = {
+    # Enable bluetooth.
+    bluetooth.enable = true;
+
+    # Enable bumblebee to turn down NVIDIA card.
+    bumblebee.enable = false;
+
     # Enable CPU microcode for Intel.
     cpu.intel.updateMicrocode = true;
 
-    # Enable bluetooth.
-    bluetooth.enable = true;
+    # Extra OpenGL options.
+    opengl = {
+      extraPackages = with pkgs; [
+        libvdpau-va-gl
+        vaapiIntel
+        vaapiVdpau
+      ];
+    };
 
     # NVIDIA binary-blob settings
     nvidia = {
@@ -42,9 +54,6 @@
       };
       modesetting.enable = true;
     };
-
-    # Enable bumblebee to turn down NVIDIA card.
-    bumblebee.enable = false;
   };
 
   # Enable laptop specific services.

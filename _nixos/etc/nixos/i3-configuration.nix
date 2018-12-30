@@ -26,7 +26,7 @@
     libnotify
     lm_sensors
     maim
-    mpv
+    mpv-with-scripts
     nitrogen
     playerctl
     ranger
