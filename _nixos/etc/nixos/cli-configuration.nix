@@ -3,19 +3,36 @@
 {
   # CLI packages.
   environment.systemPackages = with pkgs; [
-    (python27Full.withPackages(ps: with ps; [ pip requests tkinter virtualenv ]))
-    (python36Full.withPackages(ps: with ps; [ pip requests tkinter virtualenv ]))
+    (python2Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
+    (python3Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
     curl
     fzf
     gcc
     gitFull
     gnumake
     htop
+    jq
+    mediainfo
     mpv
     neovim
+    python3Packages.youtube-dl
+    ripgrep
+    tmux
+    universal-ctags
     vim
     wget
+    xclip
   ];
+
+  # Fonts used in terminal.
+  fonts = {
+    fonts = with pkgs; [
+      hack-font
+      inconsolata
+      powerline-fonts
+      source-code-pro
+    ];
+  };
 
   # Enable ZSH.
   programs.zsh.enable = true;

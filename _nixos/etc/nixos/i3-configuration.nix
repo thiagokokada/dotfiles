@@ -3,14 +3,14 @@
 {
   # Install i3 related packages.
   environment.systemPackages = with pkgs; [
-    (python36Packages.py3status.overrideAttrs (oldAttrs: {
+    (python3Packages.py3status.overrideAttrs (oldAttrs: {
       propagatedBuildInputs = [
-        python36Packages.i3ipc
-        python36Packages.pydbus
-        python36Packages.pygobject3
-        python36Packages.pytz
-        python36Packages.requests
-        python36Packages.tzlocal
+        python3Packages.i3ipc
+        python3Packages.pydbus
+        python3Packages.pygobject3
+        python3Packages.pytz
+        python3Packages.requests
+        python3Packages.tzlocal
       ];
     }))
     arc-icon-theme
@@ -36,13 +36,13 @@
     rofi
     stow
     termite
-    xclip
     xdg-user-dirs
     xorg.xdpyinfo
     xorg.xinit
     xorg.xkill
     xorg.xset
     xss-lock
+    zathura
   ];
 
   # Added fonts used by i3.
@@ -51,14 +51,10 @@
       corefonts
       dejavu_fonts
       font-awesome_5
-      hack-font
-      inconsolata
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      powerline-fonts
       roboto
-      source-code-pro
       ttf_bitstream_vera
     ];
   };
