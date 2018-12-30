@@ -12,7 +12,7 @@
     }))
     arc-icon-theme
     arc-theme
-    compton
+    compton-git
     dropbox-cli
     dunst
     ffmpeg
