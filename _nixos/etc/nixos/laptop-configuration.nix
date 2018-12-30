@@ -55,7 +55,7 @@
         enable = true;
         naturalScrolling = true;
       };
-      
+
       # Enable NVIDIA drivers.
       videoDrivers = [ "nvidia" ];
     };

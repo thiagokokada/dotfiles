@@ -13,7 +13,6 @@
     htop
     jq
     mediainfo
-    mpv
     neovim
     python3Packages.youtube-dl
     ripgrep

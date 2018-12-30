@@ -4,13 +4,10 @@
   # Install i3 related packages.
   environment.systemPackages = with pkgs; [
     (python3Packages.py3status.overrideAttrs (oldAttrs: {
-      propagatedBuildInputs = [
+      propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
         python3Packages.i3ipc
         python3Packages.pydbus
         python3Packages.pygobject3
-        python3Packages.pytz
-        python3Packages.requests
-        python3Packages.tzlocal
       ];
     }))
     arc-icon-theme
@@ -29,6 +26,7 @@
     libnotify
     lm_sensors
     maim
+    mpv
     nitrogen
     playerctl
     ranger
@@ -104,6 +102,14 @@
   programs = {
     dconf.enable = true;
     light.enable = true;
+
+    firejail = {
+      enable = true;
+      wrappedBinaries = {
+        firefox = "${pkgs.firefox}/bin/firefox";
+        mpv = "${pkgs.mpv}/bin/mpv";
+      };
+    };
   };
 
   # Enable dconf service.
