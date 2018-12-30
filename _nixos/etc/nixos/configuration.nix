@@ -8,20 +8,20 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./laptop-configuration.nix
+      ./i3-configuration.nix
+      ./cli-configuration.nix
     ];
-
-  # Allow Unfree packages.
-  nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelParams = [ "pci=noaer" ];
+  boot.kernelParams = [
+    "pci=noaer"
+  ];
 
   networking.hostName = "mikudayo-nixos"; # Define your hostname.
-  networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
 
   boot.initrd.luks.devices = [
     {
@@ -48,80 +48,8 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    (python27Full.withPackages(ps: with ps; [ pip requests tkinter virtualenv ]))
-    (python36Full.withPackages(ps: with ps; [ i3ipc pydbus pygobject3 py3status pip requests tkinter virtualenv ]))
-    arc-icon-theme
-    arc-theme
-    blueman
-    compton
-    curl
-    dunst
-    ffmpeg
-    ffmpegthumbnailer
-    firefox
-    fzf
-    gcc
-    gitFull
-    glxinfo
-    gnome3.file-roller
-    gnome3.gnome-themes-standard
-    gnumake
-    gtk-engine-murrine
-    htop
-    iw
-    kde-gtk-config
-    kitty
-    libnotify
-    linuxPackages.cpupower
-    lm_sensors
-    lshw
-    maim
-    mpv
-    neovim
-    nitrogen
-    pciutils
-    playerctl
-    powertop
-    psmisc
-    ranger
-    redshift
-    rofi
-    stow
-    termite
-    vim
-    wget
-    xclip
-    xdg-user-dirs
-    xorg.xbacklight
-    xorg.xdpyinfo
-    xorg.xinit
-    xorg.xkill
-    xorg.xset
-    xss-lock
-  ];
+  environment.systemPackages = with pkgs; [];
 
-  fonts = {
-    fonts = with pkgs; [
-      cantarell-fonts
-      corefonts
-      dejavu_fonts
-      font-awesome_4
-      font-awesome_5
-      hack-font
-      inconsolata
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      powerline-fonts
-      roboto
-      source-code-pro
-      ttf_bitstream_vera
-    ];
-    # fontconfig.dpi = 110;
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
@@ -139,90 +67,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "br";
-    displayManager = {
-      lightdm.enable = true;
-    };
-    desktopManager = {
-      default = "xfce";
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-        thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
-                          pkgs.xfce.thunar-dropbox-plugin
-                          pkgs.xfce.thunar-volman ];
-      };
-    };
-    windowManager = {
-      default = "i3";
-      i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
-      };
-    };
-  };
-
-  # Nvidia binary-blob settings.
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.optimus_prime.enable = true;
-  hardware.nvidia.modesetting.enable = true;
-  # Bus ID of the NVIDIA GPU. You can find it using lspci
-  hardware.nvidia.optimus_prime.nvidiaBusId = "PCI:1:0:0";
-  # Bus ID of the Intel GPU. You can find it using lspci
-  hardware.nvidia.optimus_prime.intelBusId = "PCI:0:2:0";
-  # Enable bumblebee to turn down NVIDIA card.
-  # hardware.bumblebee.enable = true;
-
-  # Enable CPU microcode for Intel.
-  hardware.cpu.intel.updateMicrocode = true;
-
-  # Enable bluetooth.
-  hardware.bluetooth.enable = true;
-
-  # Enable dconf.
-  programs.dconf.enable = true;
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
-
-  # Enable zsh.
-  programs.zsh.enable = true;
-
-  # Enable touchpad support.
-  services.xserver.libinput = {
-    enable = true;
-    naturalScrolling = true;
-  };
-
-  # Enable TLP to reduce energy consumption.
-  services.tlp = {
-    enable = true;
-    extraConfig = ''
-      # Enable powersave governor
-      CPU_SCALING_GOVERNOR_ON_AC=powersave
-      CPU_SCALING_GOVERNOR_ON_BAT=powersave
-    '';
-  };
-
-  # Trim SSD periodically.
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
-
-  # Enable systemd NTP daemon.
-  services.timesyncd.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.thiagoko = {
