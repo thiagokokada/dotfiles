@@ -46,14 +46,17 @@
   # Added fonts used by i3.
   fonts = {
     fonts = with pkgs; [
+      cantarell-fonts
       corefonts
       dejavu_fonts
+      font-awesome_4
       font-awesome_5
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
       roboto
       ttf_bitstream_vera
+      ubuntu_font_family
     ];
   };
 
