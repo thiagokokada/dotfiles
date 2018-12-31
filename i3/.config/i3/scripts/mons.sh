@@ -88,32 +88,32 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 [ "$1" = '-h' ] && { usage; exit; }
 [ "$1" = '-v' ] && { version; exit; }
 
-list () {
+list() {
     for e; do [ -n "$e" ] && echo "$e"; done
 }
 
-list_size () {
+list_size() {
     if [ -z "$1" ]; then echo '0'; else echo "$@" | wc -l; fi
 }
 
-list_insert () {
+list_insert() {
     test "$#" -ne 3 && return 1
     i="$2"; [ "$i" != '$' ] &&  i=$((i+1)); echo "$3" | sed "${i}i${1}"
 }
 
-list_get () {
+list_get() {
     test "$#" -ne 2 && return 1; i="$1"; i=$((i+1)); echo "$2" | sed -n "${i}p"
 }
 
-list_front () {
+list_front() {
     test "$#" -ne 1 && return 1; echo "$@" | sed -n '1p'
 }
 
-list_erase () {
+list_erase() {
     test "$#" -ne 2 && return 1; echo "$2" | sed -e "0,/^$1$/ s///" -e '/^$/d'
 }
 
-list_contains () {
+list_contains() {
     test "$#" -ne 2 && return 1
     for e in $2; do [ "$e" = "$1" ] && return 0; done; return 1
 }
