@@ -12,6 +12,7 @@
       ./i3-configuration.nix
       ./cli-configuration.nix
       ./game-configuration.nix
+      ./yubikey-configuration.nix
       ./misc-configuration.nix
     ];
 
