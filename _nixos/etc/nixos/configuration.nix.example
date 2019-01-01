@@ -42,6 +42,9 @@
     defaultLocale = "en_US.UTF-8";
   };
 
+  # Set X11 keyboard layout.
+  services.xserver.layout = "br";
+
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 

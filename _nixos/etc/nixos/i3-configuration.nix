@@ -12,6 +12,7 @@
     }))
     arc-icon-theme
     arc-theme
+    chromium
     compton-git
     dropbox-cli
     dunst
@@ -22,6 +23,7 @@
     gnome3.gnome-themes-standard
     gtk-engine-murrine
     iw
+    keepassx-community
     kitty
     libnotify
     lm_sensors
@@ -70,7 +72,6 @@
   # Enable i3+xfce.
   services.xserver = {
     enable = true;
-    layout = "br";
 
     # Use LightDM as DM.
     displayManager = {
