@@ -3,6 +3,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    gnupg
     libu2f-host
     yubikey-manager
     yubikey-personalization-gui

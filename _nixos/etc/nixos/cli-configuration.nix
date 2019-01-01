@@ -5,8 +5,13 @@
   environment.systemPackages = with pkgs; [
     (python2Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
     (python3Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
+    (neovim.override ({
+      vimAlias = true;
+      viAlias = true;
+    }))
     bc
     curl
+    emacs
     fzf
     gcc
     gitFull
@@ -14,13 +19,11 @@
     htop
     jq
     mediainfo
-    neovim
     pv
     python3Packages.youtube-dl
     ripgrep
     tmux
     universal-ctags
-    vim
     wget
     xclip
   ];
