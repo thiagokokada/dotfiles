@@ -10,8 +10,6 @@ set $lock_screen $HOME/.config/i3/scripts/lock_screen.sh
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot maim `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png && notify-send -u normal -t 5000 'Full screenshot taken'
 set $area_screenshot maim -s `xdg-user-dir PICTURES`/`date +%Y-%m-%d_%H-%M-%S`-screenshot.png && notify-send -u normal -t 5000 'Area screenshot taken'
-set $autolock_on xset s 600 +dpms
-set $autolock_off xset s off -dpms
 set $volume $HOME/.config/i3/scripts/pavol.sh
 set $mons $HOME/.config/i3/scripts/mons.sh
 
@@ -175,7 +173,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system power management
-set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown, enable [a]utolock, [d]isable autolock
+set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
     bindsym l mode "default" exec loginctl lock-session
     bindsym e mode "default" exec loginctl terminate-session $XDG_SESSION_ID
@@ -183,8 +181,6 @@ mode "$mode_system" {
     bindsym h mode "default" exec systemctl hibernate
     bindsym Shift+r mode "default" exec systemctl reboot
     bindsym Shift+s mode "default" exec systemctl poweroff
-    bindsym a mode "default" exec $autolock_on
-    bindsym d mode "default" exec $autolock_off
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -298,7 +294,7 @@ exec --no-startup-id dunst
 exec --no-startup-id xss-lock -- $lock_screen
 
 # enable autolock in 10 minutes
-exec --no-startup-id $autolock_on
+exec --no-startup-id xset dpms 600 600 600
 
 # misc startup programs
 exec --no-startup-id "$HOME/.config/i3/scripts/startup.sh"
