@@ -1,11 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  unstable = import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz) {
+    config = config.nixpkgs.config;
+  };
+in
 {
   # CLI packages.
   environment.systemPackages = with pkgs; [
     (python2Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
     (python3Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
-    (neovim.override ({
+    (unstable.neovim.override ({
+      withNodeJs = true;
       vimAlias = true;
       viAlias = true;
     }))
