@@ -11,6 +11,7 @@
     }))
     aria2
     bc
+    bind
     curl
     emacs
     fzf

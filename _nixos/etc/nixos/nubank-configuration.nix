@@ -22,6 +22,10 @@
     ];
   };
 
+  programs.firejail.wrappedBinaries = {
+    slack = "${pkgs.slack}/bin/slack";
+  };
+
   # Enable Docker.
   virtualisation.docker.enable = true;
 

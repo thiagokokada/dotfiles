@@ -11,4 +11,8 @@
 
   # Workaround Steam's friendlist bug
   environment.variables.TZ = config.time.timeZone;
+
+  programs.firejail.wrappedBinaries = {
+    steam = "${pkgs.slack}/bin/steam";
+  };
 }
