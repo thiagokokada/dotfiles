@@ -31,6 +31,7 @@
     mpv-with-scripts
     nitrogen
     playerctl
+    qalculate-gtk
     ranger
     redshift
     rofi

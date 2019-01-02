@@ -9,6 +9,7 @@
       vimAlias = true;
       viAlias = true;
     }))
+    aria2
     bc
     curl
     emacs
@@ -18,6 +19,7 @@
     gnumake
     htop
     jq
+    lsof
     mediainfo
     pv
     python3Packages.youtube-dl
