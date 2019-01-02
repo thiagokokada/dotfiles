@@ -53,6 +53,7 @@ diskdata {
 group network {
 	online_status {
 		cache_timeout = 5
+		url = "https://cloudflare.com"
 		icon_on = " ON"
 		icon_off = " "
 	}
