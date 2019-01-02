@@ -288,9 +288,6 @@ exec --no-startup-id compton
 # run redshift
 exec --no-startup-id redshift-gtk
 
-# enable mons daemon-mode
-exec --no-startup-id $mons -a
-
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
 
