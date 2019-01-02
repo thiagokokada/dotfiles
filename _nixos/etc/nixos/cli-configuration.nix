@@ -12,8 +12,6 @@ in
     (python3Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
     (unstable.neovim.override ({
       withNodeJs = true;
-      vimAlias = true;
-      viAlias = true;
     }))
     aria2
     bc
@@ -33,6 +31,7 @@ in
     ripgrep
     tmux
     universal-ctags
+    vim
     wget
     xclip
   ];
