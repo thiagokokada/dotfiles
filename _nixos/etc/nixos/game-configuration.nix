@@ -2,7 +2,14 @@
 
 {
   environment.systemPackages = with pkgs; [
-    steam
+    (steam.override ({
+      withPrimus = true;
+      extraPkgs = pkgs: with pkgs; [
+        bumblebee
+        glxinfo
+      ];
+    }))
+    steam-run-native
   ];
 
   # Enable 32 bit support since most Steam games are compiled to 32-bit only.

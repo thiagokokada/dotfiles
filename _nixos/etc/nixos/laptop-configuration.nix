@@ -29,8 +29,11 @@
     # Enable bluetooth.
     bluetooth.enable = true;
 
-    # Enable bumblebee to turn down NVIDIA card.
-    bumblebee.enable = false;
+    # Enable bumblebee to dynamic switch Intel/NVIDIA GPUs.
+    bumblebee = {
+      enable = true;
+      pmMethod = "bbswitch";
+    };
 
     # Enable CPU microcode for Intel.
     cpu.intel.updateMicrocode = true;
@@ -43,16 +46,6 @@
         vaapiVdpau
       ];
     };
-
-    # NVIDIA binary-blob settings
-    nvidia = {
-      optimus_prime = {
-        enable = true;
-        nvidiaBusId = "PCI:1:0:0";
-        intelBusId = "PCI:0:2:0";
-      };
-      modesetting.enable = true;
-    };
   };
 
   # Enable laptop specific services.
@@ -64,8 +57,8 @@
         naturalScrolling = true;
       };
 
-      # Enable NVIDIA drivers.
-      videoDrivers = [ "nvidia" ];
+      # Default Intel drivers are terrible.
+      videoDrivers = [ "modesetting" ];
     };
 
     # Trim SSD weekly.
