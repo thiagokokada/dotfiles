@@ -113,15 +113,6 @@
 
     # Enable Qt5 integration.
     qt5ct.enable = true;
-
-    # Enable firejail.
-    firejail = {
-      enable = true;
-      wrappedBinaries = {
-        firefox = "${pkgs.firefox}/bin/firefox";
-        mpv = "${pkgs.mpv}/bin/mpv";
-      };
-    };
   };
 
   # Enable dconf service.
