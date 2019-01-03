@@ -294,7 +294,7 @@ exec --no-startup-id dunst
 exec --no-startup-id xss-lock -- $lock_screen
 
 # enable autolock in 10 minutes
-exec --no-startup-id xset dpms 600 600 600
+exec --no-startup-id xset s 600
 
 # misc startup programs
 exec --no-startup-id "$HOME/.config/i3/scripts/startup.sh"
