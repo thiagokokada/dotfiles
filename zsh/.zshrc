@@ -27,6 +27,9 @@ zit-il "https://github.com/Tarrasch/zsh-autoenv" \
 # try to correct the spelling of commands
 setopt correct
 
+# disable Ctrl+S/Ctrl-Q
+setopt noflowcontrol
+
 # pager
 export EDITOR="nvim"
 export VISUAL="nvim"

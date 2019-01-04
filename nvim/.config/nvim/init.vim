@@ -126,10 +126,10 @@ set number
 " live substitutions as you type
 set inccommand=nosplit
 " copy and paste
-vmap <C-c> "+yi
-vmap <C-x> "+c
-vmap <C-v> c<ESC>"+p
-imap <C-v> <ESC>"+pa
+vnoremap <C-c> "+yi
+vnoremap <C-x> "+c
+vnoremap <C-v> c<ESC>"+p
+inoremap <C-v> <ESC>"+pa
 " show vertical column
 set colorcolumn=81,121
 " neovim terminal
