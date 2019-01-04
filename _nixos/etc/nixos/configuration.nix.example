@@ -20,12 +20,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Select which kernel to use.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Workaround hardware problems.
   boot.kernelParams = [
     "pci=noaer"
   ];
 
-  networking.hostName = "mikudayo-nixos"; # Define your hostname.
+  # Define your hostname.
+  networking.hostName = "mikudayo-nixos";
 
+  # Root of encrypt device.
   boot.initrd.luks.devices = [
     {
       name = "enc-pv";
@@ -38,12 +44,15 @@
   # Select internationalisation properties.
   i18n = {
     consoleFont = "lat9w-16";
-    consoleKeyMap = "br-abnt2";
+    consoleKeyMap = "us-acentos";
     defaultLocale = "en_US.UTF-8";
   };
 
   # Set X11 keyboard layout.
-  services.xserver.layout = "br";
+  services.xserver {
+    layout = "us";
+    xkbVariant = "intl";
+  }
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
