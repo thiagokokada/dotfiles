@@ -22,6 +22,7 @@ in
     bind
     curl
     emacs
+    file
     fzf
     gcc
     gitFull
