@@ -1,7 +1,11 @@
 { pkgs, config, ... }:
 
 let
-  unstable = import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz) {
+  unstable = import (fetchGit {
+    name = "nixos-unstable-2019-01-01";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "b58ccb43c991ccdb67ca7f11051a2ba1bc1d2ff2"; # neovim v0.3.2
+  }) {
     config = config.nixpkgs.config;
   };
 in
