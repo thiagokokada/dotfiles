@@ -17,6 +17,7 @@ in
     (unstable.neovim.override ({
       withNodeJs = true;
     }))
+    ag
     aria2
     bc
     bind
