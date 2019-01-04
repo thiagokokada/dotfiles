@@ -1,3 +1,7 @@
-[submodule "emacs/.emacs.d"]
-	path = emacs/.emacs.d
+[submodule "spacemacs/.emacs.d"]
+	path = spacemacs/.emacs.d
 	url = https://github.com/syl20bnr/spacemacs
+[submodule "doom-emacs/.emacs.d"]
+	path = doom-emacs/.emacs.d
+	url = https://github.com/hlissner/doom-emacs
+	branch = develop
