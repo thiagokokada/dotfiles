@@ -10,6 +10,13 @@
         python3Packages.pygobject3
       ];
     }))
+    (lxappearance.overrideAttrs(oldAttrs: rec {
+      name = "lxappearance-0.6.2";
+      src = fetchurl {
+        url = "mirror://sourceforge/project/lxde/LXAppearance/${name}.tar.xz";
+        sha256 = "07r0xbi6504zjnbpan7zrn7gi4j0kbsqqfpj8v2x94gr05p16qj4";
+      };
+    }))
     arc-icon-theme
     arc-theme
     chromium
@@ -19,22 +26,29 @@
     ffmpeg
     ffmpegthumbnailer
     firefox
+    gnome3.evince
     gnome3.file-roller
     gnome3.gnome-themes-standard
+    gthumb
     gtk-engine-murrine
+    hicolor-icon-theme
     iw
     keepassx-community
     kitty
     libnotify
     lm_sensors
+    lxmenu-data
     maim
     mpv-with-scripts
+    networkmanagerapplet
     nitrogen
+    pcmanfm
     playerctl
     qalculate-gtk
     ranger
     redshift
     rofi
+    shared_mime_info
     stow
     termite
     xdg-user-dirs
@@ -43,7 +57,6 @@
     xorg.xkill
     xorg.xset
     xss-lock
-    zathura
   ];
 
   # Added fonts used by i3.
@@ -70,35 +83,26 @@
     package = pkgs.pulseaudioFull;
   };
 
-  # Enable i3+xfce.
-  services.xserver = {
-    enable = true;
+  services = {
+    dbus.packages = [ pkgs.gnome3.dconf ];
+    devmon.enable = true;
+    udisks2.enable = true;
 
-    # Use LightDM as DM.
-    displayManager = {
-      lightdm.enable = true;
-    };
+    xserver = {
+      enable = true;
 
-    # Use XFCE as base DE.
-    desktopManager = {
-      default = "xfce";
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-        thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
-                          pkgs.xfce.thunar-dropbox-plugin
-                          pkgs.xfce.thunar-volman ];
+      # Use LightDM as DM.
+      displayManager = {
+        lightdm.enable = true;
       };
-    };
 
-    # Configure i3-gaps as WM.
-    windowManager = {
-      default = "i3";
-      i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
+      # Configure i3-gaps as WM.
+      windowManager = {
+        default = "i3";
+        i3 = {
+          enable = true;
+          package = pkgs.i3-gaps;
+        };
       };
     };
   };
@@ -115,6 +119,4 @@
     qt5ct.enable = true;
   };
 
-  # Enable dconf service.
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
 }
