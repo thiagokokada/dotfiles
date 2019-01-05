@@ -1,58 +1,66 @@
 { pkgs, ... }:
 
 {
-  # Install i3 related packages.
-  environment.systemPackages = with pkgs; [
-    (python3Packages.py3status.overrideAttrs (oldAttrs: {
-      propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-        python3Packages.i3ipc
-        python3Packages.pydbus
-        python3Packages.pygobject3
-      ];
-    }))
-    arc-icon-theme
-    arc-theme
-    chromium
-    compton-git
-    dropbox-cli
-    dunst
-    ffmpeg
-    ffmpegthumbnailer
-    firefox
-    gnome3.evince
-    gnome3.file-roller
-    gnome3.gnome-themes-standard
-    gthumb
-    gtk-engine-murrine
-    hicolor-icon-theme
-    iw
-    keepassx-community
-    kitty
-    libnotify
-    lm_sensors
-    lxappearance-gtk3
-    lxmenu-data
-    maim
-    mpv-with-scripts
-    networkmanagerapplet
-    nitrogen
-    numix-cursor-theme
-    pcmanfm
-    playerctl
-    qalculate-gtk
-    ranger
-    redshift
-    rofi
-    shared_mime_info
-    stow
-    termite
-    xdg-user-dirs
-    xorg.xdpyinfo
-    xorg.xinit
-    xorg.xkill
-    xorg.xset
-    xss-lock
-  ];
+  environment = {
+    variables = {
+      # Export modules to allow PCManFM to use gvfs.
+      GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
+    };
+
+    # Install i3 related packages.
+    systemPackages = with pkgs; [
+      (python3Packages.py3status.overrideAttrs (oldAttrs: {
+        propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+          python3Packages.i3ipc
+          python3Packages.pydbus
+          python3Packages.pygobject3
+        ];
+      }))
+      arc-icon-theme
+      arc-theme
+      chromium
+      compton-git
+      dropbox-cli
+      dunst
+      ffmpeg
+      ffmpegthumbnailer
+      firefox
+      gnome3.adwaita-icon-theme
+      gnome3.evince
+      gnome3.file-roller
+      gnome3.gnome-themes-standard
+      gthumb
+      gtk-engine-murrine
+      gvfs
+      hicolor-icon-theme
+      iw
+      keepassx-community
+      kitty
+      libnotify
+      lm_sensors
+      lxappearance-gtk3
+      lxmenu-data
+      maim
+      mpv-with-scripts
+      networkmanagerapplet
+      nitrogen
+      pcmanfm
+      playerctl
+      qalculate-gtk
+      ranger
+      redshift
+      rofi
+      shared_mime_info
+      stow
+      termite
+      xdg-user-dirs
+      xorg.xdpyinfo
+      xorg.xinit
+      xorg.xkill
+      xorg.xset
+      xss-lock
+    ];
+  };
 
   # Added fonts used by i3.
   fonts = {
@@ -79,9 +87,10 @@
   };
 
   services = {
+    # Setup DBus.
     dbus.packages = [ pkgs.gnome3.dconf ];
-    devmon.enable = true;
-    udisks2.enable = true;
+    # Allow automounting.
+    gnome3.gvfs.enable = true;
 
     xserver = {
       enable = true;
@@ -113,5 +122,4 @@
     # Enable Qt5 integration.
     qt5ct.enable = true;
   };
-
 }
