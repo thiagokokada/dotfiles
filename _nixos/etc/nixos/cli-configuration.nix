@@ -35,6 +35,7 @@ in
     pv
     python3Packages.youtube-dl
     ripgrep
+    stow
     tmux
     universal-ctags
     vim

@@ -7,21 +7,12 @@
       GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
     };
 
-    # Install i3 related packages.
+    # Desktop packages.
     systemPackages = with pkgs; [
-      (python3Packages.py3status.overrideAttrs (oldAttrs: {
-        propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-          python3Packages.i3ipc
-          python3Packages.pydbus
-          python3Packages.pygobject3
-        ];
-      }))
       arc-icon-theme
       arc-theme
       chromium
-      compton-git
       dropbox-cli
-      dunst
       ffmpeg
       ffmpegthumbnailer
       firefox
@@ -33,32 +24,16 @@
       gtk-engine-murrine
       gvfs
       hicolor-icon-theme
-      iw
       keepassx-community
       kitty
-      libnotify
-      lm_sensors
       lxappearance-gtk3
       lxmenu-data
-      maim
       mpv-with-scripts
       networkmanagerapplet
-      nitrogen
       pcmanfm
-      playerctl
       qalculate-gtk
-      ranger
-      redshift
-      rofi
       shared_mime_info
-      stow
       termite
-      xdg-user-dirs
-      xorg.xdpyinfo
-      xorg.xinit
-      xorg.xkill
-      xorg.xset
-      xss-lock
     ];
   };
 
@@ -95,9 +70,32 @@
     xserver = {
       enable = true;
 
-      # Use LightDM as DM.
+      # Use LightDM.
       displayManager = {
-        lightdm.enable = true;
+        lightdm = {
+          enable = true;
+          greeters = {
+            gtk = {
+              enable = true;
+              clock-format = "%a %d/%m %H:%M:%S";
+              iconTheme = {
+                package = pkgs.arc-icon-theme;
+                name = "Arc";
+              };
+              indicators = [ "~clock" "~session" "~power" ];
+              theme = {
+                package = pkgs.arc-theme;
+                name = "Arc-Dark";
+              };
+            };
+          };
+        };
+      };
+
+      # Disable Xterm.
+      desktopManager = {
+        xterm.enable = false;
+        default = "none";
       };
 
       # Configure i3-gaps as WM.
@@ -106,6 +104,35 @@
         i3 = {
           enable = true;
           package = pkgs.i3-gaps;
+          # i3 dependencies.
+          extraPackages = with pkgs; [
+            (python3Packages.py3status.overrideAttrs (oldAttrs: {
+              propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+                python3Packages.i3ipc
+                python3Packages.pydbus
+                python3Packages.pygobject3
+              ];
+            }))
+            compton-git
+            dunst
+            i3lock
+            i3status
+            iw
+            libnotify
+            lm_sensors
+            maim
+            nitrogen
+            playerctl
+            ranger
+            redshift
+            rofi
+            xdg-user-dirs
+            xorg.xdpyinfo
+            xorg.xinit
+            xorg.xkill
+            xorg.xset
+            xss-lock
+          ];
         };
       };
     };
