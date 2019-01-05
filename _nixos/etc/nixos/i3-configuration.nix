@@ -128,7 +128,6 @@
             rofi
             xdg-user-dirs
             xorg.xdpyinfo
-            xorg.xinit
             xorg.xkill
             xorg.xset
             xss-lock

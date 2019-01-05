@@ -5,10 +5,15 @@ zmodules=(directory \
           input \
           utility \
           ssh \
-          completion \
-          syntax-highlighting \
-          history-substring-search \
-          autosuggestions)
+          completion)
+
+# Only load the modules below if termianl supports 256 colors
+if [[ $(tput colors) -ge 256 ]]; then
+  zmodules+=(syntax-highlighting \
+             history-substring-search \
+             autosuggestions)
+fi
+
 ztermtitle='%n@%m:%~'
 zdouble_dot_expand='true'
 zhighlighters=(main brackets cursor)
