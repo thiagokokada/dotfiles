@@ -31,6 +31,7 @@ rofi
 ttf-hack
 ttf-roboto
 wireless_tools
+wmctrl
 xorg-xdpyinfo
 xorg-xinit
 xorg-xkill

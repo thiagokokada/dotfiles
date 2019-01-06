@@ -34,6 +34,7 @@
       qalculate-gtk
       shared_mime_info
       termite
+      wmctrl
     ];
   };
 
