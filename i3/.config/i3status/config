@@ -97,6 +97,7 @@ backlight {
 }
 
 volume_status {
+	on_click 3 = "exec pavucontrol"
 	format = " {percentage}%"
 	format_muted = " Mute"
 }

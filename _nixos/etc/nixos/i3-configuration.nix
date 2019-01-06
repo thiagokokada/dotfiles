@@ -122,6 +122,7 @@
             lm_sensors
             maim
             nitrogen
+            pavucontrol
             playerctl
             ranger
             redshift
