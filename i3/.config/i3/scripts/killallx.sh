@@ -1,4 +1,4 @@
 #!/bin/sh
 
-wmctrl -l | awk '{ print substr($0, index($0, $4)) }' | xargs -P"$(nproc)" -L1 wmctrl -c
+wmctrl -l | awk '{ print $1 }' | xargs -P"$(nproc)" -L1 wmctrl -ci
 exit 0
