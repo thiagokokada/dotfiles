@@ -30,6 +30,7 @@
       lxmenu-data
       mpv-with-scripts
       pcmanfm
+      perlPackages.FileMimeInfo
       qalculate-gtk
       shared_mime_info
       termite
