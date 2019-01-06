@@ -6,7 +6,9 @@
 
   environment.systemPackages = with pkgs; [
     aws
+    kubectl
     leiningen
+    minikube
     nodejs-10_x
     openfortivpn
     openssl
