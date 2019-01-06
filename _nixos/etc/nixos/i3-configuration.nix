@@ -9,6 +9,7 @@
 
     # Desktop packages.
     systemPackages = with pkgs; [
+      arandr
       arc-icon-theme
       arc-theme
       chromium
@@ -115,6 +116,7 @@
               ];
             }))
             compton-git
+            dex
             dunst
             ffmpeg
             i3lock

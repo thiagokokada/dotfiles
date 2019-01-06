@@ -1,8 +1,0 @@
-#!/bin/sh
-
-i3_run () {
-    i3-msg "exec --no-startup-id" ${@} &
-}
-
-# i3_run flatpak run com.dropbox.Client
-# i3_run nm-applet

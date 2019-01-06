@@ -282,14 +282,11 @@ bindsym $mod+Print exec $area_screenshot
 # start compositor (since i3 does not support natively)
 exec --no-startup-id compton
 
-# run redshift
-exec --no-startup-id redshift-gtk
+# notification manager
+exec --no-startup-id dunst
 
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
-
-# notification manager
-exec --no-startup-id dunst
 
 # listen to X11/systemd power events
 exec --no-startup-id xss-lock -- $lock_screen
@@ -297,8 +294,8 @@ exec --no-startup-id xss-lock -- $lock_screen
 # enable autolock in 10 minutes
 exec --no-startup-id xset s 600
 
-# misc startup programs
-exec --no-startup-id "$HOME/.config/i3/scripts/startup.sh"
+# run autostart from .desktop files from LXDE, to avoid starting too much crap
+exec --no-startup-id dex --autostart --environment LXDE
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
