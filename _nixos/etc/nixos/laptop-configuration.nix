@@ -14,10 +14,15 @@
     serviceConfig.ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
   };
 
-  # Enable blk-mq.
-  boot.kernelParams = [
-    "scsi_mod.use_blk_mq=1"
-  ];
+  boot = {
+    # Mount /tmp using tmpfs for performance.
+    tmpOnTmpfs = true;
+
+    # Enable blk-mq.
+    kernelParams = [
+      "scsi_mod.use_blk_mq=1"
+    ];
+  };
 
   # Install laptop related packages.
   environment.systemPackages = with pkgs; [
