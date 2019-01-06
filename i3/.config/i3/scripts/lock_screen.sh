@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -9,7 +9,7 @@ PLAY=0
 
 pause() {
     local status;
-    
+
     status="$(playerctl status || true)"
     playerctl -a pause 2> /dev/null || true
 
@@ -26,7 +26,7 @@ resume() {
 
 take_screenshot() {
     local resolution;
-    
+
     resolution=$(xdpyinfo | awk '/dimensions/{print $2}')
     ffmpeg -loglevel quiet -y -s "${resolution}" -f x11grab -i "${DISPLAY}" -vframes 1 -vf 'gblur=sigma=8' "${TEMP_FILE}"
 }
