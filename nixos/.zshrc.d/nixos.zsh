@@ -3,7 +3,7 @@ export DOTFILES_NIX_HOME="${HOME}/.dotfiles/_nixos"
 alias nix-shell-fhs="nix-shell ${DOTFILES_NIX_HOME}/fhs-shell.nix"
 
 nixos-copy-etc() {
-  diff --color=auto -r /etc/nixos/ "${DOTFILES_NIX_HOME}/etc/nixos"
+  diff --color=auto -r "${DOTFILES_NIX_HOME}/etc/nixos" /etc/nixos/
 
   while true; do
     printf '%s' 'Copy current NixOS configuration (y/n)? '
@@ -18,7 +18,7 @@ nixos-copy-etc() {
 }
 
 nixos-restore-etc() {
-  diff --color=auto -r "${DOTFILES_NIX_HOME}/etc/nixos" /etc/nixos/
+  diff --color=auto -r /etc/nixos/ "${DOTFILES_NIX_HOME}/etc/nixos"
 
   while true; do
     printf '%s' 'Restore NixOS configuration (y/n)? '
