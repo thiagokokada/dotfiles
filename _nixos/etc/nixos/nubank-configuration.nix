@@ -6,14 +6,21 @@
 
   environment.systemPackages = with pkgs; [
     aws
-    jdk8
-    jre8
     leiningen
     nodejs-10_x
     openfortivpn
     openssl
     slack
   ];
+
+  # Enable Java.
+  programs.java = {
+    enable = true;
+    package = [
+      jdk8
+      jre8
+    ];
+  };
 
   # Enable FortiSSL VPN support in NetworkManager.
   networking.networkmanager = {

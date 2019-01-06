@@ -13,10 +13,10 @@
       arc-theme
       chromium
       dropbox-cli
-      ffmpeg
       ffmpegthumbnailer
       firefox
       gnome3.adwaita-icon-theme
+      gnome3.baobab
       gnome3.evince
       gnome3.file-roller
       gnome3.gnome-themes-standard
@@ -29,7 +29,6 @@
       lxappearance-gtk3
       lxmenu-data
       mpv-with-scripts
-      networkmanagerapplet
       pcmanfm
       qalculate-gtk
       shared_mime_info
@@ -115,6 +114,7 @@
             }))
             compton-git
             dunst
+            ffmpeg
             i3lock
             i3status
             iw

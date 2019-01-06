@@ -54,12 +54,15 @@ in
   };
 
   # Enable ZSH.
-  programs.zsh = {
-    enable = true;
-    interactiveShellInit = ''
-      if [[ -n "''${commands[fzf-share]}" ]]; then
-        source "$(fzf-share)/key-bindings.zsh"
-      fi
-    '';
+  programs = {
+    iftop.enable = true;
+    zsh = {
+      enable = true;
+      interactiveShellInit = ''
+        if [[ -n "''${commands[fzf-share]}" ]]; then
+          source "$(fzf-share)/key-bindings.zsh"
+        fi
+      '';
+    };
   };
 }

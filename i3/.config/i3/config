@@ -284,9 +284,6 @@ exec --no-startup-id compton
 # run redshift
 exec --no-startup-id redshift-gtk
 
-# run nm-applet
-exec --no-startup-id nm-applet
-
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
 
