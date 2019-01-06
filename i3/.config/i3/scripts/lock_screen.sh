@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
+#!/bin/sh
 
 TEMP_FILE=$(mktemp --suffix '.png')
 OLD_STANDBY=$(xset q | awk 'BEGIN {FPAT="[0-9]+"} /Standby/{print $1}')
@@ -8,25 +6,21 @@ NEW_STANDBY=5
 PLAY=0
 
 pause() {
-    local status;
+    status="$(playerctl status)"
+    playerctl -a pause 2> /dev/null
 
-    status="$(playerctl status || true)"
-    playerctl -a pause 2> /dev/null || true
-
-    if [[ "${status}" == "Playing" ]]; then
+    if [ "${status}" = "Playing" ]; then
         PLAY=1
     fi
 }
 
 resume() {
-    if [[ "${PLAY}" -eq 1 ]]; then
-        playerctl play || true
+    if [ "${PLAY}" -eq 1 ]; then
+        playerctl play
     fi
 }
 
 take_screenshot() {
-    local resolution;
-
     resolution=$(xdpyinfo | awk '/dimensions/{print $2}')
     ffmpeg -loglevel quiet -y -s "${resolution}" -f x11grab -i "${DISPLAY}" -vframes 1 -vf 'gblur=sigma=8' "${TEMP_FILE}"
 }
