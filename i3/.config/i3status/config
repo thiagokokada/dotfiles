@@ -87,7 +87,11 @@ keyboard_layout {
 }
 
 dpms {
-	format = " {icon}"
+	# The icons on/off icons are inverted since the idea is to simulate
+	# a Gnome extension called Caffeine
+	icon_off = ""
+	icon_on = ""
+	format = " {icon}"
 }
 
 backlight {
