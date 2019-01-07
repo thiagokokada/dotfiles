@@ -18,10 +18,7 @@
   # Enable Java.
   programs.java = {
     enable = true;
-    package = [
-      jdk8
-      jre8
-    ];
+    package = pkgs.jdk8;
   };
 
   # Enable FortiSSL VPN support in NetworkManager.
