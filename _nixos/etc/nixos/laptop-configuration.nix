@@ -9,7 +9,10 @@
     # wireless.enable = true;
 
     # Use Network Manager.
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dns = "dnsmasq";
+    };
   };
 
   # Start nm-applet.
@@ -45,12 +48,6 @@
   hardware = {
     # Enable bluetooth.
     bluetooth.enable = true;
-
-    # Enable bumblebee to dynamic switch Intel/NVIDIA GPUs.
-    bumblebee = {
-      enable = true;
-      pmMethod = "bbswitch";
-    };
 
     # Enable CPU microcode for Intel.
     cpu.intel.updateMicrocode = true;
