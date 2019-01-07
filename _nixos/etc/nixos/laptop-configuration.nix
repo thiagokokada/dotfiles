@@ -4,15 +4,30 @@
   # Allow Unfree packages.
   nixpkgs.config.allowUnfree = true;
 
-  # Use Network Manager.
-  networking.wireless.enable = false;
-  networking.networkmanager.enable = true;
-  systemd.user.services.nm-applet = {
-    description = "Network manager applet";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig.ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+  networking = {
+    # Use wpa_supplicant.
+    # wireless.enable = true;
+
+    # Use Network Manager.
+    # networkmanager.enable = true;
+
+    # Use Connman.
+    connman = {
+      enable = true;
+      extraConfig = ''
+        [General]
+        PreferredTechnologies=ethernet,wifi
+      '';
+    };
   };
+
+  # Start nm-applet.
+  # systemd.user.services.nm-applet = {
+  #   description = "Network manager applet";
+  #   wantedBy = [ "graphical-session.target" ];
+  #   partOf = [ "graphical-session.target" ];
+  #   serviceConfig.ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+  # };
 
   boot = {
     # Mount /tmp using tmpfs for performance.
@@ -27,6 +42,7 @@
   # Install laptop related packages.
   environment.systemPackages = with pkgs; [
     blueman
+    cmst # for Connman
     glxinfo
     linuxPackages.cpupower
     lshw

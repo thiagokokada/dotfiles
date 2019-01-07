@@ -25,11 +25,11 @@
   };
 
   # Enable FortiSSL VPN support in NetworkManager.
-  networking.networkmanager = {
-    packages = [
-      pkgs.networkmanager-fortisslvpn
-    ];
-  };
+  # networking.networkmanager = {
+  #   packages = [
+  #     pkgs.networkmanager-fortisslvpn
+  #   ];
+  # };
 
   # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
   services.emacs.enable = true;
