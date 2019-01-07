@@ -12,7 +12,6 @@ set $fs_screenshot maim "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-scr
 set $area_screenshot maim -s "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && notify-send -u normal -t 5000 'Area screenshot taken'
 set $volume $HOME/.config/i3/scripts/pavol.sh
 set $mons $HOME/.config/i3/scripts/mons.sh
-set $killallx $HOME/.config/i3/scripts/killallx.sh
 
 # status bar
 set $status_bar py3status
@@ -177,11 +176,11 @@ bindsym $mod+Shift+r restart
 set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
     bindsym l mode "default" exec loginctl lock-session
-    bindsym e mode "default" exec $killallx && loginctl terminate-session $XDG_SESSION_ID
+    bindsym e mode "default" exec loginctl terminate-session $XDG_SESSION_ID
     bindsym s mode "default" exec systemctl suspend
     bindsym h mode "default" exec systemctl hibernate
-    bindsym Shift+r mode "default" exec $killallx && systemctl reboot
-    bindsym Shift+s mode "default" exec $killallx && systemctl poweroff
+    bindsym Shift+r mode "default" exec systemctl reboot
+    bindsym Shift+s mode "default" exec systemctl poweroff
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
