@@ -12,7 +12,6 @@
     networkmanager = {
       enable = true;
       dhcp = "dhcpcd";
-      dns = "dnsmasq";
     };
   };
 
@@ -94,10 +93,10 @@
         naturalScrolling = true;
       };
 
-      # Intel drivers.
+      # Use Intel (modesetting) driver, since intel driver itself is terrible.
       # videoDrivers = [ "modesetting" ];
 
-      # NVIDIA drivers
+      # Use NVIDIA driver.
       videoDrivers = [ "nvidia" ];
     };
 
@@ -110,7 +109,7 @@
     # Enable NTP.
     timesyncd.enable = true;
 
-    # Enable TLP to reduce power consumption
+    # Enable TLP to reduce power consumption.
     tlp = {
       enable = true;
       extraConfig = ''
@@ -119,6 +118,9 @@
         CPU_SCALING_GOVERNOR_ON_BAT=powersave
       '';
     };
+
+    # Enable systemd-resolved.
+    resolved.enable = true;
 
     # Set scheduler depending on disk type.
     udev.extraRules = ''
