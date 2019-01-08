@@ -11,6 +11,7 @@
     # Use Network Manager.
     networkmanager = {
       enable = true;
+      dhcp = "dhcpcd";
       dns = "dnsmasq";
     };
   };
