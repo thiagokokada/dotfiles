@@ -2,9 +2,9 @@
 
 let
   unstable = import (fetchGit {
-    name = "nixos-unstable-2019-01-01";
+    name = "nixos-unstable-2019-01-06";
     url = https://github.com/nixos/nixpkgs/;
-    rev = "b58ccb43c991ccdb67ca7f11051a2ba1bc1d2ff2"; # neovim v0.3.2
+    rev = "b4ed953bb2f7486173ebc062296a1c2a04933b34"; # neovim v0.3.3
   }) {
     config = config.nixpkgs.config;
   };
