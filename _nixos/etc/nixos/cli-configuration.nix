@@ -29,6 +29,7 @@ in
     gitFull
     gnumake
     htop
+    ispell
     jq
     lsof
     mediainfo
