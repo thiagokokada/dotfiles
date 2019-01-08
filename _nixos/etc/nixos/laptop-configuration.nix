@@ -11,7 +11,7 @@
     # Use Network Manager.
     networkmanager = {
       enable = true;
-      dhcp = "dhcpcd";
+      dhcp = "internal";
     };
   };
 
