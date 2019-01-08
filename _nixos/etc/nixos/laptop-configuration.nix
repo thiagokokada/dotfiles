@@ -70,6 +70,8 @@
         # Bus ID of the Intel GPU. You can find it using lspci
         intelBusId = "PCI:0:2:0";
       };
+      # Use KMS with NVIDIA drivers.
+      modesetting.enable = true;
     };
 
     # Enable bumblebee to dynamic switch Intel/NVIDIA GPUs.
