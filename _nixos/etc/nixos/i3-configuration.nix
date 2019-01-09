@@ -29,7 +29,6 @@
       kitty
       lxappearance-gtk3
       lxmenu-data
-      mpv-with-scripts
       pcmanfm
       perlPackages.FileMimeInfo
       qalculate-gtk

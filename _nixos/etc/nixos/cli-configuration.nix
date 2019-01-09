@@ -12,6 +12,9 @@ in
 {
   # CLI packages.
   environment.systemPackages = with pkgs; [
+    (mpv-with-scripts.override ({
+      scripts = [ mpvScripts.mpris ];
+    }))
     (python2Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
     (python3Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
     (unstable.neovim.override ({
