@@ -106,8 +106,17 @@
       interval = "weekly";
     };
 
+    # Enable fwupd for firmware updates.
+    fwupd.enable = true;
+
+    # Enable systemd-resolved.
+    resolved.enable = true;
+
     # Enable NTP.
     timesyncd.enable = true;
+
+    # Enable Intel Thermald.
+    thermald.enable = true;
 
     # Enable TLP to reduce power consumption.
     tlp = {
@@ -118,9 +127,6 @@
         CPU_SCALING_GOVERNOR_ON_BAT=powersave
       '';
     };
-
-    # Enable systemd-resolved.
-    resolved.enable = true;
 
     # Set scheduler depending on disk type.
     udev.extraRules = ''
