@@ -106,9 +106,6 @@
       interval = "weekly";
     };
 
-    # Enable fwupd for firmware updates.
-    fwupd.enable = true;
-
     # Enable systemd-resolved.
     resolved.enable = true;
 

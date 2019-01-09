@@ -21,6 +21,7 @@
       gnome3.evince
       gnome3.file-roller
       gnome3.gnome-themes-standard
+      gnome3.gnome-disk-utility
       gthumb
       gtk-engine-murrine
       gvfs
