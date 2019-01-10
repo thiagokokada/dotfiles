@@ -20,14 +20,15 @@
       gnome3.baobab
       gnome3.evince
       gnome3.file-roller
-      gnome3.gnome-themes-standard
       gnome3.gnome-disk-utility
+      gnome3.gnome-themes-standard
       gthumb
       gtk-engine-murrine
       gvfs
       hicolor-icon-theme
       keepassx-community
       kitty
+      libreoffice-fresh
       lxappearance-gtk3
       lxmenu-data
       pcmanfm
@@ -41,10 +42,11 @@
 
   # Added fonts used by i3.
   fonts = {
+    enableDefaultFonts = true;
+
     fonts = with pkgs; [
       cantarell-fonts
       corefonts
-      dejavu_fonts
       font-awesome_4
       font-awesome_5
       noto-fonts
