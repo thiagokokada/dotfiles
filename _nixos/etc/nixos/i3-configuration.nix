@@ -73,7 +73,7 @@
       enable = true;
 
       # Use LightDM.
-      displayManager = {
+      displayManager = with pkgs; {
         lightdm = {
           enable = true;
           greeters = {
@@ -81,12 +81,12 @@
               enable = true;
               clock-format = "%a %d/%m %H:%M:%S";
               iconTheme = {
-                package = pkgs.arc-icon-theme;
+                package = arc-icon-theme;
                 name = "Arc";
               };
               indicators = [ "~clock" "~session" "~power" ];
               theme = {
-                package = pkgs.arc-theme;
+                package = arc-theme;
                 name = "Arc-Dark";
               };
             };
@@ -108,13 +108,14 @@
           package = pkgs.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
-            (python3Packages.py3status.overrideAttrs (oldAttrs: {
-              propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-                python3Packages.i3ipc
-                python3Packages.pydbus
-                python3Packages.pygobject3
-              ];
-            }))
+            (with python3Packages;
+              (py3status.overrideAttrs (oldAttrs: {
+                propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+                  i3ipc
+                  pydbus
+                  pygobject3
+                ];
+              })))
             compton-git
             dex
             dunst
