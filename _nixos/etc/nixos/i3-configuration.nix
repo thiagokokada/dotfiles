@@ -16,6 +16,7 @@
       dropbox-cli
       ffmpegthumbnailer
       firefox
+      gimp
       gnome3.adwaita-icon-theme
       gnome3.baobab
       gnome3.evince
@@ -26,6 +27,7 @@
       gtk-engine-murrine
       gvfs
       hicolor-icon-theme
+      inkscape
       keepassx-community
       kitty
       libreoffice-fresh
