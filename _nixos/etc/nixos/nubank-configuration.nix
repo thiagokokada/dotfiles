@@ -20,10 +20,12 @@
         sha256 = "0ivwb1qlxs1hyical0fjgavm9wfkw3f10sk67p5g2p5lpf4pxp1d";
       };
     }))
-    aws
+    awscli
     kubectl
     minikube
     nodejs-10_x
+    nss
+    nssTools
     openfortivpn
     openssl
     slack
