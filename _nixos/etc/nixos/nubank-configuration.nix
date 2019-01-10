@@ -42,9 +42,6 @@
   #   ];
   # };
 
-  # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
-  services.emacs.enable = true;
-
   # Enable Docker.
   virtualisation.docker.enable = true;
 

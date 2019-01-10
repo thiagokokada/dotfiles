@@ -43,6 +43,7 @@
   # Added fonts used by i3.
   fonts = {
     enableDefaultFonts = true;
+    enableFontDir = true;
 
     fonts = with pkgs; [
       cantarell-fonts
@@ -56,6 +57,14 @@
       ttf_bitstream_vera
       ubuntu_font_family
     ];
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Noto Mono" ];
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Noto Sans" ];
+      };
+    };
   };
 
   # Enable sound.
