@@ -23,16 +23,6 @@
     serviceConfig.ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
   };
 
-  boot = {
-    # Mount /tmp using tmpfs for performance.
-    tmpOnTmpfs = true;
-
-    # Enable blk-mq.
-    kernelParams = [
-      "scsi_mod.use_blk_mq=1"
-    ];
-  };
-
   # Install laptop related packages.
   environment.systemPackages = with pkgs; [
     blueman
@@ -109,9 +99,6 @@
     # Enable systemd-resolved.
     resolved.enable = true;
 
-    # Enable NTP.
-    timesyncd.enable = true;
-
     # Enable Intel Thermald.
     thermald.enable = true;
 
@@ -124,11 +111,5 @@
         CPU_SCALING_GOVERNOR_ON_BAT=powersave
       '';
     };
-
-    # Set scheduler depending on disk type.
-    udev.extraRules = ''
-      ACTION=="add|change", KERNEL=="[sv]d[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
-      ACTION=="add|change", KERNEL=="[sv]d[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-    '';
   };
 }

@@ -20,13 +20,24 @@
         sha256 = "0ivwb1qlxs1hyical0fjgavm9wfkw3f10sk67p5g2p5lpf4pxp1d";
       };
     }))
+    (openfortivpn.overrideAttrs (oldAttrs: rec {
+      pname = "openfortivpn";
+      version = "1.8.1";
+      name = "${pname}-${version}";
+
+      src = fetchFromGitHub {
+        owner = "adrienverge";
+        repo = "${pname}";
+        rev = "967d4819475d4f11179960ee50811ec52cd1849c";
+        sha256 = "073ywn0m1kxwswlx6avb8yp642h1886kaiiih16j00qf2kyw4if9";
+      };
+    }))
     awscli
     kubectl
     minikube
     nodejs-10_x
     nss
     nssTools
-    openfortivpn
     openssl
     slack
   ];
