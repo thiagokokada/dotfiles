@@ -1,5 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  unstable = import (fetchGit {
+    name = "nixos-unstable-2019-01-10";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "77ec7d75a9effb1d45dc3c01fb1261be43bcc1e0"; # py3status 3.15
+  }) {
+    config = config.nixpkgs.config;
+  };
+in
 {
   environment = {
     variables = {
@@ -118,7 +127,7 @@
           package = pkgs.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
-            (with python3Packages;
+            (with unstable.python3Packages;
               (py3status.overrideAttrs (oldAttrs: {
                 propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
                   i3ipc
