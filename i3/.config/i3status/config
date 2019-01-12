@@ -30,45 +30,80 @@ mpris {
 
 external_script freq {
     cache_timeout = 5
-    script_path = "awk '{total_cur_freq+=$1} END {printf \"%.1f\", total_cur_freq/NR/1024/1024}' /sys/devices/system/cpu/cpufreq/*/scaling_cur_freq"
-    format = " {output}"
+    script_path = "awk '{freq += $1} END {print freq/NR/1024/1024}' /sys/devices/system/cpu/cpufreq/*/scaling_cur_freq"
+    format = " {output:1.1f}"
 }
 
 sysdata load {
-    format = " {load1}"
+    format = "\?color=load  {load1}"
+    thresholds = {
+        "load": [
+            (0,  "color"),
+            (shell(expr $(nproc\) / 2, int), "degraded"),
+            (shell(nproc, int), "bad"),
+        ],
+    }
 }
 
 sysdata temp {
-    format = " {cpu_temp:1.0f}{temp_unit}"
+    format = "\?color=temp  {cpu_temp:1.0f}{temp_unit}"
+    thresholds = {
+        "temp": [
+            (0,  "color"),
+            (50, "degraded"),
+            (85, "bad"),
+        ],
+    }
 }
 
 sysdata mem {
-    format = " {mem_used_percent:1.1f}%"
+    format = "\?color=mem  {mem_used_percent:1.1f}%"
+    thresholds = {
+        "mem": [
+            (0,  "color"),
+            (75, "degraded"),
+            (90, "bad"),
+        ],
+    }
 }
 
 diskdata {
-    format = " {used_percent}%"
+    format = "\?color=used  {used_percent}%"
     format_space = "{value:1.1f}"
+    thresholds = {
+        "used": [
+            (0,  "color"),
+            (75, "degraded"),
+            (90, "bad"),
+        ],
+    }
 }
 
 group network {
     online_status {
         cache_timeout = 5
-        url = "https://cloudflare.com"
+        url = "https://en.wikipedia.org"
         icon_on = " ON"
         icon_off = " "
     }
 
     net_rate {
         cache_timeout = 5
-        format = " {interface}:  {down}  {up}"
+        format = "\?color=total  {interface}:  {down}  {up}"
         format_no_connection = " "
         format_value = "{value:1.0f}{unit}"
+        thresholds = {
+            "total": [
+                (0,  "color"),
+                (1048578, "degraded"), # 1MiB/s
+                (10485780, "bad"), # 10MiB/s
+            ],
+        }
     }
 
     wifi {
         cache_timeout = 5
-        format = " {ssid}: {signal_percent} {bitrate}| "
+        format = " {ssid} ({freq_ghz:1.1f}GHz): {signal_percent}| "
         bitrate_bad = 0
         bitrate_degraded = 0
     }
@@ -88,11 +123,9 @@ keyboard_layout {
 }
 
 dpms {
-    # The icons on/off icons are inverted since the idea is to simulate
-    # a Gnome extension called Caffeine
-    icon_off = ""
-    icon_on = ""
-    format = " {icon}"
+    icon_on = ""
+    icon_off = ""
+    format = " {icon}"
 }
 
 backlight {
