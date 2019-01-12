@@ -16,103 +16,103 @@ order += "volume_status"
 order += "group time"
 
 mpris {
-	icon_previous = ""
-	icon_next = ""
-	icon_pause = ""
-	icon_play = ""
-	icon_stop = ""
-	state_pause = ""
-	state_play = ""
-	state_stop = ""
-	format_none = " "
-	format = "{previous}{toggle}{next} {state} [{artist} - ][{title}]"
+    icon_previous = ""
+    icon_next = ""
+    icon_pause = ""
+    icon_play = ""
+    icon_stop = ""
+    state_pause = ""
+    state_play = ""
+    state_stop = ""
+    format_none = " "
+    format = "{previous}{toggle}{next} {state} [{artist} - ][{title}]"
 }
 
 external_script freq {
-	cache_timeout = 5
-	script_path = "awk '{total_cur_freq+=$1} END {printf \"%.1f\", total_cur_freq/NR/1024/1024}' /sys/devices/system/cpu/cpufreq/*/scaling_cur_freq"
-	format = " {output}"
+    cache_timeout = 5
+    script_path = "awk '{total_cur_freq+=$1} END {printf \"%.1f\", total_cur_freq/NR/1024/1024}' /sys/devices/system/cpu/cpufreq/*/scaling_cur_freq"
+    format = " {output}"
 }
 
 sysdata load {
-	format = " {load1}"
+    format = " {load1}"
 }
 
 sysdata temp {
-	format = " {cpu_temp:1.0f}{temp_unit}"
+    format = " {cpu_temp:1.0f}{temp_unit}"
 }
 
 sysdata mem {
-	format = " {mem_used_percent:1.1f}%"
+    format = " {mem_used_percent:1.1f}%"
 }
 
 diskdata {
-	format = " {used_percent}%"
-	format_space = "{value:1.1f}"
+    format = " {used_percent}%"
+    format_space = "{value:1.1f}"
 }
 
 group network {
-	online_status {
-		cache_timeout = 5
-		url = "https://cloudflare.com"
-		icon_on = " ON"
-		icon_off = " "
-	}
+    online_status {
+        cache_timeout = 5
+        url = "https://cloudflare.com"
+        icon_on = " ON"
+        icon_off = " "
+    }
 
-	net_rate {
-		cache_timeout = 5
-		format = " {interface}:  {down}  {up}"
-		format_no_connection = " "
-		format_value = "{value:1.0f}{unit}"
-	}
+    net_rate {
+        cache_timeout = 5
+        format = " {interface}:  {down}  {up}"
+        format_no_connection = " "
+        format_value = "{value:1.0f}{unit}"
+    }
 
-	wifi {
-		cache_timeout = 5
-		format = " {ssid}: {signal_percent} {bitrate}| "
-		bitrate_bad = 0
-		bitrate_degraded = 0
-	}
+    wifi {
+        cache_timeout = 5
+        format = " {ssid}: {signal_percent} {bitrate}| "
+        bitrate_bad = 0
+        bitrate_degraded = 0
+    }
 }
 
 battery_level {
-	cache_timeout = 5
-	blocks = ""
-	charging_character = ""
-	format = "{icon} {percent}% {time_remaining}"
-	hide_when_full = true
+    cache_timeout = 5
+    blocks = ""
+    charging_character = ""
+    format = "{icon} {percent}% {time_remaining}"
+    hide_when_full = true
 }
 
 keyboard_layout {
-	cache_timeout = 5
-	format = " {layout}"
+    cache_timeout = 5
+    format = " {layout}"
 }
 
 dpms {
-	# The icons on/off icons are inverted since the idea is to simulate
-	# a Gnome extension called Caffeine
-	icon_off = ""
-	icon_on = ""
-	format = " {icon}"
+    # The icons on/off icons are inverted since the idea is to simulate
+    # a Gnome extension called Caffeine
+    icon_off = ""
+    icon_on = ""
+    format = " {icon}"
 }
 
 backlight {
-	format = " {level}%"
-	hide_when_unavailable = true
-	command = "light"
+    format = " {level}%"
+    hide_when_unavailable = true
+    command = "light"
 }
 
 volume_status {
-	on_click 3 = "exec pavucontrol"
-	format = " {percentage}%"
-	format_muted = " Mute"
+    on_click 3 = "exec pavucontrol"
+    format = " {percentage}%"
+    format_muted = " Mute"
 }
 
 group time {
-	tztime hour {
-		format = " %H:%M:%S"
-	}
+    tztime hour {
+        format = " %H:%M:%S"
+    }
 
-	tztime date {
-		format = " %a %d/%m"
-	}
+    tztime date {
+        format = " %a %d/%m"
+    }
 }
