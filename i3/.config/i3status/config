@@ -43,11 +43,12 @@ sysdata temp {
 }
 
 sysdata mem {
-	format = " {mem_used_percent}%"
+	format = " {mem_used_percent:1.1f}%"
 }
 
 diskdata {
-	format = " {disk}: {free}GB"
+	format = " {used_percent}%"
+	format_space = "{value:1.1f}"
 }
 
 group network {
