@@ -25,7 +25,6 @@
       gnome3.gnome-themes-standard
       gthumb
       gtk-engine-murrine
-      gvfs
       hicolor-icon-theme
       inkscape
       keepassx-community
@@ -37,8 +36,6 @@
       qalculate-gtk
       shared_mime_info
       termite
-      wmctrl
-      xsettingsd
     ];
   };
 
@@ -149,7 +146,9 @@
             xorg.xdpyinfo
             xorg.xkill
             xorg.xset
+            xsettingsd
             xss-lock
+            wmctrl
           ];
         };
       };
