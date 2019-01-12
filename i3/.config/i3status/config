@@ -29,6 +29,8 @@ mpris {
 }
 
 external_script freq {
+    # TODO: Use sysdata cpu_freq_ghz
+    # https://github.com/ultrabug/py3status/pull/1609
     cache_timeout = 5
     script_path = "awk '{freq += $1} END {print freq/NR/1024/1024}' /sys/devices/system/cpu/cpufreq/*/scaling_cur_freq"
     format = " {output:1.1f}"
@@ -68,13 +70,15 @@ sysdata mem {
 }
 
 diskdata {
-    format = "\?color=used  {used_percent}%"
+    # TODO: Use color for `used_percent` after PR is merged
+    # https://github.com/ultrabug/py3status/pull/1628
+    format = "\?color=free  {used_percent}%"
     format_space = "{value:1.1f}"
     thresholds = {
-        "used": [
-            (0,  "color"),
-            (75, "degraded"),
-            (90, "bad"),
+        "free": [
+            (0,  "bad"),
+            (10, "degraded"),
+            (25, "color"),
         ],
     }
 }
