@@ -31,7 +31,6 @@
       keepassx-community
       kitty
       libreoffice-fresh
-      lxappearance-gtk3
       lxmenu-data
       pcmanfm
       perlPackages.FileMimeInfo
@@ -39,6 +38,7 @@
       shared_mime_info
       termite
       wmctrl
+      xsettingsd
     ];
   };
 

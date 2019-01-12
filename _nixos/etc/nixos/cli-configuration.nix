@@ -39,6 +39,7 @@ in
     pv
     python3Packages.youtube-dl
     ripgrep
+    sshuttle
     stow
     tmux
     universal-ctags
