@@ -37,7 +37,6 @@ in
       hicolor-icon-theme
       inkscape
       keepassx-community
-      kitty
       libreoffice-fresh
       lxmenu-data
       pcmanfm
@@ -45,6 +44,7 @@ in
       qalculate-gtk
       shared_mime_info
       termite
+      unstable.kitty
     ];
   };
 
@@ -135,6 +135,12 @@ in
                   pygobject3
                 ];
               })))
+            (with unstable;
+              (ranger.overrideAttrs (oldAttrs: {
+                propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+                  python3Packages.pillow
+                ];
+              })))
             compton-git
             dex
             dunst
@@ -148,7 +154,6 @@ in
             nitrogen
             pavucontrol
             playerctl
-            ranger
             redshift
             rofi
             xdg-user-dirs
