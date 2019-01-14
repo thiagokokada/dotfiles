@@ -44,8 +44,9 @@ Plug 'w0rp/ale'
 " clojure
 Plug 'clojure-vim/async-clj-omni'
 Plug 'clojure-vim/clj-refactor.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-sexp-mappings-for-regular-people' | Plug 'guns/vim-sexp'
-Plug 'tpope/vim-fireplace' | Plug 'tpope/vim-classpath' | Plug 'tpope/vim-salve'
 " python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
@@ -109,6 +110,8 @@ nmap ga <Plug>(EasyAlign)
 " clj-refactor
 let g:clj_refactor_prune_ns_form = 0
 let g:clj_refactor_prefix_rewriting = 0
+" clojure-static
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^ns', '^provided', '^when-not', '^tabular', '^fn', '^flow', '^verify']
 
 """"""""
 " misc "
@@ -126,10 +129,7 @@ set number
 " live substitutions as you type
 set inccommand=nosplit
 " copy and paste
-vnoremap <C-c> "+yi
-vnoremap <C-x> "+c
-vnoremap <C-v> c<ESC>"+p
-inoremap <C-v> <ESC>"+pa
+set clipboard=unnamed
 " show vertical column
 set colorcolumn=81,121
 " neovim terminal
