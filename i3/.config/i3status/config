@@ -32,7 +32,7 @@ external_script freq {
     # TODO: Use sysdata cpu_freq_ghz
     # https://github.com/ultrabug/py3status/pull/1609
     cache_timeout = 5
-    script_path = "awk '{freq += $1} END {print freq/NR/1024/1024}' /sys/devices/system/cpu/cpufreq/*/scaling_cur_freq"
+    script_path = "awk '{freq += $1} END {print freq/NR/10^6}' /sys/devices/system/cpu/cpufreq/*/scaling_cur_freq"
     format = " {output:1.1f}"
 }
 
