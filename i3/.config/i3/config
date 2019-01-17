@@ -297,7 +297,7 @@ exec --no-startup-id xset s 600
 exec --no-startup-id dex --autostart --environment LXDE
 
 # run xsettingsd daemon
-exec --no-startup-id xsettingd
+exec --no-startup-id xsettingsd
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e
