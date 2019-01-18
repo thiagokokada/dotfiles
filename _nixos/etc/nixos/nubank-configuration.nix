@@ -1,25 +1,19 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  unstable = import (fetchGit {
+    name = "nixos-unstable-2019-01-10";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "7c19fba9f61366319428d0a5f4ba2ee1684af5ae"; # leiningen 2.8.3
+  }) {
+    config = config.nixpkgs.config;
+  };
+in
 {
   # For Slack.
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    (leiningen.overrideAttrs(oldAttrs: rec {
-      pname = "leiningen";
-      version = "2.7.1";
-      name = "${pname}-${version}";
-
-      src = fetchurl {
-        url = "https://raw.github.com/technomancy/leiningen/${version}/bin/lein-pkg";
-        sha256 = "0rmshl4xchf3blwvar4q9dpxm9xznn3yzas4vwxqiq3yhapgqkn0";
-      };
-
-      jarsrc = fetchurl {
-        url = "https://github.com/technomancy/leiningen/releases/download/${version}/${name}-standalone.zip";
-        sha256 = "0ivwb1qlxs1hyical0fjgavm9wfkw3f10sk67p5g2p5lpf4pxp1d";
-      };
-    }))
     (openfortivpn.overrideAttrs (oldAttrs: rec {
       pname = "openfortivpn";
       version = "1.8.1";
@@ -40,6 +34,7 @@
     nssTools
     openssl
     slack
+    unstable.leiningen
   ];
 
   # Enable Java.

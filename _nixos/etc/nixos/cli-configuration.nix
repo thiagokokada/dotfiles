@@ -71,6 +71,9 @@ in
     };
   };
 
-  # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
-  services.emacs.enable = true;
+  services = {
+    cron.enable = true;
+    # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
+    emacs.enable = true;
+  };
 }
