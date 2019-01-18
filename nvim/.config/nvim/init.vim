@@ -129,7 +129,7 @@ set number
 " live substitutions as you type
 set inccommand=nosplit
 " copy and paste
-set clipboard=unnamed
+set clipboard=unnamedplus
 " show vertical column
 set colorcolumn=81,121
 " neovim terminal
