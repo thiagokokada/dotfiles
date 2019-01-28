@@ -54,7 +54,7 @@ alias gk="gitk &!"
 alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
 alias ln-clean-up="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
-alias update-plugins="pushd ${HOME}/.dotfiles && git submodule update --init --recursive --remote && popd"
+alias update-plugins="cd ${HOME}/.dotfiles && git submodule update --init --recursive --remote && cd -"
 
 open() { xdg-open "${@}" &> /dev/null &! }
 

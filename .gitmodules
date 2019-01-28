@@ -2,6 +2,3 @@
 	path = spacemacs/.emacs.d
 	url = https://github.com/syl20bnr/spacemacs
 	branch = develop
-[submodule "spacemacs/.emacs.d/private/spacemacs-midje"]
-	path = spacemacs/.emacs.d/private/spacemacs-midje
-	url = https://github.com/cassiomarques/spacemacs-midje
