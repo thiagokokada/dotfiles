@@ -5,7 +5,3 @@
 [submodule "spacemacs/.emacs.d/private/spacemacs-midje"]
 	path = spacemacs/.emacs.d/private/spacemacs-midje
 	url = https://github.com/cassiomarques/spacemacs-midje
-[submodule "doom-emacs/.emacs.d"]
-	path = doom-emacs/.emacs.d
-	url = https://github.com/hlissner/doom-emacs
-	branch = develop
