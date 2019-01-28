@@ -1,4 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-wmctrl -l | awk '{ print $1 }' | xargs -P0 -L1 wmctrl -i -c
-sleep 1
+OPEN_WINDOWS=$(wmctrl -lp)
+
+echo ${OPEN_WINDOWS} | awk '{ print $1 }' | xargs -P0 -L1 wmctrl -ic
+
+for i in {1..50}; do
+    ps -p $(echo ${OPEN_WINDOWS} | awk '{ print $3 }' | paste -s -d, -)
+    if [[ ${?} != 0 ]]; then
+        break
+    fi
+    sleep 0.1
+done
