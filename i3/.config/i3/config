@@ -3,7 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
-set $terminal kitty -1 --instance-group $DISPLAY
+set $terminal kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)"
 set $browser firefox
 set $file_manager kitty ranger
 set $lock_screen $HOME/.config/i3/scripts/lock_screen.sh
@@ -179,7 +179,7 @@ bindsym $mod+Shift+r restart
 set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
     bindsym l mode "default" exec loginctl lock-session
-    bindsym e mode "default" exit
+    bindsym e mode "default" exec loginctl terminate-session $(cat /proc/self/sessionid)
     bindsym s mode "default" exec systemctl suspend
     bindsym h mode "default" exec systemctl hibernate
     bindsym Shift+r mode "default" exec systemctl reboot
