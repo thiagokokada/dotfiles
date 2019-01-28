@@ -1,2 +1,2 @@
 alias ec="emacsclient"
-ecw() { emacsclient --create-frame $@ &! }
+ecw() { sh -c "emacsclient --create-frame ${@} </dev/null &>/dev/null &" }
