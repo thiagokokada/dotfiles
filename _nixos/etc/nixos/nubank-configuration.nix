@@ -56,5 +56,17 @@ in
   # Enable VirtualBox.
   virtualisation.virtualbox.host.enable = true;
 
+  # Added user to groups.
   users.users.thiagoko.extraGroups = [ "docker" "vboxusers" ];
+
+  # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
+  systemd.user.services.emacs = {
+    description = "Emacs: the extensible, self-documenting text editor";
+    serviceConfig = {
+      Type      = "simple";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'source ${config.system.build.setEnvironment}; exec ${pkgs.emacs}/bin/emacs --fg-daemon'";
+      ExecStop  = ''${pkgs.emacs}/bin/emacsclient --eval "(progn (setq kill-emacs-hook 'nil) (kill-emacs))"'';
+      Restart   = "on-failure";
+    };
+  };
 }

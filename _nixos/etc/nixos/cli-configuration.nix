@@ -74,7 +74,5 @@ in
 
   services = {
     cron.enable = true;
-    # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
-    emacs.enable = true;
   };
 }
