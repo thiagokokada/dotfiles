@@ -28,14 +28,14 @@ take_screenshot() {
 prepare() {
     take_screenshot
     xset +dpms dpms "${NEW_STANDBY}"
-    dunstify "DUNST_COMMAND_PAUSE"
+    notify-send "DUNST_COMMAND_PAUSE"
     pause
 }
 
 clean_up() {
     rm -f "${TEMP_FILE}"
     xset dpms "${OLD_STANDBY}"
-    dunstify "DUNST_COMMAND_RESUME"
+    notify-send "DUNST_COMMAND_RESUME"
     resume
 }
 
