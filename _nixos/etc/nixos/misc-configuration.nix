@@ -38,6 +38,11 @@
       interval = "weekly";
     };
 
+    # Allow systemd to kill user process on logout.
+    logind.extraConfig = ''
+      KillUserProcesses=true
+    '';
+
     # Enable NTP.
     timesyncd.enable = true;
 

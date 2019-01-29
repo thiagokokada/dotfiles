@@ -25,6 +25,7 @@ in
     bc
     bind
     curl
+    daemonize
     emacs
     file
     fzf
