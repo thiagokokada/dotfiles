@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   boot = {
@@ -30,6 +30,9 @@
     enable = true;
     dates = "daily";
   };
+
+  # Allow upgrade of backported packages.
+  systemd.services.nixos-upgrade.path = [ pkgs.git ];
 
   services = {
     # Trim SSD weekly.
