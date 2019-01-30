@@ -14,18 +14,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    (openfortivpn.overrideAttrs (oldAttrs: rec {
-      pname = "openfortivpn";
-      version = "1.8.1";
-      name = "${pname}-${version}";
-
-      src = fetchFromGitHub {
-        owner = "adrienverge";
-        repo = "${pname}";
-        rev = "967d4819475d4f11179960ee50811ec52cd1849c";
-        sha256 = "073ywn0m1kxwswlx6avb8yp642h1886kaiiih16j00qf2kyw4if9";
-      };
-    }))
     awscli
     kubectl
     minikube
@@ -35,6 +23,7 @@ in
     openssl
     slack
     unstable.leiningen
+    vagrant
   ];
 
   # Enable Java.
@@ -50,14 +39,24 @@ in
   #   ];
   # };
 
-  # Enable Docker.
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    # Enable Docker.
+    docker.enable = true;
 
-  # Enable VirtualBox.
-  virtualisation.virtualbox.host.enable = true;
+    # Enable VirtualBox.
+    virtualbox.host.enable = true;
+  };
 
   # Added user to groups.
   users.users.thiagoko.extraGroups = [ "docker" "vboxusers" ];
+
+  services = {
+    # Enable CUPS.
+    printing = {
+      enable = true;
+      drivers = [ pkgs.postscript-lexmark ];
+    };
+  };
 
   # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
   systemd.user.services.emacs = {
