@@ -37,6 +37,7 @@ in
     jq
     lsof
     mediainfo
+    parted
     pv
     python3Packages.youtube-dl
     ripgrep
@@ -44,6 +45,7 @@ in
     stow
     tmux
     universal-ctags
+    usbutils
     vim
     wget
     xclip
