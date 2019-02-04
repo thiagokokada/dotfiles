@@ -31,3 +31,9 @@ nixos-restore-etc() {
     esac
   done
 }
+
+upgrade-all() {
+  sudo nixos-rebuild switch --upgrade
+  (( $+commands[nvim] )) && nvim -c PlugUpdate -c qall
+  zit-update
+}

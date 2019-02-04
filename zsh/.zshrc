@@ -49,14 +49,16 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^v' edit-command-line
 
+# helpers
+run-bg() { ${@} </dev/null &>/dev/null &! }
+open() { run-bg xdg-open ${@} }
+
 # aliases
-alias gk="gitk &!"
+alias gk="run-bg gitk"
 alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
-alias ln-clean-up="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
-alias update-plugins="cd ${HOME}/.dotfiles && git submodule update --init --recursive --remote && cd -"
-
-open() { xdg-open "${@}" &> /dev/null &! }
+alias stow-clean-up="rm -- **/*(-@D)"
+alias update-submodules="cd "${HOME}/.dotfiles" && git submodule update --init --recursive --remote && cd -"
 
 # source contents from ~/.zshrc.d
 if [[ -d ${HOME}/.zshrc.d/ ]]; then
