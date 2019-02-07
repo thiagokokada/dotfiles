@@ -24,6 +24,7 @@ in
     aria2
     bc
     bind
+    cmus
     curl
     daemonize
     emacs
@@ -37,12 +38,15 @@ in
     jq
     lsof
     mediainfo
+    mosh
+    ncdu
     parted
     pv
     python3Packages.youtube-dl
     ripgrep
     sshuttle
     stow
+    tig
     tmux
     universal-ctags
     usbutils
