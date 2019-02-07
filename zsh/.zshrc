@@ -55,6 +55,7 @@ open() { run-bg xdg-open ${@} }
 
 # aliases
 alias gk="run-bg gitk"
+alias ssh="TERM=xterm-256color ssh"
 alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
 alias stow-clean-up="rm -- **/*(-@D)"
