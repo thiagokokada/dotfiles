@@ -1,0 +1,24 @@
+# Interactive rebase
+bind main B !git rebase -i %(commit)
+# Revert
+bind main ! !git revert %(commit)
+# Create a new branch
+bind refs n !@git branch "%(prompt Enter branch name: )"
+# Add verbose flag to git-commit
+bind generic C !git commit -v
+# Amend last commit
+bind generic + !git commit --amend
+# Drop the selected stash
+bind stash D !?git stash drop %(stash)
+# Apply the selected stash
+bind stash A !?git stash apply %(stash)
+# Stash the unstaged changes
+bind status S !?git stash save --keep-index %(prompt)
+# Delete a file or directory
+bind status D !@?git rm -rf %(file)
+# Tag the selected commit
+bind main T !@git tag %(prompt) %(commit)
+# Push changes
+bind status P !git push
+# Open commit on GitHub
+bind generic H @sh -c "xdg-open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
