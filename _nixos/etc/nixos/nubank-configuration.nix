@@ -67,5 +67,6 @@ in
       ExecStop  = ''${pkgs.emacs}/bin/emacsclient --eval "(progn (setq kill-emacs-hook 'nil) (kill-emacs))"'';
       Restart   = "on-failure";
     };
+    wantedBy = [ "default.target" ];
   };
 }

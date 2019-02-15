@@ -293,8 +293,6 @@ client.urgent #373b41 #cc6666 #ffffff #cc6666
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 
-for_window [class="^Peek$"] move scratchpad
-
 # run xsettingsd daemon
 exec --no-startup-id xsettingsd
 
@@ -303,6 +301,9 @@ exec --no-startup-id compton
 
 # notification manager
 exec --no-startup-id dunst
+
+# map a tap to Ctrl to Esc
+exec --no-startup-id xcape -e 'Control_L=Escape'
 
 # restore wallpaper
 exec --no-startup-id $set_wallpaper

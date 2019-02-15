@@ -40,6 +40,7 @@ in
       libreoffice-fresh
       lxmenu-data
       pcmanfm
+      peek
       perlPackages.FileMimeInfo
       qalculate-gtk
       shared_mime_info
@@ -156,6 +157,7 @@ in
             playerctl
             redshift
             rofi
+            xcape
             xdg-user-dirs
             xorg.xdpyinfo
             xorg.xkill
@@ -166,6 +168,9 @@ in
           ];
         };
       };
+
+      # Remap Caps Lock to Esc
+      xkbOptions = "ctrl:nocaps";
     };
   };
 
