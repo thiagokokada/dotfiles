@@ -2,9 +2,9 @@
 
 let
   unstable = import (fetchGit {
-    name = "nixos-unstable-2019-01-10";
+    name = "nixos-unstable-2019-02-17";
     url = https://github.com/nixos/nixpkgs/;
-    rev = "7c19fba9f61366319428d0a5f4ba2ee1684af5ae"; # leiningen 2.8.3
+    rev = "7c19fba9f61366319428d0a5f4ba2ee1684af5ae"; # leiningen 2.9.0
   }) {
     config = config.nixpkgs.config;
   };
@@ -15,6 +15,7 @@ in
 
   environment.systemPackages = with pkgs; [
     awscli
+    clojure
     kubectl
     minikube
     nodejs-10_x
