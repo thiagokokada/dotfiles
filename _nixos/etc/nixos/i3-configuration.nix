@@ -2,9 +2,9 @@
 
 let
   unstable = import (fetchGit {
-    name = "nixos-unstable-2019-01-10";
+    name = "nixos-unstable-2019-02-08";
     url = https://github.com/nixos/nixpkgs/;
-    rev = "77ec7d75a9effb1d45dc3c01fb1261be43bcc1e0"; # py3status 3.15
+    rev = "4a4e0a62d921a202fb13633ff5ce9d3962f45975"; # py3status 3.16
   }) {
     config = config.nixpkgs.config;
   };
