@@ -51,23 +51,23 @@
       ];
     };
 
-    nvidia = {
-      optimus_prime = {
-        enable = true;
-        # Bus ID of the NVIDIA GPU. You can find it using lspci
-        nvidiaBusId = "PCI:1:0:0";
-        # Bus ID of the Intel GPU. You can find it using lspci
-        intelBusId = "PCI:0:2:0";
-      };
-      # Use KMS with NVIDIA drivers.
-      modesetting.enable = true;
-    };
+    # nvidia = {
+    #   optimus_prime = {
+    #     enable = true;
+    #     # Bus ID of the NVIDIA GPU. You can find it using lspci
+    #     nvidiaBusId = "PCI:1:0:0";
+    #     # Bus ID of the Intel GPU. You can find it using lspci
+    #     intelBusId = "PCI:0:2:0";
+    #   };
+    #   # Use KMS with NVIDIA drivers.
+    #   modesetting.enable = true;
+    # };
 
     # Enable bumblebee to dynamic switch Intel/NVIDIA GPUs.
-    # bumblebee = {
-    #   enable = true;
-    #   pmMethod = "bbswitch";
-    # };
+    bumblebee = {
+      enable = true;
+      pmMethod = "bbswitch";
+    };
   };
 
   # Workaround Bumblebee issue.
@@ -84,10 +84,10 @@
       };
 
       # Use Intel (modesetting) driver, since intel driver itself is terrible.
-      # videoDrivers = [ "modesetting" ];
+      videoDrivers = [ "modesetting" ];
 
       # Use NVIDIA driver.
-      videoDrivers = [ "nvidia" ];
+      # videoDrivers = [ "nvidia" ];
     };
 
     # Trim SSD weekly.
