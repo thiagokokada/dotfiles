@@ -170,9 +170,6 @@ in
           ];
         };
       };
-
-      # Remap Caps Lock to Esc
-      xkbOptions = "ctrl:nocaps";
     };
   };
 
