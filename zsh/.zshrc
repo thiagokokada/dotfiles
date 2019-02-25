@@ -30,11 +30,6 @@ setopt correct
 # disable Ctrl+S/Ctrl-Q
 setopt noflowcontrol
 
-# pager
-export EDITOR="nvim"
-export VISUAL="nvim"
-export PAGER="less"
-
 # powerlevel9k
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
