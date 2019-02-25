@@ -10,6 +10,7 @@ order += "diskdata"
 order += "group network"
 order += "keyboard_layout"
 order += "battery_level"
+order += "do_not_disturb"
 order += "dpms"
 order += "backlight"
 order += "volume_status"
@@ -118,6 +119,17 @@ battery_level {
 keyboard_layout {
     cache_timeout = 5
     format = " {layout}"
+}
+
+do_not_disturb {
+    # Invert the defaults, since the idea here is to enable/disable
+    # notifications instead of enable/disable do not disturb.
+    format = "\?color=state  [\?if=state=1 |]"
+    pause = true
+    thresholds = [
+        (0, "good"),
+        (1, "bad")
+    ]
 }
 
 dpms {
