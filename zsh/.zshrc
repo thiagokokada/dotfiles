@@ -49,10 +49,11 @@ run-bg() { ${@} </dev/null &>/dev/null &! }
 open() { run-bg xdg-open ${@} }
 
 # aliases
+alias clean-zcache="rm -f .*.zwc"
 alias gk="run-bg gitk"
-alias ssh="TERM=xterm-256color ssh"
 alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
+alias ssh="TERM=xterm-256color ssh"
 alias stow-clean-up="rm -- **/*(-@D)"
 alias update-submodules="cd "${HOME}/.dotfiles" && git submodule update --init --recursive --remote && cd -"
 
