@@ -151,11 +151,11 @@ volume_status {
 }
 
 group time {
-    tztime hour {
-        format = " %H:%M:%S"
+    clock {
+        format_time = " %H:%M:%S"
     }
 
-    tztime date {
-        format = " %a %d/%m"
+    clock {
+        format_time = " %a %d/%m"
     }
 }

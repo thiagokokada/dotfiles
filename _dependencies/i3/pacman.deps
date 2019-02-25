@@ -25,6 +25,8 @@ playerctl
 pulseaudio-alsa
 py3status
 python
+python-pytz
+python-tzlocal
 qt5-styleplugins
 redshift
 rofi
