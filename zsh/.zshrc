@@ -55,7 +55,7 @@ alias http-server="python3 -m http.server"
 alias nvimdiff="nvim -d"
 alias ssh="TERM=xterm-256color ssh"
 alias stow-clean-up="rm -- **/*(-@D)"
-alias update-submodules="cd "${HOME}/.dotfiles" && git submodule update --init --recursive --remote && cd -"
+alias update-submodules="cd "${DOTFILES_PATH}" && git submodule update --init --recursive --remote && cd -"
 
 # source contents from ~/.zshrc.d
 if [[ -d ${HOME}/.zshrc.d/ ]]; then

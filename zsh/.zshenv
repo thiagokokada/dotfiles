@@ -18,3 +18,4 @@ path=(
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
+export DOTFILES_PATH="${HOME}/.dotfiles"
