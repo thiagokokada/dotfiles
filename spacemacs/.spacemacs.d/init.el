@@ -38,6 +38,7 @@ This function should only modify configuration layer settings."
      ,(if (file-exists-p "~/.emacs.d/private/layers/nu-clojure") 'nu-clojure)
      auto-completion
      better-defaults
+     docker
      emacs-lisp
      git
      helm
@@ -454,6 +455,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (evil-define-key 'normal global-map (kbd "C-a") #'evil-numbers/inc-at-pt)
   (evil-define-key 'normal global-map (kbd "C-x") #'evil-numbers/dec-at-pt)
+  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+  (add-hook 'elisp-mode-hook #'evil-cleverparens-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
