@@ -305,10 +305,6 @@ exec --no-startup-id dunst
 # run PCmanFM in daemon mode (to manage external media)
 exec --no-startup-id pcmanfm --daemon-mode
 
-# map Caps to Ctrl, and a tap to Ctrl to Esc
-exec --no-startup-id setxkbmap -option 'ctrl:nocaps'
-exec --no-startup-id xcape -e 'Control_L=Escape'
-
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
 

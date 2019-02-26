@@ -18,17 +18,12 @@ in
 
     # Desktop packages.
     systemPackages = with pkgs; [
-      (pcmanfm.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [
-          ffmpegthumbnailer
-          shared-mime-info
-        ];
-      }))
       arandr
       arc-icon-theme
       arc-theme
       chromium
       dropbox-cli
+      ffmpegthumbnailer
       firefox
       gimp
       gnome3.adwaita-icon-theme
@@ -44,9 +39,11 @@ in
       keepassx-community
       libreoffice-fresh
       lxmenu-data
+      pcmanfm
       peek
       perlPackages.FileMimeInfo
       qalculate-gtk
+      shared_mime_info
       termite
       unstable.kitty
     ];
@@ -91,6 +88,19 @@ in
     dbus.packages = with pkgs; [
       gnome3.dconf
     ];
+
+    # Remap Caps to Ctrl (ctrl) or Esc (tap), and Esc to Caps
+    interception-tools = {
+      enable = true;
+      plugins = [ pkgs.interception-tools-plugins.caps2esc ];
+      udevmonConfig = ''
+        - JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
+          DEVICE:
+            EVENTS:
+              EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+      '';
+    };
+
     # Allow automounting.
     gnome3.gvfs.enable = true;
 
@@ -162,7 +172,6 @@ in
             playerctl
             redshift
             rofi
-            xcape
             xdg-user-dirs
             xorg.xdpyinfo
             xorg.xkill
