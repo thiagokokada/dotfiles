@@ -18,12 +18,17 @@ in
 
     # Desktop packages.
     systemPackages = with pkgs; [
+      (pcmanfm.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [
+          ffmpegthumbnailer
+          shared-mime-info
+        ];
+      }))
       arandr
       arc-icon-theme
       arc-theme
       chromium
       dropbox-cli
-      ffmpegthumbnailer
       firefox
       gimp
       gnome3.adwaita-icon-theme
@@ -39,11 +44,9 @@ in
       keepassx-community
       libreoffice-fresh
       lxmenu-data
-      pcmanfm
       peek
       perlPackages.FileMimeInfo
       qalculate-gtk
-      shared_mime_info
       termite
       unstable.kitty
     ];
