@@ -18,6 +18,11 @@ in
 
     # Desktop packages.
     systemPackages = with pkgs; [
+      (pcmanfm.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [
+          shared-mime-info
+        ];
+      }))
       arandr
       arc-icon-theme
       arc-theme
@@ -43,7 +48,6 @@ in
       peek
       perlPackages.FileMimeInfo
       qalculate-gtk
-      shared_mime_info
       termite
       unstable.kitty
     ];
@@ -89,18 +93,6 @@ in
       gnome3.dconf
     ];
 
-    # Remap Caps to Ctrl (ctrl) or Esc (tap), and Esc to Caps
-    interception-tools = {
-      enable = true;
-      plugins = [ pkgs.interception-tools-plugins.caps2esc ];
-      udevmonConfig = ''
-        - JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
-          DEVICE:
-            EVENTS:
-              EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-      '';
-    };
-
     # Allow automounting.
     gnome3.gvfs.enable = true;
 
@@ -127,6 +119,7 @@ in
             };
           };
         };
+
       };
 
       # Disable Xterm.
@@ -182,6 +175,9 @@ in
           ];
         };
       };
+
+      # Remap Caps Lock to Esc
+      xkbOptions = "caps:escape";
     };
   };
 
