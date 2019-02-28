@@ -23,6 +23,12 @@ in
           shared-mime-info
         ];
       }))
+      (with unstable;
+        (ranger.overrideAttrs (oldAttrs: {
+          propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+            python3Packages.pillow
+          ];
+        })))
       arandr
       arc-icon-theme
       arc-theme
@@ -48,6 +54,7 @@ in
       peek
       perlPackages.FileMimeInfo
       qalculate-gtk
+      redshift
       termite
       unstable.kitty
     ];
@@ -144,34 +151,27 @@ in
                   pygobject3
                 ];
               })))
-            (with unstable;
-              (ranger.overrideAttrs (oldAttrs: {
-                propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-                  python3Packages.pillow
-                ];
-              })))
             compton-git
             dex
+            dmenu
             dunst
             ffmpeg
             i3lock
             i3status
-            iw
             libnotify
-            lm_sensors
+            lm-sensors
             maim
             nitrogen
             pavucontrol
             playerctl
-            redshift
             rofi
+            wmctrl
             xdg-user-dirs
             xorg.xdpyinfo
             xorg.xkill
             xorg.xset
             xsettingsd
             xss-lock
-            wmctrl
           ];
         };
       };

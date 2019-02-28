@@ -27,6 +27,7 @@
   environment.systemPackages = with pkgs; [
     blueman
     glxinfo
+    iw
     linuxPackages.cpupower
     lshw
     pciutils
