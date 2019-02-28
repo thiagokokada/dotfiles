@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 TEMP_FILE=$(mktemp --suffix '.png')
 OLD_STANDBY=$(xset q | awk 'BEGIN {FPAT="[0-9]+"} /Standby/{print $1}')
