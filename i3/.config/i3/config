@@ -6,10 +6,21 @@
 set $terminal kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)"
 set $browser firefox
 set $file_manager kitty ranger
-set $lock_screen env XSECURELOCK_FORCE_GRAB=2 XSECURELOCK_BLANK_DPMS_STATE=off xsecurelock
+set $lock_screen env \
+  XSECURELOCK_FORCE_GRAB=2 \
+  XSECURELOCK_BLANK_DPMS_STATE=off \
+  XSECURELOCK_DATETIME_FORMAT="%H:%M:%S - %a %d/%m" \
+  XSECURELOCK_SHOW_DATETIME=1 \
+  XSECURELOCK_SHOW_HOSTNAME=0 \
+  XSECURELOCK_SHOW_USERNAME=0 \
+  xsecurelock
 set $set_wallpaper nitrogen --restore
-set $fs_screenshot maim "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && notify-send -u normal -t 5000 'Full screenshot taken'
-set $area_screenshot maim -s "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && notify-send -u normal -t 5000 'Area screenshot taken'
+set $fs_screenshot maim \
+  "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && \
+  notify-send -u normal -t 5000 'Full screenshot taken'
+set $area_screenshot maim -s \
+  "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && \
+  notify-send -u normal -t 5000 'Area screenshot taken'
 set $volume $HOME/.config/i3/scripts/pavol.sh
 set $mons $HOME/.config/i3/scripts/mons.sh
 set $killallx $HOME/.config/i3/scripts/killallx.sh
