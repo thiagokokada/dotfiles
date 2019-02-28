@@ -170,6 +170,7 @@ in
             xorg.xdpyinfo
             xorg.xkill
             xorg.xset
+            xsecurelock
             xsettingsd
             xss-lock
           ];
