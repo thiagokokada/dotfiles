@@ -309,7 +309,7 @@ exec --no-startup-id pcmanfm --daemon-mode
 exec --no-startup-id $set_wallpaper
 
 # listen to X11/systemd power events
-exec --no-startup-id xss-lock -- $lock_screen
+exec --no-startup-id xss-lock -l -- $lock_screen
 
 # enable autolock in 10 minutes
 exec --no-startup-id xset s 600
