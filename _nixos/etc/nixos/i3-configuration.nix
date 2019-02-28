@@ -159,7 +159,7 @@ in
             i3lock
             i3status
             libnotify
-            lm-sensors
+            lm_sensors
             maim
             nitrogen
             pavucontrol
