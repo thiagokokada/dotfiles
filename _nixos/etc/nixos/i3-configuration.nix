@@ -165,12 +165,12 @@ in
             pavucontrol
             playerctl
             rofi
+            unstable.xsecurelock
             wmctrl
             xdg-user-dirs
             xorg.xdpyinfo
             xorg.xkill
             xorg.xset
-            xsecurelock
             xsettingsd
             xss-lock
           ];
