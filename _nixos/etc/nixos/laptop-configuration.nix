@@ -97,6 +97,9 @@
       interval = "weekly";
     };
 
+    # Lock screen when lid is closed.
+    logind.lidSwitch = "lock";
+
     # Enable systemd-resolved.
     resolved.enable = true;
 
