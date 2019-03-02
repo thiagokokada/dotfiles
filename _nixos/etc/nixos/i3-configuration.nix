@@ -151,6 +151,14 @@ in
                   pygobject3
                 ];
               })))
+            (with unstable;
+              (xsecurelock.overrideAttrs (oldAttrs: {
+                buildInputs = oldAttrs.buildInputs ++ [
+                  xorg.libXScrnSaver
+                  xorg.libXext
+                  xorg.libXrandr
+                ];
+              })))
             compton-git
             dex
             dmenu
@@ -165,7 +173,6 @@ in
             pavucontrol
             playerctl
             rofi
-            unstable.xsecurelock
             wmctrl
             xdg-user-dirs
             xorg.xdpyinfo
