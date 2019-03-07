@@ -40,10 +40,12 @@ in
     mediainfo
     mosh
     ncdu
+    pandoc
     parted
     pv
     python3Packages.youtube-dl
     ripgrep
+    shellcheck
     sshuttle
     stow
     tig

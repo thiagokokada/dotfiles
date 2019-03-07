@@ -457,6 +457,7 @@ before packages are loaded."
   (evil-define-key 'normal global-map (kbd "C-x") #'evil-numbers/dec-at-pt)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'elisp-mode-hook #'evil-cleverparens-mode)
+  (setq markdown-command "pandoc")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

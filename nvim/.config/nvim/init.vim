@@ -123,6 +123,8 @@ nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
 nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
 nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" sort in line
+vnoremap <F3> d:execute 'normal i' . join(sort(split(getreg('"'))), ' ')<CR>
 " enable/disable paste mode
 set pastetoggle=<F4>
 " show line number
