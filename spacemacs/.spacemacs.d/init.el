@@ -35,24 +35,27 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    `((clojure :variables
               clojure-enable-clj-refactor t)
-     ,(if (file-exists-p "~/.emacs.d/private/layers/nu-clojure") 'nu-clojure)
+     (ivy :variables
+          ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+     (markdown :variables
+               markdown-command "pandoc")
      auto-completion
      better-defaults
      docker
      emacs-lisp
      git
-     helm
      html
      javascript
-     markdown
      multiple-cursors
+     nixos
      org
      ranger
      scala
      syntax-checking
      treemacs
      version-control
-     yaml)
+     yaml
+     ,(if (file-exists-p "~/.emacs.d/private/layers/nu-clojure") 'nu-clojure))
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -457,7 +460,6 @@ before packages are loaded."
   (evil-define-key 'normal global-map (kbd "C-x") #'evil-numbers/dec-at-pt)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'elisp-mode-hook #'evil-cleverparens-mode)
-  (setq markdown-command "pandoc")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
