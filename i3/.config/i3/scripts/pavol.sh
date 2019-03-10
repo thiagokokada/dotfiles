@@ -18,13 +18,13 @@ mute    Mute default sink
 
 case "$1" in
     raise)
-        pactl set-sink-volume "$ACTIVESYNC" +"${PERCENT}"%
+        pactl set-sink-volume "${ACTIVESYNC}" +"${PERCENT}"%
         ;;
     lower)
-        pactl set-sink-volume "$ACTIVESYNC" -"${PERCENT}"%
+        pactl set-sink-volume "${ACTIVESYNC}" -"${PERCENT}"%
         ;;
     mute)
-        pactl set-sink-mute "$ACTIVESYNC" toggle
+        pactl set-sink-mute "${ACTIVESYNC}" toggle
         ;;
     *)
         usage

@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
 TEMP_FILE=$(mktemp --suffix '.png')
-OLD_STANDBY=$(xset q | awk 'BEGIN {FPAT="[0-9]+"} /Standby/{print $1}')
-NEW_STANDBY=5
-RESUME_PLAYING=0
+NEW_STANDBY=(5 5 5)
 I3LOCK_OPTIONS=(-e -i "${TEMP_FILE}")
 
-pause_player() {
+__pause_player() {
     local status
     status="$(playerctl status)"
 
@@ -17,13 +15,13 @@ pause_player() {
     fi
 }
 
-resume_player() {
-    if [[ "${RESUME_PLAYING}" -eq 1 ]]; then
+__resume_player() {
+    if [[ -n "${RESUME_PLAYING}" ]]; then
         playerctl play
     fi
 }
 
-take_screenshot() {
+__take_screenshot() {
     local resolution
     resolution=$(xdpyinfo | awk '/dimensions/{print $2}')
 
@@ -33,29 +31,39 @@ take_screenshot() {
 }
 
 pre_lock() {
-    take_screenshot
-    xset +dpms dpms "${NEW_STANDBY}"
-    pause_player
+    read -r -a OLD_STANDBY <<< "$(
+        xset q |
+        awk 'BEGIN {FPAT="[0-9]+"} /Standby.*Suspend.*Off/{print $1, $2, $3}'
+    )"
+    __take_screenshot
+    xset +dpms dpms "${NEW_STANDBY[@]}"
+    __pause_player
 }
 
 post_lock() {
     rm -f "${TEMP_FILE}"
-    xset dpms "${OLD_STANDBY}"
-    resume_player
+    xset dpms "${OLD_STANDBY[@]}"
+    __resume_player
 }
 
-trap post_lock HUP INT TERM EXIT
+main() {
+    trap post_lock HUP INT TERM EXIT
 
-pre_lock
+    pre_lock
 
-if [[ -e "/dev/fd/${XSS_SLEEP_LOCK_FD:--1}" ]]; then
-    # we have to make sure the locker does not inherit a copy of the lock fd
-    i3lock "${I3LOCK_OPTIONS[@]}" {XSS_SLEEP_LOCK_FD}<&-
+    if [[ -e "/dev/fd/${XSS_SLEEP_LOCK_FD:--1}" ]]; then
+        # we have to make sure the locker does not inherit a copy of the lock fd
+        i3lock "${I3LOCK_OPTIONS[@]}" {XSS_SLEEP_LOCK_FD}<&-
 
-    # now close our fd (only remaining copy) to indicate we're ready to sleep
-    exec {XSS_SLEEP_LOCK_FD}<&-
-else
-    i3lock -n "${I3LOCK_OPTIONS[@]}"
+        # now close our fd to indicate we're ready to sleep
+        exec {XSS_SLEEP_LOCK_FD}<&-
+    else
+        i3lock -n "${I3LOCK_OPTIONS[@]}"
+    fi
+
+    post_lock
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
 fi
-
-post_lock
