@@ -3,15 +3,17 @@
 ###############################################################################
 # ABOUT                                                                       #
 ###############################################################################
-# This is a modified version of mons v0.8.2 [1] with needed                   #
-# liblist.sh v1.1 [2]  functions included inline.                             #
-# [1]: https://github.com/Ventto/mons/blob/v0.8.2/mons                        #
-# [2]: https://github.com/Ventto/libshlist/blob/v1.1/liblist.sh               #
+# This is a modified version of mons-git with liblist functions included      #
+# inline.                                                                     #
+#                                                                             #
+# Commits:                                                                    #
+# - mons: 261ecbc8ba1d94f07d2450ce34439ff68f77588b                            #
+# - liblist: 1d0bdb71477d7541af90412219d26d4b78decb5b                         #
 ###############################################################################
 #
 # The MIT License (MIT)
 #
-# Copyright (c) 2017-2018 Thomas "Ventto" Venriès <thomas.venries@gmail.com>
+# Copyright (c) 2018-2019 Thomas "Ventto" Venriès <thomas.venries@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -58,6 +60,13 @@ More monitors:
         Only enables two monitors with specified ids. The specified position
         places the second monitor on the right (R) or at the top (T).
 
+Daemon mode:
+  -a    Performs an automatic display if it detects only one monitor.
+  -x <script>
+        Must be used in conjunction with the -a option. Every time the number
+        of connected monitors changes, mons calls the given script with the
+        MONS_NUMBER environment variable.
+
 Extra (in-conjunction or alone):
   --dpi <dpi>
         Set the DPI, a strictly positive value within the range [0 ; 27432].
@@ -66,9 +75,6 @@ Extra (in-conjunction or alone):
         without argument to print monitors information, the names are in the
         second column between ids and status. The primary monitor is marked
         by an asterisk.
-
-Daemon mode:
-  -a    Performs an automatic display if it detects only one monitor.
 '
 }
 
@@ -88,46 +94,129 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 [ "$1" = '-h' ] && { usage; exit; }
 [ "$1" = '-v' ] && { version; exit; }
 
-list() {
+# BEGIN liblist.sh
+list () {
     for e; do [ -n "$e" ] && echo "$e"; done
 }
 
-list_size() {
+list_size () {
     if [ -z "$1" ]; then echo '0'; else echo "$@" | wc -l; fi
 }
 
-list_insert() {
+list_empty () {
+    test -z "$1"
+}
+
+list_push_front () {
+    test "$#" -ne 2 && return 1
+    if [ "$2" = '' ]; then echo "$1"; else printf '%s\n%s' "$1" "$2"; fi
+}
+
+list_push_back () {
+    test "$#" -ne 2 && return 1
+    if [ "$2" = '' ]; then echo "$1"; else printf '%s\n%s' "$2" "$1"; fi
+}
+
+list_insert () {
     test "$#" -ne 3 && return 1
     i="$2"; [ "$i" != '$' ] &&  i=$((i+1)); echo "$3" | sed "${i}i${1}"
 }
 
-list_get() {
+list_set () {
+    test "$#" -ne 3 && return 1
+    i="$2"; i=$((i+1)); echo "$3" | sed -e "${i}s/.*/$1/"
+}
+
+list_extract () {
+    test "$#" -ne 3 && return 1
+    i="$1"; j="$2"; i=$((i+1)); j=$((j+1)); echo "$3" | sed -n "${i},${j}p"
+}
+
+list_replace () {
+    test "$#" -ne 3 && return 1; echo "$3" | sed -e "s/^$1$/$2/g"
+}
+
+list_get () {
     test "$#" -ne 2 && return 1; i="$1"; i=$((i+1)); echo "$2" | sed -n "${i}p"
 }
 
-list_front() {
+list_front () {
     test "$#" -ne 1 && return 1; echo "$@" | sed -n '1p'
 }
 
-list_erase() {
+list_back () {
+    test "$#" -ne 1 && return 1; echo "$@" | sed -n '$p'
+}
+
+list_erase () {
     test "$#" -ne 2 && return 1; echo "$2" | sed -e "0,/^$1$/ s///" -e '/^$/d'
 }
 
-list_contains() {
-    test "$#" -ne 2 && return 1
-    for e in $2; do [ "$e" = "$1" ] && return 0; done; return 1
+list_erase_range () {
+    test "$#" -ne 3 && return 1
+    i="$1"; j="$2"; i=$((i+1)); j=$((j+1)); echo "$3" | sed "${i},${j}d"
 }
+
+list_erase_from () {
+    test "$#" -ne 2 && return 1; i="$1"; i=$((i+1)); echo "$2" | sed "${i},\$d"
+}
+
+list_eraseat () {
+    test "$#" -ne 2 && return 1; i="$1"; i=$((i+1)); echo "$2" | sed "${i}d"
+}
+
+list_remove () {
+    test "$#" -ne 2 && return 1; echo "$2" | sed -e "/^$1$/d"
+}
+
+list_pop_front () {
+    test "$#" -ne 1 && return 1; echo "$1" | sed '1d'
+}
+
+list_pop_back () {
+    test "$#" -ne 1 && return 1; echo "$1" | sed '$d'
+}
+
+list_indexof () {
+    test "$#" -ne 2 && return 1; i=0
+    for e in $2; do
+        [ "$e" = "$1" ] && { echo "$i"; return 0; }; i=$((i+1));
+    done
+    return 1
+}
+
+list_count () {
+    test "$#" -ne 2 && return 1
+    i=0; for e in $2; do [ "$e" = "$1" ] && { i=$((i+1)); }; done; echo "$i"
+}
+
+list_map () {
+    test "$#" -ne 2 && return 1; for e in $2; do eval "$1 $e"; done
+}
+
+list_reverse() {
+    test "$#" -ne 1 && return 1; echo "$1" | sed '1!x;H;1h;$!d;g'
+}
+
+list_sort () {
+    test "$#" -ne 1 && return 1; echo "$1" | sort -n
+}
+
+list_sort_reverse () {
+    test "$#" -ne 1 && return 1; echo "$1" | sort -nr
+}
+# END liblist.sh
 
 arg_err() {
     usage ; exit 2
 }
 
 enable_mon() {
-    "${XRANDR}" --output "${1}" --auto --dpi "${dpi}"
+    "$XRANDR" --output "$1" --auto
 }
 
 disable_mons() {
-    for mon in $@; do "${XRANDR}" --output "${mon}" --off ; done
+    for mon in $@; do "$XRANDR" --output "$mon" --off ; done
 }
 
 arg2xrandr() {
@@ -178,6 +267,18 @@ whichmode() {
 }
 
 main() {
+    # =============================
+    #        Requirements
+    # =============================
+
+    [ -z "$DISPLAY" ]  && { echo 'DISPLAY: no variable set.';  exit 1; }
+    command -vp xrandr >/dev/null 2>&1 || { echo 'xrandr: command not found.'; exit 1; }
+    XRANDR="$(command -pv xrandr)"
+
+    # =============================
+    #      Argument Checking
+    # =============================
+
     aFlag=false
     dFlag=false
     eFlag=false
@@ -189,9 +290,9 @@ main() {
     SFlag=false
     pFlag=false
     iFlag=false
+    xFlag=false
     is_flag=false
     # X has assumed 96 DPI and this is fine for many traditional monitors.
-    dpi=96
     primary=
 
     # getopts does not support long options. We convert them to short one.
@@ -204,17 +305,17 @@ main() {
         esac
     done
 
-    while getopts 'hvamosde:n:O:S:i:p:' opt; do
+    while getopts 'hvamosde:n:O:S:i:p:x:' opt; do
         case $opt in
             # Long options
             i)
-                if ! echo "${OPTARG}" | \
+                if ! echo "$OPTARG" | \
                     grep -E '^[1-9][0-9]*$' > /dev/null 2>&1; then
                     arg_err
                 fi
-                iFlag=true; dpi="$OPTARG"
+                iFlag=true; iArg="$OPTARG"
                 ;;
-            p)  if ! echo "${OPTARG}" | \
+            p)  if ! echo "$OPTARG" | \
                     grep -E '^[a-zA-Z][a-zA-Z0-9\-]+' > /dev/null 2>&1; then
                     arg_err
                 fi
@@ -245,20 +346,27 @@ main() {
                 [ "$opt" = "e" ] && eFlag=true || nFlag=true ; is_flag=true
                 ;;
             O)  $is_flag && arg_err
-                ! echo "${OPTARG}" | grep -E '^[0-9]+$' > /dev/null && arg_err
+                ! echo "$OPTARG" | grep -E '^[0-9]+$' > /dev/null && arg_err
                 OArg=$OPTARG
                 OFlag=true ; is_flag=true
                 ;;
             S)  $is_flag && arg_err
-                idx1="$(echo "${OPTARG}" | cut -d',' -f1)"
-                idx2="$(echo "${OPTARG}" | cut -d',' -f2)"
-                area="$(echo "${idx2}" | cut -d ':' -f2)"
-                idx2="$(echo "${idx2}" | cut -d ':' -f1)"
-                ! echo "${idx1}" | grep -E '^[0-9]+$' > /dev/null && arg_err
-                ! echo "${idx2}" | grep -E '^[0-9]+$' > /dev/null && arg_err
-                ! echo "${area}" | grep -E '^[RT]$' > /dev/null && arg_err
-                [ "${idx1}" = "${idx2}" ] && arg_err
+                idx1="$(echo "$OPTARG" | cut -d',' -f1)"
+                idx2="$(echo "$OPTARG" | cut -d',' -f2)"
+                area="$(echo "$idx2" | cut -d ':' -f2)"
+                idx2="$(echo "$idx2" | cut -d ':' -f1)"
+                ! echo "$idx1" | grep -E '^[0-9]+$' > /dev/null && arg_err
+                ! echo "$idx2" | grep -E '^[0-9]+$' > /dev/null && arg_err
+                ! echo "$area" | grep -E '^[RT]$' > /dev/null && arg_err
+                [ "$idx1" = "$idx2" ] && arg_err
                 SFlag=true ; is_flag=true
+                ;;
+            x)  xFlag=true;
+                if [ ! -x "$OPTARG" ]; then
+                    echo "${OPTARG}: file cannot be executed or does not exist"
+                    exit 2
+                fi
+                xArg="$OPTARG"
                 ;;
             h)  usage   ; exit ;;
             v)  version ; exit ;;
@@ -267,23 +375,30 @@ main() {
         esac
     done
 
-    [ -z "${DISPLAY}" ] && { echo 'DISPLAY: no variable set.'; exit 1; }
+    if $xFlag; then
+        if ! $aFlag; then
+            echo '-x: option can only be used in conjunction with -a'
+            exit 2
+        fi
+    fi
 
-    XRANDR="$(command -v xrandr)"
-    [ "$?" -ne 0 ] && { echo 'xrandr: command not found.'; exit 1; }
+    # =============================
+    #         Daemon Mode
+    # =============================
 
-    # DPI set
-    $iFlag && [ "$#" -eq 2 ] && { "${XRANDR}" --dpi "$dpi"; exit; }
-
-    # Daemon mode
     if $aFlag ; then
         prev=0; i=0
         while true; do
             for status in /sys/class/drm/*/status; do
                 [ "$(<"$status")" = 'connected' ] && i=$((i+1))
             done
-            if [ "$i" -eq 1 ] && [ "$i" != "$prev" ]; then
-                "${XRANDR}" --auto --dpi "${dpi}"
+
+            if [ "$i" != "$prev" ]; then
+                if $xFlag; then
+                    MONS_NUMBER="$i" sh "$xArg"
+                else
+                    [ "$i" -eq 1 ] && "$XRANDR" --auto
+                fi
             fi
             prev="$i"; i=0
             sleep 2
@@ -291,53 +406,65 @@ main() {
     fi
 
     # List all outputs (except primary one)
-    xrandr_out="$("${XRANDR}")"
-    enabled_out="$(echo "${xrandr_out}" | grep 'connect')"
-    [ -z "${enabled_out}" ] && { echo 'No monitor output detected.'; exit; }
-    mons="$(echo "${enabled_out}" | cut -d' ' -f1)"
+    xrandr_out="$("$XRANDR")"
+    enabled_out="$(echo "$xrandr_out" | grep 'connect')"
+    [ -z "$enabled_out" ] && { echo 'No monitor output detected.'; exit; }
+    mons="$(echo "$enabled_out" | cut -d' ' -f1)"
 
     # List plugged-in and turned-on outputs
-    enabled_out="$(echo "${enabled_out}" | grep ' connect')"
-    [ -z "${enabled_out}" ] && { echo 'No plugged-in monitor detected.'; exit 1; }
-    plug_mons="$(echo "${enabled_out}" | cut -d' ' -f1)"
+    enabled_out="$(echo "$enabled_out" | grep ' connect')"
+    [ -z "$enabled_out" ] && { echo 'No plugged-in monitor detected.'; exit 1; }
+    plug_mons="$(echo "$enabled_out" | cut -d' ' -f1)"
+
+    if [ "$(list_size "$plug_mons")" -eq 0 ]; then
+        echo "No monitor plugged-in."
+        exit 0
+    fi
+
+    # =============================
+    #     Conjunction Options
+    # =============================
+
+    # Set DPI
+    $iFlag && "$XRANDR" --dpi "$iArg"
 
     # Set primary output
     if $pFlag; then
-        if ! list_contains "${primary}" "${plug_mons}"; then
+        if ! list_contains "$primary" "$plug_mons"; then
             echo "${primary}: output not connected."
             exit 1
         fi
-        "${XRANDR}" --output "${primary}" --primary
+        "$XRANDR" --output "$primary" --primary
         [ "$#" -eq 2 ] && exit
     else
-        primary="$(echo "${enabled_out}" | grep 'primary' | cut -d' ' -f1)"
+        primary="$(echo "$enabled_out" | grep 'primary' | cut -d' ' -f1)"
     fi
 
     # Move the primary monitor to the head if connected otherwise the first
     # connected monitor that appears in the xrandr output is considerate as
     # the primary one.
-    if [ -n "${primary}" ]; then
-        plug_mons="$(list_erase "${primary}" "${plug_mons}")"
-        plug_mons="$(list_insert "${primary}" 0 "${plug_mons}")"
+    if [ -n "$primary" ]; then
+        plug_mons="$(list_erase "$primary" "$plug_mons")"
+        plug_mons="$(list_insert "$primary" 0 "$plug_mons")"
     fi
 
-    enabled_out="$(echo "${enabled_out}" | grep -E '\+[0-9]{1,4}\+[0-9]{1,4}')"
-    disp_mons="$(echo "${enabled_out}" | cut -d' ' -f1)"
+    enabled_out="$(echo "$enabled_out" | grep -E '\+[0-9]{1,4}\+[0-9]{1,4}')"
+    disp_mons="$(echo "$enabled_out" | cut -d' ' -f1)"
 
     if [ "$#" -eq 0 ]; then
-        echo "Monitors: $(list_size "${plug_mons}")"
+        echo "Monitors: $(list_size "$plug_mons")"
         echo "Mode: $(whichmode)"
 
         i=0
-        for mon in ${mons}; do
-            if echo "${plug_mons}" | grep "^${mon}$" > /dev/null; then
-                if echo "${disp_mons}" | grep "^${mon}$" > /dev/null; then
+        for mon in $mons; do
+            if echo "$plug_mons" | grep "^${mon}$" > /dev/null; then
+                if echo "$disp_mons" | grep "^${mon}$" > /dev/null; then
                     state='(enabled)'
                 fi
-                if [ "${mon}" = "${primary}" ]; then
-                    printf '%-4s %-8s %-8s %-8s\n' "${i}:*" "${mon}" "${state}"
+                if [ "$mon" = "$primary" ]; then
+                    printf '%-4s %-8s %-8s %-8s\n' "${i}:*" "$mon" "$state"
                 else
-                    printf '%-4s %-8s %-8s\n' "${i}:" "${mon}" "${state}"
+                    printf '%-4s %-8s %-8s\n' "${i}:" "$mon" "$state"
                 fi
             fi
             i=$((i+1))
@@ -356,12 +483,12 @@ main() {
         esac
     fi
 
-    if [ "$(list_size "${plug_mons}")" -eq 1 ] ; then
+    if [ "$(list_size "$plug_mons")" -eq 1 ] ; then
         if $oFlag ; then
             # After unplugging each monitor, the last preferred one might be
             # still turned off or the window manager might need the monitor
             # reset to cause the reconfiguration of the layout placement.
-            "${XRANDR}" --auto --dpi "${dpi}"
+            "$XRANDR" --auto
         else
             echo 'Only one monitor detected.'
         fi
@@ -381,12 +508,12 @@ main() {
     fi
 
     if $OFlag ; then
-        if [ "${OArg}" -ge "$(list_size "${mons}")" ] ; then
+        if [ "$OArg" -ge "$(list_size "$mons")" ] ; then
             echo "Monitor ID '${OArg}' does not exist."
             echo 'Try without option to get monitor ID list.'
             exit 2
         fi
-        mons_elt="$(list_get "${OArg}" "${mons}")"
+        mons_elt="$(list_get "$OArg" "$mons")"
         if ! list_contains "${mons_elt}" "${plug_mons}"; then
             echo "Monitor ID '${OArg}' not plugged in."
             echo 'Try without option to get monitor ID list.'
@@ -400,75 +527,79 @@ main() {
     fi
 
     if $SFlag ; then
-        if [ "${idx1}" -ge "$(list_size "${mons}")" ] || \
-            [ "${idx2}" -ge "$(list_size "${mons}")" ]; then
+        if [ "$idx1" -ge "$(list_size "$mons")" ] || \
+            [ "$idx2" -ge "$(list_size "$mons")" ]; then
             echo 'One or both monitor IDs do not exist.'
             echo 'Try without option to get monitor ID list.'
             exit 2
         fi
-        if ! list_contains "$(list_get "${idx1}" "${mons}")" "${plug_mons}" || \
-            ! list_contains "$(list_get "${idx2}" "${mons}")" "${plug_mons}" ; then
+        if ! list_contains "$(list_get "$idx1" "$mons")" "$plug_mons" || \
+            ! list_contains "$(list_get "$idx2" "$mons")" "$plug_mons" ; then
             echo 'One or both monitor IDs are not plugged in.'
             echo 'Try without option to get monitor ID list.'
             exit 2
         fi
 
-        [ "${area}" = 'R' ] && area="--right-of" || area="--above"
+        [ "$area" = 'R' ] && area="--right-of" || area="--above"
 
-        mon1="$(list_get "${idx1}" "${mons}")"
-        mon2="$(list_get "${idx2}" "${mons}")"
-        disp_mons="$(list_erase "${mon1}" "${disp_mons}")"
-        disp_mons="$(list_erase "${mon2}" "${disp_mons}")"
-        disable_mons "${disp_mons}"
-        enable_mon "${mon1}"
-        enable_mon "${mon2}"
-        "${XRANDR}" --output "${mon2}" "${area}" "${mon1}"
+        mon1="$(list_get "$idx1" "$mons")"
+        mon2="$(list_get "$idx2" "$mons")"
+        disp_mons="$(list_erase "$mon1" "$disp_mons")"
+        disp_mons="$(list_erase "$mon2" "$disp_mons")"
+        disable_mons "$disp_mons"
+        enable_mon "$mon1"
+        enable_mon "$mon2"
+        "$XRANDR" --output "$mon2" "$area" "$mon1"
         exit
     fi
 
-    if [ "$(list_size "${plug_mons}")" -eq 2 ]; then
+    # =============================
+    #     2-Monitors Options
+    # =============================
+
+    if [ "$(list_size "$plug_mons")" -eq 2 ]; then
         if $sFlag ; then
-            if [ "$(list_size "${disp_mons}")" -eq 1 ] ; then
-                if [ "$(list_front "${disp_mons}")" = "$(list_get 1 "${plug_mons}")" ] ; then
-                    enable_mon "$(list_get 1 "${plug_mons}")"
+            if [ "$(list_size "$disp_mons")" -eq 1 ] ; then
+                if [ "$(list_front "$disp_mons")" = "$(list_get 1 "$plug_mons")" ] ; then
+                    enable_mon "$(list_get 1 "$plug_mons")"
                     exit
                 fi
             fi
-            enable_mon "$(list_get 1 "${plug_mons}")"
-            disable_mons "$(list_front "${disp_mons}")"
+            enable_mon "$(list_get 1 "$plug_mons")"
+            disable_mons "$(list_front "$disp_mons")"
             exit
         fi
 
         # Resets the screen configuration
-        disable_mons "$(list_get 1 "${plug_mons}")"
-        "${XRANDR}" --auto --dpi "${dpi}"
+        disable_mons "$(list_get 1 "$plug_mons")"
+        "$XRANDR" --auto
 
         if $dFlag ; then
-            "${XRANDR}" --output "$(list_get 1 "${plug_mons}")" \
-                --same-as "$(list_front "${plug_mons}")"
+            "$XRANDR" --output "$(list_get 1 "$plug_mons")" \
+                --same-as "$(list_front "$plug_mons")"
             exit $?
         fi
 
         if $mFlag ; then
-            xrandr_out="$(echo "${xrandr_out}" | \
+            xrandr_out="$(echo "$xrandr_out" | \
                           awk "/primary/{nr[NR]; nr[NR+1]}; NR in nr")"
-            if echo "${xrandr_out}" | \
+            if echo "$xrandr_out" | \
                 grep -E 'primary [0-9]+x[0-9]+' >/dev/null 2>&1; then
-                size="$(echo "${xrandr_out}" | head -n1 | cut -d' ' -f4 | \
+                size="$(echo "$xrandr_out" | head -n1 | cut -d' ' -f4 | \
                         cut -d'+' -f1)"
             else
-                size="$(echo "${xrandr_out}" | tail -n1 | awk '{ print $1 }')"
+                size="$(echo "$xrandr_out" | tail -n1 | awk '{ print $1 }')"
             fi
 
-            "${XRANDR}" --output "$(list_get 1 "${plug_mons}")" \
-                --auto --scale-from  "${size}" \
-                --output "$(list_front "${plug_mons}")"
+            "$XRANDR" --output "$(list_get 1 "$plug_mons")" \
+                --auto --scale-from  "$size" \
+                --output "$(list_front "$plug_mons")"
             exit $?
         fi
 
         if $eFlag ; then
-            "${XRANDR}" --output "$(list_get 1 "${plug_mons}")" \
-                "$(arg2xrandr "$eArg")" "$(list_front "${plug_mons}")"
+            "$XRANDR" --output "$(list_get 1 "$plug_mons")" \
+                "$(arg2xrandr "$eArg")" "$(list_front "$plug_mons")"
             exit $?
         fi
     else
