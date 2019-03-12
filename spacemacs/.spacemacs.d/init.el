@@ -35,8 +35,6 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    `((clojure :variables
               clojure-enable-clj-refactor t)
-     (ivy :variables
-          ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
      (markdown :variables
                markdown-command "pandoc")
      auto-completion
@@ -44,6 +42,7 @@ This function should only modify configuration layer settings."
      docker
      emacs-lisp
      git
+     heml
      html
      javascript
      multiple-cursors
