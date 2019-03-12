@@ -10,6 +10,8 @@ let
   };
 in
 {
+  nixpkgs.config.allowUnfree = true;
+
   # CLI packages.
   environment.systemPackages = with pkgs; [
     (mpv-with-scripts.override ({
@@ -39,7 +41,10 @@ in
     lsof
     mediainfo
     mosh
+    mtr
     ncdu
+    netcat-gnu
+    p7zip
     pandoc
     parted
     pv
@@ -48,9 +53,12 @@ in
     shellcheck
     sshuttle
     stow
+    telnet
     tig
     tmux
     universal-ctags
+    unrar
+    unzip
     usbutils
     vim
     wget

@@ -14,6 +14,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    apacheKafka
     awscli
     clojure
     kubectl
