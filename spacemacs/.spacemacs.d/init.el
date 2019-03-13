@@ -46,13 +46,13 @@ This function should only modify configuration layer settings."
      html
      javascript
      multiple-cursors
+     neotree
      nixos
      org
-     ranger
      scala
      syntax-checking
-     treemacs
      version-control
+     vinegar
      yaml
      ,(if (file-exists-p "~/.emacs.d/private/layers/nu-clojure") 'nu-clojure))
 
