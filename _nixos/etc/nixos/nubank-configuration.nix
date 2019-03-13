@@ -2,9 +2,9 @@
 
 let
   unstable = import (fetchGit {
-    name = "nixos-unstable-2019-02-17";
+    name = "nixos-unstable-2019-03-02";
     url = https://github.com/nixos/nixpkgs/;
-    rev = "7c19fba9f61366319428d0a5f4ba2ee1684af5ae"; # leiningen 2.9.0
+    rev = "025c2abd08de80609b961c8c8176a2be390a6d88"; # leiningen 2.9.1
   }) {
     config = config.nixpkgs.config;
   };
@@ -17,6 +17,7 @@ in
     apacheKafka
     awscli
     clojure
+    gnome3.gtk-vnc
     kubectl
     minikube
     nodejs-10_x
