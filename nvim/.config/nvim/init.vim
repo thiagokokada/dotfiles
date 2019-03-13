@@ -22,7 +22,7 @@ Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'luochen1990/rainbow'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-mkdir'
@@ -43,10 +43,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
 " clojure
-Plug 'clojure-vim/async-clj-omni'
-Plug 'clojure-vim/clj-refactor.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
 Plug 'tpope/vim-sexp-mappings-for-regular-people' | Plug 'guns/vim-sexp'
 " python
 Plug 'davidhalter/jedi-vim'
@@ -98,21 +95,16 @@ nnoremap <silent> <leader>T :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
 nnoremap <silent> <leader>g :TestVisit<CR>
-" vim-fireplace
-"" Eval
-nnoremap <Leader>e :%Eval<CR>
-"" Go to definition remap
-map gd [<C-d>
-"" Go to definition on a new tab
-map gD <C-w>gd
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-" clj-refactor
-let g:clj_refactor_prune_ns_form = 0
-let g:clj_refactor_prefix_rewriting = 0
-" clojure-static
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^ns', '^provided', '^when-not', '^tabular', '^fn', '^flow', '^verify']
+" Rainbow parenthesis
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+" vim-iced
+let g:iced_enable_default_key_mappings = v:true
 
 """"""""
 " misc "
@@ -122,13 +114,15 @@ nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
 " unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
-nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " sort in line
 vnoremap <F3> d:execute 'normal i' . join(sort(split(getreg('"'))), ' ')<CR>
 " enable/disable paste mode
 set pastetoggle=<F4>
 " show line number
 set number
+" hidden unused buffers
+set hidden
 " live substitutions as you type
 set inccommand=nosplit
 " copy and paste
