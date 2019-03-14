@@ -43,8 +43,7 @@ This function should only modify configuration layer settings."
      elixir
      emacs-lisp
      git
-     guess-style
-     heml
+     helm
      html
      javascript
      multiple-cursors
@@ -67,7 +66,11 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     default-text-scale
+     dtrt-indent
+    )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -461,6 +464,10 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'elisp-mode-hook #'evil-cleverparens-mode)
+
+  (global-set-key (kbd "C-0") #'default-text-scale-reset)
+  (global-set-key (kbd "C-+") #'default-text-scale-increase)
+  (global-set-key (kbd "C--") #'default-text-scale-decrease)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
