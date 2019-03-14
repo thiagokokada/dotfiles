@@ -53,6 +53,7 @@ This function should only modify configuration layer settings."
      python
      ruby
      scala
+     shell-scripts
      syntax-checking
      version-control
      vinegar
@@ -464,6 +465,10 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'elisp-mode-hook #'evil-cleverparens-mode)
+
+  (global-undo-tree-mode)
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
   (global-set-key (kbd "C-0") #'default-text-scale-reset)
   (global-set-key (kbd "C-+") #'default-text-scale-increase)
