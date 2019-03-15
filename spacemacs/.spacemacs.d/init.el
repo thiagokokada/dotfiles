@@ -32,11 +32,9 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '()
 
    ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers
-   `((clojure :variables
-              clojure-enable-clj-refactor t)
-     (markdown :variables
-               markdown-command "pandoc")
+   dotspacemacs-configuration-layers '(
+     (clojure :variables clojure-enable-clj-refactor t)
+     (markdown :variables markdown-command "pandoc")
      auto-completion
      better-defaults
      docker
@@ -49,6 +47,7 @@ This function should only modify configuration layer settings."
      multiple-cursors
      neotree
      nixos
+     nu-clojure
      org
      python
      ruby
@@ -58,7 +57,7 @@ This function should only modify configuration layer settings."
      version-control
      vinegar
      yaml
-     ,(if (file-exists-p "~/.emacs.d/private/layers/nu-clojure") 'nu-clojure))
+   )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
