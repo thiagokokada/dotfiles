@@ -464,6 +464,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'elisp-mode-hook #'evil-cleverparens-mode)
+  (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
 
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history t)
@@ -472,6 +473,11 @@ before packages are loaded."
   (global-set-key (kbd "C-0") #'default-text-scale-reset)
   (global-set-key (kbd "C-+") #'default-text-scale-increase)
   (global-set-key (kbd "C--") #'default-text-scale-decrease)
+
+  (define-key evil-normal-state-map (kbd "C-a") #'evil-numbers/inc-at-pt)
+  (define-key evil-visual-state-map (kbd "C-a") #'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "C-x") #'evil-numbers/dec-at-pt)
+  (define-key evil-visual-state-map (kbd "C-x") #'evil-numbers/dec-at-pt)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
