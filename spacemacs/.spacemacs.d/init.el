@@ -68,7 +68,6 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     default-text-scale
      dtrt-indent
     )
 
@@ -470,9 +469,9 @@ before packages are loaded."
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
-  (global-set-key (kbd "C-0") #'default-text-scale-reset)
-  (global-set-key (kbd "C-+") #'default-text-scale-increase)
-  (global-set-key (kbd "C--") #'default-text-scale-decrease)
+  (global-set-key (kbd "C-0") #'zoom-frm-unzoom)
+  (global-set-key (kbd "C-+") #'zoom-frm-in)
+  (global-set-key (kbd "C--") #'zoom-frm-out)
 
   (define-key evil-normal-state-map (kbd "C-a") #'evil-numbers/inc-at-pt)
   (define-key evil-visual-state-map (kbd "C-a") #'evil-numbers/inc-at-pt)
