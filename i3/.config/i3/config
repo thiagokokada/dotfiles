@@ -190,12 +190,12 @@ bindsym $mod+Shift+r restart
 # system power management
 set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
-    bindsym l mode "default" exec loginctl lock-session
-    bindsym e mode "default" exec $killallx && loginctl terminate-session $(cat /proc/self/sessionid)
-    bindsym s mode "default" exec systemctl suspend
-    bindsym h mode "default" exec systemctl hibernate
-    bindsym Shift+r mode "default" exec $killallx && systemctl reboot
-    bindsym Shift+s mode "default" exec $killallx && systemctl poweroff
+    bindsym l mode "default", exec loginctl lock-session
+    bindsym e mode "default", exec $killallx && loginctl terminate-session $(cat /proc/self/sessionid)
+    bindsym s mode "default", exec systemctl suspend
+    bindsym h mode "default", exec systemctl hibernate
+    bindsym Shift+r mode "default", exec $killallx && systemctl reboot
+    bindsym Shift+s mode "default", exec $killallx && systemctl poweroff
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -211,10 +211,10 @@ mode "$resize" {
     # Pressing up will shrink the window’s height.
     # Pressing down will grow the window’s height.
     # vi-like
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
 
     # arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
@@ -231,14 +231,14 @@ bindsym $mod+r mode "$resize"
 # external screen management
 set $display_layout  :  ,  ,  ,  , [d]uplicate, [m]irror, [s]econd-only, [o]ff
 mode "$display_layout" {
-    bindsym Left mode "default" exec $mons -e left && $set_wallpaper
-    bindsym Down mode "default" exec $mons -e bottom && $set_wallpaper
-    bindsym Up mode "default" exec $mons -e top && $set_wallpaper
-    bindsym Right mode "default" exec $mons -e right && $set_wallpaper
-    bindsym d mode "default" exec $mons -d && $set_wallpaper
-    bindsym m mode "default" exec $mons -m && $set_wallpaper
-    bindsym s mode "default" exec $mons -s && $set_wallpaper
-    bindsym o mode "default" exec $mons -o && $set_wallpaper
+    bindsym Left mode "default", exec $mons -e left && $set_wallpaper
+    bindsym Down mode "default", exec $mons -e bottom && $set_wallpaper
+    bindsym Up mode "default", exec $mons -e top && $set_wallpaper
+    bindsym Right mode "default", exec $mons -e right && $set_wallpaper
+    bindsym d mode "default", exec $mons -d && $set_wallpaper
+    bindsym m mode "default", exec $mons -m && $set_wallpaper
+    bindsym s mode "default", exec $mons -s && $set_wallpaper
+    bindsym o mode "default", exec $mons -o && $set_wallpaper
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -279,8 +279,8 @@ bindsym XF86AudioPrev exec playerctl previous && py3-cmd refresh mpris
 # keyboard layout stuff
 set $mode_keyboard : [b]r, [u]s-intl
 mode "$mode_keyboard" {
-    bindsym u mode "default" exec setxkbmap us -variant intl && py3-cmd refresh keyboard_layout
-    bindsym b mode "default" exec setxkbmap br && py3-cmd refresh keyboard_layout
+    bindsym u mode "default", exec setxkbmap us -variant intl && py3-cmd refresh keyboard_layout
+    bindsym b mode "default", exec setxkbmap br && py3-cmd refresh keyboard_layout
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
