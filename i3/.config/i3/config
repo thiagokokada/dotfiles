@@ -26,8 +26,7 @@ set $mons $HOME/.config/i3/scripts/mons.sh
 set $killallx $HOME/.config/i3/scripts/killallx.sh
 
 # status bar
-set $status_bar i3pystatus -c $HOME/.config/i3pystatus/config.py
-set $refresh_status_bar pkill -SIGUSR1 -f i3pystatus
+set $status_bar $HOME/.config/i3status-rs/run.py
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
