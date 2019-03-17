@@ -1,0 +1,7 @@
+font=Roboto 8
+background-color=#1D1F21
+text-color=#C5C8C6
+width=200
+border-size=1
+border-color=#282A2E
+default-timeout=10000

@@ -288,7 +288,7 @@ client.unfocused #282a2e #282a2e #969896 #282a2e #1d1f21
 client.urgent #373b41 #cc6666 #ffffff #cc6666 #cc6666
 
 # notification manager
-exec dunst
+exec mako
 
 # run autostart from .desktop files from LXDE, to avoid starting too much crap
 exec dex --autostart --environment LXDE
