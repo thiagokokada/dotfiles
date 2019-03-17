@@ -5,3 +5,4 @@ width=200
 border-size=1
 border-color=#282A2E
 default-timeout=10000
+padding=8
