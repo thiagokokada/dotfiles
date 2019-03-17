@@ -271,8 +271,8 @@ bindsym XF86AudioPrev exec playerctl previous && py3-cmd refresh mpris
 # keyboard layout stuff
 set $mode_keyboard : [b]r, [u]s-intl
 mode "$mode_keyboard" {
-    bindsym u mode "default", exec swaymsg 'input * xkb_variant intl, input * xkb_layout us' && py3-cmd refresh external_script layout
-    bindsym b mode "default", exec swaymsg 'input * xkb_variant abnt2, input * xkb_layout br' && py3-cmd refresh external_script layout
+    bindsym b mode "default", exec swaymsg 'input * xkb_layout br' && py3-cmd refresh external_script layout
+    bindsym u mode "default", exec swaymsg 'input * xkb_layout us(intl)' && py3-cmd refresh external_script layout
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -281,8 +281,7 @@ bindsym $mod+b mode "$mode_keyboard"
 
 # set default keyboard layout
 input * {
-  xkb_layout us,br
-  xkb_variant intl,abnt2
+  xkb_layout us(intl),br
   xkb_options caps:escape
 }
 
