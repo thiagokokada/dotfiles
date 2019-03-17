@@ -1,5 +1,6 @@
 arc-gtk-theme
 arc-icon-theme
+bemenu
 dex
 ffmpegthumbnailer
 firefox
@@ -20,7 +21,6 @@ py3status
 qt5-styleplugins
 qt5-wayland
 ranger
-rofi
 slurp
 sway
 swayidle
