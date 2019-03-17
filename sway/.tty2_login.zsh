@@ -17,10 +17,6 @@ export SDL_VIDEODRIVER=wayland
 # Fix Java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# Keyboard layout config
-export XKB_DEFAULT_LAYOUT=us,br
-export XKB_DEFAULT_VARIANT=intl,abnt2
-
 sway
 
 logout

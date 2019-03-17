@@ -275,6 +275,13 @@ mode "$mode_keyboard" {
 }
 bindsym $mod+b mode "$mode_keyboard"
 
+# set default keyboard layout
+input * {
+  xkb_layout us,br
+  xkb_variant intl,abnt2
+  xkb_options caps:escape
+}
+
 # take screenshots
 bindsym Print exec $fs_screenshot
 
