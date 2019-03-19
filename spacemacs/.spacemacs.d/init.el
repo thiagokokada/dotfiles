@@ -470,7 +470,6 @@ before packages are loaded."
      '(operators
        (additional-movement normal visual motion)
        (escape insert)
-       atom-movement
        c-w
        commentary
        prettify
