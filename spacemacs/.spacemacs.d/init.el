@@ -43,6 +43,7 @@ This function should only modify configuration layer settings."
      git
      helm
      html
+     hy
      javascript
      multiple-cursors
      neotree
@@ -69,6 +70,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      dtrt-indent
+     lispyville
     )
 
    ;; A list of packages that cannot be updated.
@@ -446,6 +448,17 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (with-eval-after-load 'lispyville
+    (lispyville-set-key-theme
+     '(operators
+       (additional-movement normal visual motion)
+       (escape insert)
+       atom-movement
+       c-w
+       commentary
+       prettify
+       slurp/barf-cp
+       wrap)))
   )
 
 (defun dotspacemacs/user-load ()
@@ -461,9 +474,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
-  (add-hook 'elisp-mode-hook #'evil-cleverparens-mode)
-  (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
+  (add-hook 'clojure-mode-hook #'lispyville-mode)
+  (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
+  (add-hook 'hy-mode-hook #'lispyville-mode)
+  (add-hook 'lisp-mode-hook #'lispyville-mode)
 
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history t)
