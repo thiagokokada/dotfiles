@@ -17,6 +17,9 @@ export SDL_VIDEODRIVER=wayland
 # Fix Java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Fix tray icons
+export XDG_CURRENT_DESKTOP=Unity
+
 sway
 
 logout
