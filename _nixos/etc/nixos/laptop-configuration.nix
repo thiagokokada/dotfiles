@@ -100,9 +100,6 @@
     # Lock screen when lid is closed.
     logind.lidSwitch = "lock";
 
-    # Enable systemd-resolved.
-    resolved.enable = true;
-
     # Enable Intel Thermald.
     thermald.enable = true;
 
@@ -115,5 +112,8 @@
         CPU_SCALING_GOVERNOR_ON_BAT=powersave
       '';
     };
+
+    # Enable Unbound.
+    unbound.enable = true;
   };
 }
