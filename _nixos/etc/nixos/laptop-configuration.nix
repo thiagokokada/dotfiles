@@ -84,6 +84,15 @@
         naturalScrolling = true;
       };
 
+      extraConfig = ''
+        Section "InputClass"
+          Identifier "mouse"
+          Driver "libinput"
+          MatchIsPointer "yes"
+          Option "AccelProfile" "flat"
+        EndSection
+      '';
+
       # Use Intel (modesetting) driver, since intel driver itself is terrible.
       videoDrivers = [ "modesetting" ];
 
