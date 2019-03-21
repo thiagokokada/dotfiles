@@ -45,8 +45,9 @@ zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # helpers
-run-bg() { ${@} </dev/null &>/dev/null &! }
-open() { run-bg xdg-open ${@} }
+close-fd() { "${@}" </dev/null &>/dev/null }
+run-bg() { close-fd "${@}" &! }
+open() { run-bg xdg-open "${@}" }
 
 # aliases
 alias clean-zcache="rm -f .*.zwc"
