@@ -467,14 +467,14 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (with-eval-after-load 'lispyville
     (lispyville-set-key-theme
-     '(operators
-       (additional-movement normal visual motion)
-       (escape insert)
-       c-w
+     '(additional
+       additional-insert
+       additional-movement
+       additional-wrap
        commentary
+       operators
        prettify
-       slurp/barf-cp
-       wrap)))
+       slurp/barf-cp)))
 
   (add-hook 'clojure-mode-hook #'lispyville-mode)
   (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
@@ -486,13 +486,11 @@ before packages are loaded."
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
   (global-set-key (kbd "C-0") #'zoom-frm-unzoom)
-  (global-set-key (kbd "C-+") #'zoom-frm-in)
+  (global-set-key (kbd "C-=") #'zoom-frm-in)
   (global-set-key (kbd "C--") #'zoom-frm-out)
 
-  (define-key evil-normal-state-map (kbd "C-a") #'evil-numbers/inc-at-pt)
-  (define-key evil-visual-state-map (kbd "C-a") #'evil-numbers/inc-at-pt)
-  (define-key evil-normal-state-map (kbd "C-x") #'evil-numbers/dec-at-pt)
-  (define-key evil-visual-state-map (kbd "C-x") #'evil-numbers/dec-at-pt)
+  (define-key evil-normal-state-map (kbd "<kp-add>") 'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "<kp-subtract>") 'evil-numbers/dec-at-pt)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
