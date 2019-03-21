@@ -75,6 +75,7 @@ This function should only modify configuration layer settings."
    '(
      dtrt-indent
      lispyville
+     sort-words
     )
 
    ;; A list of packages that cannot be updated.
