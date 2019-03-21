@@ -34,6 +34,10 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers '(
      (clojure :variables clojure-enable-clj-refactor t)
+     (ivy :variables
+          ivy-enable-advanced-buffer-information t
+          ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+          ivy-wrap t)
      (markdown :variables markdown-command "pandoc")
      auto-completion
      better-defaults
@@ -41,7 +45,6 @@ This function should only modify configuration layer settings."
      elixir
      emacs-lisp
      git
-     helm
      html
      hy
      javascript
@@ -55,6 +58,7 @@ This function should only modify configuration layer settings."
      scala
      shell-scripts
      syntax-checking
+     systemd
      version-control
      vinegar
      yaml
