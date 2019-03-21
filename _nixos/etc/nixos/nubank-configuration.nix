@@ -17,7 +17,6 @@ in
     apacheKafka
     awscli
     clojure
-    gnome3.gtk-vnc
     kubectl
     minikube
     nodejs-10_x
@@ -25,6 +24,7 @@ in
     nssTools
     openssl
     slack
+    tigervnc
     unstable.leiningen
     vagrant
   ];
@@ -59,17 +59,5 @@ in
       enable = true;
       drivers = [ pkgs.postscript-lexmark ];
     };
-  };
-
-  # Enable Emacs daemon, since Spacemacs takes quite a long time to start.
-  systemd.user.services.emacs = {
-    description = "Emacs: the extensible, self-documenting text editor";
-    serviceConfig = {
-      Type      = "simple";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'source ${config.system.build.setEnvironment}; exec ${pkgs.emacs}/bin/emacs --fg-daemon'";
-      ExecStop  = ''${pkgs.emacs}/bin/emacsclient --eval "(progn (setq kill-emacs-hook 'nil) (kill-emacs))"'';
-      Restart   = "on-failure";
-    };
-    wantedBy = [ "default.target" ];
   };
 }

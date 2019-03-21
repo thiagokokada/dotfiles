@@ -1,4 +1,10 @@
 ZIT_MODULES_PATH="${HOME}" zit-in "https://github.com/syl20bnr/spacemacs#develop" ".emacs.d"
 
-alias ec="emacsclient"
-ecw() { run-bg emacsclient --create-frame ${@} }
+em() {
+  if emacsclient -ne "()" &> /dev/null; then
+    emacsclient -nqc "$@" &> /dev/null
+  else
+    emacsclient -a "" -nqc "$@" &> /dev/null
+  fi
+
+}
