@@ -490,10 +490,6 @@ before packages are loaded."
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
-  (global-set-key (kbd "C-0") #'zoom-frm-unzoom)
-  (global-set-key (kbd "C-=") #'zoom-frm-in)
-  (global-set-key (kbd "C--") #'zoom-frm-out)
-
   (define-key evil-normal-state-map (kbd "<kp-add>") 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "<kp-subtract>") 'evil-numbers/dec-at-pt)
   )
