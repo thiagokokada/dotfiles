@@ -490,8 +490,8 @@ before packages are loaded."
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
-  (define-key evil-normal-state-map (kbd "<kp-add>") 'evil-numbers/inc-at-pt)
-  (define-key evil-normal-state-map (kbd "<kp-subtract>") 'evil-numbers/dec-at-pt)
+  (define-key evil-normal-state-map (kbd "<kp-add>") #'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "<kp-subtract>") #'evil-numbers/dec-at-pt)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
