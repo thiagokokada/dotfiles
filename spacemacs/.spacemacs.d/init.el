@@ -492,6 +492,10 @@ before packages are loaded."
 
   (define-key evil-normal-state-map (kbd "<kp-add>") #'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "<kp-subtract>") #'evil-numbers/dec-at-pt)
+
+  (add-hook 'prog-mode-hook #'(lambda ()
+                                (dtrt-indent-mode)
+                                (dtrt-indent-adapt)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
