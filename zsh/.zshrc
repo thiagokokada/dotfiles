@@ -15,7 +15,7 @@ zit-il "https://github.com/Eriner/zim" "zim" "init.zsh"
 
 # powerlevel9k
 # load only if terminal supports at least 256 colors
-if [[ $(tput colors) -ge 256 ]]; then
+if [[ "$(tput colors)" -ge 256 ]]; then
   zit-il "https://github.com/bhilburn/powerlevel9k" "powerlevel9k" "powerlevel9k.zsh-theme"
 fi
 
@@ -50,20 +50,17 @@ run-bg() { close-fd "${@}" &! }
 open() { run-bg xdg-open "${@}" }
 
 # aliases
-alias clean-zcache="rm -f .*.zwc"
+alias clean-zsh-cache="rm -f ${HOME}/.*.zwc"
 alias gk="run-bg gitk"
 alias http-server="python3 -m http.server"
+alias ln-clean-up="rm -- **/*(-@D)"
 alias nvimdiff="nvim -d"
 alias ssh="TERM=xterm-256color ssh"
-alias stow-clean-up="rm -- **/*(-@D)"
-alias update-submodules="cd "${DOTFILES_PATH}" && git submodule update --init --recursive --remote && cd -"
 
-# source contents from ~/.zshrc.d
-if [[ -d ${HOME}/.zshrc.d/ ]]; then
-  for file in ${HOME}/.zshrc.d/*.zsh; do
-    source ${file}
-  done
-fi
+# source contents from ~/.zshrc.d/*.zsh
+for file in ${HOME}/.zshrc.d/*.zsh; do
+  source "${file}"
+done
 
 # script to compile ZSH files
 # should be called last
