@@ -39,6 +39,9 @@
   hardware = {
     # Enable bluetooth.
     bluetooth.enable = true;
+    pulseaudio = {
+      package = pkgs.pulseaudioFull;
+    };
 
     # Enable CPU microcode for Intel.
     cpu.intel.updateMicrocode = true;

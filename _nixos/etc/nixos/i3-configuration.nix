@@ -89,10 +89,7 @@ in
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-  };
+  hardware.pulseaudio.enable = true;
 
   services = {
     # Setup DBus.
