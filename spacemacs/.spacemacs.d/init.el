@@ -478,7 +478,6 @@ before packages are loaded."
        additional-wrap
        commentary
        operators
-       prettify
        slurp/barf-cp)))
 
   (add-hook 'clojure-mode-hook #'lispyville-mode)
