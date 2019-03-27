@@ -12,10 +12,12 @@
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
-       company           ; the ultimate code completion backend
+       (company          ; the ultimate code completion backend
+        +auto)           ; ...as you type
        ;;helm             ; the *other* search engine for love and life
        ;;ido              ; the other *other* search engine...
-       ivy              ; a search engine for love and life
+       (ivy              ; a search engine for love and life
+        +fuzzy)          ; ...with fuzzy search
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -42,7 +44,7 @@
 
        :editor
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
@@ -126,7 +128,7 @@
        ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       (sh +fish)        ; she sells (ba|z|fi)sh shells on the C xor
+       (sh +zsh)         ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        web               ; the tubes
