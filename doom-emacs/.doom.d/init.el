@@ -13,7 +13,8 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto)           ; ...as you type
+        +auto            ; ...as you type
+        +childframe)     ; ...with candy
        ;;helm             ; the *other* search engine for love and life
        ;;ido              ; the other *other* search engine...
        (ivy              ; a search engine for love and life

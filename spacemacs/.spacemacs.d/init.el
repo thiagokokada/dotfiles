@@ -491,7 +491,7 @@ before packages are loaded."
   (add-hook 'lisp-mode-hook #'lispyville-mode)
 
   ;; Undo-tree
-  (global-undo-tree-mode)
+  (global-undo-tree-mode t)
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
