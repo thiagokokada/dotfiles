@@ -474,9 +474,10 @@ before packages are loaded."
     (lispyville-set-key-theme
      '(additional
        additional-insert
-       additional-movement
+       (additional-movement normal visual motion)
        additional-wrap
        commentary
+       (escape insert emacs)
        operators
        slurp/barf-cp)))
 
