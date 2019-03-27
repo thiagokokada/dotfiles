@@ -470,6 +470,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; Make ESC to work as expected in minibuffers
+  (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
+  ;; Lispyville
   (with-eval-after-load 'lispyville
     (lispyville-set-key-theme
      '(additional
@@ -486,13 +490,16 @@ before packages are loaded."
   (add-hook 'hy-mode-hook #'lispyville-mode)
   (add-hook 'lisp-mode-hook #'lispyville-mode)
 
+  ;; Undo-tree
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
+  ;; Evil-numbers
   (define-key evil-normal-state-map (kbd "<kp-add>") #'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "<kp-subtract>") #'evil-numbers/dec-at-pt)
 
+  ;; Dtrt-indent
   (add-hook 'prog-mode-hook #'(lambda ()
                                 (dtrt-indent-mode)
                                 (dtrt-indent-adapt)))
