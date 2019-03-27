@@ -7,7 +7,7 @@ A repository with my personal configuration files. Managed using GNU
 
 Clone this repository (including submodules) in `~/.dotfiles` directory, e.g.:
 
-    $ git clone --recursive https://github.com/m45t3r/dotfiles ~/.dotfiles
+    $ git clone --recursive https://github.com/thiagokokada/dotfiles ~/.dotfiles
 
 Use `stow` to manage symlinks, e.g.:
 

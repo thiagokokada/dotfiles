@@ -2,12 +2,12 @@
 export ZIT_MODULES_PATH="${HOME}/.zit.d"
 
 if [[ ! -d "${ZIT_MODULES_PATH}/zit" ]]; then
-  git clone "https://github.com/m45t3r/zit" "${ZIT_MODULES_PATH}/zit"
+  git clone "https://github.com/thiagokokada/zit" "${ZIT_MODULES_PATH}/zit"
 fi
 source "${ZIT_MODULES_PATH}/zit/zit.zsh"
 
 # let zit manage zit
-zit-in "https://github.com/m45t3r/zit" "zit"
+zit-in "https://github.com/thiagokokada/zit" "zit"
 
 # zim
 export ZIM_HOME="${ZIT_MODULES_PATH}/zim"
