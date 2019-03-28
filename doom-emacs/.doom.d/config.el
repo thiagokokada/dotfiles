@@ -82,7 +82,9 @@
    (:localleader
      (:map cider-repl-mode-map
        ("c" #'cider-repl-clear-buffer
-        "o" #'cider-repl-clear-output)))))
+        "R" #'cider-restart
+        "r" #'cider-refresh
+        "q" #'cider-quit)))))
 
 ;; Dtrt-indent
 (after! dtrt-indent

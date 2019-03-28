@@ -5,4 +5,6 @@ path=(
   ${path}
 )
 
-em() { close-fd emacsclient -a '' -nqc "${@}" }
+alias em="run-bg emacs"
+
+ec() { close-fd emacsclient -a '' -nqc "${@}" }
