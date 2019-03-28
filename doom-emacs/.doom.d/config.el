@@ -10,7 +10,6 @@
 (doom-themes-org-config)
 
 ;; Disable confirmation message on exit
-;;
 (setq confirm-kill-emacs nil)
 
 ;; Font
@@ -30,8 +29,11 @@
       "C-k" #'evil-window-up
       "C-l" #'evil-window-right)
 
+;; Dired
+(define-key evil-normal-state-map (kbd "-") #'dired-jump)
+
 ;; Neotree
-(global-set-key (kbd "C-0") #'neotree-toggle)
+(define-key evil-normal-state-map (kbd "C-0") #'neotree-toggle)
 
 ;; Make ESC to work as expected in minibuffers
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
@@ -72,3 +74,9 @@
 (after! undo-tree
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
+
+;; Load Nubank configuration
+(let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/nu.el"))
+  (when (file-exists-p nudev-emacs-path)
+    (load nudev-emacs-path)
+    (require 'nu)))
