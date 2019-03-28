@@ -50,10 +50,13 @@
      prettify
      slurp/barf-cp)))
 
-(add-hook! clojure-mode #'lispyville-mode)
-(add-hook! emacs-lisp-mode #'lispyville-mode)
-(add-hook! hy-mode #'lispyville-mode)
-(add-hook! lisp-mode #'lispyville-mode)
+(add-hook! (clojure-mode
+            common-lisp-mode
+            emacs-lisp-mode
+            hy-mode
+            lfe-mode
+            racket-mode
+            scheme-mode) #'lispyville-mode)
 
 ;; Clojure
 (add-hook! clojure-mode
