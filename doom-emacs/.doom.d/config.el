@@ -37,6 +37,15 @@
 ;; Make ESC to work as expected in minibuffers
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
+;; Projectile
+(add-hook! projectile-mode
+  (map!
+   (:leader
+     (:map projectile-mode-map
+       (:prefix ("p" . "project")
+         "a" #'projectile-toggle-between-implementation-and-test
+         "e" #'projectile-replace-regexp)))))
+
 ;; Lispyvile
 (after! lispyville
   (lispyville-set-key-theme
@@ -67,6 +76,13 @@
          "b" #'cider-eval-buffer
          "f" #'cider-eval-sexp-at-point))
      (evil-define-key 'normal clojure-mode-map "gd" #'cider-find-var))))
+
+(add-hook! cider-repl-mode
+  (map!
+   (:localleader
+     (:map cider-repl-mode-map
+       ("c" #'cider-repl-clear-buffer
+        "o" #'cider-repl-clear-output)))))
 
 ;; Dtrt-indent
 (after! dtrt-indent
