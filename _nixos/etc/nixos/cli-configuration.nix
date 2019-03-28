@@ -30,6 +30,7 @@ in
     curl
     daemonize
     emacs
+    fd
     file
     fzf
     gcc

@@ -39,7 +39,6 @@ in
       gimp
       gnome3.adwaita-icon-theme
       gnome3.baobab
-      gnome3.evince
       gnome3.file-roller
       gnome3.gnome-disk-utility
       gnome3.gnome-themes-standard
@@ -57,6 +56,7 @@ in
       redshift
       termite
       unstable.kitty
+      zathura
     ];
   };
 
