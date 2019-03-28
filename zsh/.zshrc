@@ -13,6 +13,8 @@ zit-in "https://github.com/thiagokokada/zit" "zit"
 export ZIM_HOME="${ZIT_MODULES_PATH}/zim"
 zit-il "https://github.com/Eriner/zim" "zim" "init.zsh"
 
+zit-il "https://github.com/hlissner/zsh-autopair" "autopair" "autopair.zsh"
+
 # powerlevel9k
 # load only if terminal supports at least 256 colors
 if [[ "$(tput colors)" -ge 256 ]]; then
