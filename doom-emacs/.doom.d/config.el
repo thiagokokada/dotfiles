@@ -77,8 +77,5 @@
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
-;; Load Nubank configuration
-(let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/nu.el"))
-  (when (file-exists-p nudev-emacs-path)
-    (load nudev-emacs-path)
-    (require 'nu)))
+;; Load local configuration file if exists
+(load! "local.el" "~/.doom.d" t)
