@@ -9,3 +9,4 @@
 (package! lispyville)
 (package! ripgrep)
 (package! sort-words)
+(package! uuidgen)

@@ -48,7 +48,7 @@ bindkey '^v' edit-command-line
 
 # helpers
 close-fd() { "${@}" </dev/null &>/dev/null }
-run-bg() { close-fd "${@}" &! }
+run-bg() { "${@}" </dev/null &>/dev/null &! }
 open() { run-bg xdg-open "${@}" }
 
 # aliases

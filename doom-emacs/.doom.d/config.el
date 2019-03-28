@@ -28,6 +28,12 @@
       "C-k" #'evil-window-up
       "C-l" #'evil-window-right)
 
+;; Highlight lines longer than 80 chars
+(setq whitespace-line-column 80
+      whitespace-style '(face lines-tail))
+
+(add-hook! prog-mode #'whitespace-mode)
+
 ;; Dired
 (define-key evil-normal-state-map (kbd "-") #'dired-jump)
 
