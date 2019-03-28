@@ -19,10 +19,9 @@ Plug 'brooth/far.vim'
 Plug 'dietsche/vim-lastplace'
 Plug 'gioele/vim-autoswap'
 Plug 'janko-m/vim-test'
-Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-mkdir'
@@ -31,19 +30,19 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'szw/vim-tags'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'w0rp/ale'
 " clojure
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
+Plug 'clojure-vim/acid.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'clojure-vim/async-clj-omni'
 Plug 'tpope/vim-sexp-mappings-for-regular-people' | Plug 'guns/vim-sexp'
 " python
 Plug 'davidhalter/jedi-vim'
@@ -99,10 +98,7 @@ nnoremap <silent> <leader>g :TestVisit<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " Rainbow parenthesis
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+let g:rainbow_active = 1
 " vim-iced
 let g:iced_enable_default_key_mappings = v:true
 
