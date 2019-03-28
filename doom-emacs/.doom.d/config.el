@@ -3,9 +3,8 @@
 ;; Place your private configuration here
 
 ;; Theme
-(let ((theme 'doom-spacegrey))
-  (load-theme theme t)
-  (setq doom-theme theme))
+(require 'doom-themes)
+(load-theme 'doom-spacegrey t)
 (doom-themes-neotree-config)
 (doom-themes-org-config)
 
@@ -33,7 +32,7 @@
 (define-key evil-normal-state-map (kbd "-") #'dired-jump)
 
 ;; Neotree
-(define-key evil-normal-state-map (kbd "C-0") #'neotree-toggle)
+(define-key evil-normal-state-map (kbd "C-x t") #'neotree)
 
 ;; Make ESC to work as expected in minibuffers
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
