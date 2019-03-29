@@ -108,7 +108,7 @@
      (:map cider-repl-mode-map
        ("c" #'cider-repl-clear-buffer
         "R" #'cider-restart
-        "r" #'cider-refresh
+        "r" #'cider-ns-refresh
         "q" #'cider-quit)))))
 
 ;; Dtrt-indent
