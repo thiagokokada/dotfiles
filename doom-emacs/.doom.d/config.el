@@ -32,9 +32,6 @@
 ;; Set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
 
-;; Which-key
-(setq which-key-idle-delay 0.1)
-
 ;; Move betweeen windows faster
 (map! :map global-map
       "C-h" #'evil-window-left
@@ -53,6 +50,17 @@
 
 ;; Neotree
 (define-key evil-normal-state-map (kbd "C-x t") #'neotree)
+
+;; Which-key
+(setq which-key-idle-delay 0.1)
+
+;; Ivy
+(setq ivy-re-builders-alist
+      (append '((counsel-rg . ivy--regex-plus)) ivy-re-builders-alist))
+
+;; Undo-tree
+(setq undo-tree-auto-save-history t)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 ;; Make ESC to work as expected in minibuffers
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
@@ -114,11 +122,6 @@
 ;; Dtrt-indent
 (after! dtrt-indent
   (add-hook! (prog-mode text-mode) #'dtrt-indent-adapt))
-
-;; Undo-tree
-(after! undo-tree
-  (setq undo-tree-auto-save-history t)
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
 ;; Zoom-frm
 (define-key global-map (kbd "C-=") #'zoom-frm-in)
