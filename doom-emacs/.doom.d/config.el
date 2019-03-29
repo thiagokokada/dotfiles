@@ -2,11 +2,25 @@
 
 ;; Place your private configuration here
 
+;; Emacs fix for terminal sessions
+(when (not window-system) ;; Only use in tty-sessions.
+    (progn
+        (defvar arrow-keys-map (make-sparse-keymap) "Keymap for arrow keys")
+        (define-key esc-map "[" arrow-keys-map)
+        (define-key arrow-keys-map "A" 'previous-line)
+        (define-key arrow-keys-map "B" 'next-line)
+        (define-key arrow-keys-map "C" 'forward-char)
+        (define-key arrow-keys-map "D" 'backward-char))
+    (xterm-mouse-mode 1))
+
 ;; Theme
 (require 'doom-themes)
 (load-theme 'doom-spacegrey t)
 (doom-themes-neotree-config)
 (doom-themes-org-config)
+
+;; Modeline
+(setq doom-modeline-major-mode-icon t)
 
 ;; Disable confirmation message on exit
 (setq confirm-kill-emacs nil)
