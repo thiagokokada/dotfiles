@@ -124,6 +124,8 @@
 (define-key global-map (kbd "C-=") #'zoom-frm-in)
 (define-key global-map (kbd "C--") #'zoom-frm-out)
 (define-key global-map (kbd "C-0") #'zoom-frm-unzoom)
+(global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
+(global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out)
 
 ;; Load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
