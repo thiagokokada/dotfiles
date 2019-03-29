@@ -41,7 +41,12 @@
 (define-key evil-normal-state-map (kbd "C-x t") #'neotree)
 
 ;; Make ESC to work as expected in minibuffers
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'keyboard-quit)
 
 ;; Projectile
 (add-hook! projectile-mode
