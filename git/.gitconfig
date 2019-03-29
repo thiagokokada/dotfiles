@@ -12,7 +12,6 @@
 [color]
 	ui = true
 [commit]
-	template = ~/.gitmessage
 	verbose = true
 [alias]
 	branch-cleanup = "!git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d #"
