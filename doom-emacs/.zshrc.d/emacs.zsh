@@ -6,6 +6,6 @@ path=(
 )
 
 alias em="run-bg emacs"
-alias et="emacs -nw"
+alias et="TERM=xterm-24bit emacs -nw"
 
 ec() { close-fd emacsclient -a '' -nqc "${@}" }
