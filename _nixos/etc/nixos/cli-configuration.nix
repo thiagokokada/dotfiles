@@ -40,6 +40,7 @@ in
     ispell
     jq
     lsof
+    manpages
     mediainfo
     mosh
     mtr

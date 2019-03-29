@@ -17,6 +17,7 @@ in
     apacheKafka
     awscli
     clojure
+    joker
     kubectl
     minikube
     nodejs-10_x
