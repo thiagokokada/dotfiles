@@ -120,5 +120,10 @@
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
+;; Zoom-frm
+(define-key global-map (kbd "C-=") #'zoom-frm-in)
+(define-key global-map (kbd "C--") #'zoom-frm-out)
+(define-key global-map (kbd "C-0") #'zoom-frm-unzoom)
+
 ;; Load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
