@@ -43,10 +43,6 @@
 ;; Which-key
 (setq which-key-idle-delay 0.1)
 
-;; Ivy
-(setq ivy-re-builders-alist
-      (append '((counsel-rg . ivy--regex-plus)) ivy-re-builders-alist))
-
 ;; Undo-tree
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
