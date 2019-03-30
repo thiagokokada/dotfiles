@@ -13,5 +13,5 @@
 
 ;; Zoom-frm
 (package! frame-fns :recipe (:fetcher github :repo "emacsmirror/frame-fns"))
-(package! frame-cmds  :recipe (:fetcher github :repo "emacsmirror/frame-cmds"))
+(package! frame-cmds :recipe (:fetcher github :repo "emacsmirror/frame-cmds"))
 (package! zoom-frm :recipe (:fetcher github :repo "emacsmirror/zoom-frm"))

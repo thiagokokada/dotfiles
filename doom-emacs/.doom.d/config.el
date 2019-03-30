@@ -48,12 +48,14 @@
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 ;; Make ESC to work as expected in minibuffers
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(global-set-key [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] #'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] #'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] #'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] #'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] #'minibuffer-keyboard-quit)
+(global-set-key [escape] #'keyboard-quit)
+
+;; Ivy
 
 ;; Projectile
 (add-hook! projectile-mode
@@ -61,7 +63,9 @@
    (:leader
      (:map projectile-mode-map
        (:prefix ("p" . "project")
+         :desc "Toggle between implementation and test"
          "a" #'projectile-toggle-between-implementation-and-test
+         :desc "Replace using regexp"
          "e" #'projectile-replace-regexp)))))
 
 ;; Lispyvile
@@ -114,6 +118,13 @@
 (define-key global-map (kbd "C-0") #'zoom-frm-unzoom)
 (global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
 (global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out)
+
+;; Misc
+(map!
+ (:leader
+   (:prefix ("/" . "search")
+     :desc "Search thing at point in git project"
+     "*" #'+misc/search-thing-at-point)))
 
 ;; Load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
