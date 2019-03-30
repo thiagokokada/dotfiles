@@ -2,6 +2,8 @@
 
 ;; Place your private configuration here
 
+;;; GENERAL
+
 ;; Theme
 (require 'doom-themes)
 (load-theme 'doom-spacegrey t)
@@ -55,7 +57,22 @@
 (define-key minibuffer-local-isearch-map [escape] #'minibuffer-keyboard-quit)
 (global-set-key [escape] #'keyboard-quit)
 
+;;; AFTER MODULE
+
 ;; Ivy
+(after! ivy
+  (map!
+   (:leader
+     (:prefix ("/" . "search")
+       :desc "Search thing at point in git project"
+       "*" #'+misc/search-thing-at-point))))
+
+
+;; Dtrt-indent
+(after! dtrt-indent
+  (add-hook! (prog-mode text-mode) #'dtrt-indent-adapt))
+
+;;; HOOKS
 
 ;; Projectile
 (add-hook! projectile-mode
@@ -67,27 +84,6 @@
          "a" #'projectile-toggle-between-implementation-and-test
          :desc "Replace using regexp"
          "e" #'projectile-replace-regexp)))))
-
-;; Lispyvile
-(after! lispyville
-  (lispyville-set-key-theme
-   '(additional
-     additional-insert
-     (additional-movement normal visual motion)
-     additional-wrap
-     commentary
-     (escape insert emacs)
-     operators
-     prettify
-     slurp/barf-cp)))
-
-(add-hook! (clojure-mode
-            common-lisp-mode
-            emacs-lisp-mode
-            hy-mode
-            lfe-mode
-            racket-mode
-            scheme-mode) #'lispyville-mode)
 
 ;; Clojure
 (add-hook! clojure-mode
@@ -108,23 +104,39 @@
         "r" #'cider-ns-refresh
         "q" #'cider-quit)))))
 
-;; Dtrt-indent
-(after! dtrt-indent
-  (add-hook! (prog-mode text-mode) #'dtrt-indent-adapt))
+;;; CUSTOM PACKAGES
+
+;; Lispyvile
+(def-package! lispyville
+  :hook ((common-lisp-mode . lispyville-mode)
+         (emacs-lisp-mode . lispyville-mode)
+         (scheme-mode . lispyville-mode)
+         (racket-mode . lispyville-mode)
+         (hy-mode . lispyville-mode)
+         (lfe-mode . lispyville-mode)
+         (clojure-mode . lispyville-mode))
+  :config
+  (lispyville-set-key-theme
+   '(additional
+     additional-insert
+     (additional-movement normal visual motion)
+     additional-wrap
+     commentary
+     (escape insert emacs)
+     operators
+     prettify
+     slurp/barf-cp)))
 
 ;; Zoom-frm
-(define-key global-map (kbd "C-=") #'zoom-frm-in)
-(define-key global-map (kbd "C--") #'zoom-frm-out)
-(define-key global-map (kbd "C-0") #'zoom-frm-unzoom)
-(global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
-(global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out)
+(def-package! zoom-frm
+  :config
+  (define-key global-map (kbd "C-=") #'zoom-frm-in)
+  (define-key global-map (kbd "C--") #'zoom-frm-out)
+  (define-key global-map (kbd "C-0") #'zoom-frm-unzoom)
+  (global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
+  (global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out))
 
-;; Misc
-(map!
- (:leader
-   (:prefix ("/" . "search")
-     :desc "Search thing at point in git project"
-     "*" #'+misc/search-thing-at-point)))
+;;; MISC
 
 ;; Load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
