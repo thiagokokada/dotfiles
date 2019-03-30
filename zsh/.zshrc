@@ -18,11 +18,11 @@ zit-il "https://github.com/hlissner/zsh-autopair" "autopair" "autopair.zsh"
 # powerlevel9k
 # load only if terminal supports at least 256 colors
 if [[ "$(tput colors)" -ge 256 ]]; then
-  zit-il "https://github.com/bhilburn/powerlevel9k" "powerlevel9k" "powerlevel9k.zsh-theme"
+  zit-il "https://github.com/bhilburn/powerlevel9k" \
+    "powerlevel9k" "powerlevel9k.zsh-theme"
 fi
 
 # misc
-zit-il "https://github.com/supercrabtree/k" "k" "k.sh"
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
   "zsh-autoenv" "autoenv.zsh"
 
