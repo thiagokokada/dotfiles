@@ -10,8 +10,7 @@
 (package! ripgrep)
 (package! sort-words)
 (package! uuidgen)
-
-;; Zoom-frm
-(package! frame-fns :recipe (:fetcher github :repo "emacsmirror/frame-fns"))
-(package! frame-cmds :recipe (:fetcher github :repo "emacsmirror/frame-cmds"))
-(package! zoom-frm :recipe (:fetcher github :repo "emacsmirror/zoom-frm"))
+(packages!
+ (frame-fns :recipe (:fetcher github :repo "emacsmirror/frame-fns"))
+ (frame-cmds :recipe (:fetcher github :repo "emacsmirror/frame-cmds"))
+ (zoom-frm :recipe (:fetcher github :repo "emacsmirror/zoom-frm")))

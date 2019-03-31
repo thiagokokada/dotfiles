@@ -24,11 +24,12 @@
 (setq doom-localleader-key ",")
 
 ;; Move betweeen windows faster
-(map! (:g
-       "C-h" #'evil-window-left
-       "C-j" #'evil-window-down
-       "C-k" #'evil-window-up
-       "C-l" #'evil-window-right))
+(map!
+ (:g
+  "C-h" #'evil-window-left
+  "C-j" #'evil-window-down
+  "C-k" #'evil-window-up
+  "C-l" #'evil-window-right))
 
 ;; Highlight lines longer than 80 chars
 (setq whitespace-line-column 80
@@ -37,11 +38,13 @@
 (add-hook! prog-mode #'whitespace-mode)
 
 ;; Dired
-(define-key evil-normal-state-map (kbd "-") #'dired-jump)
+(map!
+ (:map evil-normal-state-map "-" #'dired-jump))
 
 ;; Neotree
 (setq doom-neotree-file-icons t)
-(define-key evil-normal-state-map (kbd "C-x t") #'neotree)
+(map!
+ (:map evil-normal-state-map "C-x t" #'neotree))
 
 ;; Which-key
 (setq which-key-idle-delay 0.1)
@@ -134,13 +137,23 @@
      prettify
      slurp/barf-cp)))
 
+;; Uuidgen
+(def-package! uuidgen
+  :config
+  (map!
+   (:leader
+     (:prefix ("i" . "insert")
+       :desc "Insert UUIDv4"
+       "u" #'uuidgen))))
+
 ;; Zoom-frm
 (def-package! zoom-frm
   :config
-  (map! (:g
-         "C-=" #'zoom-frm-in
-         "C--" #'zoom-frm-out
-         "C-0" #'zoom-frm-unzoom))
+  (map!
+   (:g
+    "C-=" #'zoom-frm-in
+    "C--" #'zoom-frm-out
+    "C-0" #'zoom-frm-unzoom))
   (global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
   (global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out))
 
