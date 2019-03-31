@@ -40,6 +40,7 @@
 (define-key evil-normal-state-map (kbd "-") #'dired-jump)
 
 ;; Neotree
+(setq doom-neotree-file-icons t)
 (define-key evil-normal-state-map (kbd "C-x t") #'neotree)
 
 ;; Which-key
