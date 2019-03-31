@@ -161,7 +161,8 @@
 
 (def-package-hook! company
   :pre-config
-  (setq company-backends
+  (setq company-selection-wrap-around t
+        company-backends
         '((company-files                ; files & directory
            company-keywords             ; keywords
            company-capf

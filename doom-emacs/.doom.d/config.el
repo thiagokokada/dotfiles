@@ -64,6 +64,10 @@
 
 ;;; AFTER MODULE
 
+;; Dtrt-indent
+(after! dtrt-indent
+  (add-hook! (prog-mode text-mode) #'dtrt-indent-adapt))
+
 ;; Ivy
 (after! ivy
   (map!
@@ -71,11 +75,6 @@
      (:prefix ("/" . "search")
        :desc "Search thing at point in git project"
        "*" #'+misc/search-thing-at-point))))
-
-
-;; Dtrt-indent
-(after! dtrt-indent
-  (add-hook! (prog-mode text-mode) #'dtrt-indent-adapt))
 
 ;;; HOOKS
 
