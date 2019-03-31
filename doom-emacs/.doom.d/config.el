@@ -97,8 +97,12 @@
      (:map clojure-mode-map
        (:prefix ("e" . "eval")
          "b" #'cider-eval-buffer
-         "f" #'cider-eval-sexp-at-point))
-     (evil-define-key 'normal clojure-mode-map "gd" #'cider-find-var))))
+         "f" #'cider-eval-sexp-at-point)
+       (:prefix ("r" . "repl")
+         "'" #'cider-connect
+         "\"" #'cider-connect-cljs
+         "o" #'cider-find-and-clear-repl-output)
+       (:n "gd" #'cider-find-var)))))
 
 (add-hook! cider-repl-mode
   (map!
