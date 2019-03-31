@@ -106,6 +106,10 @@
         "r" #'cider-ns-refresh
         "q" #'cider-quit)))))
 
+;; Term
+(add-hook! term-mode
+  (evil-set-initial-state 'term-mode 'emacs))
+
 ;;; CUSTOM PACKAGES
 
 ;; Lispyvile
