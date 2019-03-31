@@ -24,11 +24,11 @@
 (setq doom-localleader-key ",")
 
 ;; Move betweeen windows faster
-(map! :map global-map
-      "C-h" #'evil-window-left
-      "C-j" #'evil-window-down
-      "C-k" #'evil-window-up
-      "C-l" #'evil-window-right)
+(map! (:g
+       "C-h" #'evil-window-left
+       "C-j" #'evil-window-down
+       "C-k" #'evil-window-up
+       "C-l" #'evil-window-right))
 
 ;; Highlight lines longer than 80 chars
 (setq whitespace-line-column 80
@@ -46,16 +46,17 @@
 (setq which-key-idle-delay 0.1)
 
 ;; Undo-tree
-(setq undo-tree-auto-save-history t)
-(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+(setq undo-tree-auto-save-history t
+      undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 ;; Make ESC to work as expected in minibuffers
-(define-key minibuffer-local-map [escape] #'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] #'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] #'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] #'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] #'minibuffer-keyboard-quit)
-(global-set-key [escape] #'keyboard-quit)
+(map!
+ (:map minibuffer-local-map [escape] #'minibuffer-keyboard-quit)
+ (:map minibuffer-local-ns-map [escape] #'minibuffer-keyboard-quit)
+ (:map minibuffer-local-completion-map [escape] #'minibuffer-keyboard-quit)
+ (:map minibuffer-local-must-match-map [escape] #'minibuffer-keyboard-quit)
+ (:map minibuffer-local-isearch-map [escape] #'minibuffer-keyboard-quit)
+ (:g [escape] #'keyboard-quit))
 
 ;;; AFTER MODULE
 
@@ -123,16 +124,17 @@
      additional-wrap
      commentary
      (escape insert emacs)
-     operators
+     (operators normal)
      prettify
      slurp/barf-cp)))
 
 ;; Zoom-frm
 (def-package! zoom-frm
   :config
-  (define-key global-map (kbd "C-=") #'zoom-frm-in)
-  (define-key global-map (kbd "C--") #'zoom-frm-out)
-  (define-key global-map (kbd "C-0") #'zoom-frm-unzoom)
+  (map! (:g
+         "C-=" #'zoom-frm-in
+         "C--" #'zoom-frm-out
+         "C-0" #'zoom-frm-unzoom))
   (global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
   (global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out))
 
