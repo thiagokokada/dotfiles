@@ -159,3 +159,13 @@
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
+
+(def-package-hook! company
+  :pre-config
+  (setq company-backends
+        '((company-files                ; files & directory
+           company-keywords             ; keywords
+           company-capf
+           company-yasnippet)
+          (company-abbrev company-dabbrev)))
+  t)
