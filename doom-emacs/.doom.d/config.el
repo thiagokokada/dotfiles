@@ -97,16 +97,16 @@
 ;; Clojure
 (add-hook! clojure-mode
   (map!
-   (:localleader
-     (:map clojure-mode-map
+   (:map clojure-mode-map
+     (:n "gd" #'cider-find-var)
+     (:localleader
        (:prefix ("e" . "eval")
          "b" #'cider-eval-buffer
          "f" #'cider-eval-sexp-at-point)
        (:prefix ("r" . "repl")
          "'" #'cider-connect
          "\"" #'cider-connect-cljs
-         "o" #'cider-find-and-clear-repl-output)
-       (:n "gd" #'cider-find-var)))))
+         "o" #'cider-find-and-clear-repl-output)))))
 
 (add-hook! cider-repl-mode
   (map!
