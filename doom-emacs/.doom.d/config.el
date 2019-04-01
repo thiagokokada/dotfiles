@@ -38,13 +38,13 @@
 (add-hook! prog-mode #'whitespace-mode)
 
 ;; Dired
-(map!
- (:map evil-normal-state-map "-" #'dired-jump))
+(map! (:n "-" #'dired-jump))
 
 ;; Neotree
 (setq doom-neotree-file-icons t)
 (map!
- (:map evil-normal-state-map "C-x t" #'neotree))
+ (:g "C-x t" #'neotree)
+ (:n "0" #'neotree-toggle))
 
 ;; Which-key
 (setq which-key-idle-delay 0.1)
