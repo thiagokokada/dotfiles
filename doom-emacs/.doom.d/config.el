@@ -25,11 +25,16 @@
 
 ;; Move betweeen windows faster
 (map!
- (:g
+ (:n
   "C-h" #'evil-window-left
   "C-j" #'evil-window-down
   "C-k" #'evil-window-up
-  "C-l" #'evil-window-right))
+  "C-l" #'evil-window-right)
+ (:map evil-insert-state-map
+  "C-h" #'backward-char
+  "C-j" #'next-line
+  "C-k" #'previous-line
+  "C-l" #'forward-char))
 
 ;; Highlight lines longer than 80 chars
 (setq whitespace-line-column 80
