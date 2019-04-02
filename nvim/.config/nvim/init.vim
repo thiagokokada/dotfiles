@@ -13,9 +13,8 @@ endif
 call plug#begin()
 " general
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
-Plug 'brooth/far.vim'
+Plug 'chrisbra/Colorizer'
 Plug 'dietsche/vim-lastplace'
 Plug 'gioele/vim-autoswap'
 Plug 'janko-m/vim-test'
@@ -25,6 +24,7 @@ Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-mkdir'
+Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
@@ -38,7 +38,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'vim-scripts/auto-pairs-gentle'
+Plug 'vim-scripts/AdvancedSorters'
 Plug 'w0rp/ale'
 " clojure
 Plug 'clojure-vim/acid.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -64,15 +64,14 @@ let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 " ctags
 let g:vim_tags_auto_generate = 1
-" far.vim
-let g:far#source = 'rgnvim'
 " fzf
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-nnoremap <C-p> :GFiles<cr>
-nnoremap <C-f> :Files<cr>
+nnoremap <C-p> :Files<cr>
 nnoremap <C-b> :Buffers<cr>
-nnoremap <Leader>c :Commits<cr>
+nnoremap <Leader>f :Rg<space>
+nnoremap <silent> <Leader>F :Rg <C-R><C-W><CR>
+vnoremap <silent> <Leader>F y:Rg <C-R>"<CR>
 " gruvbox
 set termguicolors
 set background=dark
@@ -83,7 +82,7 @@ let g:jedi#smart_auto_mappings = 0
 " rainbow
 let g:rainbow_active = 1
 " Undotree
-nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <Leader>u :UndotreeToggle<cr>
 set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
@@ -99,20 +98,16 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " Rainbow parenthesis
 let g:rainbow_active = 1
-" vim-iced
-let g:iced_enable_default_key_mappings = v:true
 
 """"""""
 " misc "
 """"""""
 " reload config file
 nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
-" unsets the "last search pattern" register by hitting return
+" unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
 " automagically remove trailing spaces
-nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-" sort in line
-vnoremap <F3> d:execute 'normal i' . join(sort(split(getreg('"'))), ' ')<CR>
+autocmd BufWritePre * %s/\s\+$//e
 " enable/disable paste mode
 set pastetoggle=<F4>
 " show line number
@@ -125,20 +120,24 @@ set inccommand=nosplit
 set clipboard=unnamedplus
 " show vertical column
 set colorcolumn=81,121
-" neovim terminal
-nnoremap <silent> <leader><Space> :terminal<CR>
-tnoremap <Esc> <C-\><C-n>
-tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-tnoremap <C-h> <C-\><C-N><C-w>h
-tnoremap <C-j> <C-\><C-N><C-w>j
-tnoremap <C-k> <C-\><C-N><C-w>k
-tnoremap <C-l> <C-\><C-N><C-w>l
 " window movement mappings
-inoremap <C-h> <C-\><C-N><C-w>h
-inoremap <C-j> <C-\><C-N><C-w>j
-inoremap <C-k> <C-\><C-N><C-w>k
-inoremap <C-l> <C-\><C-N><C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" move normally by using Ctrl
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
+" neovim terminal
+nnoremap <silent> <leader>t :terminal<CR>
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
