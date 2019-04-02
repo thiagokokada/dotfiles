@@ -84,6 +84,9 @@
          :desc "Replace using regexp"
          "e" #'projectile-replace-regexp)))))
 
+;; Colorize hex color strings
+(add-hook! prog-mode #'rainbow-mode)
+
 ;; Highlight lines longer than 80 chars
 (setq whitespace-line-column 80
       whitespace-style '(face lines-tail))
