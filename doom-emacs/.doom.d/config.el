@@ -117,9 +117,13 @@
         "r" #'cider-ns-refresh
         "q" #'cider-quit)))))
 
-;; Term
-(add-hook! term-mode
-  (evil-set-initial-state 'term-mode 'emacs))
+;; Eshell
+(add-hook! eshell-mode
+  (setenv "TERM" "xterm-256color")
+  (setq xterm-color-preserve-properties t
+        eshell-preoutput-filter-functions '(xterm-color-filter)
+        eshell-output-filter-functions (remove #'eshell-handle-ansi-color
+                                               eshell-output-filter-functions)))
 
 ;;; CUSTOM PACKAGES
 
