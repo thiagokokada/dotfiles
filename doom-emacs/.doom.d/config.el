@@ -36,12 +36,6 @@
   "C-k" #'previous-line
   "C-l" #'forward-char))
 
-;; Highlight lines longer than 80 chars
-(setq whitespace-line-column 80
-      whitespace-style '(face lines-tail))
-
-(add-hook! prog-mode #'whitespace-mode)
-
 ;; Dired
 (map! (:n "-" #'dired-jump))
 
@@ -53,10 +47,6 @@
 
 ;; Which-key
 (setq which-key-idle-delay 0.1)
-
-;; Undo-tree
-(setq undo-tree-auto-save-history t
-      undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 ;; Make ESC to work as expected in minibuffers
 (map!
@@ -71,7 +61,7 @@
 
 ;; Dtrt-indent
 (after! dtrt-indent
-  (add-hook! (prog-mode text-mode) #'dtrt-indent-adapt))
+  (add-hook! prog-mode #'dtrt-indent-adapt))
 
 ;; Ivy
 (after! ivy
@@ -93,6 +83,12 @@
          "a" #'projectile-toggle-between-implementation-and-test
          :desc "Replace using regexp"
          "e" #'projectile-replace-regexp)))))
+
+;; Highlight lines longer than 80 chars
+(setq whitespace-line-column 80
+      whitespace-style '(face lines-tail))
+
+(add-hook! prog-mode #'whitespace-mode)
 
 ;; Clojure
 (add-hook! clojure-mode
