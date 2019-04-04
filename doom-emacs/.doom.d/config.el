@@ -25,7 +25,7 @@
 
 ;; Move betweeen windows faster
 (map!
- (:map evil-normal-state-map
+ (:n
   "C-h" #'evil-window-left
   "C-j" #'evil-window-down
   "C-k" #'evil-window-up
