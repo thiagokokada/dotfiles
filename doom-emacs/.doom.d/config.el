@@ -57,7 +57,7 @@
  (:map minibuffer-local-isearch-map [escape] #'minibuffer-keyboard-quit)
  (:g [escape] #'keyboard-quit))
 
-;;; AFTER MODULE
+;;; MODULES
 
 ;; Dtrt-indent
 (after! dtrt-indent
@@ -71,8 +71,6 @@
        :desc "Search thing at point in git project"
        "*" #'+misc/search-thing-at-point))))
 
-;;; HOOKS
-
 ;; Projectile
 (add-hook! projectile-mode
   (map!
@@ -84,14 +82,16 @@
          :desc "Replace using regexp"
          "e" #'projectile-replace-regexp)))))
 
-;; Colorize hex color strings
-(add-hook! prog-mode #'rainbow-mode)
+;; Rainbow
+(add-hook! prog-mode #'rainbow-mode) ; Colorize hex color strings
 
-;; Highlight lines longer than 80 chars
-(setq whitespace-line-column 80
+;; Whitespace
+(setq whitespace-line-column 80 ; Highlight lines longer than 80 chars
       whitespace-style '(face lines-tail))
 
 (add-hook! prog-mode #'whitespace-mode)
+
+;;; LANGUAGES
 
 ;; Clojure
 (add-hook! clojure-mode
@@ -99,6 +99,7 @@
    (:map clojure-mode-map
      (:n "gd" #'cider-find-var)
      (:localleader
+       ("a" #'clojure-align)
        (:prefix ("e" . "eval")
          "b" #'cider-eval-buffer
          "f" #'cider-eval-sexp-at-point)
@@ -115,6 +116,20 @@
         "R" #'cider-restart
         "r" #'cider-ns-refresh
         "q" #'cider-quit)))))
+
+;; Elisp
+(add-hook! emacs-lisp-mode
+  (map!
+   (:map emacs-lisp-mode-map
+     (:localleader
+       "e" nil ; Unmap macrostep-expand
+       "x" #'macrostep-expand
+       :desc "REPL"
+       "r" #'+emacs-lisp/open-repl
+       (:prefix ("e" . "eval")
+         "b" #'eval-buffer
+         "d" #'eval-defun
+         "r" #'eval-region)))))
 
 ;; Eshell
 (add-hook! eshell-mode
