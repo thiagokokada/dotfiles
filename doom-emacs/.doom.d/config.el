@@ -63,14 +63,6 @@
 (after! dtrt-indent
   (add-hook! prog-mode #'dtrt-indent-adapt))
 
-;; Ivy
-(after! ivy
-  (map!
-   (:leader
-     (:prefix ("/" . "search")
-       :desc "Search thing at point in git project"
-       "*" #'+misc/search-thing-at-point))))
-
 ;; Projectile
 (add-hook! projectile-mode
   (map!
