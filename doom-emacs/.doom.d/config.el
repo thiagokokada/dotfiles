@@ -4,26 +4,26 @@
 
 ;;; GENERAL
 
-;; Theme
+;; theme
 (require 'doom-themes)
 (load-theme 'doom-spacegrey t)
 (doom-themes-neotree-config)
 (doom-themes-org-config)
 
-;; Modeline
+;; modeline
 (setq doom-modeline-major-mode-icon t)
 
-;; Disable confirmation message on exit
+;; disable confirmation message on exit
 (setq confirm-kill-emacs nil)
 
-;; Font
+;; font
 (setq doom-font (font-spec :family "Hack" :size 14)
       doom-big-font (font-spec :family "Hack" :size 18))
 
-;; Set localleader the same as Spacemacs
+;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
 
-;; Move betweeen windows faster
+;; move betweeen windows faster
 (map!
  (:n
   "C-h" #'evil-window-left
@@ -36,19 +36,19 @@
   "C-k" #'previous-line
   "C-l" #'forward-char))
 
-;; Dired
+;; dired
 (map! (:n "-" #'dired-jump))
 
-;; Neotree
+;; neotree
 (setq doom-neotree-file-icons t)
 (map!
  (:g "C-x t" #'neotree)
  (:n "0" #'neotree-toggle))
 
-;; Which-key
+;; which-key
 (setq which-key-idle-delay 0.1)
 
-;; Make ESC to work as expected in minibuffers
+;; make ESC to work as expected in minibuffers
 (map!
  (:map minibuffer-local-map [escape] #'minibuffer-keyboard-quit)
  (:map minibuffer-local-ns-map [escape] #'minibuffer-keyboard-quit)
@@ -59,11 +59,11 @@
 
 ;;; MODULES
 
-;; Dtrt-indent
+;; dtrt-indent
 (after! dtrt-indent
   (add-hook! prog-mode #'dtrt-indent-adapt))
 
-;; Projectile
+;; projectile
 (add-hook! projectile-mode
   (map!
    (:leader
@@ -74,10 +74,10 @@
          :desc "Replace using regexp"
          "e" #'projectile-replace-regexp)))))
 
-;; Rainbow
+;; rainbow
 (add-hook! prog-mode #'rainbow-mode) ; Colorize hex color strings
 
-;; Whitespace
+;; whitespace
 (setq whitespace-line-column 80 ; Highlight lines longer than 80 chars
       whitespace-style '(face lines-tail))
 
@@ -85,7 +85,7 @@
 
 ;;; LANGUAGES
 
-;; Clojure
+;; clojure
 (add-hook! clojure-mode
   (map!
    (:map clojure-mode-map
@@ -109,7 +109,7 @@
         "r" #'cider-ns-refresh
         "q" #'cider-quit)))))
 
-;; Elisp
+;; elisp
 (add-hook! emacs-lisp-mode
   (map!
    (:map emacs-lisp-mode-map
@@ -123,7 +123,7 @@
          "d" #'eval-defun
          "r" #'eval-region)))))
 
-;; Eshell
+;; eshell
 (add-hook! eshell-mode
   (setenv "TERM" "xterm-256color")
   (setq xterm-color-preserve-properties t
@@ -133,11 +133,12 @@
 
 ;;; CUSTOM PACKAGES
 
+;; evil-lisp-state
 (def-package! evil-lisp-state
   :init (setq evil-lisp-state-global t)
   :config (evil-lisp-state-leader "`"))
 
-;; Lispyvile
+;; lispyville
 (def-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
          (emacs-lisp-mode . lispyville-mode)
@@ -157,7 +158,7 @@
      prettify
      slurp/barf-cp)))
 
-;; Uuidgen
+;; uuidgen-el
 (def-package! uuidgen
   :config
   (map!
@@ -166,7 +167,7 @@
        :desc "Insert UUIDv4"
        "u" #'uuidgen))))
 
-;; Zoom-frm
+;; zoom-frm
 (def-package! zoom-frm
   :config
   (map!
@@ -179,5 +180,5 @@
 
 ;;; MISC
 
-;; Load local configuration file if exists
+;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
