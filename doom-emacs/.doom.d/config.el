@@ -133,6 +133,10 @@
 
 ;;; CUSTOM PACKAGES
 
+(def-package! evil-lisp-state
+  :init (setq evil-lisp-state-global t)
+  :config (evil-lisp-state-leader "`"))
+
 ;; Lispyvile
 (def-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
