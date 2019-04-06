@@ -145,9 +145,7 @@
   :config
   (lispyville-set-key-theme
    '(additional
-     additional-insert
      (additional-movement normal visual motion)
-     (additional-wrap normal insert)
      c-w
      (commentary normal visual)
      (escape insert emacs)
