@@ -148,6 +148,13 @@
         eshell-output-filter-functions (remove #'eshell-handle-ansi-color
                                                eshell-output-filter-functions)))
 
+;; markdown
+(add-hook! markdown-mode
+  (map!
+   (:map markdown-mode-map
+     (:localleader
+       ("f" #'flymd-flyit)))))
+
 ;;; CUSTOM PACKAGES
 
 ;; evil-lisp-state

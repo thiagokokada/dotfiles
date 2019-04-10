@@ -8,6 +8,7 @@
 (package! company-emoji)
 (package! emidje)
 (package! evil-lisp-state)
+(package! flymd)
 (package! lispyville)
 (package! sort-words)
 (package! uuidgen)
