@@ -31,16 +31,16 @@
 
 ;; move betweeen windows faster
 (map!
- (:n
-  "C-h" #'evil-window-left
-  "C-j" #'evil-window-down
-  "C-k" #'evil-window-up
-  "C-l" #'evil-window-right)
+ (:map evil-normal-state-map
+   ("C-h" #'evil-window-left
+    "C-j" #'evil-window-down
+    "C-k" #'evil-window-up
+    "C-l" #'evil-window-right))
  (:map evil-insert-state-map
-  "C-h" #'backward-char
-  "C-j" #'next-line
-  "C-k" #'previous-line
-  "C-l" #'forward-char))
+   ("C-h" #'backward-char
+    "C-j" #'next-line
+    "C-k" #'previous-line
+    "C-l" #'forward-char)))
 
 ;; dired
 (map! (:n "-" #'dired-jump))
@@ -195,8 +195,7 @@
 (def-package! zoom-frm
   :config
   (map!
-   (:g
-    "C-=" #'zoom-frm-in
+   ("C-=" #'zoom-frm-in
     "C--" #'zoom-frm-out
     "C-0" #'zoom-frm-unzoom))
   (global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
