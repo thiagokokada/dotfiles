@@ -310,9 +310,6 @@ exec --no-startup-id xsettingsd
 # start compositor (since i3 does not support natively)
 exec --no-startup-id compton
 
-# run mons in daemon mode
-exec --no-startup-id $mons -a
-
 # notification manager
 exec --no-startup-id dunst
 
