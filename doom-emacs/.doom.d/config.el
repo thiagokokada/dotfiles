@@ -20,6 +20,12 @@
 (setq doom-font (font-spec :family "Hack" :size 14)
       doom-big-font (font-spec :family "Hack" :size 18))
 
+(add-hook! 'after-make-frame-functions
+  (set-fontset-font t 'symbol (font-spec :family "Symbola") frame 'prepend)
+  (set-fontset-font t 'unicode (font-spec :family "all-the-icons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "Font Awesome 5 Free") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "Font Awesome 5 Brands") nil 'append))
+
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
 
@@ -58,6 +64,15 @@
  (:g [escape] #'keyboard-quit))
 
 ;;; MODULES
+
+;; company
+(setq company-selection-wrap-around t)
+(set-company-backend! :derived 'prog-mode
+  'company-files
+  'company-keywords)
+(set-company-backend! :derived 'text-mode
+  'company-files
+  'company-emoji)
 
 ;; dtrt-indent
 (after! dtrt-indent
@@ -99,6 +114,8 @@
          "'" #'cider-connect
          "\"" #'cider-connect-cljs
          "o" #'cider-find-and-clear-repl-output)))))
+
+(add-hook! cider-mode #'emidje-setup)
 
 (add-hook! cider-repl-mode
   (map!

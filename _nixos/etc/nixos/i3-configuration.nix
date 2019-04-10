@@ -74,6 +74,7 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
       roboto
+      symbola
       ttf_bitstream_vera
       ubuntu_font_family
     ];

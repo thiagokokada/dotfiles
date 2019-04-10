@@ -45,6 +45,7 @@ in
     mosh
     mtr
     ncdu
+    ncurses.dev
     netcat-gnu
     p7zip
     pandoc
