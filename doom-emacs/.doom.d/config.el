@@ -54,15 +54,6 @@
 ;; which-key
 (setq which-key-idle-delay 0.1)
 
-;; make ESC to work as expected in minibuffers
-(map!
- (:map minibuffer-local-map [escape] #'minibuffer-keyboard-quit)
- (:map minibuffer-local-ns-map [escape] #'minibuffer-keyboard-quit)
- (:map minibuffer-local-completion-map [escape] #'minibuffer-keyboard-quit)
- (:map minibuffer-local-must-match-map [escape] #'minibuffer-keyboard-quit)
- (:map minibuffer-local-isearch-map [escape] #'minibuffer-keyboard-quit)
- (:g [escape] #'keyboard-quit))
-
 ;;; MODULES
 
 ;; company
@@ -77,6 +68,10 @@
 ;; dtrt-indent
 (after! dtrt-indent
   (add-hook! prog-mode #'dtrt-indent-adapt))
+
+;; evil-collection
+(add-hook! minibuffer-setup
+  (evil-collection-minibuffer-setup))
 
 ;; projectile
 (add-hook! projectile-mode

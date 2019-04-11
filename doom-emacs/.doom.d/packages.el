@@ -7,6 +7,7 @@
 ;; (package! builtin-package :disable t)
 (package! company-emoji)
 (package! emidje)
+(package! evil-collection)
 (package! evil-lisp-state)
 (package! flymd)
 (package! lispyville)
