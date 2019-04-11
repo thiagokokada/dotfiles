@@ -110,8 +110,6 @@
          "\"" #'cider-connect-cljs
          "o" #'cider-find-and-clear-repl-output)))))
 
-(add-hook! cider-mode #'emidje-setup)
-
 (add-hook! cider-repl-mode
   (map!
    (:localleader
