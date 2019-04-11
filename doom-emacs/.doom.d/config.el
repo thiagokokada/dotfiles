@@ -69,10 +69,6 @@
 (after! dtrt-indent
   (add-hook! prog-mode #'dtrt-indent-adapt))
 
-;; evil-collection
-(add-hook! minibuffer-setup
-  (evil-collection-minibuffer-setup))
-
 ;; projectile
 (add-hook! projectile-mode
   (map!
@@ -149,6 +145,10 @@
        ("f" #'flymd-flyit)))))
 
 ;;; CUSTOM PACKAGES
+
+;; evil-collection
+(def-package! evil-collection
+  :init (evil-collection-init 'minibuffer))
 
 ;; evil-lisp-state
 (def-package! evil-lisp-state
