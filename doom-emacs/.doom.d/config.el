@@ -139,6 +139,8 @@
 
 ;; markdown
 (add-hook! markdown-mode
+  (custom-set-variables
+   '(markdown-command "pandoc"))
   (map!
    (:map markdown-mode-map
      (:localleader
