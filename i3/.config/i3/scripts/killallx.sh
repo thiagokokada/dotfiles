@@ -1,17 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-PIDS=$(wmctrl -lp | awk '{ print $3 }' | sort -u)
+OPEN_WINDOWS=$(wmctrl -lp)
 
-i3-msg '[class=".*"] kill'
+echo ${OPEN_WINDOWS} | awk '{ print $1 }' | xargs -P0 -L1 wmctrl -ic
 
-while true; do
-    ALL_KILLED=1
-
-    for pid in ${PIDS}; do
-        kill -0 "${pid}" && ALL_KILLED=0
-    done
-
-    [ "${ALL_KILLED}" -eq 1 ] && break
-
+for _ in {1..50}; do
+    ps -p $(echo ${OPEN_WINDOWS} | awk '{ print $3 }' | paste -s -d, -)
+    if [[ ${?} != 0 ]]; then
+        break
+    fi
     sleep 0.1
 done
