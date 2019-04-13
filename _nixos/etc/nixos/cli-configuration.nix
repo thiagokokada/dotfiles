@@ -1,14 +1,5 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
-let
-  unstable = import (fetchGit {
-    name = "nixos-unstable-2019-01-06";
-    url = https://github.com/nixos/nixpkgs/;
-    rev = "b4ed953bb2f7486173ebc062296a1c2a04933b34"; # neovim v0.3.3
-  }) {
-    config = config.nixpkgs.config;
-  };
-in
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -19,8 +10,10 @@ in
     }))
     (python2Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
     (python3Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
-    (unstable.neovim.override ({
+    (neovim.override ({
       withNodeJs = true;
+      vimAlias = true;
+      viAlias = true;
     }))
     ag
     aria2
@@ -47,6 +40,7 @@ in
     ncdu
     ncurses.dev
     netcat-gnu
+    openssl
     p7zip
     pandoc
     parted
@@ -63,7 +57,6 @@ in
     unrar
     unzip
     usbutils
-    vim
     wget
     xclip
   ];
@@ -75,22 +68,17 @@ in
       inconsolata
       powerline-fonts
       source-code-pro
+      symbola
     ];
   };
 
-  # Enable ZSH.
+  # Enable programs that need special configuration.
   programs = {
     iftop.enable = true;
-    zsh = {
-      enable = true;
-      interactiveShellInit = ''
-        if [[ -n "''${commands[fzf-share]}" ]]; then
-          source "$(fzf-share)/key-bindings.zsh"
-        fi
-      '';
-    };
+    zsh.enable = true;
   };
 
+  # Enable services.
   services = {
     cron.enable = true;
   };

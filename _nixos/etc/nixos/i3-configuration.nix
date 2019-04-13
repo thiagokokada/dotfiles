@@ -1,14 +1,5 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
-let
-  unstable = import (fetchGit {
-    name = "nixos-unstable-2019-02-08";
-    url = https://github.com/nixos/nixpkgs/;
-    rev = "4a4e0a62d921a202fb13633ff5ce9d3962f45975"; # py3status 3.16
-  }) {
-    config = config.nixpkgs.config;
-  };
-in
 {
   environment = {
     variables = {
@@ -18,17 +9,6 @@ in
 
     # Desktop packages.
     systemPackages = with pkgs; [
-      (pcmanfm.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [
-          shared-mime-info
-        ];
-      }))
-      (with unstable;
-        (ranger.overrideAttrs (oldAttrs: {
-          propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-            python3Packages.pillow
-          ];
-        })))
       arandr
       arc-icon-theme
       arc-theme
@@ -47,15 +27,17 @@ in
       hicolor-icon-theme
       inkscape
       keepassx-community
+      kitty
       libreoffice-fresh
       lxmenu-data
       pcmanfm
       peek
       perlPackages.FileMimeInfo
       qalculate-gtk
+      ranger
       redshift
+      shared-mime-info
       termite
-      unstable.kitty
       zathura
     ];
   };
@@ -74,7 +56,6 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
       roboto
-      symbola
       ttf_bitstream_vera
       ubuntu_font_family
     ];
@@ -141,20 +122,12 @@ in
           package = pkgs.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
-            (with unstable.python3Packages;
+            (with python3Packages;
               (py3status.overrideAttrs (oldAttrs: {
                 propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
                   i3ipc
                   pydbus
                   pygobject3
-                ];
-              })))
-            (with unstable;
-              (xsecurelock.overrideAttrs (oldAttrs: {
-                buildInputs = oldAttrs.buildInputs ++ [
-                  xorg.libXScrnSaver
-                  xorg.libXext
-                  xorg.libXrandr
                 ];
               })))
             compton-git
@@ -176,6 +149,7 @@ in
             xorg.xdpyinfo
             xorg.xkill
             xorg.xset
+            xsecurelock
             xsettingsd
             xss-lock
           ];

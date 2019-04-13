@@ -14,6 +14,7 @@
       ./game-configuration.nix
       ./yubikey-configuration.nix
       ./misc-configuration.nix
+      ./nubank-configuration.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -21,21 +22,21 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Select which kernel to use.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Workaround hardware problems.
-  boot.kernelParams = [
-    "pci=noaer"
-  ];
+  # boot.kernelParams = [
+  #   "pci=noaer"
+  # ];
 
   # Define your hostname.
-  networking.hostName = "mikudayo-nixos";
+  networking.hostName = "<hostname>";
 
   # Root of encrypt device.
   boot.initrd.luks.devices = [
     {
       name = "enc-pv";
-      device = "/dev/disk/by-uuid/1174d46f-5d5d-4a69-b17b-f4b5ee9b7598";
+      device = "/dev/disk/by-uuid/<disk-uuid>";
       preLVM = true;
       allowDiscards = true;
     }
@@ -43,7 +44,6 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "lat9w-16";
     consoleKeyMap = "us-acentos";
     defaultLocale = "en_US.UTF-8";
   };
@@ -59,7 +59,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [];
+  # environment.systemPackages = with pkgs; [];
 
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -83,7 +83,7 @@
   users.users.thiagoko = {
      isNormalUser = true;
      uid = 1000;
-     extraGroups = [ "wheel" "networkmanager" ];
+     extraGroups = [ "wheel" "networkmanager" "video" ];
      shell = pkgs.zsh;
   };
 
@@ -91,6 +91,6 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 
 }

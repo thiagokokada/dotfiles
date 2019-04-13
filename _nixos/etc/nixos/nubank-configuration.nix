@@ -1,14 +1,5 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
-let
-  unstable = import (fetchGit {
-    name = "nixos-unstable-2019-03-02";
-    url = https://github.com/nixos/nixpkgs/;
-    rev = "025c2abd08de80609b961c8c8176a2be390a6d88"; # leiningen 2.9.1
-  }) {
-    config = config.nixpkgs.config;
-  };
-in
 {
   # For Slack.
   nixpkgs.config.allowUnfree = true;
@@ -19,14 +10,13 @@ in
     clojure
     joker
     kubectl
+    leiningen
     minikube
     nodejs-10_x
     nss
     nssTools
-    openssl
     slack
     tigervnc
-    unstable.leiningen
     vagrant
   ];
 

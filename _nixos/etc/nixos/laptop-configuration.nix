@@ -12,6 +12,7 @@
     networkmanager = {
       enable = true;
       dhcp = "internal";
+      dns = "dnsmasq";
     };
   };
 
@@ -124,8 +125,5 @@
         CPU_SCALING_GOVERNOR_ON_BAT=powersave
       '';
     };
-
-    # Enable Unbound.
-    unbound.enable = true;
   };
 }

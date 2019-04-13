@@ -31,9 +31,6 @@
     dates = "daily";
   };
 
-  # Allow upgrade of backported packages.
-  systemd.services.nixos-upgrade.path = [ pkgs.git ];
-
   services = {
     # Trim SSD weekly.
     fstrim = {
@@ -46,7 +43,7 @@
 
     # Set blk-mq scheduler depending on disk type.
     udev.extraRules = ''
-      ACTION=="add|change", KERNEL=="[sv]d[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
+      ACTION=="add|change", KERNEL=="[sv]d[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="kyber"
       ACTION=="add|change", KERNEL=="[sv]d[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
     '';
   };
