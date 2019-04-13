@@ -16,14 +16,6 @@
     };
   };
 
-  # Start nm-applet.
-  systemd.user.services.nm-applet = {
-    description = "Network manager applet";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig.ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
-  };
-
   # Install laptop related packages.
   environment.systemPackages = with pkgs; [
     blueman
@@ -79,6 +71,12 @@
   # https://github.com/Bumblebee-Project/Bumblebee/issues/971#issuecomment-410386426
   # environment.variables.__GLVND_DISALLOW_PATCHING = "1";
 
+  # Enable programs that need special configuration.
+  programs = {
+    # Enable NetworkManager applet.
+    nm-applet.enable = true;
+  };
+
   # Enable laptop specific services.
   services = {
     # Enable natural scrolling.
@@ -88,6 +86,7 @@
         naturalScrolling = true;
       };
 
+      # Use flat profile for mouse
       extraConfig = ''
         Section "InputClass"
           Identifier "mouse"
