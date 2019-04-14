@@ -29,6 +29,7 @@
       keepassx-community
       kitty
       libreoffice-fresh
+      lxappearance-gtk3
       lxmenu-data
       pcmanfm
       peek
@@ -150,7 +151,6 @@
             xorg.xkill
             xorg.xset
             xsecurelock
-            xsettingsd
             xss-lock
           ];
         };

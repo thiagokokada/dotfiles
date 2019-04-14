@@ -304,9 +304,6 @@ client.urgent #373b41 #cc6666 #ffffff #cc6666
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 
-# run xsettingsd daemon
-exec --no-startup-id xsettingsd
-
 # start compositor (since i3 does not support natively)
 exec --no-startup-id compton
 
