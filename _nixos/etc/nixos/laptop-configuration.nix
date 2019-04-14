@@ -39,9 +39,6 @@
       extraModules = [ pkgs.pulseaudio-modules-bt ];
     };
 
-    # Enable CPU microcode for Intel.
-    cpu.intel.updateMicrocode = true;
-
     # Extra OpenGL options.
     opengl = {
       extraPackages = with pkgs; [
@@ -84,21 +81,6 @@
   services = {
     # Enable natural scrolling.
     xserver = {
-      libinput = {
-        enable = true;
-        naturalScrolling = true;
-      };
-
-      # Use flat profile for mouse
-      extraConfig = ''
-        Section "InputClass"
-          Identifier "mouse"
-          Driver "libinput"
-          MatchIsPointer "yes"
-          Option "AccelProfile" "flat"
-        EndSection
-      '';
-
       # Use Intel (modesetting) driver, since intel driver itself is terrible.
       videoDrivers = [ "modesetting" ];
 
@@ -114,9 +96,6 @@
 
     # Lock screen when lid is closed.
     logind.lidSwitch = "lock";
-
-    # Enable Intel Thermald.
-    thermald.enable = true;
 
     # Enable TLP to reduce power consumption.
     tlp = {

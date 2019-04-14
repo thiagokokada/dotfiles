@@ -18,6 +18,12 @@
     LC_COLLATE = "C"; # Use C style string sort.
   };
 
+  # Configure hardware for Intel.
+  hardware = {
+    # Enable CPU microcode for Intel.
+    cpu.intel.updateMicrocode = true;
+  };
+
   # Enable automatic GC.
   nix.gc = {
     automatic = true;
@@ -32,11 +38,34 @@
   };
 
   services = {
+    # Mouse configuration.
+    xserver = {
+      libinput = {
+        # Enable libinput.
+        enable = true;
+        # Enable natural scrolling for touchpads.
+        naturalScrolling = true;
+      };
+
+      # Use flat profile for mouse.
+      extraConfig = ''
+        Section "InputClass"
+          Identifier "mouse"
+          Driver "libinput"
+          MatchIsPointer "yes"
+          Option "AccelProfile" "flat"
+        EndSection
+      '';
+    };
+
     # Trim SSD weekly.
     fstrim = {
       enable = true;
       interval = "weekly";
     };
+
+    # Enable Intel Thermald.
+    thermald.enable = true;
 
     # Enable NTP.
     timesyncd.enable = true;

@@ -49,10 +49,10 @@
   };
 
   # Set X11 keyboard layout.
-  services.xserver {
+  services.xserver = {
     layout = "us";
     xkbVariant = "intl";
-  }
+  };
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
