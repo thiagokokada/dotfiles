@@ -28,10 +28,13 @@
     fzf
     gcc
     gitFull
+    glxinfo
     gnumake
     htop
     ispell
     jq
+    linuxPackages.cpupower
+    lshw
     lsof
     manpages
     mediainfo
@@ -44,6 +47,9 @@
     p7zip
     pandoc
     parted
+    pciutils
+    powertop
+    psmisc
     pv
     python3Packages.youtube-dl
     ripgrep
