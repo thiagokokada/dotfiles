@@ -10,10 +10,22 @@ source "${ZIT_MODULES_PATH}/zit/zit.zsh"
 zit-in "https://github.com/thiagokokada/zit" "zit"
 
 # zim
-export ZIM_HOME="${ZIT_MODULES_PATH}/zim"
-zit-il "https://github.com/Eriner/zim" "zim" "init.zsh"
-
-zit-il "https://github.com/hlissner/zsh-autopair" "autopair" "autopair.zsh"
+zit-in "https://github.com/Eriner/zim" "zim"
+zit-lo "zim" "modules/directory/init.zsh"
+ztermtitle='%~' && \
+  zit-lo "zim" "modules/environment/init.zsh"
+zit-lo "zim" "modules/git/init.zsh"
+zit-lo "zim" "modules/history/init.zsh"
+zdouble_dot_expand='true' && \
+  zit-lo "zim" "modules/input/init.zsh"
+zit-lo "zim" "modules/utility/init.zsh"
+zssh_ids=(/dev/null) && \
+  zit-lo "zim" "modules/ssh/init.zsh"
+zit-lo "zim" "modules/completion/init.zsh"
+zhighlighters=(main brackets cursor) && \
+  zit-lo "zim" "modules/syntax-highlighting/init.zsh"
+zit-lo "zim" "modules/history-substring-search/init.zsh"
+zit-lo "zim" "modules/autosuggestions/init.zsh"
 
 # powerlevel9k
 # load only if terminal supports at least 256 colors
@@ -23,6 +35,7 @@ if [[ "$(tput colors)" -ge 256 ]]; then
 fi
 
 # misc
+zit-il "https://github.com/hlissner/zsh-autopair" "autopair" "autopair.zsh"
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
   "zsh-autoenv" "autoenv.zsh"
 
