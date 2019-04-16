@@ -36,8 +36,4 @@ nixos-restore-etc() {
   done
 }
 
-upgrade-all() {
-  sudo nixos-rebuild switch --upgrade
-  (( $+commands[nvim] )) && nvim -c PlugUpdate -c qall
-  zit-update
-}
+UPGRADE_CMDS+="sudo nixos-rebuild switch --upgrade"

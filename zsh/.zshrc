@@ -59,10 +59,21 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^v' edit-command-line
 
+# upgrade-all cmd
+export -ua UPGRADE_CMDS=("zit-update")
+upgrade-all() {
+  for cmd in "${UPGRADE_CMDS[@]}"; do
+    printf "\nRunning: %s\n\n" "${cmd}"
+    eval "${cmd}"
+  done
+}
+alias up!="upgrade-all"
+
 # helpers
 close-fd() { "${@}" </dev/null &>/dev/null }
 run-bg() { "${@}" </dev/null &>/dev/null &! }
 open() { run-bg xdg-open "${@}" }
+try-run() { (( $+commands[${1}] )) && "${@}" }
 
 # aliases
 alias clean-zsh-cache="rm -f ${HOME}/.*.zwc"
