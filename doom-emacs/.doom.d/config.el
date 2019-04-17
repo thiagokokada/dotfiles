@@ -31,7 +31,7 @@
 
 ;; move betweeen windows faster
 (map!
- (:map evil-normal-state-map
+ (:map evil-motion-state-map
    ("C-h" #'evil-window-left
     "C-j" #'evil-window-down
     "C-k" #'evil-window-up
@@ -101,6 +101,11 @@
        (:prefix ("e" . "eval")
          "b" #'cider-eval-buffer
          "f" #'cider-eval-sexp-at-point)
+       (:prefix ("t" . "test")
+         "t" #'cider-test-run-test
+         "p" #'cider-test-run-project-tests
+         "n" #'cider-test-run-ns-tests
+         "f" #'cider-test-rerun-failed-tests)
        (:prefix ("r" . "repl")
          "'" #'cider-connect
          "\"" #'cider-connect-cljs
