@@ -77,8 +77,10 @@
        (:prefix ("p" . "project")
          :desc "Toggle between implementation and test"
          "a" #'projectile-toggle-between-implementation-and-test
+         :desc "Replace literal"
+         "R" #'projectile-replace
          :desc "Replace using regexp"
-         "e" #'projectile-replace-regexp)))))
+         "X" #'projectile-replace-regexp)))))
 
 ;; rainbow
 (add-hook! prog-mode #'rainbow-mode) ; Colorize hex color strings
@@ -102,10 +104,14 @@
          "b" #'cider-eval-buffer
          "f" #'cider-eval-sexp-at-point)
        (:prefix ("t" . "test")
-         "t" #'cider-test-run-test
-         "p" #'cider-test-run-project-tests
+         "c" #'cider-test-clear-highlights
+         "f" #'cider-test-rerun-failed-tests
          "n" #'cider-test-run-ns-tests
-         "f" #'cider-test-rerun-failed-tests)
+         "p" #'cider-test-run-project-tests
+         "r" #'cider-test-show-report
+         "t" #'cider-test-run-test
+         "N" #'misc/cider-eval-and-run-ns-tests
+         "T" #'misc/cider-eval-and-run-test)
        (:prefix ("r" . "repl")
          "'" #'cider-connect
          "\"" #'cider-connect-cljs
