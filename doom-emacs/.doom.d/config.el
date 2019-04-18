@@ -144,10 +144,12 @@
 ;; eshell
 (add-hook! eshell-mode
   (setenv "TERM" "xterm-256color")
-  (setq xterm-color-preserve-properties t
-        eshell-preoutput-filter-functions '(xterm-color-filter)
-        eshell-output-filter-functions (remove #'eshell-handle-ansi-color
-                                               eshell-output-filter-functions)))
+  (add-to-list 'eshell-preoutput-filter-functions #'xterm-color-filter)
+  (setq eshell-output-filter-functions (remove #'eshell-handle-ansi-color
+                                          eshell-output-filter-functions)))
+
+(add-hook! 'eshell-before-prompt-hook
+  (setq xterm-color-preserve-properties t))
 
 ;; markdown
 (add-hook! markdown-mode
