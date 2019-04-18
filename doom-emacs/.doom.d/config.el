@@ -64,7 +64,6 @@
   #'company-emoji)
 
 (setq company-selection-wrap-around t)
-(add-hook! 'post-self-insert-hook #'evil-normalize-keymaps)
 
 ;; dtrt-indent
 (after! dtrt-indent
