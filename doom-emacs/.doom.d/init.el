@@ -159,3 +159,7 @@
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
+
+(def-package-hook! company
+  :post-config
+  (setq company-idle-delay 0.2))

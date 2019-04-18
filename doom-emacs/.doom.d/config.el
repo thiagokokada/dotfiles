@@ -21,7 +21,6 @@
       doom-big-font (font-spec :family "Hack" :size 18))
 
 (add-hook! 'after-make-frame-functions
-  (set-fontset-font t 'symbol (font-spec :family "Symbola") frame 'prepend)
   (set-fontset-font t 'unicode (font-spec :family "all-the-icons") nil 'append)
   (set-fontset-font t 'unicode (font-spec :family "Font Awesome 5 Free") nil 'append)
   (set-fontset-font t 'unicode (font-spec :family "Font Awesome 5 Brands") nil 'append))
@@ -52,18 +51,20 @@
  (:n "0" #'neotree-toggle))
 
 ;; which-key
-(setq which-key-idle-delay 0.1)
+(setq which-key-idle-delay 0.2)
 
 ;;; MODULES
 
 ;; company
-(setq company-selection-wrap-around t)
 (set-company-backend! :derived 'prog-mode
-  'company-files
-  'company-keywords)
+  #'company-files
+  #'company-keywords)
 (set-company-backend! :derived 'text-mode
-  'company-files
-  'company-emoji)
+  #'company-files
+  #'company-emoji)
+
+(setq company-selection-wrap-around t)
+(add-hook! 'post-self-insert-hook #'evil-normalize-keymaps)
 
 ;; dtrt-indent
 (after! dtrt-indent
