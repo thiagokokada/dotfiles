@@ -63,6 +63,13 @@
   #'company-files
   #'company-emoji)
 
+(add-hook! company-mode
+  (map!
+   (:map company-active-map
+     "TAB" #'company-select-next
+     [tab] #'company-select-next
+     [backtab] #'company-select-previous)))
+
 (setq company-selection-wrap-around t)
 
 ;; dtrt-indent

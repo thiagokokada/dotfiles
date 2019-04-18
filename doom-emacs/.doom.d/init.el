@@ -13,8 +13,8 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto            ; ...as you type
-        +tng)            ; ...with less typing
+        +auto)            ; ...as you type
+       ;;+tng)            ; ...with less typing
        ;;helm             ; the *other* search engine for love and life
        ;;ido              ; the other *other* search engine...
        (ivy              ; a search engine for love and life
