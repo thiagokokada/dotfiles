@@ -5,10 +5,15 @@
     # Mount /tmp using tmpfs for performance.
     tmpOnTmpfs = true;
 
-    # Enable blk-mq.
     kernelParams = [
+      # Enable blk-mq.
       "scsi_mod.use_blk_mq=1"
     ];
+
+    kernel.sysctl = {
+      # Enable Magic keys
+      "kernel.sysrq" = 1;
+    };
   };
 
   # Change some default locales.
