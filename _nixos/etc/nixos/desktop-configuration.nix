@@ -26,6 +26,14 @@
       qemuOvmf = true;
       qemuVerbatimConfig = ''
         nographics_allow_host_audio = 1
+        cgroup_device_acl = [
+          "/dev/null", "/dev/full", "/dev/zero",
+          "/dev/random", "/dev/urandom",
+          "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
+          "/dev/rtc","/dev/hpet",
+          "/dev/input/by-id/usb-Logitech_G203_Prodigy_Gaming_Mouse_0176375A3336-event-mouse",
+          "/dev/input/by-id/usb-Logitech_Gaming_Keyboard_G610_106936603934-event-kbd"
+        ]
       '';
     };
   };
