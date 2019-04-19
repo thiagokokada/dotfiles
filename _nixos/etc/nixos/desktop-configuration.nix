@@ -101,9 +101,19 @@
     };
   };
 
-  # Open ports to Samba.
-  networking.firewall.allowedTCPPorts = [ 139 445 ];
-  networking.firewall.allowedUDPPorts = [ 137 138 ];
+  networking = {
+    bridges = {
+      br0 = {
+        interfaces = [ "eno1" ];
+      };
+    };
+
+    # Open ports to Samba.
+    firewall = {
+      allowedTCPPorts = [ 139 445 ];
+      allowedUDPPorts = [ 137 138 ];
+    };
+  };
 
   # rtorrent daemon.
   systemd.services.rtorrent-with-tmux = {
