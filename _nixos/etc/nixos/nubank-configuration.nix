@@ -8,6 +8,7 @@
     apacheKafka
     awscli
     clojure
+    insomnia
     joker
     kubectl
     leiningen
