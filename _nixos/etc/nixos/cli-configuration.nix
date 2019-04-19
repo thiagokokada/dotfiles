@@ -58,7 +58,6 @@
     stow
     telnet
     tig
-    tmux
     universal-ctags
     unrar
     unzip
@@ -81,6 +80,7 @@
   # Enable programs that need special configuration.
   programs = {
     iftop.enable = true;
+    tmux.enable = true;
     zsh.enable = true;
   };
 
