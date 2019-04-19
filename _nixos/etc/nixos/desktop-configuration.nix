@@ -98,25 +98,27 @@
   networking.firewall.allowedUDPPorts = [ 137 138 ];
 
   # rtorrent daemon.
-  systemd.user.services.rtorrent-with-tmux = {
+  systemd.services.rtorrent-with-tmux = {
     description = "rtorrent: An ncurses client for libtorrent, running inside tmux";
     after = [ "network.target" ];
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
       Type = "oneshot";
+      User = "thiagoko";
       ExecStart = "${pkgs.tmux}/bin/tmux -2 new-session -d -s rtorrent ${pkgs.rtorrent}/bin/rtorrent";
       ExecStop = "${pkgs.procps}/bin/pkill -SIGINT rtorrent";
       RemainAfterExit = "yes";
     };
   };
 
-  systemd.user.services.rtorrent-update-ipv4-blocklist = {
+  systemd.services.rtorrent-update-ipv4-blocklist = {
     description = "Update IPv4 blocklist for rtorrent";
     after = [ "network.target" ];
 
     serviceConfig = {
       Type = "oneshot";
+      User = "thiagoko";
       ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.curl}/bin/curl https://silo.glasz.org/antip2p.list.gz' | ${pkgs.gzip} > ~/.session/antip2p.list";
     };
   };
