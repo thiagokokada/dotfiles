@@ -64,17 +64,18 @@
       package = pkgs.samba;
       extraConfig = ''
         workgroup = WORKGROUP
+        local master = yes
+        preferred master = yes
         server string = ${config.networking.hostName}
         netbios name = ${config.networking.hostName}
         use sendfile = yes
-        max protocol = smb2
-        hosts allow = 192.168.15.0 192.168.122. localhost
+        hosts allow = 192.168.15. localhost
         hosts deny = 0.0.0.0/0
         guest account = nobody
         map to guest = bad user
         mangled names = no
         vfs objects = catia
-        catia:mappings = 0x22:0xf022, 0x2a:0xf02a, 0x2f:0xf02f, 0x3a:0xf03a, 0x3c:0xf03c, 0x3e:0xf03e, 0x3f:0xf03f, 0x5c:0xf05c, 0x7c:0xf07c, 0x20:0xf020
+        catia:mappings = 0x22:0xa8,0x2a:0xa4,0x2f:0xf8,0x3a:0xf7,0x3c:0xab,0x3e:0xbb,0x3f:0xbf,0x5c:0xff,0x7c:0xa6
       '';
       shares = {
         home = {

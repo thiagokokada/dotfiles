@@ -31,6 +31,7 @@
       libreoffice-fresh
       lxappearance-gtk3
       lxmenu-data
+      mcomix
       pcmanfm
       peek
       perlPackages.FileMimeInfo
