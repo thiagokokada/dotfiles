@@ -121,17 +121,7 @@
          "T" #'misc/cider-eval-and-run-test)
        (:prefix ("r" . "repl")
          "'" #'cider-connect
-         "\"" #'cider-connect-cljs
-         "o" #'cider-find-and-clear-repl-output)))))
-
-(add-hook! cider-repl-mode
-  (map!
-   (:localleader
-     (:map cider-repl-mode-map
-       ("c" #'cider-repl-clear-buffer
-        "R" #'cider-restart
-        "r" #'cider-ns-refresh
-        "q" #'cider-quit)))))
+         "\"" #'cider-connect-cljs)))))
 
 ;; elisp
 (add-hook! emacs-lisp-mode
