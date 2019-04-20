@@ -14,7 +14,6 @@
 
   # Enable IOMMU
   boot.kernelParams = [
-    "pci=noaer"
     "intel_iommu=on"
     "vfio-pci.ids=10de:1c02,10de:10f1"
   ];
@@ -23,6 +22,7 @@
   virtualisation = {
     libvirtd = {
       enable = true;
+      onShutdown = "shutdown";
       qemuOvmf = true;
       qemuVerbatimConfig = ''
         nographics_allow_host_audio = 1
