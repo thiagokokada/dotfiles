@@ -11,8 +11,10 @@
     ];
 
     kernel.sysctl = {
-      # Enable Magic keys
+      # Enable Magic keys.
       "kernel.sysrq" = 1;
+      # Reduce swap preference.
+      "vm.swappiness" = 10;
     };
   };
 

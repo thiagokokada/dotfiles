@@ -47,7 +47,9 @@
   # Some misc packages.
   environment.systemPackages = with pkgs; [
     btrfs-progs
+    hdparm
     samba
+    smartmontools
     virtmanager
   ];
 
@@ -99,6 +101,12 @@
           "force group" = "users";
         };
       };
+    };
+
+    # Enable SMART monitoring.
+    smartd = {
+      enable = true;
+      notifications.x11.enable = true;
     };
   };
 
