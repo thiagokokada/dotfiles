@@ -48,6 +48,7 @@
   environment.systemPackages = with pkgs; [
     btrfs-progs
     hdparm
+    piper
     samba
     smartmontools
     virtmanager
@@ -58,6 +59,10 @@
     plex = {
       enable = true;
       openFirewall = true;
+    };
+
+    ratbagd = {
+      enable = true;
     };
 
     # Enable Samba.
@@ -159,6 +164,10 @@
       Persistent = "true";
     };
   };
+
+  # Install Java.
+  programs.java.enable = true;
+  environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
 
   # Reduce latency.
   powerManagement.cpuFreqGovernor = "performance";
