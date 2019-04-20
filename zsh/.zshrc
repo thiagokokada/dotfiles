@@ -85,7 +85,7 @@ alias ssh="TERM=xterm-256color ssh"
 
 # source contents from ~/.zshrc.d/*.zsh
 for file in ${HOME}/.zshrc.d/*.zsh; do
-  source "${file}"
+  [[ -f "${file}" ]] && source "${file}"
 done
 
 # script to compile ZSH files
