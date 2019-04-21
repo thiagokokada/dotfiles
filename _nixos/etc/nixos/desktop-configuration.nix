@@ -49,18 +49,26 @@
     btrfs-progs
     hdparm
     piper
+    rtorrent
     samba
     smartmontools
     virtmanager
   ];
 
   services = {
+    # Enable btrfs scrub.
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
+
     # Enable Plex Media Server.
     plex = {
       enable = true;
       openFirewall = true;
     };
 
+    # Enable ratbagd (for piper).
     ratbagd = {
       enable = true;
     };
@@ -130,28 +138,31 @@
   };
 
   # rtorrent daemon.
-  systemd.services.rtorrent-with-tmux = {
+  systemd.user.services.rtorrent-with-tmux = {
     description = "rtorrent: An ncurses client for libtorrent, running inside tmux";
     after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "defaul.target" ];
+    environment = {
+      HOME = "%h";
+      TERMINFO = "${pkgs.kitty}/lib/kitty/terminfo";
+    };
+    path = [ pkgs.bash pkgs.tmux pkgs.procps ];
 
     serviceConfig = {
-      Type = "oneshot";
-      User = "thiagoko";
-      ExecStart = "${pkgs.tmux}/bin/tmux -2 new-session -d -s rtorrent ${pkgs.rtorrent}/bin/rtorrent";
-      ExecStop = "${pkgs.procps}/bin/pkill -SIGINT rtorrent";
-      RemainAfterExit = "yes";
+      Type = "forking";
+      ExecStart = "${pkgs.tmux}/bin/tmux -2 -L rtorrent new-session -d -s rtorrent ${pkgs.rtorrent}/bin/rtorrent";
+      ExecStop = "${pkgs.procps}/bin/pkill rtorrent";
+      Restart = "on-failure";
     };
   };
 
-  systemd.services.rtorrent-update-ipv4-blocklist = {
+  systemd.user.services.rtorrent-update-ipv4-blocklist = {
     description = "Update IPv4 blocklist for rtorrent";
     after = [ "network.target" ];
 
     serviceConfig = {
       Type = "oneshot";
-      User = "thiagoko";
-      ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.curl}/bin/curl https://silo.glasz.org/antip2p.list.gz' | ${pkgs.gzip} > ~/.session/antip2p.list";
+      ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.curl}/bin/curl https://silo.glasz.org/antip2p.list.gz' | ${pkgs.gzip}/bin/gunzip > ~/.session/antip2p.list";
     };
   };
 

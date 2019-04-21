@@ -3,10 +3,11 @@ Description=rtorrent
 After=network.target
 
 [Service]
-Type=oneshot
-RemainAfterExit=yes
-ExecStart=/usr/bin/tmux -2 new-session -d -s rtorrent rtorrent
-ExecStop=/usr/bin/killall -w -SIGINT rtorrent
+Environment="HOME=%h"
+Type=forking
+ExecStart=/usr/bin/tmux -2 -L rtorrent new-session -d -s rtorrent rtorrent
+ExecStop=/usr/bin/pkill rtorrent
+Restart=on-failure
 
 [Install]
 WantedBy=default.target

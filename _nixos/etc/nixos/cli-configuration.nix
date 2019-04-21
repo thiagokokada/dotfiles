@@ -80,7 +80,11 @@
   # Enable programs that need special configuration.
   programs = {
     iftop.enable = true;
-    tmux.enable = true;
+    tmux = {
+      enable = true;
+      terminal = "screen-256color";
+      secureSocket = false;
+    };
     zsh.enable = true;
   };
 
