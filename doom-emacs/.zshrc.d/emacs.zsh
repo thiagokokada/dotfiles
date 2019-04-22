@@ -1,4 +1,4 @@
-ZIT_MODULES_PATH="${HOME}" zit-in "https://github.com/hlissner/doom-emacs#develop" ".emacs.d"
+ZIT_MODULES_PATH="${HOME}" zit-in "https://github.com/hlissner/doom-emacs#develop" ".emacs.d" 0
 
 path=(
   ~/.emacs.d/bin
@@ -10,4 +10,4 @@ alias et="TERM=xterm-24bit emacs -nw"
 
 ec() { close-fd emacsclient -a '' -nqc "${@}" }
 
-UPGRADE_CMDS+="doom update && doom refresh"
+UPGRADE_CMDS+="doom -y upgrade && doom -y update && doom -y refresh"
