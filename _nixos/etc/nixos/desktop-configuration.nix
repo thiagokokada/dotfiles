@@ -141,7 +141,7 @@
   systemd.user.services.rtorrent-with-tmux = {
     description = "rtorrent: An ncurses client for libtorrent, running inside tmux";
     after = [ "network.target" ];
-    wantedBy = [ "defaul.target" ];
+    wantedBy = [ "default.target" ];
     environment = {
       HOME = "%h";
       TERMINFO = "${pkgs.kitty}/lib/kitty/terminfo";
