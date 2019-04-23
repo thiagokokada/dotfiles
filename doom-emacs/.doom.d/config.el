@@ -109,6 +109,7 @@
        ("a" #'clojure-align)
        (:prefix ("e" . "eval")
          "b" #'cider-eval-buffer
+         "E" #'user/cider-read-and-eval-defun-at-point
          "f" #'cider-eval-sexp-at-point)
        (:prefix ("t" . "test")
          "c" #'cider-test-clear-highlights
@@ -117,8 +118,8 @@
          "p" #'cider-test-run-project-tests
          "r" #'cider-test-show-report
          "t" #'cider-test-run-test
-         "N" #'misc/cider-eval-and-run-ns-tests
-         "T" #'misc/cider-eval-and-run-test)
+         "N" #'user/cider-eval-and-run-ns-tests
+         "T" #'user/cider-eval-and-run-test)
        (:prefix ("r" . "repl")
          "'" #'cider-connect
          "\"" #'cider-connect-cljs)))))
