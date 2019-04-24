@@ -28,13 +28,18 @@
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
 
-;; move betweeen windows faster
+;; enable minibuffer to work correctly in evil mode
+(setq evil-collection-setup-minibuffer t)
+
+;; movement mappings
 (map!
+ ;; move betweeen windows faster in normal mode
  (:map evil-motion-state-map
    ("C-h" #'evil-window-left
     "C-j" #'evil-window-down
     "C-k" #'evil-window-up
     "C-l" #'evil-window-right))
+ ;; move between characters in insert mode
  (:map evil-insert-state-map
    ("C-h" #'backward-char
     "C-j" #'next-line
@@ -158,10 +163,6 @@
        ("f" #'flymd-flyit)))))
 
 ;;; CUSTOM PACKAGES
-
-;; evil-collection
-(def-package! evil-collection
-  :init (evil-collection-init 'minibuffer))
 
 ;; evil-lisp-state
 (def-package! evil-lisp-state
