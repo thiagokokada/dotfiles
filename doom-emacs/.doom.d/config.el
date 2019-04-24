@@ -109,6 +109,7 @@
 (add-hook! clojure-mode
   (map!
    (:map clojure-mode-map
+     (:n "gd" #'cider-find-var)
      (:localleader
        ("a" #'clojure-align)
        (:prefix ("e" . "eval")
