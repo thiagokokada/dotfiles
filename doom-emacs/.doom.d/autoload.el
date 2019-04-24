@@ -16,7 +16,7 @@
 
 ;;; Source: https://git.io/fj3XL
 ;;;###autoload
-(defun user/cider-read-and-eval (&optional value)
+(defun user/cider-read-and-call (&optional value)
   "Read a sexp from the minibuffer and output its result to the echo area.
 If VALUE is non-nil, it is inserted into the minibuffer as initial input."
   (interactive)
@@ -34,11 +34,11 @@ If VALUE is non-nil, it is inserted into the minibuffer as initial input."
 
 ;;; Source: https://git.io/fj3Xt
 ;;;###autoload
-(defun user/cider-read-and-eval-defun-at-point ()
+(defun user/cider-read-and-call-defun-at-point ()
   "Insert the toplevel form at point in the minibuffer and output its result.
 The point is placed next to the function name in the minibuffer to allow
 passing arguments."
   (interactive)
   (let* ((fn-name (cadr (split-string (cider-defun-at-point))))
          (form (concat "(" fn-name ")")))
-    (user/cider-read-and-eval (cons form (length form)))))
+    (user/cider-read-and-call (cons form (length form)))))
