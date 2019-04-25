@@ -65,8 +65,7 @@
   #'company-files
   #'company-keywords)
 (set-company-backend! :derived 'text-mode
-  #'company-files
-  #'company-emoji)
+  #'company-files)
 
 (add-hook! company-mode
   (map!
