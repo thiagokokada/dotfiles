@@ -31,29 +31,24 @@
 ;; enable minibuffer to work correctly in evil mode
 (setq evil-collection-setup-minibuffer t)
 
-;; movement mappings
+;; general mappings
 (map!
- ;; move betweeen windows faster in normal mode
+ ; move betweeen windows faster in normal mode
  (:map evil-motion-state-map
-   ("C-h" #'evil-window-left
-    "C-j" #'evil-window-down
-    "C-k" #'evil-window-up
-    "C-l" #'evil-window-right))
- ;; move between characters in insert mode
+   "C-h" #'evil-window-left
+   "C-j" #'evil-window-down
+   "C-k" #'evil-window-up
+   "C-l" #'evil-window-right)
+ ; move between characters in insert mode
  (:map evil-insert-state-map
-   ("C-h" #'backward-char
-    "C-j" #'next-line
-    "C-k" #'previous-line
-    "C-l" #'forward-char)))
-
-;; dired
-(map! (:n "-" #'dired-jump))
-
-;; neotree
-(setq doom-neotree-file-icons t)
-(map!
- (:g "C-x t" #'neotree)
- (:n "0" #'neotree-toggle))
+   "C-h" #'backward-char
+   "C-j" #'next-line
+   "C-k" #'previous-line
+   "C-l" #'forward-char)
+ ; misc
+ (:n "-" #'dired-jump)
+ (:n "0" #'+treemacs/toggle)
+ (:n "U" #'undo-tree-visualize))
 
 ;; which-key
 (setq which-key-idle-delay 0.2)
@@ -206,9 +201,9 @@
 (def-package! zoom-frm
   :config
   (map!
-   ("C-=" #'zoom-frm-in
-    "C--" #'zoom-frm-out
-    "C-0" #'zoom-frm-unzoom))
+   "C-=" #'zoom-frm-in
+   "C--" #'zoom-frm-out
+   "C-0" #'zoom-frm-unzoom)
   (global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
   (global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out))
 
