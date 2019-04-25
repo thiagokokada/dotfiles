@@ -161,11 +161,6 @@
 
 ;;; CUSTOM PACKAGES
 
-;; evil-lisp-state
-(def-package! evil-lisp-state
-  :init (setq evil-lisp-state-global t)
-  :config (evil-lisp-state-leader "`"))
-
 ;; lispyville
 (def-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
@@ -175,10 +170,13 @@
          (hy-mode . lispyville-mode)
          (lfe-mode . lispyville-mode)
          (clojure-mode . lispyville-mode))
+  :when (display-graphic-p) ;; lispyville breaks terminal Emacs
   :config
   (lispyville-set-key-theme
-   '(additional
+   `(additional
+     additional-insert
      (additional-movement normal visual motion)
+     (additional-wrap normal insert)
      c-w
      (commentary normal visual)
      (escape insert emacs)
