@@ -11,11 +11,11 @@
 
   # Load VFIO related modules.
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+  boot.extraModprobeConfig = "options vfio-pci ids=10de:1c02,10de:10f1";
 
   # Enable IOMMU
   boot.kernelParams = [
     "intel_iommu=on"
-    "vfio-pci.ids=10de:1c02,10de:10f1"
   ];
 
   # Enable libvirtd.

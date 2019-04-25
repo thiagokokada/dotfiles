@@ -69,6 +69,7 @@
   # Fonts used in terminal.
   fonts = {
     fonts = with pkgs; [
+      emacs-all-the-icons-fonts
       hack-font
       inconsolata
       powerline-fonts
