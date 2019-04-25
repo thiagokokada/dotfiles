@@ -34,21 +34,19 @@
 ;; general mappings
 (map!
  ; move betweeen windows faster in normal mode
- (:map evil-motion-state-map
-   "C-h" #'evil-window-left
-   "C-j" #'evil-window-down
-   "C-k" #'evil-window-up
-   "C-l" #'evil-window-right)
+ :m "C-h" #'evil-window-left
+ :m "C-j" #'evil-window-down
+ :m "C-k" #'evil-window-up
+ :m "C-l" #'evil-window-right
  ; move between characters in insert mode
- (:map evil-insert-state-map
-   "C-h" #'backward-char
-   "C-j" #'next-line
-   "C-k" #'previous-line
-   "C-l" #'forward-char)
+ :i "C-h" #'backward-char
+ :i "C-j" #'next-line
+ :i "C-k" #'previous-line
+ :i "C-l" #'forward-char
  ; misc
- (:n "-" #'dired-jump)
- (:n "0" #'+treemacs/toggle)
- (:n "U" #'undo-tree-visualize))
+ :n "-" #'dired-jump
+ :n "0" #'+treemacs/toggle
+ :n "U" #'undo-tree-visualize)
 
 ;; which-key
 (setq which-key-idle-delay 0.2)
