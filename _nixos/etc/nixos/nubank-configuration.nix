@@ -10,12 +10,14 @@
     clojure
     insomnia
     joker
+    jupyter
     kubectl
     leiningen
     minikube
     nodejs-10_x
     nss
     nssTools
+    python36Packages.jupyter_core
     slack
     tigervnc
     vagrant
