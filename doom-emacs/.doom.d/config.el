@@ -61,6 +61,8 @@
   #'company-files)
 
 (add-hook! company-mode
+  (advice-add #'company-enable-overriding-keymap
+              :after-while #'evil-normalize-keymaps)
   (map!
    (:map company-active-map
      "TAB" #'company-select-next
