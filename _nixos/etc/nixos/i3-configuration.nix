@@ -87,6 +87,22 @@
     xserver = {
       enable = true;
 
+      # Use flat profile for mouse
+      extraConfig = ''
+        Section "InputClass"
+          Identifier "mouse"
+          Driver "libinput"
+          MatchIsPointer "yes"
+          Option "AccelProfile" "flat"
+        EndSection
+      '';
+
+      # Enable libinput.
+      libinput = {
+        enable = true;
+        naturalScrolling = true;
+      };
+
       # Use LightDM.
       displayManager = with pkgs; {
         lightdm = {
