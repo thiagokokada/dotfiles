@@ -5,10 +5,7 @@
 ;;; GENERAL
 
 ;; theme
-(require 'doom-themes)
-(load-theme 'doom-spacegrey t)
-(doom-themes-neotree-config)
-(doom-themes-org-config)
+(setq doom-theme 'doom-spacegrey)
 
 ;; modeline
 (setq doom-modeline-major-mode-icon t)
