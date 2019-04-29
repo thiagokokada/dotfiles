@@ -98,6 +98,7 @@
 
 ;; clojure
 (add-hook! clojure-mode
+  (setq cljr-warn-on-eval nil)
   (map!
    (:map clojure-mode-map
      (:localleader
