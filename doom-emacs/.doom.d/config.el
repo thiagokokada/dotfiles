@@ -5,7 +5,7 @@
 ;;; GENERAL
 
 ;; theme
-(setq doom-theme 'doom-spacegrey)
+(load-theme 'doom-spacegrey t)
 
 ;; modeline
 (setq doom-modeline-major-mode-icon t)
