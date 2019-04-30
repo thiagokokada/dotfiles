@@ -13,7 +13,7 @@ nixos-copy-etc() {
     printf '%s' 'Copy current NixOS configuration (y/n)? '
     read yn
     case $yn in
-        [Yy]* ) cp /etc/nixos/^(configuration.nix|hardware-configuration.nix) ${NIX_HOME}/etc/nixos
+        [Yy]* ) cp -r /etc/nixos/^(configuration.nix|hardware-configuration.nix) ${NIX_HOME}/etc/nixos
                 break;;
         [Nn]* ) break;;
         * ) echo 'Please answer (y)es or (n)o.';;
@@ -28,7 +28,7 @@ nixos-restore-etc() {
     printf '%s' 'Restore NixOS configuration (y/n)? '
     read yn
     case $yn in
-        [Yy]* ) sudo cp ${NIX_HOME}/etc/nixos/*.nix /etc/nixos
+        [Yy]* ) sudo -r cp ${NIX_HOME}/etc/nixos/*.nix /etc/nixos
                 break;;
         [Nn]* ) break;;
         * ) echo 'Please answer (y)es or (n)o.';;
