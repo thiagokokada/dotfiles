@@ -1,6 +1,13 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+let
+  url = "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz";
+  waylandOverlay = (import (builtins.fetchTarball url));
+in
 
 {
+  nixpkgs.overlays = [ waylandOverlay ];
+
   environment.systemPackages = with pkgs; [
     qt5.qtwayland
   ];
@@ -18,6 +25,9 @@
               pygobject3
             ];
           })))
+        (redshift-wayland.overrideAttrs (oldAttrs: {
+          meta.priority = -1;
+        }))
         dex
         dmenu
         grim
@@ -32,6 +42,7 @@
         slurp
         swayidle
         swaylock
+        xdg-desktop-portal-wlr
         xwayland
       ];
       extraSessionCommands = ''

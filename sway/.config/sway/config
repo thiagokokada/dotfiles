@@ -35,7 +35,7 @@ set $right l
 font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 8
 
 # disable window title
-new_window pixel 1
+default_border pixel 1
 
 # only draw borders if the container is not the only one in workspace
 # from i3-gaps fork
@@ -302,6 +302,9 @@ client.urgent #373b41 #cc6666 #ffffff #cc6666 #cc6666
 
 # notification manager
 exec mako
+
+# start redshift
+exec redshift -m wayland
 
 # run autostart from .desktop files from LXDE, to avoid starting too much crap
 exec dex --autostart --environment LXDE
