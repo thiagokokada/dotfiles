@@ -13,6 +13,14 @@
 ;; disable confirmation message on exit
 (setq confirm-kill-emacs nil)
 
+;; set window title with "[project] filename"
+(setq frame-title-format
+      (setq icon-title-format
+            '(""
+              (:eval
+               (format "[%s] " (projectile-project-name)))
+              "%b")))
+
 ;; font
 (setq doom-font (font-spec :family "Hack" :size 14)
       doom-big-font (font-spec :family "Hack" :size 18)
