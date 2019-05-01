@@ -1,4 +1,17 @@
-{ stdenv, pkgs, lib, cmake, intltool, pkgconfig, wayland-protocols, fetchFromGitHub, ... }:
+{ stdenv
+  , fetchFromGitHub
+  , cairo
+  , cmake
+  , libxkbcommon
+  , ncurses
+  , pango
+  , pcre
+  , pkgconfig
+  , wayland
+  , xlibs
+  , xlibsWrapper
+  , xorg
+}:
 
 stdenv.mkDerivation rec {
   version = "0.1.0";
@@ -11,17 +24,16 @@ stdenv.mkDerivation rec {
     sha256 = "11h55m9dx6ai12pqij52ydjm36dvrcc856pa834njihrp626pl4w";
   };
 
-  nativeBuildInputs = [ cmake intltool pkgconfig wayland-protocols ];
+  nativeBuildInputs = [ cmake pkgconfig pcre ];
 
-  buildInputs = with pkgs; [
+  buildInputs = [
     cairo
+    libxkbcommon
     ncurses
     pango
-    pcre
     wayland
     xlibs.libX11 xlibs.libXinerama xlibs.libXft
     xorg.libXdmcp xorg.libpthreadstubs xorg.libxcb
-    zlib
   ];
 
   meta = {

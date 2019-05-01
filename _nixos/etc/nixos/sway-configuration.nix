@@ -9,6 +9,7 @@ in
   nixpkgs.overlays = [ waylandOverlay ];
 
   environment.systemPackages = with pkgs; [
+    glib
     qt5.qtwayland
   ];
 
@@ -16,7 +17,7 @@ in
     sway = {
       enable = true;
       extraPackages = with pkgs; [
-        # (callPackage ./pkgs/bemenu.nix {})
+        (callPackage ./pkgs/bemenu.nix {})
         (with python3Packages;
           (py3status.overrideAttrs (oldAttrs: {
             propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
