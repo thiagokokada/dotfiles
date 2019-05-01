@@ -16,7 +16,7 @@ set $import_gsettings $HOME/.config/sway/scripts/import-gsettings.sh
 set $lock_screen swaylock -c 000000
 
 # status bar
-set $status_bar py3status -c $HOME/.config/sway/py3status.conf
+set $status_bar py3status --wm sway --config $HOME/.config/sway/py3status.conf
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
@@ -61,7 +61,9 @@ bindsym $mod+Shift+q kill
 bindsym $alt+F4 kill
 
 # start bemenu
-bindsym $mod+d exec bemenu-run -l 15 -b -i -p 'run' \
+bindsym $mod+d exec \
+  env BEMENU_BACKEND=wayland \
+  bemenu-run -l 15 -b -i -p 'run' \
   --fn 'Roboto 10' \
   --tb '#1d1f21' --tf '#81a2be' \
   --fb '#1d1f21' --ff '#969896' \
@@ -312,9 +314,3 @@ exec swayidle -w \
   timeout 605 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
   before-sleep '$lock_screen'
-
-# Set GNOME theme settings
-exec_always $import_gsettings \
-  gtk-theme:gtk-theme-name \
-  icon-theme:gtk-icon-theme-name \
-  cursor-theme:gtk-cursor-theme-name

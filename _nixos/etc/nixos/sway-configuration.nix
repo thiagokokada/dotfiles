@@ -1,8 +1,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  url = "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz";
-  waylandOverlay = (import (builtins.fetchTarball url));
+  waylandOverlay = (import (builtins.fetchTarball
+  "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz"
+  ));
+
+  unstable = import (builtins.fetchGit {
+    name = "nixos-unstable-2019-04-16";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "aea8e5de3845b4f6afe085e59a39e67293683629"; # py3status 3.18
+  }) {
+    config = config.nixpkgs.config;
+  };
 in
 
 {
@@ -26,8 +35,9 @@ in
       enable = true;
       extraPackages = with pkgs; [
         (callPackage ./pkgs/bemenu.nix {})
-        (with python3Packages;
+        (with unstable.python3Packages;
           (py3status.overrideAttrs (oldAttrs: {
+            meta.priority = -1;
             propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
               i3ipc
               pydbus
