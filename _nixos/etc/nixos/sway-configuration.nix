@@ -11,7 +11,7 @@ in
 
   environment = {
     systemPackages = with pkgs; [
-      glib
+      gnome3.dconf-editor
       qt5.qtwayland
     ];
 
@@ -56,9 +56,9 @@ in
       ];
 
       extraSessionCommands = ''
-        # Enable GNOME support to Wayland (not everything works well)
-        # export GDK_BACKEND=wayland
-        # export CLUTTER_BACKEND=wayland
+        # Enable GNOME support to Wayland
+        export GDK_BACKEND=wayland
+        export CLUTTER_BACKEND=wayland
 
         # Enable Qt5 support to Wayland
         export QT_QPA_PLATFORM=wayland-egl
@@ -85,5 +85,10 @@ in
 
     # Backlight control.
     light.enable = true;
+  };
+
+  services = {
+    # Allow automounting.
+    gnome3.gvfs.enable = true;
   };
 }

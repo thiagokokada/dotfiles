@@ -1,6 +1,6 @@
-# Enable GNOME support to Wayland (not everything works well)
-# export GDK_BACKEND=wayland
-# export CLUTTER_BACKEND=wayland
+# Enable GNOME support to Wayland
+export GDK_BACKEND=wayland
+export CLUTTER_BACKEND=wayland
 
 # Enable Qt5 support to Wayland
 export QT_QPA_PLATFORM=wayland-egl

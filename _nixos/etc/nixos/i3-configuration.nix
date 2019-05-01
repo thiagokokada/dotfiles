@@ -76,11 +76,6 @@
   hardware.pulseaudio.enable = true;
 
   services = {
-    # Setup DBus.
-    dbus.packages = with pkgs; [
-      gnome3.dconf
-    ];
-
     # Allow automounting.
     gnome3.gvfs.enable = true;
 
