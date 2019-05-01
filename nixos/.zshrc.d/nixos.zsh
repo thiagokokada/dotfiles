@@ -28,7 +28,7 @@ nixos-restore-etc() {
     printf '%s' 'Restore NixOS configuration (y/n)? '
     read yn
     case $yn in
-        [Yy]* ) sudo -r cp ${NIX_HOME}/etc/nixos/*.nix /etc/nixos
+        [Yy]* ) sudo cp -r ${NIX_HOME}/etc/nixos/*.nix /etc/nixos
                 break;;
         [Nn]* ) break;;
         * ) echo 'Please answer (y)es or (n)o.';;

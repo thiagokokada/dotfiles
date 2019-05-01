@@ -6,12 +6,20 @@ let
 in
 
 {
+  # Import nixpkgs-wayland overlay.
   nixpkgs.overlays = [ waylandOverlay ];
 
-  environment.systemPackages = with pkgs; [
-    glib
-    qt5.qtwayland
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      glib
+      qt5.qtwayland
+    ];
+
+    variables = {
+      # Export modules to allow PCManFM to use gvfs.
+      GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
+    };
+  };
 
   programs = {
     sway = {
@@ -46,6 +54,7 @@ in
         xdg-desktop-portal-wlr
         xwayland
       ];
+
       extraSessionCommands = ''
         # Enable GNOME support to Wayland (not everything works well)
         # export GDK_BACKEND=wayland
@@ -76,8 +85,5 @@ in
 
     # Backlight control.
     light.enable = true;
-
-    # Enable Qt5 integration.
-    qt5ct.enable = true;
   };
 }
