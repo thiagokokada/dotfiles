@@ -22,7 +22,6 @@
   virtualisation = {
     libvirtd = {
       enable = true;
-      onShutdown = "shutdown";
       qemuOvmf = true;
       qemuVerbatimConfig = ''
         nographics_allow_host_audio = 1
