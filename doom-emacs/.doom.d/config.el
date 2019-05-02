@@ -108,6 +108,7 @@
 (add-hook! clojure-mode
   (setq cljr-warn-on-eval nil)
   (map!
+   (:n "gd" #'cider-find-var)
    (:map clojure-mode-map
      (:localleader
        ("a" #'clojure-align)
@@ -167,6 +168,13 @@
        ("f" #'flymd-flyit)))))
 
 ;;; CUSTOM PACKAGES
+
+
+;; highlight-indentation
+(def-package! highlight-indentation
+  :config
+  (set-face-background 'highlight-indentation-current-column-face "#2E363F")
+  (add-hook! prog-mode #'highlight-indentation-current-column-mode))
 
 ;; lispyville
 (def-package! lispyville
