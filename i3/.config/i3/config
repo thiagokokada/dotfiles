@@ -229,17 +229,27 @@ mode "$resize" {
 bindsym $mod+r mode "$resize"
 
 # external screen management
-set $display_layout  :  ,  ,  ,  , [d]uplicate, [m]irror, [s]econd-only, [o]ff
+set $display_layout  : [h]  , [j]  , [k]  , [l]  , [d]uplicate, [m]irror, [s]econd-only, [o]ff
 mode "$display_layout" {
+    # vi-like
+    bindsym $left mode "default", exec $mons -e left && $set_wallpaper
+    bindsym $down mode "default", exec $mons -e bottom && $set_wallpaper
+    bindsym $up mode "default", exec $mons -e top && $set_wallpaper
+    bindsym $right mode "default", exec $mons -e right && $set_wallpaper
+
+    # arrow keys
     bindsym Left mode "default", exec $mons -e left && $set_wallpaper
     bindsym Down mode "default", exec $mons -e bottom && $set_wallpaper
     bindsym Up mode "default", exec $mons -e top && $set_wallpaper
     bindsym Right mode "default", exec $mons -e right && $set_wallpaper
+
+    # misc
     bindsym d mode "default", exec $mons -d && $set_wallpaper
     bindsym m mode "default", exec $mons -m && $set_wallpaper
     bindsym s mode "default", exec $mons -s && $set_wallpaper
     bindsym o mode "default", exec $mons -o && $set_wallpaper
 
+    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
