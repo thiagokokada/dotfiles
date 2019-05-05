@@ -123,6 +123,14 @@
   };
 
   networking = {
+    # Use Network Manager.
+    networkmanager = {
+      enable = true;
+      dhcp = "internal";
+      dns = "dnsmasq";
+    };
+
+    # Enable bridge.
     bridges = {
       br0 = {
         interfaces = [ "eno1" ];
@@ -175,8 +183,16 @@
     };
   };
 
-  # Install Java.
-  programs.java.enable = true;
+  # Enable programs that need special configuration.
+  programs = {
+    # Enable NetworkManager applet.
+    nm-applet.enable = true;
+
+    # Install Java.
+    java.enable = true;
+  };
+
+  # Enable Java anti-aliasing.
   environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
 
   # Reduce latency.
