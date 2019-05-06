@@ -108,7 +108,6 @@
 (add-hook! clojure-mode
   (setq cljr-warn-on-eval nil)
   (map!
-   (:n "gd" #'cider-find-var)
    (:map clojure-mode-map
      (:localleader
        ("a" #'clojure-align)
