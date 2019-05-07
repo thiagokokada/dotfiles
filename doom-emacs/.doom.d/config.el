@@ -104,13 +104,14 @@
 
 ;; clojure
 (add-hook! clojure-mode
-  (setq cljr-warn-on-eval nil)
+  (setq cljr-warn-on-eval nil
+        cljr-eagerly-build-asts-on-startup nil)
   (map!
    (:map clojure-mode-map
      (:localleader
        ("a" #'clojure-align)
        (:prefix ("e" . "eval")
-         "b" #'cider-eval-buffer
+         "b" #'cider-load-buffer
          "f" #'cider-eval-sexp-at-point
          "n" #'cider-eval-ns-form
          "c" #'user/cider-read-and-call-defun-at-point)
@@ -165,7 +166,6 @@
        ("f" #'flymd-flyit)))))
 
 ;;; CUSTOM PACKAGES
-
 
 ;; highlight-indentation
 (def-package! highlight-indentation
