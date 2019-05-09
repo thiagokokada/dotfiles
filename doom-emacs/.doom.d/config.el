@@ -114,7 +114,8 @@
          "b" #'cider-load-buffer
          "f" #'cider-eval-sexp-at-point
          "n" #'cider-eval-ns-form
-         "c" #'user/cider-read-and-call-defun-at-point)
+         "c" #'cider-read-and-eval-defun-at-point
+         "C" #'user/cider-read-eval-and-call-defun-at-point)
        (:prefix ("n" . "namespace")
          "r" #'cider-ns-refresh
          "R" #'cider-ns-reload)

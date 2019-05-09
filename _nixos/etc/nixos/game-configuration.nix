@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    discord
+
     # With bumblebee.
     # (steam.override ({
     #   withPrimus = true;

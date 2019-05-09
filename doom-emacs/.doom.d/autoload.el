@@ -14,31 +14,10 @@
   (cider-eval-defun-at-point)
   (cider-test-run-test))
 
-;;; Source: https://git.io/fj3XL
 ;;;###autoload
-(defun user/cider-read-and-call (&optional value)
-  "Read a sexp from the minibuffer and output its result to the echo area.
-If VALUE is non-nil, it is inserted into the minibuffer as initial input."
+(defun user/cider-read-eval-and-call-defun-at-point ()
+  "Eval and call form at point"
   (interactive)
-  (let* ((form (cider-read-from-minibuffer "Clojure Eval: " value))
-         (override cider-interactive-eval-override)
-         (ns-form (if (cider-ns-form-p form) "" (format "(ns %s)" (cider-current-ns)))))
-    (with-current-buffer (get-buffer-create cider-read-eval-buffer)
-      (erase-buffer)
-      (clojure-mode)
-      (unless (string= "" ns-form)
-        (insert ns-form "\n\n"))
-      (insert form)
-      (let ((cider-interactive-eval-override override))
-(cider-interactive-eval form)))))
-
-;;; Source: https://git.io/fj3Xt
-;;;###autoload
-(defun user/cider-read-and-call-defun-at-point ()
-  "Insert the toplevel form at point in the minibuffer and output its result.
-The point is placed next to the function name in the minibuffer to allow
-passing arguments."
-  (interactive)
-  (let* ((fn-name (cadr (split-string (cider-defun-at-point))))
-         (form (concat "(" fn-name ")")))
-    (user/cider-read-and-call (cons form (length form)))))
+  (let ((inhibit-message t))
+    (cider-eval-defun-at-point)
+  (cider-read-and-eval-defun-at-point)))
