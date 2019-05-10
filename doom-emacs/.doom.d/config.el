@@ -43,6 +43,11 @@
  :m "C-j" #'evil-window-down
  :m "C-k" #'evil-window-up
  :m "C-l" #'evil-window-right
+ ; move windows faster in normal mode
+ :m "C-S-h" #'+evil/window-move-left
+ :m "C-S-j" #'+evil/window-move-down
+ :m "C-S-k" #'+evil/window-move-up
+ :m "C-S-l" #'+evil/window-move-right
  ; move between characters in insert mode
  :i "C-h" #'backward-char
  :i "C-j" #'next-line
@@ -167,12 +172,6 @@
        ("f" #'flymd-flyit)))))
 
 ;;; CUSTOM PACKAGES
-
-;; highlight-indentation
-(def-package! highlight-indentation
-  :config
-  (set-face-background 'highlight-indentation-current-column-face "#2E363F")
-  (add-hook! prog-mode #'highlight-indentation-current-column-mode))
 
 ;; lispyville
 (def-package! lispyville
