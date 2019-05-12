@@ -32,6 +32,10 @@ zit-lo "zim" "modules/autosuggestions/init.zsh"
 if [[ "$(tput colors)" -ge 256 ]]; then
   zit-il "https://github.com/bhilburn/powerlevel9k" \
     "powerlevel9k" "powerlevel9k.zsh-theme"
+
+  export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+  export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
+  export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 fi
 
 # misc
@@ -44,11 +48,6 @@ setopt correct
 
 # disable Ctrl+S/Ctrl-Q
 setopt noflowcontrol
-
-# powerlevel9k
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
-export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
