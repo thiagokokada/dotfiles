@@ -83,7 +83,7 @@
         server string = ${config.networking.hostName}
         netbios name = ${config.networking.hostName}
         use sendfile = yes
-        hosts allow = 192.168.15. localhost
+        hosts allow = 192.168.15. 192.168.122. localhost
         hosts deny = 0.0.0.0/0
         guest account = nobody
         map to guest = bad user
@@ -123,19 +123,8 @@
   };
 
   networking = {
-    # Use Network Manager.
-    networkmanager = {
-      enable = true;
-      dhcp = "internal";
-      dns = "dnsmasq";
-    };
-
-    # Enable bridge.
-    bridges = {
-      br0 = {
-        interfaces = [ "eno1" ];
-      };
-    };
+    # Enable iwd.
+    wireless.iwd.enable = true;
 
     # Open ports to Samba.
     firewall = {
@@ -185,9 +174,6 @@
 
   # Enable programs that need special configuration.
   programs = {
-    # Enable NetworkManager applet.
-    nm-applet.enable = true;
-
     # Install Java.
     java.enable = true;
   };
