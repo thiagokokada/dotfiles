@@ -23,7 +23,7 @@
 
 ;; font
 (setq doom-font (font-spec :family "Hack" :size 14)
-      doom-big-font (font-spec :family "Hack" :size 18)
+      doom-big-font-increment 4
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 
 (add-hook! 'after-make-frame-functions
@@ -56,7 +56,11 @@
  ; misc
  :n "-" #'dired-jump
  :n "0" #'+treemacs/toggle
- :n "U" #'undo-tree-visualize)
+ :n "U" #'undo-tree-visualize
+ (:leader
+   (:prefix "t"
+     :desc "Text zoom"
+     "z" #'doom-text-zoom-hydra/body)))
 
 ;; which-key
 (setq which-key-idle-delay 0.2)
@@ -204,16 +208,6 @@
      (:prefix ("i" . "insert")
        :desc "Insert UUIDv4"
        "u" #'uuidgen))))
-
-;; zoom-frm
-(def-package! zoom-frm
-  :config
-  (map!
-   "C-=" #'zoom-frm-in
-   "C--" #'zoom-frm-out
-   "C-0" #'zoom-frm-unzoom)
-  (global-set-key (vector (list #'control mouse-wheel-down-event)) #'zoom-frm-in)
-  (global-set-key (vector (list #'control mouse-wheel-up-event)) #'zoom-frm-out))
 
 ;;; MISC
 

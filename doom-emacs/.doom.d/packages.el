@@ -10,7 +10,3 @@
 (package! sort-words)
 (package! uuidgen)
 (package! xterm-color)
-(packages!
- (frame-fns :recipe (:fetcher github :repo "emacsmirror/frame-fns"))
- (frame-cmds :recipe (:fetcher github :repo "emacsmirror/frame-cmds"))
- (zoom-frm :recipe (:fetcher github :repo "emacsmirror/zoom-frm")))
