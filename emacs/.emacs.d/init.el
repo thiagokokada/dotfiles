@@ -3,6 +3,9 @@
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 50000000)
 
+;; do not compact font caches during GC.
+(setq inhibit-compacting-font-caches t)
+
 ;; enable use-package
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -33,11 +36,13 @@
 ;; disable startup screen
 (setq inhibit-startup-screen t)
 
+;; disable confirmation dialogues
+(setq use-dialog-box nil)
+
 ;; set fonts
 (set-frame-font (font-spec :family "Hack" :size 14) nil t)
 
 ;; packages
-
 (use-package company
   :ensure t
   :diminish company-mode
@@ -48,19 +53,20 @@
   :ensure t)
 
 (use-package dired
-  :after evil
+  :after general
   :config
-  (evil-define-key 'normal nil "-" #'dired-jump))
+  (general-define-key :states 'normal "-" #'dired-jump))
+
+(use-package doom-modeline
+  :ensure t
+  :config
+  (doom-modeline-mode 1)
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 
 (use-package doom-themes
   :ensure t
   :config
   (load-theme 'doom-dracula t))
-
-(use-package doom-modeline
-  :ensure t
-  :config
-  (doom-modeline-mode 1))
 
 (use-package evil
   :ensure t
@@ -151,3 +157,9 @@
 (leader-map
   "/" #'counsel-rg
   "SPC" #'counsel-find-file)
+
+;; set custom variables somewhere else
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
+;;; init.el ends here
