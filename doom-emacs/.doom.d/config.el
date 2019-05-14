@@ -7,6 +7,9 @@
 ;; theme
 (load-theme 'doom-spacegrey t)
 
+;; increase memory threshold
+(setq doom-gc-cons-threshold 33554432)
+
 ;; modeline
 (setq doom-modeline-major-mode-icon t)
 
