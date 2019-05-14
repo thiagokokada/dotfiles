@@ -75,8 +75,10 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
+  (setq evil-want-integration t
+	evil-want-keybinding nil
+	evil-collection-company-use-tng nil
+	evil-collection-setup-minibuffer t)
   :config
   (evil-mode 1))
 
