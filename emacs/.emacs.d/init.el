@@ -43,6 +43,9 @@
 (set-frame-font (font-spec :family "Hack" :size 14) nil t)
 
 ;; packages
+(use-package buffer-move
+  :ensure t)
+
 (use-package company
   :ensure t
   :diminish company-mode
@@ -50,12 +53,13 @@
   (global-company-mode))
 
 (use-package counsel
-  :ensure t)
+  :ensure t
+  :diminish counsel-mode)
 
 (use-package dired
   :after general
-  :config
-  (general-define-key :states 'normal "-" #'dired-jump))
+  :bind (:map evil-normal-state-map
+	      ("-" . #'dired-jump)))
 
 (use-package doom-modeline
   :ensure t
@@ -81,6 +85,11 @@
   :ensure t
   :config
   (evil-collection-init))
+
+(use-package evil-numbers
+  :ensure t
+  :bind (("C-a" . #'evil-numbers/inc-at-pt)
+	 ("C-S-a" . #'evil-numbers/dec-at-pt)))
 
 (use-package evil-surround
   :ensure t
@@ -144,15 +153,26 @@
   (which-key-mode +1))
 
 ;; keybindings
-(general-nmap
+(general-mmap
  "C-h" #'evil-window-left
  "C-j" #'evil-window-down
  "C-k" #'evil-window-up
- "C-l" #'evil-window-right)
+ "C-l" #'evil-window-right
+
+ "C-h" #'buf-move-left
+ "C-j" #'buf-move-down
+ "C-k" #'buf-move-up
+ "C-l" #'buf-move-right)
+
+(general-imap
+ "C-h" #'backward-char
+ "C-j" #'next-line
+ "C-k" #'previous-line
+ "C-l" #'forward-char)
 
 (general-create-definer leader-map
   :prefix "SPC"
-  :keymaps '(normal visual))
+  :states '(normal visual))
 
 (leader-map
   "/" #'counsel-rg
