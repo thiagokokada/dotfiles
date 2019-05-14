@@ -33,7 +33,8 @@ if [[ "$(tput colors)" -ge 256 ]]; then
   zit-il "https://github.com/bhilburn/powerlevel9k" \
     "powerlevel9k" "powerlevel9k.zsh-theme"
 
-  export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+  export POWERLEVEL9K_VI_INSERT_MODE_STRING=""
+  export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode dir vcs)
   export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
   export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 fi
@@ -49,14 +50,18 @@ setopt correct
 # disable Ctrl+S/Ctrl-Q
 setopt noflowcontrol
 
+# enable vi-like keys
+bindkey -v
+export KEYTIMEOUT=1
+
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # edit current line
-autoload -Uz edit-command-line
+autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^v' edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # upgrade-all cmd
 export -ua UPGRADE_CMDS=("zit-update")
