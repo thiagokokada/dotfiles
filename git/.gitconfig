@@ -19,3 +19,5 @@
 	submodules-upgrade = submodule update --init --recursive --remote
 [include]
 	path = ~/.gitconfig.local
+[github]
+	user = thiagokokada

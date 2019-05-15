@@ -8,7 +8,7 @@
 (load-theme 'doom-spacegrey t)
 
 ;; increase memory threshold
-(setq doom-gc-cons-threshold 33554432)
+(setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
 
 ;; modeline
 (setq doom-modeline-major-mode-icon t)
@@ -66,7 +66,7 @@
      "z" #'doom-text-zoom-hydra/body)))
 
 ;; which-key
-(setq which-key-idle-delay 0.2)
+(setq which-key-idle-delay 0.4)
 
 ;;; MODULES
 
@@ -120,6 +120,7 @@
         cljr-eagerly-build-asts-on-startup nil)
   (map!
    (:map clojure-mode-map
+     (:n "R" #'hydra-cljr-help-menu/body)
      (:localleader
        ("a" #'clojure-align)
        (:prefix ("e" . "eval")
