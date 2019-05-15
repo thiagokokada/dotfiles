@@ -141,6 +141,14 @@
      prettify
      slurp/barf-cp)))
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "pandoc"))
+
 (use-package projectile
   :ensure t
   :diminish projectile-mode
@@ -165,10 +173,10 @@
  "C-k" #'evil-window-up
  "C-l" #'evil-window-right
 
- "C-h" #'buf-move-left
- "C-j" #'buf-move-down
- "C-k" #'buf-move-up
- "C-l" #'buf-move-right)
+ "C-S-h" #'buf-move-left
+ "C-S-j" #'buf-move-down
+ "C-S-k" #'buf-move-up
+ "C-S-l" #'buf-move-right)
 
 (general-imap
  "C-h" #'backward-char
