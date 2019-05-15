@@ -56,6 +56,10 @@
   :ensure t
   :diminish counsel-mode)
 
+(use-package counsel-projectile
+  :ensure t
+  :after counsel)
+
 (use-package dired
   :after general
   :bind (:map evil-normal-state-map
@@ -177,8 +181,9 @@
   :states '(normal visual))
 
 (leader-map
-  "/" #'counsel-rg
-  "SPC" #'counsel-find-file)
+  "/" #'counsel-projectile-rg
+  "SPC" #'counsel-projectile-find-file
+  ":" #'counsel-M-x)
 
 ;; set custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
