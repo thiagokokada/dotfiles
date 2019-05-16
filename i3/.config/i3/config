@@ -332,5 +332,8 @@ exec --no-startup-id xss-lock -l -- $lock_screen
 # enable autolock in 10 minutes
 exec --no-startup-id xset s 600
 
+# run autostart.sh script
+exec --no-startup-id $HOME/.config/i3/scripts/autostart.sh
+
 # run autostart from .desktop files from LXDE, to avoid starting too much crap
 exec --no-startup-id dex --autostart --environment LXDE
