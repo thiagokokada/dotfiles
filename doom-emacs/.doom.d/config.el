@@ -7,9 +7,8 @@
 ;; theme
 (load-theme 'doom-spacegrey t)
 
-;; garbage collect after 2 seconds of idleness
-(setq doom-gc-cons-threshold most-positive-fixnum)
-(run-with-idle-timer 2 t (lambda () (garbage-collect)))
+;; increase memory threshold
+(setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
 
 ;; modeline
 (setq doom-modeline-major-mode-icon t)
