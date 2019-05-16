@@ -181,6 +181,29 @@
 
 ;;; CUSTOM PACKAGES
 
+;; lispyville
+(def-package! lispyville
+  :hook ((common-lisp-mode . lispyville-mode)
+         (emacs-lisp-mode . lispyville-mode)
+         (scheme-mode . lispyville-mode)
+         (racket-mode . lispyville-mode)
+         (hy-mode . lispyville-mode)
+         (lfe-mode . lispyville-mode)
+         (clojure-mode . lispyville-mode))
+  :when (display-graphic-p) ;; lispyville breaks terminal Emacs
+  :config
+  (lispyville-set-key-theme
+   `(additional
+     additional-insert
+     (additional-movement normal visual motion)
+     (additional-wrap normal insert)
+     c-w
+     (commentary normal visual)
+     (escape insert emacs)
+     (operators normal)
+     prettify
+     slurp/barf-cp)))
+
 ;; uuidgen-el
 (def-package! uuidgen
   :config
