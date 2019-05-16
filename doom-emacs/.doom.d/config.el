@@ -4,12 +4,11 @@
 
 ;;; GENERAL
 
-;; enable Garbage Colector Magic Hack
-(add-hook! after-init-hook
-  (gcmh-mode 1))
-
 ;; theme
 (load-theme 'doom-spacegrey t)
+
+;; increase memory threshold
+(setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
 
 ;; modeline
 (setq doom-modeline-major-mode-icon t)
