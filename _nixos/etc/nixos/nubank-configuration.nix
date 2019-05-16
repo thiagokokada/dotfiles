@@ -8,6 +8,7 @@
     apacheKafka
     awscli
     clojure
+    gitAndTools.hub
     insomnia
     joker
     jupyter

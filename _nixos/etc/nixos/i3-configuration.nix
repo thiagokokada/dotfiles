@@ -27,6 +27,7 @@
       gtk-engine-murrine
       hicolor-icon-theme
       inkscape
+      insync
       keepassx-community
       kitty
       libreoffice-fresh
