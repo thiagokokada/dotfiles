@@ -41,6 +41,7 @@
       ranger
       redshift
       shared-mime-info
+      spotify
       termite
     ];
   };
