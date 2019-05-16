@@ -1,8 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; increase garbage collection threshold
-(setq gc-cons-threshold 50000000)
-
 ;; do not compact font caches during GC.
 (setq inhibit-compacting-font-caches t)
 
@@ -19,6 +16,12 @@
 
 (eval-when-compile
   (require 'use-package))
+
+;; load gcmh as early as possible
+(use-package gcmh
+  :ensure t
+  :config
+  (gcmh-mode 1))
 
 ;; disable distractions
 (menu-bar-mode -1)
@@ -191,7 +194,8 @@
 (leader-map
   "/" #'counsel-projectile-rg
   "SPC" #'counsel-projectile-find-file
-  ":" #'counsel-M-x)
+  ":" #'counsel-M-x
+  ";" #'eval-expression)
 
 ;; set custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
