@@ -123,9 +123,6 @@
   };
 
   networking = {
-    # Enable iwd.
-    wireless.iwd.enable = true;
-
     # Open ports to Samba.
     firewall = {
       allowedTCPPorts = [ 139 445 ];

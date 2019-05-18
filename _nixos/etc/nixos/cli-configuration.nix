@@ -1,4 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+
+let
+  unstable = import (builtins.fetchGit {
+    name = "nixos-unstable-2019-04-29";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "496f9309480b22173e25885bc7c128c30fbd4da3"; # emacs 26.2
+  }) {
+    config = config.nixpkgs.config;
+  };
+in
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -15,6 +25,10 @@
       vimAlias = true;
       viAlias = true;
     }))
+    (unstable.emacs.override ({
+      withGTK2 = false;
+      withGTK3 = false;
+    }))
     ag
     aria2
     bc
@@ -22,7 +36,6 @@
     cmus
     curl
     daemonize
-    emacs
     fd
     file
     fzf
