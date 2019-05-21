@@ -123,6 +123,13 @@
   };
 
   networking = {
+    # Enable bridge.
+    bridges = {
+      br0 = {
+        interfaces = [ "eno1" ];
+      };
+    };
+
     # Open ports to Samba.
     firewall = {
       allowedTCPPorts = [ 139 445 ];
