@@ -5,7 +5,7 @@
 ;;; GENERAL
 
 ;; theme
-(load-theme 'doom-one t)
+(load-theme 'doom-spacegrey t)
 
 ;; increase memory threshold
 (setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
@@ -30,8 +30,12 @@
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 
 (add-hook! 'after-make-frame-functions
-  (set-fontset-font t 'unicode (font-spec :family "Font Awesome 5 Free") nil 'append)
-  (set-fontset-font t 'unicode (font-spec :family "Font Awesome 5 Brands") nil 'append))
+  (set-fontset-font t 'unicode
+                    (font-spec :family "Font Awesome 5 Free")
+                    nil 'append)
+  (set-fontset-font t 'unicode
+                    (font-spec :family "Font Awesome 5 Brands")
+                    nil 'append))
 
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
@@ -86,8 +90,7 @@
 (setq company-selection-wrap-around t)
 
 ;; dtrt-indent
-(after! dtrt-indent
-  (add-hook! prog-mode #'dtrt-indent-adapt))
+(setq dtrt-indent-run-after-smie t)
 
 ;; projectile
 (add-hook! projectile-mode
@@ -104,11 +107,11 @@
          :desc "Replace using regexp"
          "X" #'projectile-replace-regexp)))))
 
+;; hl-fill-column
 (add-hook! hl-fill-column-mode
-  (set-face-attribute 'hl-fill-column-face nil :background "#ff6c6b" :foreground "#bbc2cf"))
-
-;; rainbow
-(add-hook! prog-mode #'rainbow-mode) ; Colorize hex color strings
+  (set-face-attribute 'hl-fill-column-face nil
+                      :background (doom-color 'red)
+                      :foreground (doom-color 'fg)))
 
 ;;; LANGUAGES
 
