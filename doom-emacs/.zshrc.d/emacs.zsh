@@ -10,4 +10,4 @@ alias et="TERM=xterm-24bit emacs -nw"
 
 ec() { close-fd emacsclient -a '' -nqc "${@}" }
 
-UPGRADE_CMDS+="doom -y upgrade && doom -y update && doom -y refresh"
+UPGRADE_CMDS+="doom -y upgrade"

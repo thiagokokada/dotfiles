@@ -89,9 +89,6 @@
 
 (setq company-selection-wrap-around t)
 
-;; dtrt-indent
-(setq dtrt-indent-run-after-smie t)
-
 ;; projectile
 (add-hook! projectile-mode
   (when (eq projectile-indexing-method 'alien)
