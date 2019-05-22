@@ -5,7 +5,7 @@
 ;;; GENERAL
 
 ;; theme
-(load-theme 'doom-spacegrey t)
+(load-theme 'doom-one t)
 
 ;; increase memory threshold
 (setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
@@ -35,7 +35,6 @@
 
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
-
 ;; enable minibuffer to work correctly in evil mode
 (setq evil-collection-setup-minibuffer t)
 
@@ -105,14 +104,11 @@
          :desc "Replace using regexp"
          "X" #'projectile-replace-regexp)))))
 
+(add-hook! hl-fill-column-mode
+  (set-face-attribute 'hl-fill-column-face nil :background "#ff6c6b" :foreground "#bbc2cf"))
+
 ;; rainbow
 (add-hook! prog-mode #'rainbow-mode) ; Colorize hex color strings
-
-;; whitespace
-(setq whitespace-line-column 80 ; Highlight lines longer than 80 chars
-      whitespace-style '(face lines-tail))
-
-(add-hook! prog-mode #'whitespace-mode)
 
 ;;; LANGUAGES
 
