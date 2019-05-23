@@ -13,7 +13,6 @@
       arc-icon-theme
       arc-theme
       chromium
-      dropbox-cli
       ffmpegthumbnailer
       firefox
       gimp
