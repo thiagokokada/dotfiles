@@ -61,7 +61,7 @@
  :i "C-l" #'forward-char
  ; misc
  :n "-" #'dired-jump
- :n "0" #'+treemacs/toggle
+ :n "0" #'neotree-toggle
  :n "U" #'undo-tree-visualize
  (:leader
    (:prefix "t"
@@ -88,6 +88,10 @@
      [backtab] #'company-select-previous)))
 
 (setq company-selection-wrap-around t)
+
+;; dired
+(add-hook! dired-mode
+  (dired-hide-details-mode))
 
 ;; projectile
 (add-hook! projectile-mode
