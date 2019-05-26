@@ -21,3 +21,7 @@
 	path = ~/.gitconfig.local
 [github]
 	user = thiagokokada
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
