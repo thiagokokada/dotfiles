@@ -25,6 +25,15 @@
     LC_COLLATE = "C"; # Use C style string sort.
   };
 
+
+  # Increase file handler limit.
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "hard";
+    item = "nofile";
+    value = "1048576";
+  }];
+
   # Configure hardware for Intel.
   hardware = {
     # Enable CPU microcode for Intel.

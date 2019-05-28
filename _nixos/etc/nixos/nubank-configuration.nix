@@ -10,6 +10,7 @@
     clojure
     gitAndTools.hub
     insomnia
+    jetbrains.idea-community
     joker
     jupyter
     kubectl
