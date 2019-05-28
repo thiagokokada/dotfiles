@@ -26,7 +26,8 @@ set $mons $HOME/.config/i3/scripts/mons.sh
 set $killallx $HOME/.config/i3/scripts/killallx.sh
 
 # status bar
-set $status_bar py3status -c $HOME/.config/i3/py3status.conf
+set $status_bar i3pystatus -c $HOME/.config/i3pystatus/config.py
+set $refresh_status_bar pkill -SIGUSR1 -f i3pystatus
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
@@ -272,25 +273,25 @@ bar {
 }
 
 # volume control
-bindsym XF86AudioRaiseVolume exec $volume raise && py3-cmd refresh volume_status
-bindsym XF86AudioLowerVolume exec $volume lower && py3-cmd refresh volume_status
-bindsym XF86AudioMute exec $volume mute && py3-cmd refresh volume_status
+bindsym XF86AudioRaiseVolume exec $volume raise && $refresh_status_bar
+bindsym XF86AudioLowerVolume exec $volume lower && $refresh_status_bar
+bindsym XF86AudioMute exec $volume mute && $refresh_status_bar
 
 # screen brightness control
-bindsym XF86MonBrightnessUp exec light -A 5% && py3-cmd refresh backlight
-bindsym XF86MonBrightnessDown exec light -U 5% && py3-cmd refresh backlight
+bindsym XF86MonBrightnessUp exec light -A 5% && $refresh_status_bar
+bindsym XF86MonBrightnessDown exec light -U 5% && $refresh_status_bar
 
 # media control
-bindsym XF86AudioPlay exec playerctl play-pause && py3-cmd refresh mpris
-bindsym XF86AudioStop exec playerctl stop && py3-cmd refresh mpris
-bindsym XF86AudioNext exec playerctl next && py3-cmd refresh mpris
-bindsym XF86AudioPrev exec playerctl previous && py3-cmd refresh mpris
+bindsym XF86AudioPlay exec playerctl play-pause && $refresh_status_bar
+bindsym XF86AudioStop exec playerctl stop && $refresh_status_bar
+bindsym XF86AudioNext exec playerctl next && $refresh_status_bar
+bindsym XF86AudioPrev exec playerctl previous && $refresh_status_bar
 
 # keyboard layout stuff
 set $mode_keyboard : [b]r, [u]s-intl
 mode "$mode_keyboard" {
-    bindsym u mode "default", exec setxkbmap us -variant intl && py3-cmd refresh keyboard_layout
-    bindsym b mode "default", exec setxkbmap br && py3-cmd refresh keyboard_layout
+    bindsym u mode "default", exec setxkbmap us -variant intl && $refresh_status_bar
+    bindsym b mode "default", exec setxkbmap br && $refresh_status_bar
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"

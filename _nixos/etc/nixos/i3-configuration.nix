@@ -136,14 +136,13 @@
           package = pkgs.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
-            (with python3Packages;
-              (py3status.overrideAttrs (oldAttrs: {
-                propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-                  i3ipc
-                  pydbus
-                  pygobject3
-                ];
-              })))
+            (i3pystatus.override ({
+              extraLibs = with python3Packages; [
+                dbus-python
+                i3ipc
+                pysensors
+              ];
+            }))
             compton-git
             dex
             dmenu
