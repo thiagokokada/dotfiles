@@ -50,6 +50,12 @@ status.register(
     on_leftclick="pavucontrol",
 )
 
+status.register(
+    "dpms",
+    format=" ",
+    format_disabled=" ",
+)
+
 # show/control screen brightness
 status.register(
     "backlight",
@@ -80,8 +86,8 @@ status.register(
         90: " "
     },
     status={
-        "CHR": " ",
-        "DPL": " ",
+        "CHR":  " ",
+        "DPL":  " ",
         "FULL": " ",
     },
 )
@@ -131,15 +137,15 @@ status.register(
     "now_playing",
     format="{status} {title}",
     status={
-        'play': '',
-        'pause': '',
-        'stop': '',
-    }
+        "play":  "",
+        "pause": "",
+        "stop":  "",
+    },
 )
 
 status.register(
     "window_title",
-    max_width=79
+    max_width=79,
 )
 
 status.run()
