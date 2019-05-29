@@ -95,9 +95,10 @@ status.register(
 # show disk available space
 mounted_block_devices = get_mounted_block_devices(excludes=["/boot", "/nix/store"])
 for block_device in mounted_block_devices[::-1]:
+    pretty_name = " /" + "/".join([x[0] for x in block_device.split("/") if x])
     status.register(
         "disk",
-        format=" " + block_device + " {avail:.1f}G",
+        format=pretty_name + " {avail:.1f}G",
         path=block_device,
     )
 
