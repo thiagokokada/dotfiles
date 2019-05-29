@@ -12,6 +12,7 @@ i3-gaps
 i3lock
 kitty
 light
+lm_sensors
 lxapperance
 maim
 network-manager-applet
@@ -24,8 +25,11 @@ pcmanfm
 perl-file-mimeinfo
 playerctl
 pulseaudio-alsa
-py3status
 python
+python-colour
+python-dbus
+python-netifaces
+python-psutil
 qt5-styleplugins
 redshift
 rofi
