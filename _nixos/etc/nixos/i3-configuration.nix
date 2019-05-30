@@ -9,6 +9,7 @@
 
     # Desktop packages.
     systemPackages = with pkgs; [
+      acpilight
       arandr
       arc-icon-theme
       arc-theme
@@ -72,9 +73,10 @@
     };
   };
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware ={
+    # Enable sound.
+    pulseaudio.enable = true;
+  };
 
   services = {
     # Allow automounting.
