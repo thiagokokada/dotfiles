@@ -1,7 +1,37 @@
 from pathlib import Path
+from subprocess import run
 
 import psutil
-from i3pystatus import Status
+from i3pystatus import IntervalModule, Status
+
+
+class Xkblayout(IntervalModule):
+    interval = 5
+    format = " {name}",
+    uppercase = True
+    settings = (
+        ("format", "Format string"),
+    )
+
+    def run(self):
+        kblayout = self.kblayout()
+
+        self.output = {
+            "full_text": self.format.format(name=kblayout),
+            "color": "#ffffff"
+        }
+
+    def kblayout(self):
+        result = (
+            run(["setxkbmap", "-query"], capture_output=True, check=True)
+            .stdout
+            .decode()
+            .splitlines()
+        )
+        kblayout = [l.split() for l in result]
+        kblayout = [l[1].strip() for l in kblayout
+                    if l[0].startswith(("layout", "variant"))]
+        return (" ").join(kblayout)
 
 
 def get_cpu_temp_file(dir_path, filename, match):
@@ -36,10 +66,8 @@ status.register(
 
 # show current keyboard layout
 status.register(
-    "shell",
-    command="setxkbmap -query | awk -F ': *' '/layout/ { print toupper($2) }'",
-    interval=5,
-    format=" {output}",
+    Xkblayout,
+    format=" {name}",
 )
 
 # show/change volume using PA
