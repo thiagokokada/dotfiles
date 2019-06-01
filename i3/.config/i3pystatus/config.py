@@ -89,9 +89,12 @@ status.register(
 # show/change volume using PA
 status.register(
     "pulseaudio",
-    format=" {volume}%",
+    format=" {volume}%{selected}",
+    format_selected=" ",
     format_muted=" Mute",
-    on_leftclick="pavucontrol",
+    color_unmuted="#00FF00",
+    color_muted="#FF0000",
+    multi_colors=True,
 )
 
 status.register(
