@@ -9,9 +9,12 @@ class Xkblayout(IntervalModule):
     interval = 5
     format = " {name}",
     uppercase = True
+    layouts = []
     settings = (
         ("format", "Format string"),
+        ("layouts", "List of layouts"),
     )
+    on_leftclick = "change_layout"
 
     def run(self):
         kblayout = self.kblayout()
@@ -20,6 +23,18 @@ class Xkblayout(IntervalModule):
             "full_text": self.format.format(name=kblayout),
             "color": "#ffffff"
         }
+
+    def change_layout(self):
+        layouts = self.layouts
+        kblayout = self.kblayout()
+        if kblayout in layouts:
+            position = layouts.index(kblayout)
+            try:
+                run(["setxkbmap"] + layouts[position + 1].split(), check=True)
+            except IndexError:
+                run(["setxkbmap"] + layouts[0].split(), check=True)
+        else:
+            run(["setxkbmap"] + layouts[0].split(), check=True)
 
     def kblayout(self):
         result = (
@@ -68,6 +83,7 @@ status.register(
 status.register(
     Xkblayout,
     format=" {name}",
+    layouts = ["us intl", "br"],
 )
 
 # show/change volume using PA
@@ -98,6 +114,7 @@ status.register(
     format_up="[ {essid} \[{quality}%\]]  {bytes_recv}K  {bytes_sent}K",
     format_down=" {interface}",
     next_if_down=True,
+    on_leftclick="kitty iftop",
     on_upscroll=None,
     on_downscroll=None,
 )
@@ -128,6 +145,7 @@ for block_device in mounted_block_devices[::-1]:
     status.register(
         "disk",
         format=pretty_name + " {avail:.1f}G",
+        on_leftclick="kitty ncdu " + block_device,
         path=block_device,
     )
 
