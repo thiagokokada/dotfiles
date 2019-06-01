@@ -87,8 +87,9 @@ status.register(
 # show/control screen brightness
 status.register(
     "backlight",
+    adjust_method="light",
     format=" {percentage}%",
-    format_no_backlight=" ",
+    format_no_backlight="",
 )
 
 # show network speed

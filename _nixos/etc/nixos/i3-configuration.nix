@@ -9,7 +9,6 @@
 
     # Desktop packages.
     systemPackages = with pkgs; [
-      acpilight
       arandr
       arc-icon-theme
       arc-theme
@@ -138,8 +137,15 @@
           package = pkgs.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
-            (i3pystatus.override ({
-              extraLibs = with python3Packages; [
+            (i3pystatus.overrideAttrs(oldAttrs: {
+              src = fetchFromGitHub {
+                owner = "thiagokokada";
+                repo = "i3pystatus";
+                rev = "a85b06e7a3712ecbea589512525d096cc41b22b0";
+                sha256 = "0jk8c1bv78vd3idv503d6128ljpydvaw5a2ynpzgcppvr9843vwj";
+              };
+              propagatedBuildInputs = with python3Packages;
+              oldAttrs.propagatedBuildInputs ++ [
                 dbus-python
                 i3ipc
                 pysensors

@@ -146,6 +146,7 @@
          "T" #'user/cider-eval-and-run-test)
        (:prefix ("r" . "repl")
          "'" #'cider-connect
+         "i" #'cider-interrupt
          "\"" #'cider-connect-cljs)))))
 
 ;; elisp
