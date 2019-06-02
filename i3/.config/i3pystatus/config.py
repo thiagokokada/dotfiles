@@ -4,6 +4,11 @@ from subprocess import run
 import psutil
 from i3pystatus import IntervalModule, Status
 
+COLOR_NORMAL = "#FFFFFF"
+COLOR_GOOD = "#00FF00"
+COLOR_WARN = "#FFFF00"
+COLOR_BAD = "#FF0000"
+
 
 class Xkblayout(IntervalModule):
     interval = 5
@@ -21,7 +26,7 @@ class Xkblayout(IntervalModule):
 
         self.output = {
             "full_text": self.format.format(name=kblayout),
-            "color": "#ffffff"
+            "color": COLOR_NORMAL
         }
 
     def change_layout(self):
@@ -83,7 +88,7 @@ status.register(
 status.register(
     Xkblayout,
     format=" {name}",
-    layouts = ["us intl", "br"],
+    layouts=["us intl", "br"],
 )
 
 # show/change volume using PA
@@ -92,8 +97,8 @@ status.register(
     format=" {volume}%{selected}",
     format_selected=" ",
     format_muted=" Mute",
-    color_unmuted="#00FF00",
-    color_muted="#FF0000",
+    color_unmuted=COLOR_GOOD,
+    color_muted=COLOR_BAD,
     multi_colors=True,
 )
 
@@ -101,6 +106,8 @@ status.register(
     "dpms",
     format=" ",
     format_disabled=" ",
+    color=COLOR_GOOD,
+    color_disabled=COLOR_BAD,
 )
 
 # show/control screen brightness
@@ -114,12 +121,12 @@ status.register(
 # show network speed
 status.register(
     "network",
-    format_up="[ {essid} \[{quality}%\]]  {bytes_recv}K  {bytes_sent}K",
+    format_up="[ {essid} \[{quality}%\]]  {bytes_recv}  {bytes_sent}",
     format_down=" {interface}",
+    detect_active=True,
     next_if_down=True,
+    auto_units=True,
     on_leftclick="kitty iftop",
-    on_upscroll=None,
-    on_downscroll=None,
 )
 
 # show battery status
@@ -142,11 +149,17 @@ status.register(
 )
 
 # show disk available space
-mounted_block_devices = get_mounted_block_devices(excludes=["/boot", "/nix/store"])
+mounted_block_devices = get_mounted_block_devices(
+    excludes=["/boot", "/nix/store"]
+)
 for block_device in mounted_block_devices[::-1]:
-    pretty_name = " /" + "/".join([x[0] for x in block_device.split("/") if x])
+    pretty_name = " /" + "/".join(
+        [x[0] for x in block_device.split("/") if x]
+    )
     status.register(
         "disk",
+        critical_limit=psutil.disk_usage(block_device).total / 1024**3 * 0.1,
+        critical_color=COLOR_BAD,
         format=pretty_name + " {avail:.1f}G",
         on_leftclick="kitty ncdu " + block_device,
         path=block_device,
@@ -169,10 +182,10 @@ status.register(
     on_leftclick="kitty htop --sort-key=PERCENT_CPU"
 )
 
-# show CPU temperature
 cpu_temp_file = get_cpu_temp_file("/sys/class/thermal",
                                   "thermal_zone*",
                                   "x86_pkg_temp")
+# show CPU temperature
 status.register(
     "temp",
     file=cpu_temp_file,
@@ -189,6 +202,8 @@ status.register(
 status.register(
     "now_playing",
     format="{status} {title}",
+    color=COLOR_GOOD,
+    color_no_player=COLOR_BAD,
     status={
         "play":  "",
         "pause": "",
@@ -196,6 +211,7 @@ status.register(
     },
 )
 
+# show window title
 status.register(
     "window_title",
     max_width=79,
