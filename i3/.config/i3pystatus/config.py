@@ -118,6 +118,13 @@ status.register(
     format_no_backlight="",
 )
 
+# show/control screen brightness
+status.register(
+    "redshift",
+    format_inhibit=["", ""],
+    redshift_parameters=["-P"]
+)
+
 # show network speed
 status.register(
     "network",
