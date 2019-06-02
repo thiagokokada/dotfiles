@@ -159,12 +159,14 @@ status.register(
     warn_percentage=70,
     alert_percentage=90,
     divisor=1024**3,
+    on_leftclick="kitty htop --sort-key=PERCENT_MEM",
 )
 
 # show cpu usage
 status.register(
     "load",
     format=" {avg1} {avg5}",
+    on_leftclick="kitty htop --sort-key=PERCENT_CPU"
 )
 
 # show CPU temperature
