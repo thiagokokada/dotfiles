@@ -83,7 +83,7 @@
         server string = ${config.networking.hostName}
         netbios name = ${config.networking.hostName}
         use sendfile = yes
-        hosts allow = 192.168.15. 192.168.122. localhost
+        hosts allow = 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8 localhost
         hosts deny = 0.0.0.0/0
         guest account = nobody
         map to guest = bad user
