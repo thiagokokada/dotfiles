@@ -205,9 +205,15 @@
      prettify
      slurp/barf-cp)))
 
+;; sort-words
+(def-package! sort-words
+  :config
+  (require 'sort-words))
+
 ;; uuidgen-el
 (def-package! uuidgen
   :config
+  (require 'uuidgen)
   (map!
    (:leader
      (:prefix ("i" . "insert")
