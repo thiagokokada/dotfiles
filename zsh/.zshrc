@@ -10,34 +10,27 @@ source "${ZIT_MODULES_PATH}/zit/zit.zsh"
 zit-in "https://github.com/thiagokokada/zit" "zit"
 
 # zim
+zdouble_dot_expand='true'
+zssh_ids=(/dev/null)
+zhighlighters=(main brackets cursor)
+
 zit-in "https://github.com/Eriner/zim" "zim"
 zit-lo "zim" "modules/directory/init.zsh"
-ztermtitle='%~' && \
-  zit-lo "zim" "modules/environment/init.zsh"
+zit-lo "zim" "modules/environment/init.zsh"
 zit-lo "zim" "modules/git/init.zsh"
 zit-lo "zim" "modules/history/init.zsh"
-zdouble_dot_expand='true' && \
-  zit-lo "zim" "modules/input/init.zsh"
+zit-lo "zim" "modules/input/init.zsh"
 zit-lo "zim" "modules/utility/init.zsh"
-zssh_ids=(/dev/null) && \
-  zit-lo "zim" "modules/ssh/init.zsh"
+zit-lo "zim" "modules/ssh/init.zsh"
 zit-lo "zim" "modules/completion/init.zsh"
-zhighlighters=(main brackets cursor) && \
-  zit-lo "zim" "modules/syntax-highlighting/init.zsh"
+zit-lo "zim" "modules/syntax-highlighting/init.zsh"
 zit-lo "zim" "modules/history-substring-search/init.zsh"
 zit-lo "zim" "modules/autosuggestions/init.zsh"
 
-# powerlevel9k
-# load only if terminal supports at least 256 colors
-if [[ "$(tput colors)" -ge 256 ]]; then
-  zit-il "https://github.com/bhilburn/powerlevel9k" \
-    "powerlevel9k" "powerlevel9k.zsh-theme"
-
-  export POWERLEVEL9K_VI_INSERT_MODE_STRING=""
-  export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode dir vcs)
-  export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
-  export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-fi
+# pure
+zit-in "https://github.com/sindresorhus/pure" "pure"
+zit-lo "pure" "async.zsh"
+zit-lo "pure" "pure.zsh"
 
 # misc
 zit-il "https://github.com/hlissner/zsh-autopair" "autopair" "autopair.zsh"
