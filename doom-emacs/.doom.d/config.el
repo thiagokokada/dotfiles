@@ -63,6 +63,7 @@
  :n "-" #'dired-jump
  :n "0" #'neotree-toggle
  :n "U" #'undo-tree-visualize
+ :n "`" #'swiper
  (:leader
    (:prefix "t"
      :desc "Text zoom"
@@ -148,6 +149,17 @@
          "'" #'cider-connect
          "i" #'cider-interrupt
          "\"" #'cider-connect-cljs)))))
+
+;;; clojure-lsp
+;;; To setup it: Download the latest release from
+;;; https://github.com/snoe/clojure-lsp/releases and add it to your PATH
+(add-hook! 'clojure-mode-hook #'lsp)
+(add-hook! 'clojurec-mode-hook #'lsp)
+(add-hook! 'clojurescript-mode-hook #'lsp)
+
+(after! lsp-mode
+  (add-to-list 'lsp-language-id-configuration '(clojure-mode . "clojure-mode"))
+  (setq lsp-enable-indentation nil))
 
 ;; elisp
 (add-hook! emacs-lisp-mode
