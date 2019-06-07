@@ -31,6 +31,7 @@
     glxinfo
     gnumake
     htop
+    imagemagick7Big
     ispell
     jq
     linuxPackages.cpupower

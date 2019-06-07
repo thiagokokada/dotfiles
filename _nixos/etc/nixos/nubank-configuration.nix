@@ -8,7 +8,10 @@
     apacheKafka
     awscli
     clojure
+    docker-compose
+    elixir
     gitAndTools.hub
+    graphviz
     insomnia
     jetbrains.idea-community
     joker
@@ -23,12 +26,13 @@
     slack
     tigervnc
     vagrant
+    yarn
   ];
 
   # Enable Java.
   programs.java = {
     enable = true;
-    package = pkgs.jdk8;
+    package = pkgs.jdk11;
   };
 
   # Enable FortiSSL VPN support in NetworkManager.
