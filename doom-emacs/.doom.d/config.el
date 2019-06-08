@@ -63,8 +63,9 @@
  :n "-" #'dired-jump
  :n "0" #'neotree-toggle
  :n "U" #'undo-tree-visualize
- :n "`" #'swiper
  (:leader
+   (:desc "Search buffer"
+     "S" #'swiper)
    (:prefix "t"
      :desc "Text zoom"
      "z" #'doom-text-zoom-hydra/body)))
