@@ -70,6 +70,9 @@
      :desc "Text zoom"
      "z" #'doom-text-zoom-hydra/body)))
 
+;; ivy
+(setq +ivy-project-search-engines '(ag rg pt))
+
 ;; which-key
 (setq which-key-idle-delay 0.4)
 
