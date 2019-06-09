@@ -57,7 +57,7 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # upgrade-all cmd
-export -ua UPGRADE_CMDS=("zit-update")
+export -ua UPGRADE_CMDS=("zit-up")
 upgrade-all() {
   for cmd in "${UPGRADE_CMDS[@]}"; do
     printf "\nRunning: %s\n\n" "${cmd}"
