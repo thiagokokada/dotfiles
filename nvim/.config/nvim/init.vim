@@ -15,6 +15,7 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'dietsche/vim-lastplace'
+Plug 'easymotion/vim-easymotion'
 Plug 'elzr/vim-json'
 Plug 'gioele/vim-autoswap'
 Plug 'jiangmiao/auto-pairs'
@@ -23,7 +24,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -94,6 +94,13 @@ let g:airline_powerline_fonts = 1
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#keyword_patterns = {}
+" easymotion
+let g:EasyMotion_do_mapping = 0
+nmap s <Plug>(easymotion-overwin-f)
+nmap s <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_smartcase = 1
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 " ctags
 let g:vim_tags_auto_generate = 1
 " fzf
