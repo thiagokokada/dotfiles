@@ -72,6 +72,11 @@
 
 ;; ivy
 (setq +ivy-project-search-engines '(ag rg pt))
+(after! ivy
+  (set-face-attribute
+   'ivy-minibuffer-match-face-1 nil :foreground nil)
+  (set-face-attribute
+   'ivy-minibuffer-match-face-2 nil :background nil))
 
 ;; which-key
 (setq which-key-idle-delay 0.4)

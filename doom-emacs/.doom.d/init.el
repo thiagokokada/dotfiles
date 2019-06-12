@@ -17,7 +17,8 @@
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy               ; a search engine for love and life
-        +fuzzy)           ; ...with fuzzy search
+        +fuzzy            ; ...with fuzzy search
+        +prescient)       ; ...prescient filtering and sorting
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
