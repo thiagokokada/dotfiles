@@ -71,7 +71,6 @@
      "z" #'doom-text-zoom-hydra/body)))
 
 ;; ivy
-(setq +ivy-project-search-engines '(ag rg pt))
 (after! ivy
   (set-face-attribute
    'ivy-minibuffer-match-face-1 nil :foreground nil)
