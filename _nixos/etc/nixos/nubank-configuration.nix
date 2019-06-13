@@ -22,6 +22,7 @@
     nodejs-10_x
     nss
     nssTools
+    opam
     python36Packages.jupyter_core
     slack
     tigervnc

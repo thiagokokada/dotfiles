@@ -19,6 +19,7 @@
     aria2
     bc
     bind
+    binutils
     cmus
     curl
     daemonize
@@ -37,6 +38,7 @@
     linuxPackages.cpupower
     lshw
     lsof
+    m4
     manpages
     mediainfo
     mosh
