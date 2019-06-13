@@ -71,6 +71,7 @@ close-fd() { "${@}" </dev/null &>/dev/null }
 run-bg() { "${@}" </dev/null &>/dev/null &! }
 open() { run-bg xdg-open "${@}" }
 try-run() { (( $+commands[${1}] )) && "${@}" }
+to-string() { awk '{print "\""$0"\""}' }
 
 # aliases
 alias clean-zsh-cache="rm -f ${HOME}/.*.zwc"
