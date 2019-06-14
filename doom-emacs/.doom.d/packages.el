@@ -9,4 +9,3 @@
 (package! lispyville)
 (package! sort-words)
 (package! uuidgen)
-(package! xterm-color)

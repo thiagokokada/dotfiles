@@ -59,6 +59,15 @@
  :i "C-j" #'next-line
  :i "C-k" #'previous-line
  :i "C-l" #'forward-char
+ ; workspaces
+ :n "`n" #'+workspace/new
+ :n "`]" #'+workspace/switch-right
+ :n "`[" #'+workspace/switch-left
+ :n "`d" #'+workspace/display
+ :n "`x" #'+workspace/delete
+ :n "`s" #'+workspace/save
+ :n "`l" #'+workspace/load
+ :n "`r" #'+workspace/rename
  ; misc
  :n "-" #'dired-jump
  :n "0" #'neotree-toggle
@@ -182,16 +191,6 @@
          "b" #'eval-buffer
          "d" #'eval-defun
          "r" #'eval-region)))))
-
-;; eshell
-(add-hook! eshell-mode
-  (setenv "TERM" "xterm-256color")
-  (add-to-list 'eshell-preoutput-filter-functions #'xterm-color-filter)
-  (setq eshell-output-filter-functions (remove #'eshell-handle-ansi-color
-                                          eshell-output-filter-functions)))
-
-(add-hook! 'eshell-before-prompt-hook
-  (setq xterm-color-preserve-properties t))
 
 ;; markdown
 (add-hook! markdown-mode
