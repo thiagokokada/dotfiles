@@ -59,19 +59,20 @@
  :i "C-j" #'next-line
  :i "C-k" #'previous-line
  :i "C-l" #'forward-char
- ; workspaces
- :n "`n" #'+workspace/new
- :n "`]" #'+workspace/switch-right
- :n "`[" #'+workspace/switch-left
- :n "`d" #'+workspace/display
- :n "`x" #'+workspace/delete
- :n "`s" #'+workspace/save
- :n "`l" #'+workspace/load
- :n "`r" #'+workspace/rename
  ; misc
  :n "-" #'dired-jump
  :n "0" #'neotree-toggle
  :n "U" #'undo-tree-visualize
+ ; workspaces
+ (:prefix ("`" . "workspace")
+   :n "n" #'+workspace/new
+   :n "]" #'+workspace/switch-right
+   :n "[" #'+workspace/switch-left
+   :n "d" #'+workspace/display
+   :n "x" #'+workspace/delete
+   :n "s" #'+workspace/save
+   :n "l" #'+workspace/load
+   :n "r" #'+workspace/rename)
  (:leader
    (:desc "Search buffer"
      "S" #'swiper)
