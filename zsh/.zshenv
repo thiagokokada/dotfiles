@@ -15,7 +15,7 @@ path=(
 #
 
 # pager
-export EDITOR="nvim"
 export VISUAL="nvim"
+export EDITOR="${VISUAL}"
 export PAGER="less"
 export DOTFILES_PATH="${HOME}/.dotfiles"

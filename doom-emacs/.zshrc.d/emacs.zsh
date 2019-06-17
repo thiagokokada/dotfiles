@@ -7,9 +7,11 @@ path=(
 )
 
 if [[ -n "${EMACS}" ]]; then
-  VISUAL="emacsclient"
-  EDITOR="${VISUAL}"
-  GIT_EDITOR="${EDITOR}"
+  export VISUAL="emacsclient"
+  export EDITOR="${VISUAL}"
+  export GIT_EDITOR="${EDITOR}"
+  # Disable RPROMPT in Emacs term
+  export RPROMPT=""
 fi
 
 alias em="run-bg emacs"
