@@ -63,6 +63,8 @@
  :n "-" #'dired-jump
  :n "0" #'neotree-toggle
  :n "U" #'undo-tree-visualize
+ :nv "C-a" #'evil-numbers/inc-at-pt
+ :nv "C-S-a" #'evil-numbers/dec-at-pt
  ; workspaces
  (:prefix ("`" . "workspace")
    :n "n" #'+workspace/new
