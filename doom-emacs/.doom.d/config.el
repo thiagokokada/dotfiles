@@ -61,8 +61,6 @@
  :i "C-l" #'forward-char
  ; misc
  :n "-" #'dired-jump
- :n "0" #'neotree-toggle
- :n "U" #'undo-tree-visualize
  :nv "C-a" #'evil-numbers/inc-at-pt
  :nv "C-S-a" #'evil-numbers/dec-at-pt
  ; workspaces
@@ -78,6 +76,9 @@
  (:leader
    (:desc "Search buffer"
      "S" #'swiper)
+   (:prefix "o"
+     :desc "Visualize Undo Tree"
+     "u" #'undo-tree-visualize)
    (:prefix "t"
      :desc "Text zoom"
      "z" #'doom-text-zoom-hydra/body)))
@@ -117,6 +118,8 @@
        (:prefix ("p" . "project")
          :desc "Toggle between implementation and test"
          "a" #'projectile-toggle-between-implementation-and-test
+         :desc "Find implementation or test in other window"
+         "A" #'projectile-find-implementation-or-test-other-window
          :desc "Replace literal"
          "R" #'projectile-replace
          :desc "Replace using regexp"
