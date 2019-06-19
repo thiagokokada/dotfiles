@@ -115,8 +115,6 @@
    (:leader
      (:map projectile-mode-map
        (:prefix ("p" . "project")
-         :desc "Toggle between implementation and test"
-         "a" #'projectile-toggle-between-implementation-and-test
          :desc "Find implementation or test in other window"
          "A" #'projectile-find-implementation-or-test-other-window
          :desc "Replace literal"
