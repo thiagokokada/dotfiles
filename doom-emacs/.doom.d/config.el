@@ -74,8 +74,6 @@
    :n "l" #'+workspace/load
    :n "r" #'+workspace/rename)
  (:leader
-   (:desc "Search buffer"
-     "S" #'swiper)
    (:prefix "o"
      :desc "Visualize Undo Tree"
      "u" #'undo-tree-visualize)
@@ -84,6 +82,7 @@
      "z" #'doom-text-zoom-hydra/body)))
 
 ;; ivy
+(setq +ivy-project-search-engines '(ag rg))
 (after! ivy
   (set-face-attribute
    'ivy-minibuffer-match-face-1 nil :foreground nil)
