@@ -105,7 +105,15 @@
 
 ;; dired
 (add-hook! dired-mode
-  (dired-hide-details-mode))
+  ;; Auto refresh buffers
+  (global-auto-revert-mode 1)
+
+  ;; Also auto refresh dired, but be quiet about it
+  (setq global-auto-revert-non-file-buffers t)
+  (setq auto-revert-verbose nil)
+
+  ;; Hide dired extra information
+  (dired-hide-details-mode 1))
 
 ;; projectile
 (add-hook! projectile-mode

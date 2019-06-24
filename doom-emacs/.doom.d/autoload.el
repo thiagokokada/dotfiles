@@ -4,7 +4,7 @@
 (defun user/cider-eval-and-run-ns-tests ()
   "Eval and run namespace tests"
   (interactive)
-  (cider-eval-buffer)
+  (cider-load-buffer)
   (cider-test-run-ns-tests t))
 
 ;;;###autoload
