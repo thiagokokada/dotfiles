@@ -10,8 +10,12 @@
 ;; increase memory threshold
 (setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
 
-;; modeline
+;; enable major mode icon in modeline
 (setq doom-modeline-major-mode-icon t)
+
+;; disable file size indicator in modeline
+(add-hook! 'size-indication-mode-hook
+  (setq size-indication-mode nil))
 
 ;; disable confirmation message on exit
 (setq confirm-kill-emacs nil)
