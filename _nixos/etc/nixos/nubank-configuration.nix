@@ -28,6 +28,7 @@
     tigervnc
     vagrant
     yarn
+    zoom-us
   ];
 
   # Enable Java.
