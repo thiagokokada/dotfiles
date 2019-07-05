@@ -214,11 +214,13 @@
      additional-insert
      (additional-movement normal visual motion)
      (additional-wrap normal insert)
+     (atom-movement t)
      c-w
      (commentary normal visual)
      (escape insert emacs)
      (operators normal)
      prettify
+     text-objects
      slurp/barf-cp)))
 
 ;; sort-words
