@@ -1,0 +1,25 @@
+" sync config
+sanitise tridactyllocal tridactylsync
+
+" vimium inspired keybindins
+unbind d
+bind J tabprev
+bind K tabnext
+bind x tabclose
+
+" dark theme
+colors dark
+
+" less cluttered find-link
+set hintfiltermode vimperator-reflow
+
+" stop js focus
+set allowautofocus false
+
+" allow Ctrl-a to select all in the commandline
+unbind --mode=ex <C-a>
+
+" allow Ctrl-c to copy in the commandline
+unbind --mode=ex <C-c>
+
+" vim: set filetype=vim:
