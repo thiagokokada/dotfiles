@@ -110,14 +110,23 @@
 ;; dired
 (add-hook! dired-mode
   ;; Auto refresh buffers
-  (global-auto-revert-mode 1)
+  (global-auto-revert-mode t)
 
   ;; Also auto refresh dired, but be quiet about it
   (setq global-auto-revert-non-file-buffers t)
   (setq auto-revert-verbose nil)
 
-  ;; Hide dired extra information
-  (dired-hide-details-mode 1))
+  ;; Emulate vinegar.vim
+  (setq dired-omit-verbose nil)
+  (setq dired-hide-details-hide-symlink-targets nil)
+  (make-local-variable 'dired-hide-symlink-targets)
+  (dired-hide-details-mode t))
+
+;; hl-fill-column
+(add-hook! hl-fill-column-mode
+  (set-face-attribute 'hl-fill-column-face nil
+                      :background (doom-color 'red)
+                      :foreground (doom-color 'fg)))
 
 ;; projectile
 (add-hook! projectile-mode
@@ -134,11 +143,9 @@
          :desc "Replace using regexp"
          "X" #'projectile-replace-regexp)))))
 
-;; hl-fill-column
-(add-hook! hl-fill-column-mode
-  (set-face-attribute 'hl-fill-column-face nil
-                      :background (doom-color 'red)
-                      :foreground (doom-color 'fg)))
+;; tramp
+(add-hook! tramp-mode
+  (setq tramp-default-method "ssh"))
 
 ;;; LANGUAGES
 
