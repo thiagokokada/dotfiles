@@ -19,7 +19,6 @@
     kubectl
     leiningen
     minikube
-    nodejs-10_x
     nss
     nssTools
     opam
@@ -27,7 +26,6 @@
     slack
     tigervnc
     vagrant
-    yarn
     zoom-us
   ];
 

@@ -15,6 +15,9 @@
       vimAlias = true;
       viAlias = true;
     }))
+    (yarn.override ({
+      nodejs = nodejs-10_x;
+    }))
     ag
     aria2
     bc
@@ -46,6 +49,7 @@
     ncdu
     ncurses.dev
     netcat-gnu
+    nodejs-10_x
     openssl
     p7zip
     pandoc
