@@ -4,6 +4,9 @@
 
 ;;; GENERAL
 
+;; fix shell in nixos
+(setenv "SHELL" "/usr/bin/env zsh")
+
 ;; theme
 (load-theme 'doom-spacegrey t)
 
