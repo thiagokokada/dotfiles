@@ -1,11 +1,12 @@
 " sync config
 sanitise tridactyllocal tridactylsync
 
-" vimium inspired keybindins
+" vimium inspired keybindings
 unbind d
 bind J tabprev
 bind K tabnext
 bind x tabclose
+unbind <C-f>
 
 " dark theme
 colors dark
