@@ -7,6 +7,7 @@ bind J tabprev
 bind K tabnext
 bind x tabclose
 unbind <C-f>
+unbind <C-b>
 
 " dark theme
 colors dark
