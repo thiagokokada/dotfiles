@@ -14,8 +14,8 @@ colors dark
 " less cluttered find-link
 set hintfiltermode vimperator-reflow
 
-" stop js focus
-set allowautofocus false
+" use neovim with proper terminal
+set editorcmd kitty nvim %f -c 'normal %lG%cl'
 
 " allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
