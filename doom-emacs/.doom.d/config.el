@@ -8,7 +8,7 @@
 (setenv "SHELL" "/usr/bin/env zsh")
 
 ;; theme
-(load-theme 'doom-spacegrey t)
+(load-theme 'doom-dracula t)
 
 ;; increase memory threshold
 (setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
