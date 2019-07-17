@@ -32,7 +32,7 @@
               "%b")))
 
 ;; font
-(setq doom-font (font-spec :family "Hack" :size 14)
+(setq doom-font (font-spec :family "Hack" :size 16)
       doom-big-font-increment 4
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 
