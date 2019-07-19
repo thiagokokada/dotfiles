@@ -4,11 +4,8 @@
 
 ;;; GENERAL
 
-;; fix shell in nixos
-(setenv "SHELL" "/usr/bin/env zsh")
-
 ;; theme
-(load-theme 'doom-dracula t)
+(load-theme 'doom-vibrant t)
 
 ;; increase memory threshold
 (setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
@@ -32,7 +29,7 @@
               "%b")))
 
 ;; font
-(setq doom-font (font-spec :family "Hack" :size 16)
+(setq doom-font (font-spec :family "Hack" :size 18)
       doom-big-font-increment 4
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 

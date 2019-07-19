@@ -1,5 +1,5 @@
 ! Display settings
-Xft.dpi: 120
+Xft.dpi: 150
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
@@ -74,7 +74,7 @@ UXTerm.vt100.translations: #override \n\
     Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
     Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
-UXTerm.vt100.faceName: Hack:size=10
+UXTerm.vt100.faceName: Hack:size=12
 
 ! Xterm config
 XTerm.termName: xterm-256color
@@ -88,6 +88,6 @@ XTerm.vt100.translations: #override \n\
     Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
     Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
-XTerm.vt100.faceName: Hack:size=10
+XTerm.vt100.faceName: Hack:size=12
 
 #include ".Xresources.local"
