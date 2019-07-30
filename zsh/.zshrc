@@ -78,7 +78,8 @@ try-run() { (( $+commands[${1}] )) && "${@}" }
 to-string() { awk '{print "\""$0"\""}' }
 
 # aliases
-alias clean-zsh-cache="rm -f ${HOME}/.*.zwc"
+alias reload!="source ${HOME}/.zshrc"
+alias clean-cache!="rm -f ${HOME}/.*.zwc"
 alias gk="run-bg gitk"
 alias http-server="python3 -m http.server"
 alias ln-clean-up="rm -- **/*(-@D)"
