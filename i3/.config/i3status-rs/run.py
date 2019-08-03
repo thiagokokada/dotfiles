@@ -54,13 +54,13 @@ def get_batteries(excludes=["AC"]):
     return [i for i in os.listdir("/sys/class/power_supply") if i not in excludes]
 
 
-def get_mounted_partitions(excludes=["/boot", "/nix/store"]):
+def get_mounted_partitions(excludes=["/boot", "/run/media", "/nix/store"]):
     partitions = []
 
     with open("/proc/self/mounts") as f:
         for info in f:
             partition = info.split(" ")[1]
-            if info[0] == "/" and partition not in excludes:
+            if info[0] == "/" and all(x not in partition for x in excludes):
                 partitions.append(partition)
 
     return partitions
@@ -115,7 +115,7 @@ def main():
         net_block,
         block(
             "memory",
-            format_mem="{MFg}GiB",
+            format_mem="{MAg}GiB",
             format_swap="{SFg}GiB",
             display_type="memory",
         ),
