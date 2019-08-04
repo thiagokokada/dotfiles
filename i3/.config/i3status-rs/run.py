@@ -86,7 +86,7 @@ def block(name, **kwargs):
         if isinstance(value, bool):
             return str(value).lower()
         elif isinstance(value, str):
-            return f'"{value}"'
+            return '"{value}"'.format(value=value.replace('"', r"\""))
         else:
             return value
 
@@ -141,6 +141,11 @@ def main():
         ),
         block("load", interval=5),
         block("temperature", format="{average}°C", collapsed=False),
+        block(
+            "custom",
+            command="setxkbmap -print | awk -F'+' '/xkb_symbols/ {print \"  \" $2}'",
+            interval=1,
+        ),
         block("sound", on_click="pavucontrol"),
         battery_block,
         block("time", interval=1, format="%a %T"),
