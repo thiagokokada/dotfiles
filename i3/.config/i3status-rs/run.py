@@ -29,10 +29,16 @@ warning_fg = "{COLOR_WARN}"
 critical_bg = "{COLOR_BG}"
 critical_fg = "{COLOR_BAD}"
 separator_bg = "{COLOR_BG}"
+separator = " "
 
 [icons]
 name = "awesome"
 
+[icons.overrides]
+music_play = "  "
+music_pause = "  "
+music_next = "  "
+music_prev = "  "
 """
 
 BLOCK_TEMPLATE = """\
@@ -120,11 +126,11 @@ def main():
         block("net", device=i, speed_up=True, speed_down=True, hide_inactive=True)
         for i in get_net_interfaces()
     ]
-    battery_block = [block("battery", device=i) for i in get_batteries()]
+    battery_block = [block("battery", device=i, show="both") for i in get_batteries()]
 
     config = generate_config(
-        block("focused_window", max_width=81),
-        block("music", buttons=["prev", "play", "next"]),
+        block("music", max_width=0, buttons=["play", "next"]),
+        block("focused_window", max_width=41),
         disk_block,
         net_block,
         block(
@@ -133,17 +139,9 @@ def main():
             format_swap="{SFg}GiB",
             display_type="memory",
         ),
-        block("cpu", interval=3),
-        block(
-            "temperature",
-            format="{average}°C",
-            collapsed=False,
-            info=0,
-            good=50,
-            idle=75,
-            warning=90,
-        ),
-        block("sound"),
+        block("load", interval=5),
+        block("temperature", format="{average}°C", collapsed=False),
+        block("sound", on_click="pavucontrol"),
         battery_block,
         block("time", interval=1, format="%a %T"),
     )
