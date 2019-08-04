@@ -50,8 +50,12 @@ debug = (
 
 
 # Helpers
+def get_sys_class(path, excludes=[]):
+    return [i for i in os.listdir(path) if i not in excludes]
+
+
 def get_batteries(excludes=["AC"]):
-    return [i for i in os.listdir("/sys/class/power_supply") if i not in excludes]
+    return get_sys_class(path="/sys/class/power_supply", excludes=excludes)
 
 
 def get_mounted_partitions(excludes=["/boot", "/run/media", "/nix/store"]):
@@ -67,7 +71,7 @@ def get_mounted_partitions(excludes=["/boot", "/run/media", "/nix/store"]):
 
 
 def get_net_interfaces(excludes=["lo"]):
-    return [i for i in os.listdir("/sys/class/net") if i not in excludes]
+    return get_sys_class(path="/sys/class/net", excludes=excludes)
 
 
 # Config generators
@@ -75,10 +79,10 @@ def block(name, **kwargs):
     def convert(value):
         if isinstance(value, bool):
             return str(value).lower()
-        if isinstance(value, int) or isinstance(value, list):
-            return value
-        else:
+        elif isinstance(value, str):
             return f'"{value}"'
+        else:
+            return value
 
     extra_config = "\n".join([f"{k} = {convert(v)}" for k, v in kwargs.items()])
 
@@ -95,6 +99,16 @@ def generate_config(*blocks):
             config += block
 
     return config
+
+
+def run_i3status_rs(config):
+    with NamedTemporaryFile(suffix=".toml") as config_file:
+        config_file.write(config.encode())
+        config_file.flush()
+
+        debug("Running i3status-rs with config file: ", config_file.name)
+
+        return run(["i3status-rs", config_file.name])
 
 
 def main():
@@ -136,13 +150,7 @@ def main():
 
     debug(config)
 
-    with NamedTemporaryFile(suffix=".toml") as config_file:
-        config_file.write(config.encode())
-        config_file.flush()
-
-        debug("Running i3status-rs with config file: ", config_file.name)
-
-        run(["i3status-rs", config_file.name])
+    run_i3status_rs(config)
 
 
 if __name__ == "__main__":
