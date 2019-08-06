@@ -5,30 +5,22 @@ from functools import partial
 from subprocess import run
 from tempfile import NamedTemporaryFile
 
-COLOR_BAD = "#FF0000"
-COLOR_BG = "#1D1F21"
-COLOR_GOOD = "#00FF00"
-COLOR_IDLE = "#969896"
-COLOR_INFO = "#81A2BE"
-COLOR_NORMAL = "#FFFFFF"
-COLOR_WARN = "#FFFF00"
-
 BASE_TEMPLATE = f"""\
 [theme]
 name = "plain"
 
 [theme.overrides]
-idle_bg = "{COLOR_BG}"
-idle_fg = "{COLOR_IDLE}"
-info_bg = "{COLOR_BG}"
-info_fg = "{COLOR_INFO}"
-good_bg = "{COLOR_BG}"
-good_fg = "{COLOR_GOOD}"
-warning_bg = "{COLOR_BG}"
-warning_fg = "{COLOR_WARN}"
-critical_bg = "{COLOR_BG}"
-critical_fg = "{COLOR_BAD}"
-separator_bg = "{COLOR_BG}"
+idle_bg = "#1d1f21"
+idle_fg = "#c5c8c6"
+info_bg = "#81a2be"
+info_fg = "#1d1f21"
+good_bg = "#b5bd68"
+good_fg = "#1d1f21"
+warning_bg = "#f0c674"
+warning_fg = "#1d1f21"
+critical_bg = "#cc6666"
+critical_fg = "#1d1f21"
+separator_bg = "#1d1f21"
 separator = " "
 
 [icons]
