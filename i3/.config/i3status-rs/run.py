@@ -5,22 +5,40 @@ from functools import partial
 from subprocess import run
 from tempfile import NamedTemporaryFile
 
+# Base 16 Tomorrow Night
+BASE00 = "#1d1f21"
+BASE01 = "#282a2e"
+BASE02 = "#373b41"
+BASE03 = "#969896"
+BASE04 = "#b4b7b4"
+BASE05 = "#c5c8c6"
+BASE06 = "#e0e0e0"
+BASE07 = "#ffffff"
+BASE08 = "#cc6666"
+BASE09 = "#de935f"
+BASE0A = "#f0c674"
+BASE0B = "#b5bd68"
+BASE0C = "#8abeb7"
+BASE0D = "#81a2be"
+BASE0E = "#b294bb"
+BASE0F = "#a3685a"
+
 BASE_TEMPLATE = f"""\
 [theme]
 name = "plain"
 
 [theme.overrides]
-idle_bg = "#1d1f21"
-idle_fg = "#c5c8c6"
-info_bg = "#81a2be"
-info_fg = "#1d1f21"
-good_bg = "#b5bd68"
-good_fg = "#1d1f21"
-warning_bg = "#f0c674"
-warning_fg = "#1d1f21"
-critical_bg = "#cc6666"
-critical_fg = "#1d1f21"
-separator_bg = "#1d1f21"
+idle_bg = "{BASE00}"
+idle_fg = "{BASE05}"
+info_bg = "{BASE0D}"
+info_fg = "{BASE00}"
+good_bg = "{BASE0B}"
+good_fg = "{BASE00}"
+warning_bg = "{BASE0A}"
+warning_fg = "{BASE00}"
+critical_bg = "{BASE06}"
+critical_fg = "{BASE00}"
+separator_bg = "{BASE00}"
 separator = " "
 
 [icons]
@@ -50,6 +68,10 @@ debug = (
 # Helpers
 def get_sys_class(path, excludes=[]):
     return [i for i in os.listdir(path) if all(x not in i for x in excludes)]
+
+
+def get_backlights(excludes=[]):
+    return get_sys_class(path="/sys/class/backlight", excludes=excludes)
 
 
 def get_batteries(excludes=["AC"]):
@@ -110,6 +132,8 @@ def run_i3status_rs(config):
 
 
 def main():
+    backlight_block = [block("backlight", device=b) for b in get_backlights()]
+    battery_block = [block("battery", device=b, show="both") for b in get_batteries()]
     disk_block = [
         block(
             "disk_space",
@@ -124,7 +148,6 @@ def main():
         block("net", device=n, speed_up=True, speed_down=True, hide_inactive=True)
         for n in get_net_interfaces()
     ]
-    battery_block = [block("battery", device=b, show="both") for b in get_batteries()]
 
     config = generate_config(
         block("music", max_width=0, buttons=["play", "next"]),
@@ -144,6 +167,7 @@ def main():
             command="setxkbmap -print | awk -F'+' '/xkb_symbols/ {print \"  \" $2}'",
             interval=1,
         ),
+        backlight_block,
         block("sound", on_click="pavucontrol"),
         battery_block,
         block("time", interval=1, format="%a %T"),
