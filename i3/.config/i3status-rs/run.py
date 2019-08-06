@@ -49,7 +49,7 @@ debug = (
 
 # Helpers
 def get_sys_class(path, excludes=[]):
-    return [i for i in os.listdir(path) if i not in excludes]
+    return [i for i in os.listdir(path) if all(x not in i for x in excludes)]
 
 
 def get_batteries(excludes=["AC"]):
@@ -68,7 +68,7 @@ def get_mounted_partitions(excludes=["/boot", "/run/media", "/nix/store"]):
     return partitions
 
 
-def get_net_interfaces(excludes=["lo"]):
+def get_net_interfaces(excludes=["lo", "br"]):
     return get_sys_class(path="/sys/class/net", excludes=excludes)
 
 
