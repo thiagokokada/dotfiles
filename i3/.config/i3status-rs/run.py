@@ -111,14 +111,20 @@ def run_i3status_rs(config):
 
 def main():
     disk_block = [
-        block("disk_space", path=i, info_type="available", unit="GiB")
-        for i in get_mounted_partitions()
+        block(
+            "disk_space",
+            path=p,
+            alias="/" + "/".join([x[0] for x in p.split("/") if x]),
+            info_type="available",
+            unit="GiB",
+        )
+        for p in get_mounted_partitions()
     ]
     net_block = [
-        block("net", device=i, speed_up=True, speed_down=True, hide_inactive=True)
-        for i in get_net_interfaces()
+        block("net", device=n, speed_up=True, speed_down=True, hide_inactive=True)
+        for n in get_net_interfaces()
     ]
-    battery_block = [block("battery", device=i, show="both") for i in get_batteries()]
+    battery_block = [block("battery", device=b, show="both") for b in get_batteries()]
 
     config = generate_config(
         block("music", max_width=0, buttons=["play", "next"]),
