@@ -90,7 +90,7 @@ def get_mounted_partitions(excludes=["/boot", "/run/media", "/nix/store"]):
     return partitions
 
 
-def get_net_interfaces(excludes=["lo", "br"]):
+def get_net_interfaces(excludes=["lo", "br", "vboxnet", "docker"]):
     return get_sys_class(path="/sys/class/net", excludes=excludes)
 
 
@@ -133,10 +133,7 @@ def run_i3status_rs(config):
 
 def main():
     backlight_block = [block("backlight", device=b) for b in get_backlights()]
-    battery_block = [
-        block("battery", device=b, driver="upower", show="both")
-        for b in get_batteries()
-    ]
+    battery_block = [block("battery", device=b, show="both") for b in get_batteries()]
     disk_block = [
         block(
             "disk_space",
