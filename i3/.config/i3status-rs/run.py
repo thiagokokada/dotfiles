@@ -133,7 +133,10 @@ def run_i3status_rs(config):
 
 def main():
     backlight_block = [block("backlight", device=b) for b in get_backlights()]
-    battery_block = [block("battery", device=b, show="both") for b in get_batteries()]
+    battery_block = [
+        block("battery", device=b, driver="upower", show="both")
+        for b in get_batteries()
+    ]
     disk_block = [
         block(
             "disk_space",
@@ -164,7 +167,8 @@ def main():
         block("temperature", format="{average}°C", collapsed=False),
         block(
             "custom",
-            command="setxkbmap -print | awk -F'+' '/xkb_symbols/ {print \"  \" $2}'",
+            command="xkblayout-state print ' %s'",
+            on_click="xkblayout-state set +1",
             interval=1,
         ),
         backlight_block,
