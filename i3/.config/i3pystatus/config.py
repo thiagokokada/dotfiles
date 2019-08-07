@@ -4,10 +4,10 @@ from subprocess import run
 import psutil
 from i3pystatus import IntervalModule, Status
 
-COLOR_NORMAL = "#FFFFFF"
-COLOR_GOOD = "#00FF00"
+COLOR_NORMAL = "#81a2be"
+COLOR_GOOD = "#1d1f21"
 COLOR_WARN = "#FFFF00"
-COLOR_BAD = "#FF0000"
+COLOR_BAD = "#cc6666"
 
 
 class Xkblayout(IntervalModule):

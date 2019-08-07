@@ -1,4 +1,14 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+
+let
+  unstable = import (builtins.fetchGit {
+    name = "nixos-unstable-2019-07-15";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "5d678d1a39d65e65556b719c48b975cd345dbe49";
+  }) {
+    config = config.nixpkgs.config;
+  };
+in
 
 {
   environment = {
@@ -137,27 +147,12 @@
           package = pkgs.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
-            (i3pystatus.overrideAttrs(oldAttrs: {
-              src = fetchFromGitHub {
-                owner = "thiagokokada";
-                repo = "i3pystatus";
-                rev = "a85b06e7a3712ecbea589512525d096cc41b22b0";
-                sha256 = "0jk8c1bv78vd3idv503d6128ljpydvaw5a2ynpzgcppvr9843vwj";
-              };
-              propagatedBuildInputs = with python3Packages;
-              oldAttrs.propagatedBuildInputs ++ [
-                dbus-python
-                i3ipc
-                pysensors
-              ];
-            }))
             compton-git
             dex
             dmenu
             dunst
             ffmpeg
             i3lock
-            i3status
             libnotify
             lm_sensors
             maim
@@ -165,8 +160,10 @@
             pavucontrol
             playerctl
             rofi
+            unstable.i3status-rust
             wmctrl
             xdg-user-dirs
+            xkblayout-state
             xorg.xdpyinfo
             xorg.xkill
             xorg.xset

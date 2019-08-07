@@ -64,9 +64,15 @@
     tlp = {
       enable = true;
       extraConfig = ''
-        # Enable powersave governor
-        CPU_SCALING_GOVERNOR_ON_AC=powersave
-        CPU_SCALING_GOVERNOR_ON_BAT=powersave
+        # Radio devices to disable on connect.
+        DEVICES_TO_DISABLE_ON_LAN_CONNECT="wifi wwan"
+        DEVICES_TO_DISABLE_ON_WIFI_CONNECT="wwan"
+        DEVICES_TO_DISABLE_ON_WWAN_CONNECT="wifi"
+
+        # Radio devices to enable on disconnect.
+        DEVICES_TO_ENABLE_ON_LAN_DISCONNECT="wifi wwan"
+        DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=""
+        DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
       '';
     };
   };
