@@ -138,7 +138,7 @@ def main():
         block(
             "disk_space",
             path=p,
-            alias="/" + "/".join([x[0] for x in p.split("/") if x]),
+            alias=" /" + "/".join([x[0] for x in p.split("/") if x]),
             info_type="available",
             unit="GiB",
         )
