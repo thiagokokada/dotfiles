@@ -9,6 +9,9 @@ bind x tabclose
 unbind <C-f>
 unbind <C-b>
 
+" copy mpv prepared link to clipboard
+bind yv composite js "mpv " + document.location.href | clipboard yank
+
 " dark theme
 colors dark
 
