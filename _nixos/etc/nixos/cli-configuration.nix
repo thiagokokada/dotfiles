@@ -9,7 +9,7 @@
       scripts = [ mpvScripts.mpris ];
     }))
     (python2Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
-    (python3Full.withPackages(ps: with ps; [ pip tkinter virtualenv ]))
+    (python3Full.withPackages(ps: with ps; [ pip tkinter ]))
     (neovim.override ({
       withNodeJs = true;
       vimAlias = true;
@@ -55,9 +55,11 @@
     pandoc
     parted
     pciutils
+    pipenv
     powertop
     psmisc
     pv
+    python3Packages.poetry
     python3Packages.youtube-dl
     ripgrep
     shellcheck
