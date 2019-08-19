@@ -280,7 +280,7 @@ bar {
     # status bar color theme
     colors {
       background $base00
-      separator  $base01
+      separator  $base02
       statusline $base04
 
       # State             Border  BG      Text
