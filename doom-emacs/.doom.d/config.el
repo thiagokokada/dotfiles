@@ -58,11 +58,6 @@
  :m "C-S-j" #'+evil/window-move-down
  :m "C-S-k" #'+evil/window-move-up
  :m "C-S-l" #'+evil/window-move-right
- ; move between characters in insert mode
- :i "C-h" #'backward-char
- :i "C-j" #'next-line
- :i "C-k" #'previous-line
- :i "C-l" #'forward-char
  ; misc
  :n "-" #'dired-jump
  :nv "C-a" #'evil-numbers/inc-at-pt
@@ -102,8 +97,6 @@
 (set-company-backend! :derived 'prog-mode
   #'company-files
   #'company-keywords)
-(set-company-backend! :derived 'text-mode
-  #'company-files)
 
 (setq company-selection-wrap-around t)
 
@@ -148,6 +141,9 @@
   (setq tramp-default-method "ssh"))
 
 ;;; LANGUAGES
+
+;; Ascii-doc
+(add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
 
 ;; clojure
 (add-hook! clojure-mode

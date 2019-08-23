@@ -32,7 +32,6 @@ zit-in "https://github.com/sindresorhus/pure" "pure"
 zit-lo "pure" "async.zsh"
 zit-lo "pure" "pure.zsh"
 
-
 # misc
 zit-il "https://github.com/hlissner/zsh-autopair" "autopair" "autopair.zsh"
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
