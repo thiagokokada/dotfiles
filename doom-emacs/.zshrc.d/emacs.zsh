@@ -1,5 +1,5 @@
 ZIT_MODULES_PATH="${HOME}" ZIT_DISABLE_UPGRADE=1 \
-  zit-in "https://github.com/hlissner/doom-emacs#develop" ".emacs.d"
+  zit-in "https://github.com/hlissner/doom-emacs#straight" ".emacs.d"
 
 path=(
   ~/.emacs.d/bin

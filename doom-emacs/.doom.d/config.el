@@ -75,10 +75,7 @@
  (:leader
    (:prefix "o"
      :desc "Visualize Undo Tree"
-     "u" #'undo-tree-visualize)
-   (:prefix "t"
-     :desc "Text zoom"
-     "z" #'doom-text-zoom-hydra/body)))
+     "u" #'undo-tree-visualize)))
 
 ;; ivy
 (setq +ivy-project-search-engines '(ag rg))
