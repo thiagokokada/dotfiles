@@ -151,6 +151,8 @@
      (:n "R" #'hydra-cljr-help-menu/body)
      (:localleader
        ("a" #'clojure-align)
+       (:prefix ("h" . "help")
+         "D" #'cider-clojuredocs)
        (:prefix ("e" . "eval")
          "b" #'cider-load-buffer
          "f" #'cider-eval-sexp-at-point
