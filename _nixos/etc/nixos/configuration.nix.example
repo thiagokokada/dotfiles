@@ -12,6 +12,7 @@
       ./optimus-configuration.nix
       ./i3-configuration.nix
       ./cli-configuration.nix
+      ./dev-configuration.nix
       ./game-configuration.nix
       ./yubikey-configuration.nix
       ./misc-configuration.nix
