@@ -54,31 +54,19 @@
   };
 
   services = {
-    # Mouse configuration.
-    xserver = {
-      libinput = {
-        # Enable libinput.
-        enable = true;
-        # Enable natural scrolling for touchpads.
-        naturalScrolling = true;
-      };
-
-      # Use flat profile for mouse.
-      extraConfig = ''
-        Section "InputClass"
-          Identifier "mouse"
-          Driver "libinput"
-          MatchIsPointer "yes"
-          Option "AccelProfile" "flat"
-        EndSection
-      '';
-    };
+    # Kill process consuming too much memory before it crawls the machine.
+    earlyoom.enable = true;
 
     # Trim SSD weekly.
     fstrim = {
       enable = true;
       interval = "weekly";
     };
+
+    # Suspend when power key is pressed
+    logind.extraConfig = ''
+      HandlePowerKey=suspend
+    '';
 
     # Enable Intel Thermald.
     thermald.enable = true;
