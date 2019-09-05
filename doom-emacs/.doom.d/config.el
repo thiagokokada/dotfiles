@@ -7,9 +7,6 @@
 ;; theme
 (load-theme 'doom-vibrant t)
 
-;; increase memory threshold
-(setq doom-gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
-
 ;; enable major mode icon in modeline
 (setq doom-modeline-major-mode-icon t)
 
@@ -133,10 +130,6 @@
          :desc "Replace using regexp"
          "X" #'projectile-replace-regexp)))))
 
-;; tramp
-(add-hook! tramp-mode
-  (setq tramp-default-method "ssh"))
-
 ;;; LANGUAGES
 
 ;; Ascii-doc
@@ -221,7 +214,7 @@
      (commentary normal visual)
      (escape insert emacs)
      (operators normal)
-     prettify
+     ;; prettify
      text-objects
      slurp/barf-cp)))
 
