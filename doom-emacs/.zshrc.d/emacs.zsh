@@ -35,6 +35,7 @@ doom-restore() {
     emacs -f straight-thaw-versions -f kill-emacs
   fi
   doom -y refresh
+  doom rebuild -f
 }
 
 UPGRADE_CMDS+="doom-snapshot-and-upgrade"
