@@ -13,6 +13,7 @@
     }))
     ag
     aria2
+    bind
     bc
     curl
     emacs
