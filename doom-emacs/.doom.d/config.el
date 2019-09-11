@@ -132,8 +132,9 @@
 
 ;;; LANGUAGES
 
-;; Ascii-doc
+;; custom file extensions
 (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
+(add-to-list 'auto-mode-alist '("\\.repl\\'" . clojure-mode))
 
 ;; clojure
 (add-hook! clojure-mode
@@ -148,6 +149,8 @@
          "D" #'cider-clojuredocs)
        (:prefix ("e" . "eval")
          "b" #'cider-load-buffer
+         "p" #'cider-pprint-eval-last-sexp
+         "P" #'cider-pprint-eval-last-sexp-to-repl
          "f" #'cider-eval-sexp-at-point
          "n" #'cider-eval-ns-form
          "c" #'cider-read-and-eval-defun-at-point
@@ -217,6 +220,10 @@
      ;; prettify
      text-objects
      slurp/barf-cp)))
+
+(def-package! evil-matchit
+  :config
+  (global-evil-matchit-mode 1))
 
 ;; sort-words
 (def-package! sort-words
