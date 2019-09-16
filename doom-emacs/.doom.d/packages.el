@@ -7,7 +7,6 @@
 ;; (package! builtin-package :disable t)
 (package! adoc-mode)
 (package! evil-escape :disable t)
-(package! evil-matchit)
 (package! flymd)
 (package! lispyville)
 (package! sort-words)

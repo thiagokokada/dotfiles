@@ -75,7 +75,6 @@
      "u" #'undo-tree-visualize)))
 
 ;; ivy
-(setq +ivy-project-search-engines '(ag rg))
 (after! ivy
   (set-face-attribute
    'ivy-minibuffer-match-face-1 nil :foreground nil)
@@ -139,7 +138,8 @@
 ;; clojure
 (add-hook! clojure-mode
   (setq cljr-warn-on-eval nil
-        cljr-eagerly-build-asts-on-startup nil)
+        cljr-eagerly-build-asts-on-startup nil
+        cider-show-error-buffer 'only-in-repl)
   (map!
    (:map clojure-mode-map
      (:n "R" #'hydra-cljr-help-menu/body)
@@ -205,7 +205,6 @@
          (hy-mode . lispyville-mode)
          (lfe-mode . lispyville-mode)
          (clojure-mode . lispyville-mode))
-  :when (display-graphic-p) ;; lispyville breaks terminal Emacs
   :config
   (lispyville-set-key-theme
    `(additional
@@ -217,13 +216,8 @@
      (commentary normal visual)
      (escape insert emacs)
      (operators normal)
-     ;; prettify
      text-objects
      slurp/barf-cp)))
-
-(def-package! evil-matchit
-  :config
-  (global-evil-matchit-mode 1))
 
 ;; sort-words
 (def-package! sort-words
