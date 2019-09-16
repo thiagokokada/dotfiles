@@ -100,7 +100,7 @@ def block(name, **kwargs):
         if isinstance(value, bool):
             return str(value).lower()
         elif isinstance(value, str):
-            return '"{value}"'.format(value=value.replace('"', r"\""))
+            return '"' + value.replace('"', '\\"') + '"'
         else:
             return value
 
