@@ -1,4 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+
+let
+  unstable = import (builtins.fetchGit {
+    name = "nixos-unstable-2019-08-27";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "98640fd48212f8e6552517f667bba1901f5936d4";
+  }) {
+    config = config.nixpkgs.config;
+  };
+in
 
 {
   # For Slack.
@@ -23,7 +33,7 @@
     nssTools
     opam
     python36Packages.jupyter_core
-    slack
+    unstable.slack
     tigervnc
     vagrant
     zoom-us

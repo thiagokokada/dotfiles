@@ -5,14 +5,10 @@
   nixpkgs.config.allowUnfree = true;
 
   networking = {
-    # Use wpa_supplicant.
-    # wireless.enable = true;
-
     # Use Network Manager.
     networkmanager = {
       enable = true;
       dhcp = "internal";
-      dns = "dnsmasq";
     };
   };
 
@@ -59,6 +55,9 @@
 
     # Lock screen when lid is closed.
     logind.lidSwitch = "lock";
+
+    # Enable systemd-resolved
+    resolved.enable = true;
 
     # Enable TLP to reduce power consumption.
     tlp = {

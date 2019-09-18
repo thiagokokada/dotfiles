@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/a1ce0fbb298b93a119f2e883c1cdb05f40adc0c3.tar.gz;
+    }))
+  ];
+
   # CLI packages.
   environment.systemPackages = with pkgs; [
     (mpv-with-scripts.override ({
@@ -12,11 +18,12 @@
       viAlias = true;
     }))
     ag
+    appimage-run
     aria2
     bind
     bc
     curl
-    emacs
+    emacsGit
     fd
     file
     fzf
