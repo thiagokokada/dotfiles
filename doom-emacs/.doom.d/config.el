@@ -7,13 +7,6 @@
 ;; theme
 (load-theme 'doom-vibrant t)
 
-;; enable major mode icon in modeline
-(setq doom-modeline-major-mode-icon t)
-
-;; disable file size indicator in modeline
-(add-hook! 'size-indication-mode-hook
-  (setq size-indication-mode nil))
-
 ;; disable confirmation message on exit
 (setq confirm-kill-emacs nil)
 
@@ -40,6 +33,7 @@
 
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
+
 ;; enable minibuffer to work correctly in evil mode
 (setq evil-collection-setup-minibuffer t)
 
@@ -107,6 +101,11 @@
   (setq dired-hide-details-hide-symlink-targets nil)
   (make-local-variable 'dired-hide-symlink-targets)
   (dired-hide-details-mode t))
+
+;; doom-modeline
+(after! doom-modeline
+  (remove-hook 'doom-modeline-mode-hook #'size-indication-mode)
+  (setq doom-modeline-major-mode-icon t))
 
 ;; hl-fill-column
 (add-hook! hl-fill-column-mode
@@ -233,6 +232,11 @@
      (:prefix ("i" . "insert")
        :desc "Insert UUIDv4"
        "u" #'uuidgen))))
+
+;; vlf
+(def-package! vlf
+  :config
+  (require 'vlf-setup))
 
 ;;; MISC
 
