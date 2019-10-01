@@ -89,6 +89,9 @@
 
 ;; dired
 (add-hook! dired-mode
+  ;; Compress/Uncompress tar files
+  (auto-compression-mode t)
+
   ;; Auto refresh buffers
   (global-auto-revert-mode t)
 
@@ -215,6 +218,7 @@
      (commentary normal visual)
      (escape insert emacs)
      (operators normal)
+     prettify
      text-objects
      slurp/barf-cp)))
 
