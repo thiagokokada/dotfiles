@@ -20,4 +20,6 @@
     universal-ctags
     xxd
   ];
+
+  programs.adb.enable = true;
 }
