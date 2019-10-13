@@ -341,9 +341,6 @@ for_window [class="^Steam$" title="^Steam$"] floating disable
 # start compositor (since i3 does not support natively)
 exec --no-startup-id compton
 
-# start redshift
-exec --no-startup-id redshift-gtk
-
 # notification manager
 exec --no-startup-id dunst
 

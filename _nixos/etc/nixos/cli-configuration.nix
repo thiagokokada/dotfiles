@@ -1,12 +1,6 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/4703059bca8b225e3f7d3e0c7dc845d53831b0e1.tar.gz;
-    }))
-  ];
-
   # CLI packages.
   environment.systemPackages = with pkgs; [
     (mpv-with-scripts.override ({
@@ -23,7 +17,7 @@
     bind
     bc
     curl
-    emacsGit
+    emacs
     fd
     file
     fzf

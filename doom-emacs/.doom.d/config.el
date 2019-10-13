@@ -136,6 +136,7 @@
 ;; custom file extensions
 (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
 (add-to-list 'auto-mode-alist '("\\.repl\\'" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.joker\\'" . clojure-mode))
 
 ;; clojure
 (add-hook! clojure-mode

@@ -15,7 +15,6 @@
     pipenv
     python2Full
     python3Full
-    python3Packages.poetry
     shellcheck
     universal-ctags
     xxd

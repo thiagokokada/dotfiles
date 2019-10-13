@@ -1,14 +1,4 @@
-{ config, pkgs, ... }:
-
-let
-  unstable = import (builtins.fetchGit {
-    name = "nixos-unstable-2019-07-15";
-    url = https://github.com/nixos/nixpkgs/;
-    rev = "5d678d1a39d65e65556b719c48b975cd345dbe49";
-  }) {
-    config = config.nixpkgs.config;
-  };
-in
+{ pkgs, ... }:
 
 {
   environment = {
@@ -19,6 +9,12 @@ in
 
     # Desktop packages.
     systemPackages = with pkgs; [
+      (pcmanfm.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [
+          menu-cache
+          lxmenu-data
+        ];
+      }))
       arandr
       arc-icon-theme
       arc-theme
@@ -41,7 +37,6 @@ in
       kitty
       libreoffice-fresh
       lxappearance-gtk3
-      lxmenu-data
       mcomix
       pcmanfm
       peek
@@ -89,7 +84,7 @@ in
 
   services = {
     # Allow automounting.
-    gnome3.gvfs.enable = true;
+    gvfs.enable = true;
 
     xserver = {
       enable = true;
@@ -133,12 +128,6 @@ in
 
       };
 
-      # Disable Xterm.
-      desktopManager = {
-        xterm.enable = false;
-        default = "none";
-      };
-
       # Configure i3-gaps as WM.
       windowManager = {
         default = "i3";
@@ -153,6 +142,7 @@ in
             dunst
             ffmpeg
             i3lock
+            i3status-rust
             libnotify
             lm_sensors
             maim
@@ -160,7 +150,6 @@ in
             pavucontrol
             playerctl
             rofi
-            unstable.i3status-rust
             wmctrl
             xdg-user-dirs
             xkblayout-state
