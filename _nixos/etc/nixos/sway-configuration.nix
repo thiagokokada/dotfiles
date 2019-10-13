@@ -1,23 +1,6 @@
-{ config, lib, pkgs, ... }:
-
-let
-  waylandOverlay = (import (builtins.fetchTarball
-  "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz"
-  ));
-
-  unstable = import (builtins.fetchGit {
-    name = "nixos-unstable-2019-04-16";
-    url = https://github.com/nixos/nixpkgs/;
-    rev = "aea8e5de3845b4f6afe085e59a39e67293683629"; # py3status 3.18
-  }) {
-    config = config.nixpkgs.config;
-  };
-in
+{ pkgs, ... }:
 
 {
-  # Import nixpkgs-wayland overlay.
-  nixpkgs.overlays = [ waylandOverlay ];
-
   environment = {
     systemPackages = with pkgs; [
       gnome3.dconf-editor
@@ -34,34 +17,32 @@ in
     sway = {
       enable = true;
       extraPackages = with pkgs; [
-        (callPackage ./pkgs/bemenu.nix {})
-        (with unstable.python3Packages;
-          (py3status.overrideAttrs (oldAttrs: {
-            meta.priority = -1;
-            propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-              i3ipc
-              pydbus
-              pygobject3
-            ];
-          })))
-        (redshift-wayland.overrideAttrs (oldAttrs: {
+        (callPackage ./pkgs/wdisplays.nix {})
+        (redshift.overrideAttrs (oldAttrs: rec {
+          src = fetchFromGitHub {
+            owner = "minus7";
+            repo = "redshift";
+            rev = "7da875d34854a6a34612d5ce4bd8718c32bec804";
+            sha256 = "0nbkcw3avmzjg1jr1g9yfpm80kzisy55idl09b6wvzv2sz27n957";
+          };
+          buildInputs = oldAttrs.buildInputs ++ [
+            wayland wayland-protocols wlroots
+          ];
           meta.priority = -1;
         }))
-        dex
+        bemenu
         dmenu
         grim
+        i3status-rust
         libnotify
         lm_sensors
         maim
         mako
-        nitrogen
         pavucontrol
         playerctl
-        rofi
         slurp
         swayidle
         swaylock
-        xdg-desktop-portal-wlr
         xwayland
       ];
 
@@ -99,6 +80,6 @@ in
 
   services = {
     # Allow automounting.
-    gnome3.gvfs.enable = true;
+    gvfs.enable = true;
   };
 }

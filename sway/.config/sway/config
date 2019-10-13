@@ -1,7 +1,26 @@
 # Sway config file
 
+# Base16 Tomorrow Night
+set $base00 #1d1f21
+set $base01 #282a2e
+set $base02 #373b41
+set $base03 #969896
+set $base04 #b4b7b4
+set $base05 #c5c8c6
+set $base06 #e0e0e0
+set $base07 #ffffff
+set $base08 #cc6666
+set $base09 #de935f
+set $base0A #f0c674
+set $base0B #b5bd68
+set $base0C #8abeb7
+set $base0D #81a2be
+set $base0E #b294bb
+set $base0F #a3685a
+
 # default applications
-set $terminal kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)"
+# set $terminal env KITTY_ENABLE_WAYLAND=1 kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)"
+set $terminal termite
 set $browser firefox
 set $file_manager kitty ranger
 set $fs_screenshot grim \
@@ -16,7 +35,7 @@ set $import_gsettings $HOME/.config/sway/scripts/import-gsettings.sh
 set $lock_screen swaylock -c 000000
 
 # status bar
-set $status_bar py3status --wm sway --config $HOME/.config/sway/py3status.conf
+set $status_bar $HOME/.config/i3status-rs/run.py
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
@@ -32,7 +51,7 @@ set $left h
 set $right l
 
 # Font for window titles and i3-status
-font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 8
+font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 10
 
 # disable window title
 default_border pixel 1
@@ -61,14 +80,8 @@ bindsym $mod+Shift+q kill
 bindsym $alt+F4 kill
 
 # start bemenu
-bindsym $mod+d exec \
-  env BEMENU_BACKEND=wayland \
-  bemenu-run -l 15 -b -i -p 'run' \
-  --fn 'Roboto 10' \
-  --tb '#1d1f21' --tf '#81a2be' \
-  --fb '#1d1f21' --ff '#969896' \
-  --nb '#1d1f21' --nf '#c5c8c6' \
-  --hf '#1d1f21' --hb '#81a2be'
+set $dmenu-cmd "bemenu -l 15 -b -i -p 'run' --fn 'Roboto 10' --tb '#1d1f21' --tf '#81a2be' --fb '#1d1f21' --ff '#969896' --nb '#1d1f21' --nf '#c5c8c6' --hf '#1d1f21' --hb '#81a2be'"
+bindsym $mod+d exec env BEMENU_BACKEND=wayland j4-dmenu-desktop --dmenu=$dmenu-cmd
 
 # change focus
 # vi-like
@@ -222,23 +235,6 @@ mode "$resize" {
 }
 bindsym $mod+r mode "$resize"
 
-# external screen management
-set $display_layout  :  ,  ,  ,  , [d]uplicate, [m]irror, [s]econd-only, [o]ff
-mode "$display_layout" {
-    bindsym Left mode "default", exec $mons -e left
-    bindsym Down mode "default", exec $mons -e bottom
-    bindsym Up mode "default", exec $mons -e top
-    bindsym Right mode "default", exec $mons -e right
-    bindsym d mode "default", exec $mons -d
-    bindsym m mode "default", exec $mons -m
-    bindsym s mode "default", exec $mons -s
-    bindsym o mode "default", exec $mons -o
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+p mode "$display_layout"
-
 # start status bar
 bar {
     position top
@@ -256,25 +252,25 @@ bar {
 }
 
 # volume control
-bindsym XF86AudioRaiseVolume exec $volume raise && py3-cmd refresh volume_status
-bindsym XF86AudioLowerVolume exec $volume lower && py3-cmd refresh volume_status
-bindsym XF86AudioMute exec $volume mute && py3-cmd refresh volume_status
+bindsym XF86AudioRaiseVolume exec $volume raise
+bindsym XF86AudioLowerVolume exec $volume lower
+bindsym XF86AudioMute exec $volume mute
 
 # screen brightness control
-bindsym XF86MonBrightnessUp exec light -A 5% && py3-cmd refresh backlight
-bindsym XF86MonBrightnessDown exec light -U 5% && py3-cmd refresh backlight
+bindsym XF86MonBrightnessUp exec light -A 5%
+bindsym XF86MonBrightnessDown exec light -U 5%
 
 # media control
-bindsym XF86AudioPlay exec playerctl play-pause && py3-cmd refresh mpris
-bindsym XF86AudioStop exec playerctl stop && py3-cmd refresh mpris
-bindsym XF86AudioNext exec playerctl next && py3-cmd refresh mpris
-bindsym XF86AudioPrev exec playerctl previous && py3-cmd refresh mpris
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # keyboard layout stuff
 set $mode_keyboard : [b]r, [u]s-intl
 mode "$mode_keyboard" {
-    bindsym b mode "default", exec swaymsg 'input * xkb_layout br' && py3-cmd refresh external_script layout
-    bindsym u mode "default", exec swaymsg 'input * xkb_layout us(intl)' && py3-cmd refresh external_script layout
+    bindsym b mode "default", exec swaymsg 'input * xkb_layout br'
+    bindsym u mode "default", exec swaymsg 'input * xkb_layout us(intl)'
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -287,6 +283,9 @@ input * {
   xkb_options caps:escape
 }
 
+# external screen management
+bindsym $mod+p exec wdisplays
+
 # take screenshots
 bindsym Print exec $fs_screenshot
 
@@ -294,10 +293,18 @@ bindsym Print exec $fs_screenshot
 bindsym $mod+Print exec $area_screenshot
 
 # color theme
-client.focused #81a2be #81a2be #1d1f21 #282a2e #81a2be
-client.focused_inactive #373b41 #373b41 #969896 #282a2e #1d1f21
-client.unfocused #282a2e #282a2e #969896 #282a2e #1d1f21
-client.urgent #373b41 #cc6666 #ffffff #cc6666 #cc6666
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base0D $base0D $base00 $base0D $base0C
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base00 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base05 $base00 $base00
+client.background       $base07
+
+# app specific fixes
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$"] floating enable
+for_window [class="^Steam$" title="^Steam$"] floating disable
 
 # notification manager
 exec mako
