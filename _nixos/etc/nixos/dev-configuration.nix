@@ -15,6 +15,7 @@
     pipenv
     python2Full
     python3Full
+    python38Full
     shellcheck
     universal-ctags
     xxd

@@ -14,7 +14,6 @@
 
   # Install laptop related packages.
   environment.systemPackages = with pkgs; [
-    (callPackage ./pkgs/blueman.nix {})
     iw
   ];
 
@@ -47,6 +46,9 @@
 
   # Enable laptop specific services.
   services = {
+    # Enable Blueman to manage Bluetooth.
+    blueman.enable = true;
+
     # Trim SSD weekly.
     fstrim = {
       enable = true;
