@@ -11,6 +11,7 @@
     docker-compose
     elixir
     gitAndTools.hub
+    graalvm8
     graphviz
     insomnia
     jetbrains.idea-community
@@ -18,6 +19,7 @@
     jupyter
     kubectl
     leiningen
+    lumo
     minikube
     nss
     nssTools

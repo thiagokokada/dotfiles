@@ -14,7 +14,7 @@
 
   # Install laptop related packages.
   environment.systemPackages = with pkgs; [
-    blueman
+    (callPackage ./pkgs/blueman.nix {})
     iw
   ];
 
