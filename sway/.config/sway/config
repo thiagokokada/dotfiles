@@ -278,9 +278,20 @@ mode "$mode_keyboard" {
 bindsym $mod+b mode "$mode_keyboard"
 
 # set default keyboard layout
-input * {
+input type:keyboard {
   xkb_layout us(intl),br
   xkb_options caps:escape
+}
+
+# disable accelation for mouses
+input type:mouse {
+  pointer_accel -1
+}
+
+# enable natural scrolling for touchpads
+input type:touchpad {
+  natural_scroll enabled
+  tap enabled
 }
 
 # external screen management
