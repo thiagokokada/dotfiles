@@ -30,8 +30,8 @@
           "/dev/random", "/dev/urandom",
           "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
           "/dev/rtc","/dev/hpet",
-          "/dev/input/by-id/usb-Logitech_G203_Prodigy_Gaming_Mouse_0176375A3336-event-mouse",
-          "/dev/input/by-id/usb-Logitech_Gaming_Keyboard_G610_106936603934-event-kbd"
+          "/dev/input/by-id/usb-Logitech_G203_Prodigy_Gaming_Mouse_0176375A3336-event-if01",
+          "/dev/input/by-id/usb-Logitech_Gaming_Keyboard_G610_106936603934-event-if01"
         ]
       '';
     };

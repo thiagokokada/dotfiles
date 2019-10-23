@@ -34,6 +34,7 @@
         dmenu
         grim
         i3status-rust
+        j4-dmenu-desktop
         libnotify
         lm_sensors
         maim

@@ -31,7 +31,8 @@ set $lock_screen env \
   XSECURELOCK_SHOW_DATETIME=1 \
   XSECURELOCK_SHOW_HOSTNAME=0 \
   XSECURELOCK_SHOW_USERNAME=0 \
-  xsecurelock
+  XSECURELOCK_FONT="Roboto:style=Regular" \
+  xsecurelock || kill -9 -1
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot maim \
   "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && \
