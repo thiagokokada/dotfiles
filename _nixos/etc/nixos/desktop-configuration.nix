@@ -23,6 +23,11 @@
     libvirtd = {
       enable = true;
       qemuOvmf = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+      # Create symbolic links for /var/lib/libvirt/inputs/event-mouse and
+      # /var/lib/libvirt/inputs/event-kbd by probing the entries in either
+      # /dev/input/by-id or /dev/input/by-path.
       qemuVerbatimConfig = ''
         nographics_allow_host_audio = 1
         cgroup_device_acl = [
@@ -30,8 +35,8 @@
           "/dev/random", "/dev/urandom",
           "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
           "/dev/rtc","/dev/hpet",
-          "/dev/input/by-id/usb-Logitech_G203_Prodigy_Gaming_Mouse_0176375A3336-event-if01",
-          "/dev/input/by-id/usb-Logitech_Gaming_Keyboard_G610_106936603934-event-if01"
+          "/var/lib/libvirt/inputs/event-mouse",
+          "/var/lib/libvirt/inputs/event-kbd"
         ]
       '';
     };

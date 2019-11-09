@@ -61,6 +61,7 @@
       emacs-all-the-icons-fonts
       hack-font
       inconsolata
+      iosevka
       powerline-fonts
       source-code-pro
       symbola

@@ -63,11 +63,6 @@
       interval = "weekly";
     };
 
-    # Decrease journal size
-    journald.extraConfig = ''
-      SystemMaxUse=500M
-    '';
-
     # Suspend when power key is pressed
     logind.extraConfig = ''
       HandlePowerKey=suspend
