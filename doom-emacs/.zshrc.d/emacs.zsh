@@ -14,9 +14,9 @@ if [[ -n "${EMACS}" ]]; then
   export RPROMPT=""
 fi
 
-alias em="run-bg emacs"
+alias em="GDK_BACKEND=x11 run-bg emacs"
 alias et="TERM=xterm-24bit emacs -nw"
-alias ec="close-fd emacsclient -a '' -nqc"
+alias ec="GDK_BACKEND=x11 close-fd emacsclient -a '' -nqc"
 
 EMACS_PATH="${HOME}/.emacs.d"
 DOOM_SNAPHOST_HASH_PATH="${HOME}/.doom-snapshot-hash"

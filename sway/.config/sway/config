@@ -19,7 +19,6 @@ set $base0E #b294bb
 set $base0F #a3685a
 
 # default applications
-# set $terminal env KITTY_ENABLE_WAYLAND=1 kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)"
 set $terminal termite
 set $browser firefox
 set $file_manager kitty ranger
@@ -51,7 +50,7 @@ set $left h
 set $right l
 
 # Font for window titles and i3-status
-font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 10
+font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 14
 
 # disable window title
 default_border pixel 1
@@ -80,7 +79,7 @@ bindsym $mod+Shift+q kill
 bindsym $alt+F4 kill
 
 # start bemenu
-set $dmenu-cmd "bemenu -l 15 -b -i -p 'run' --fn 'Roboto 10' --tb '#1d1f21' --tf '#81a2be' --fb '#1d1f21' --ff '#969896' --nb '#1d1f21' --nf '#c5c8c6' --hf '#1d1f21' --hb '#81a2be'"
+set $dmenu-cmd "bemenu -l 15 -b -i -p 'run' --fn 'Roboto 14' --tb '#1d1f21' --tf '#81a2be' --fb '#1d1f21' --ff '#969896' --nb '#1d1f21' --nf '#c5c8c6' --hf '#1d1f21' --hb '#81a2be'"
 bindsym $mod+d exec env BEMENU_BACKEND=wayland j4-dmenu-desktop --dmenu=$dmenu-cmd
 
 # change focus
