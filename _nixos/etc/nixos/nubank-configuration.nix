@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     apacheKafka
     awscli
+    clj-kondo
     clojure
     docker-compose
     elixir

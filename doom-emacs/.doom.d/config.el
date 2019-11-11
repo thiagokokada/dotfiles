@@ -143,6 +143,7 @@
   (setq cljr-warn-on-eval nil
         cljr-eagerly-build-asts-on-startup nil
         cider-show-error-buffer 'only-in-repl)
+  (require #'flycheck-clj-kondo)
   (map!
    (:map clojure-mode-map
      (:n "R" #'hydra-cljr-help-menu/body)
