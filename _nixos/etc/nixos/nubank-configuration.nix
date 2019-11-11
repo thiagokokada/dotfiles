@@ -24,7 +24,6 @@
     minikube
     nss
     nssTools
-    opam
     python36Packages.jupyter_core
     slack
     tigervnc

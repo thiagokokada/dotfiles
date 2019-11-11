@@ -8,7 +8,6 @@
     # Use Network Manager.
     networkmanager = {
       enable = true;
-      dhcp = "internal";
     };
   };
 
@@ -57,9 +56,6 @@
 
     # Lock screen when lid is closed.
     logind.lidSwitch = "lock";
-
-    # Enable systemd-resolved
-    resolved.enable = true;
 
     # Enable TLP to reduce power consumption.
     tlp = {
