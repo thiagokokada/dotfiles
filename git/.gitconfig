@@ -16,6 +16,7 @@
 	branch-cleanup = "!git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d #"
 	pushf = push --force-with-lease
 	submodules-upgrade = submodule update --init --recursive --remote
+	logs = log --show-signature
 [include]
 	path = ~/.gitconfig.local
 [github]
