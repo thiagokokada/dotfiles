@@ -24,7 +24,7 @@ DOOM_SNAPHOST_HASH_PATH="${HOME}/.doom-snapshot-hash"
 doom-snapshot-and-upgrade() {
   git --git-dir "${EMACS_PATH}/.git" rev-parse HEAD >! "${DOOM_SNAPHOST_HASH_PATH}"
   emacs -f straight-freeze-versions -f kill-emacs
-  doom -y upgrade
+  doom upgrade -f
 }
 
 doom-restore() {
