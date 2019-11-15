@@ -59,8 +59,17 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# helpers
+dotfiles() { cd "${DOTFILES_PATH}" }
+dotfiles-pull() { git --git-dir="${DOTFILES_PATH}/.git" --work-tree="${DOTFILES_PATH}" pull }
+close-fd() { "${@}" </dev/null &>/dev/null }
+run-bg() { "${@}" </dev/null &>/dev/null &! }
+open() { run-bg xdg-open "${@}" }
+try-run() { (( $+commands[${1}] )) && "${@}" }
+to-string() { awk '{print "\""$0"\""}' }
+
 # upgrade-all cmd
-export -ua UPGRADE_CMDS=("zit-up")
+export -ua UPGRADE_CMDS=("dotfiles-pull" "zit-up")
 upgrade-all() {
   for cmd in "${UPGRADE_CMDS[@]}"; do
     printf "\nRunning: %s\n\n" "${cmd}"
@@ -68,13 +77,6 @@ upgrade-all() {
   done
 }
 alias up!="upgrade-all"
-
-# helpers
-close-fd() { "${@}" </dev/null &>/dev/null }
-run-bg() { "${@}" </dev/null &>/dev/null &! }
-open() { run-bg xdg-open "${@}" }
-try-run() { (( $+commands[${1}] )) && "${@}" }
-to-string() { awk '{print "\""$0"\""}' }
 
 # aliases
 alias reload!="source ${HOME}/.zshrc"
