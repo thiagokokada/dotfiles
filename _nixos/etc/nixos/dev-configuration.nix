@@ -9,6 +9,7 @@
     cmake
     gcc
     gnumake
+    libtool
     m4
     ncurses.dev
     nodejs-10_x

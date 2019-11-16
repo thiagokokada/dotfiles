@@ -201,7 +201,7 @@
 ;;; CUSTOM PACKAGES
 
 ;; lispyville
-(def-package! lispyville
+(use-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
          (emacs-lisp-mode . lispyville-mode)
          (scheme-mode . lispyville-mode)
@@ -225,12 +225,12 @@
      slurp/barf-cp)))
 
 ;; sort-words
-(def-package! sort-words
+(use-package! sort-words
   :config
   (require 'sort-words))
 
 ;; uuidgen-el
-(def-package! uuidgen
+(use-package! uuidgen
   :config
   (require 'uuidgen)
   (map!
@@ -240,7 +240,7 @@
        "u" #'uuidgen))))
 
 ;; vlf
-(def-package! vlf
+(use-package! vlf
   :config
   (require 'vlf-setup))
 

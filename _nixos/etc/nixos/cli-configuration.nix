@@ -11,13 +11,15 @@
       vimAlias = true;
       viAlias = true;
     }))
+    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+      epkgs.emacs-libvterm
+    ]))
     ag
     appimage-run
     aria2
     bind
     bc
     curl
-    emacs
     fd
     file
     fzf
@@ -27,6 +29,7 @@
     htop
     ispell
     jq
+    libvterm-neovim
     linuxPackages.cpupower
     lshw
     lsof
