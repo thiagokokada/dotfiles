@@ -53,6 +53,7 @@
  :n "-" #'dired-jump
  :nv "C-a" #'evil-numbers/inc-at-pt
  :nv "C-S-a" #'evil-numbers/dec-at-pt
+ :nv "C-SPC" #'+fold/toggle
  ; workspaces
  (:prefix ("`" . "workspace")
    :n "n" #'+workspace/new
