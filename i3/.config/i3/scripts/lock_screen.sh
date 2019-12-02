@@ -4,6 +4,10 @@ TEMP_FILE=$(mktemp --suffix '.png')
 NEW_STANDBY=(5 5 5)
 I3LOCK_OPTIONS=(-e -i "${TEMP_FILE}")
 
+__lock_keepassxc_dbs() {
+    qdbus org.keepassxc.KeePassXC.MainWindow /keepassxc org.keepassxc.MainWindow.lockAllDatabases
+}
+
 __pause_player() {
     local status
     status="$(playerctl status)"
@@ -35,6 +39,7 @@ pre_lock() {
         xset q |
         awk 'BEGIN {FPAT="[0-9]+"} /Standby.*Suspend.*Off/{print $1, $2, $3}'
     )"
+    __lock_keepassxc_dbs
     __take_screenshot
     xset +dpms dpms "${NEW_STANDBY[@]}"
     __pause_player

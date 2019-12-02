@@ -51,17 +51,27 @@ setup_cli() {
 }
 
 setup_os() {
-  . /etc/os-release
-  case "${NAME}" in
-    "Arch Linux")
-      setup arch
-      ;;
-    "NixOS")
-      setup nixos
-      ;;
-    *)
-      warn "No configuration for OS ${NAME} available."
-  esac
+  if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+    case "${NAME}" in
+      "Arch Linux")
+        setup arch
+        ;;
+      "NixOS")
+        setup nixos
+        ;;
+      *)
+        warn "No configuration for OS ${NAME} available."
+    esac
+  else
+    warn "File /etc/os-release not found. Is this a Linux OS?"
+  fi
+}
+
+setup_file_associations() {
+  echo "Configuring file associations"
+  xdg-mime default pcmanfm.desktop inode/directory
+  xdg-mime default org.gnome.gThumb.desktop image/{jpeg,png,gif} 
 }
 
 check_dependency "stow"
@@ -69,3 +79,4 @@ set_origin_to_ssh
 setup_i3
 setup_cli
 setup_os
+setup_file_associations
