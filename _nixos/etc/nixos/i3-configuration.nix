@@ -9,12 +9,6 @@
 
     # Desktop packages.
     systemPackages = with pkgs; [
-      (pcmanfm.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [
-          menu-cache
-          lxmenu-data
-        ];
-      }))
       arandr
       arc-icon-theme
       arc-theme
@@ -37,11 +31,13 @@
       kitty
       libreoffice-fresh
       lxappearance-gtk3
+      lxmenu-data
       mcomix
       pcmanfm
       peek
       perlPackages.FileMimeInfo
       qalculate-gtk
+      qt5.qttools
       ranger
       redshift
       shared-mime-info
