@@ -20,6 +20,7 @@
     jupyter
     kubectl
     leiningen
+    lumo
     minikube
     nss
     nssTools
