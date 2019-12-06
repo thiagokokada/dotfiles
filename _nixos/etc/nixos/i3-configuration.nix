@@ -91,21 +91,20 @@
       };
 
       # Set extra config to libinput devices
-      extraConfig = ''
-        Section "InputClass"
+      inputClassSections = [
+        ''
           Identifier "mouse"
           Driver "libinput"
           MatchIsPointer "on"
           Option "AccelProfile" "flat"
-        EndSection
-
-        Section "InputClass"
+        ''
+        ''
           Identifier "touchpad"
           Driver "libinput"
           MatchIsTouchpad "on"
           Option "NaturalScrolling" "true"
-        EndSection
-      '';
+        ''
+      ];
 
       # Use LightDM.
       displayManager = with pkgs; {
