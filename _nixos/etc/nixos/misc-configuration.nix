@@ -5,11 +5,6 @@
     # Mount /tmp using tmpfs for performance.
     tmpOnTmpfs = true;
 
-    kernelParams = [
-      # Enable blk-mq.
-      "scsi_mod.use_blk_mq=1"
-    ];
-
     kernel.sysctl = {
       # Enable Magic keys.
       "kernel.sysrq" = 1;
@@ -78,13 +73,5 @@
 
     # Enable NTP.
     timesyncd.enable = true;
-
-    # Set blk-mq scheduler depending on disk type.
-    udev.extraRules = ''
-      # set scheduler for SSD
-      ACTION=="add|change", KERNEL=="sd[a-z]|mmcblk[0-9]*|nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
-      # set scheduler for rotating disks
-      ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-    '';
   };
 }
