@@ -181,15 +181,6 @@
     };
   };
 
-  # Enable programs that need special configuration.
-  programs = {
-    # Install Java.
-    java.enable = true;
-  };
-
-  # Enable Java anti-aliasing.
-  environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
-
   # Reduce latency.
   powerManagement.cpuFreqGovernor = "performance";
 }
