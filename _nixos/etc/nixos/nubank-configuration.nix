@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     apacheKafka
     awscli
+    boot
     clj-kondo
     clojure
     docker-compose
@@ -35,6 +36,9 @@
     enable = true;
     package = pkgs.jdk8;
   };
+
+  # Enable Java anti-aliasing.
+  environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
 
   # Enable FortiSSL VPN support in NetworkManager.
   # networking.networkmanager = {

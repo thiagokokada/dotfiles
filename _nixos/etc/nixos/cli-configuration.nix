@@ -23,6 +23,7 @@
     fd
     file
     fzf
+    ghostscript
     gitFull
     glxinfo
     graphicsmagick-imagemagick-compat
