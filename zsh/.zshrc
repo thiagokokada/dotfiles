@@ -61,12 +61,13 @@ bindkey -M vicmd v edit-command-line
 
 # helpers
 dotfiles() { cd "${DOTFILES_PATH}" }
-dotfiles-pull() { git --git-dir="${DOTFILES_PATH}/.git" --work-tree="${DOTFILES_PATH}" pull }
+dotfiles-pull() { git -C "${DOTFILES_PATH}" pull }
 close-fd() { "${@}" </dev/null &>/dev/null }
 run-bg() { "${@}" </dev/null &>/dev/null &! }
 open() { run-bg xdg-open "${@}" }
 try-run() { (( $+commands[${1}] )) && "${@}" }
 to-string() { awk '{print "\""$0"\""}' }
+get-ip() { curl -s https://ifconfig.co/json | jq -r . }
 
 # upgrade-all cmd
 export -ua UPGRADE_CMDS=("dotfiles-pull" "zit-up")
