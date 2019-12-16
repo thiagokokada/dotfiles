@@ -201,6 +201,11 @@
 
 ;;; CUSTOM PACKAGES
 
+;; color-identifiers-mode
+(use-package! color-identifiers-mode
+  :config
+  (add-hook #'after-init-hook #'global-color-identifiers-mode))
+
 ;; lispyville
 (use-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
