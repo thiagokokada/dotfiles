@@ -102,6 +102,8 @@
           Identifier "touchpad"
           Driver "libinput"
           MatchIsTouchpad "on"
+          Option "Tapping" "on"
+          Option "ClickMethod" "clickfinger"
           Option "NaturalScrolling" "true"
         ''
       ];
