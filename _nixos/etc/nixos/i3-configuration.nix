@@ -43,7 +43,6 @@
       shared-mime-info
       spotify
       termite
-      xorg.xf86inputlibinput
     ];
   };
 
@@ -83,28 +82,24 @@
     # Allow automounting.
     gvfs.enable = true;
 
-    udev.packages = [ pkgs.libinput.out ];
-
     xserver = {
       enable = true;
 
-      modules = [ pkgs.xorg.xf86inputlibinput ];
+      # Enable libinput.
+      libinput = {
+        enable = true;
+        naturalScrolling = true;
+      };
 
-      # Set extra config to libinput devices
+      # Set input config to libinput devices
       inputClassSections = [
         ''
+        Section "InputClass"
           Identifier "mouse"
           Driver "libinput"
           MatchIsPointer "on"
           Option "AccelProfile" "flat"
-        ''
-        ''
-          Identifier "touchpad"
-          Driver "libinput"
-          MatchIsTouchpad "on"
-          Option "Tapping" "on"
-          Option "ClickMethod" "clickfinger"
-          Option "NaturalScrolling" "true"
+        EndSection
         ''
       ];
 
