@@ -230,6 +230,21 @@
      text-objects
      slurp/barf-cp)))
 
+;; lsp-mode
+(use-package! lsp-mode
+  :hook ((clojure-mode . lsp))
+  :commands lsp
+  :init
+  (setq lsp-enable-indentation nil
+        lsp-prefer-flymake nil)
+
+  :config
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
+
 ;; sort-words
 (use-package! sort-words
   :config
