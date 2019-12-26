@@ -94,12 +94,10 @@
       # Set input config to libinput devices
       inputClassSections = [
         ''
-        Section "InputClass"
-          Identifier "mouse"
-          Driver "libinput"
-          MatchIsPointer "on"
-          Option "AccelProfile" "flat"
-        EndSection
+        Identifier "mouse"
+        Driver "libinput"
+        MatchIsPointer "on"
+        Option "AccelProfile" "flat"
         ''
       ];
 
