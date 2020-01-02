@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+args=("${@}")
+tmpdir=$(mktemp)
+
+trap "rm ${tmpdir}" EXIT
+
+cat "${1}" > "${tmpdir}"
+nvim "+term tail -f -n +1 ${tmpdir}" "${args[@]:1}"
