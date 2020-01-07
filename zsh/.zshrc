@@ -10,22 +10,26 @@ source "${ZIT_MODULES_PATH}/zit/zit.zsh"
 zit-in "https://github.com/thiagokokada/zit" "zit"
 
 # zim
-zdouble_dot_expand='true'
-zssh_ids=(/dev/null)
-zhighlighters=(main brackets cursor)
+zstyle ':zim:input' double-dot-expand yes
+zstyle ':zim:ssh' ids /dev/null
 
-zit-in "https://github.com/Eriner/zim" "zim"
-zit-lo "zim" "modules/directory/init.zsh"
-zit-lo "zim" "modules/environment/init.zsh"
-zit-lo "zim" "modules/git/init.zsh"
-zit-lo "zim" "modules/history/init.zsh"
-zit-lo "zim" "modules/input/init.zsh"
-zit-lo "zim" "modules/utility/init.zsh"
-zit-lo "zim" "modules/ssh/init.zsh"
-zit-lo "zim" "modules/completion/init.zsh"
-zit-lo "zim" "modules/syntax-highlighting/init.zsh"
-zit-lo "zim" "modules/history-substring-search/init.zsh"
-zit-lo "zim" "modules/autosuggestions/init.zsh"
+zit-il "https://github.com/zsh-users/zsh-completions" \
+  "zsh-completions" "zsh-completions.plugin.zsh"
+zit-il "https://github.com/zimfw/completion" "completion" "init.zsh"
+zit-il "https://github.com/zimfw/environment" "environment" "init.zsh"
+zit-il "https://github.com/zimfw/input" "input" "init.zsh"
+zit-il "https://github.com/zimfw/git" "git" "init.zsh"
+zit-il "https://github.com/zimfw/ssh" "ssh" "init.zsh"
+zit-il "https://github.com/zimfw/termtitle" "termtitle" "init.zsh"
+zit-il "https://github.com/zimfw/utility" "utility" "init.zsh"
+
+# zsh-users
+zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
+  "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
+zit-il "https://github.com/zsh-users/zsh-syntax-highlighting" \
+  "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
+zit-il "https://github.com/zsh-users/zsh-history-substring-search" \
+  "zsh-history-substring-search" "zsh-history-substring-search.plugin.zsh"
 
 # pure
 zit-in "https://github.com/sindresorhus/pure" "pure"
@@ -53,6 +57,13 @@ export KEYTIMEOUT=1
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+# zsh-history-substring-search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
 
 # edit current line
 autoload -U edit-command-line
