@@ -12,6 +12,7 @@
       arandr
       arc-icon-theme
       arc-theme
+      calibre
       chromium
       ffmpegthumbnailer
       firefox
