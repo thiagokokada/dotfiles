@@ -12,6 +12,8 @@ zit-in "https://github.com/thiagokokada/zit" "zit"
 # zim
 zstyle ':zim:input' double-dot-expand yes
 zstyle ':zim:ssh' ids /dev/null
+zstyle ':zim:termtitle' hooks 'precmd' 'preexec'
+zstyle ':zim:termtitle' format '%1~'
 
 zit-il "https://github.com/zsh-users/zsh-completions" \
   "zsh-completions" "zsh-completions.plugin.zsh"
@@ -61,6 +63,9 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 # zsh-history-substring-search
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# pure
+prompt_pure_set_title() { return } # monkeypatch fn to disable title update
 
 # zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
