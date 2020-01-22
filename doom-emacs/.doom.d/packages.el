@@ -9,7 +9,6 @@
 (package! color-identifiers-mode)
 (package! evil-escape :disable t)
 (package! flycheck-clj-kondo)
-(package! flymd)
 (package! lispyville)
 (package! sort-words)
 (package! uuidgen)
