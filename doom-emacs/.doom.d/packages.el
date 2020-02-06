@@ -10,6 +10,7 @@
 (package! evil-escape :disable t)
 (package! flycheck-clj-kondo)
 (package! lispyville)
+(package! lsp-ui :disable t)
 (package! sort-words)
 (package! uuidgen)
 (package! vlf)

@@ -178,6 +178,9 @@
          "i" #'cider-interrupt
          "\"" #'cider-connect-cljs)))))
 
+(after! clj-refactor
+  (set-lookup-handlers! 'clj-refactor-mode nil))
+
 ;; elisp
 (add-hook! emacs-lisp-mode
   (map!
@@ -222,6 +225,17 @@
      prettify
      text-objects
      slurp/barf-cp)))
+
+;; lsp-mode
+(use-package! lsp-mode
+  :hook ((clojure-mode . lsp))
+  :commands lsp
+  :config
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
 
 ;; sort-words
 (use-package! sort-words
