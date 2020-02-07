@@ -150,33 +150,16 @@
      (:n "R" #'hydra-cljr-help-menu/body)
      (:localleader
        ("a" #'clojure-align)
-       (:prefix ("h" . "help")
-         "D" #'cider-clojuredocs)
        (:prefix ("e" . "eval")
-         "b" #'cider-load-buffer
-         "p" #'cider-pprint-eval-last-sexp
-         "P" #'cider-pprint-eval-last-sexp-to-repl
-         "f" #'cider-eval-sexp-at-point
-         "n" #'cider-eval-ns-form
          "c" #'cider-read-and-eval-defun-at-point
          "C" #'user/cider-read-eval-and-call-defun-at-point)
        (:prefix ("n" . "namespace")
-         "r" #'cider-ns-refresh
          "R" #'cider-ns-reload)
        (:prefix ("t" . "test")
-         "c" #'cider-test-clear-highlights
-         "f" #'cider-test-rerun-failed-tests
-         "n" #'cider-test-run-ns-tests
-         "p" #'cider-test-run-project-tests
-         "r" #'cider-test-show-report
-         "t" #'cider-test-run-test
-         "l" #'cider-test-run-loaded-tests
          "N" #'user/cider-eval-and-run-ns-tests
          "T" #'user/cider-eval-and-run-test)
        (:prefix ("r" . "repl")
-         "'" #'cider-connect
-         "i" #'cider-interrupt
-         "\"" #'cider-connect-cljs)))))
+         "i" #'cider-interrupt)))))
 
 (after! clj-refactor
   (set-lookup-handlers! 'clj-refactor-mode nil))
