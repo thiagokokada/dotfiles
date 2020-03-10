@@ -151,6 +151,7 @@
      (:localleader
        ("a" #'clojure-align)
        (:prefix ("e" . "eval")
+         "n" #'cider-eval-ns-form
          "c" #'cider-read-and-eval-defun-at-point
          "C" #'user/cider-read-eval-and-call-defun-at-point)
        (:prefix ("n" . "namespace")
@@ -213,6 +214,9 @@
 (use-package! lsp-mode
   :hook ((clojure-mode . lsp))
   :commands lsp
+  :init (setq lsp-enable-indentation nil
+              lsp-prefer-flymake nil
+              lsp-log-io t)
   :config
   (dolist (m '(clojure-mode
                clojurec-mode
