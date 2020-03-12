@@ -44,6 +44,7 @@
       shared-mime-info
       spotify
       termite
+      xdotool
     ];
   };
 

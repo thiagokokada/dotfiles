@@ -25,6 +25,7 @@
     nss
     nssTools
     python36Packages.jupyter_core
+    sassc
     slack
     tigervnc
     vagrant
@@ -56,7 +57,9 @@
   };
 
   # Added user to groups.
-  users.users.thiagoko.extraGroups = [ "docker" "vboxusers" ];
+  users.users.thiagoko.extraGroups = [ "docker" "vboxusers" "scanner" ];
+
+  hardware.sane.enable = true;
 
   services = {
     # Enable CUPS.
