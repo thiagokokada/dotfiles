@@ -25,6 +25,11 @@ zit-il "https://github.com/zimfw/ssh" "ssh" "init.zsh"
 zit-il "https://github.com/zimfw/termtitle" "termtitle" "init.zsh"
 zit-il "https://github.com/zimfw/utility" "utility" "init.zsh"
 
+zit-in "https://github.com/zimfw/archive" "archive" "init.zsh"
+
+archive() { zsh "${ZIT_MODULES_PATH}/archive/functions/archive" }
+unarchive() { zsh "${ZIT_MODULES_PATH}/archive/functions/unarchive" }
+
 # zsh-users
 zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
   "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
@@ -103,7 +108,7 @@ alias http-server="python3 -m http.server"
 alias ln-clean-up="rm -- **/*(-@D)"
 alias nvimdiff="nvim -d"
 alias ssh="TERM=xterm-256color ssh"
-alias ip!="curl -s ifconfig.co/json | jq -r ."
+alias ip!="curl -s ifconfig.me/all"
 
 # source contents from ~/.zshrc.d/*.zsh
 for file in ${HOME}/.zshrc.d/*.zsh; do
