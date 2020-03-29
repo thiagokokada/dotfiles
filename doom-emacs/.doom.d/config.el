@@ -82,10 +82,6 @@
 ;;; MODULES
 
 ;; company
-(set-company-backend! :derived 'prog-mode
-  #'company-files
-  #'company-keywords)
-
 (setq company-selection-wrap-around t)
 
 ;; dired
@@ -161,6 +157,37 @@
          "T" #'user/cider-eval-and-run-test)
        (:prefix ("r" . "repl")
          "i" #'cider-interrupt)))))
+
+(after! cider
+  (add-hook 'company-completion-started-hook 'ans/set-company-maps)
+  (add-hook 'company-completion-finished-hook 'ans/unset-company-maps)
+  (add-hook 'company-completion-cancelled-hook 'ans/unset-company-maps)
+
+  (defun ans/unset-company-maps (&rest unused)
+    "Set default mappings (outside of company).
+    Arguments (UNUSED) are ignored."
+    (general-def
+      :states 'insert
+      :keymaps 'override
+      "<up>" nil
+      "<down>" nil
+      "C-j" nil
+      "C-k" nil
+      "RET" nil
+      [return] nil))
+
+  (defun ans/set-company-maps (&rest unused)
+    "Set maps for when you're inside company completion.
+    Arguments (UNUSED) are ignored."
+    (general-def
+      :states 'insert
+      :keymaps 'override
+      "<down>" 'company-select-next
+      "<up>" 'company-select-previous
+      "C-j" 'company-select-next
+      "C-k" 'company-select-previous
+      "RET" 'company-complete
+      [return] 'company-complete)))
 
 (after! clj-refactor
   (set-lookup-handlers! 'clj-refactor-mode nil))

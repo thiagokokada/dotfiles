@@ -8,7 +8,6 @@
 (package! adoc-mode)
 (package! color-identifiers-mode)
 (package! evil-escape :disable t)
-(package! flycheck-clj-kondo)
 (package! lispyville)
 (package! lsp-ui :disable t)
 (package! sort-words)
