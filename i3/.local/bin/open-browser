@@ -22,15 +22,23 @@ Categories=Application;Network;WebBrowser;
 StartupNotify=true
 MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;text/xml;application/xhtml+xml;
 """
+CONFIG_PATH = Path.home() / ".open-browser-map.json"
 EXEC_PATH = Path.home() / ".local/bin/open-browser"
 INSTALL_PATH = Path.home() / ".local/share/applications"
 
 
 def install_desktop_file(exec_path, install_path):
+    print(f"Installing desktop for {exec_path} in {install_path}")
+
     with TemporaryDirectory() as d, open(Path(d) / "open-browser.desktop", mode="w") as f:
         f.write(DESKTOP_FILE_TEMPLATE.format(exec_path=exec_path))
         f.flush()
         run(["desktop-file-install", "--dir", install_path, f.name])
+
+    print(
+        "\nSuccess! Run command below to set default browser:\n"
+        "  $ xdg-settings set default-web-browser open-browser.desktop"
+    )
 
 
 def get_browser_for_url(url, url_map):
@@ -41,24 +49,21 @@ def get_browser_for_url(url, url_map):
     return DEFAULT_BROWSER
 
 
+def get_url_map(config_path):
+    try:
+        with config_path.open() as f:
+            return json.loads(f.read())
+    except FileNotFoundError:
+        print(f"Config file not found in {config_path}", file=sys.stderr)
+        return {}
+
+
 def main(argv):
     if "--install" in argv:
-        print(f"Installing desktop for {EXEC_PATH} in {INSTALL_PATH}")
         install_desktop_file(EXEC_PATH, INSTALL_PATH)
-        print(
-            "\nSuccess! Run command below to set default browser:\n"
-            "  $ xdg-settings set default-web-browser open-browser.desktop"
-        )
     else:
         url = argv[-1]
-        config_path = Path.home() / ".open_browser.json"
-
-        try:
-            with config_path.open() as f:
-                url_map = json.loads(f.read())
-        except FileNotFoundError:
-            url_map = {}
-
+        url_map = get_url_map(CONFIG_PATH)
         browser = get_browser_for_url(url, url_map)
 
         print(f"Selected browser: {browser}", file=sys.stderr)
