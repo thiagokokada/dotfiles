@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+
+import json
+import os
+import sys
+from pathlib import Path
+from subprocess import run
+from tempfile import TemporaryDirectory
+
+DEFAULT_BROWSER = os.environ.get("BROWSER", "firefox")
+DESKTOP_FILE_TEMPLATE = """\
+[Desktop Entry]
+
+Type=Application
+Version=1.0
+Name=Open Browser
+Comment=Open Browser according to user preference
+Path={exec_path}
+Exec={exec_path}
+Terminal=false
+Categories=Application;Network;WebBrowser;
+StartupNotify=true
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;text/xml;application/xhtml+xml;
+"""
+EXEC_PATH = Path.home() / ".local/bin/open-browser"
+INSTALL_PATH = Path.home() / ".local/share/applications"
+
+
+def install_desktop_file(exec_path, install_path):
+    with TemporaryDirectory() as d, open(Path(d) / "open-browser.desktop", mode="w") as f:
+        f.write(DESKTOP_FILE_TEMPLATE.format(exec_path=exec_path))
+        f.flush()
+        run(["desktop-file-install", "--dir", install_path, f.name])
+
+
+def get_browser_for_url(url, url_map):
+    for url_pattern, browser in url_map.items():
+        if url_pattern in url:
+            return browser
+
+    return DEFAULT_BROWSER
+
+
+def main(argv):
+    if "--install" in argv:
+        print(f"Installing desktop for {EXEC_PATH} in {INSTALL_PATH}")
+        install_desktop_file(EXEC_PATH, INSTALL_PATH)
+        print(
+            "\nSuccess! Run command below to set default browser:\n"
+            "  $ xdg-settings set default-web-browser open-browser.desktop"
+        )
+    else:
+        url = argv[-1]
+        config_path = Path.home() / ".open_browser.json"
+
+        try:
+            with config_path.open() as f:
+                url_map = json.loads(f.read())
+        except FileNotFoundError:
+            url_map = {}
+
+        browser = get_browser_for_url(url, url_map)
+
+        print(f"Selected browser: {browser}", file=sys.stderr)
+
+        run([browser, *argv[1:]])
+
+
+if __name__ == "__main__":
+    main(sys.argv)
