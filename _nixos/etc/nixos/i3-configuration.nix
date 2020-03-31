@@ -14,6 +14,7 @@
       arc-theme
       calibre
       chromium
+      desktop-file-utils
       ffmpegthumbnailer
       firefox
       gimp
@@ -43,6 +44,7 @@
       redshift
       shared-mime-info
       spotify
+      tdesktop
       termite
       xdotool
     ];

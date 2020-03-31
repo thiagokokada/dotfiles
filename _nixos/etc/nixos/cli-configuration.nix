@@ -50,6 +50,7 @@
     ripgrep
     sshuttle
     stow
+    tealdeer
     telnet
     tig
     unrar
