@@ -15,8 +15,7 @@ Type=Application
 Version=1.0
 Name=Open Browser
 Comment=Open Browser according to user preference
-Path={exec_path}
-Exec={exec_path}
+Exec={exec_path} %u
 Terminal=false
 Categories=Application;Network;WebBrowser;
 StartupNotify=true
@@ -24,7 +23,7 @@ MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;
 """
 XDG_DATA_HOME = Path(os.environ.get("XDG_DATA_HOME") or "~/.local/share").expanduser()
 CONFIG_PATH = Path("~/.open-browser-map.json").expanduser()
-EXEC_PATH = Path("~/.local/bin/open-browser").expanduser()
+EXEC_PATH = Path(sys.argv[0])
 INSTALL_PATH = XDG_DATA_HOME / "applications"
 
 
