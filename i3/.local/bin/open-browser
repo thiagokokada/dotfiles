@@ -22,9 +22,10 @@ Categories=Application;Network;WebBrowser;
 StartupNotify=true
 MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;text/xml;application/xhtml+xml;
 """
-CONFIG_PATH = Path.home() / ".open-browser-map.json"
-EXEC_PATH = Path.home() / ".local/bin/open-browser"
-INSTALL_PATH = Path.home() / ".local/share/applications"
+XDG_DATA_HOME = Path(os.environ.get("XDG_DATA_HOME") or "~/.local/share").expanduser()
+CONFIG_PATH = Path("~/.open-browser-map.json").expanduser()
+EXEC_PATH = Path("~/.local/bin/open-browser").expanduser()
+INSTALL_PATH = XDG_DATA_HOME / "applications"
 
 
 def install_desktop_file(exec_path, install_path):

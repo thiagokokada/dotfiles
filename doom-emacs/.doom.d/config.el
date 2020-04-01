@@ -147,6 +147,7 @@
      (:localleader
        ("a" #'clojure-align)
        (:prefix ("e" . "eval")
+         "s" #'cider-eval-sexp-at-point
          "n" #'cider-eval-ns-form
          "c" #'cider-read-and-eval-defun-at-point
          "C" #'user/cider-read-eval-and-call-defun-at-point)
