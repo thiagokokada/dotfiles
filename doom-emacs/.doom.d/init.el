@@ -40,7 +40,6 @@
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup            ; tame sudden yet inevitable temporary windows
-        +all
         +defaults)
        ;;pretty-code       ; replace bits of code with pretty symbols
        ;;tabs              ; an tab bar for Emacs
@@ -62,7 +61,7 @@
        multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
-       rotate-text       ; cycle region at point between text candidates
+       ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
        word-wrap         ; soft wrapping with language-aware indent
 
@@ -70,11 +69,11 @@
        (dired            ; making dired pretty [functional]
         +icons)
        electric          ; smarter, keyword-based electric-indent
-       ibuffer           ; interactive buffer management
+       ;;ibuffer           ; interactive buffer management
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       eshell            ; a consistent, cross-platform shell (WIP)
+       ;;eshell            ; a consistent, cross-platform shell (WIP)
        ;;shell             ; a terminal REPL for Emacs
        ;;term              ; terminals in Emacs
        vterm             ; another terminals in Emacs
@@ -93,8 +92,7 @@
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
-       (lookup           ; helps you navigate your code and documentation
-        +docsets)        ; ...or in Dash docsets locally
+       lookup              ; helps you navigate your code and documentation
        lsp
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
