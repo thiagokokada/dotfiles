@@ -39,7 +39,9 @@
        nav-flash         ; blink the current line after jumping
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup +all)      ; tame sudden yet inevitable temporary windows
+       (popup            ; tame sudden yet inevitable temporary windows
+        +all
+        +defaults)
        ;;pretty-code       ; replace bits of code with pretty symbols
        ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
