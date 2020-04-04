@@ -54,16 +54,6 @@
  :nv "C-a" #'evil-numbers/inc-at-pt
  :nv "C-S-a" #'evil-numbers/dec-at-pt
  :nv "C-SPC" #'+fold/toggle
- ; workspaces
- (:prefix ("`" . "workspace")
-   :n "n" #'+workspace/new
-   :n "]" #'+workspace/switch-right
-   :n "[" #'+workspace/switch-left
-   :n "d" #'+workspace/display
-   :n "x" #'+workspace/delete
-   :n "s" #'+workspace/save
-   :n "l" #'+workspace/load
-   :n "r" #'+workspace/rename)
  (:leader
    (:prefix "o"
      :desc "Visualize Undo Tree"
@@ -107,12 +97,6 @@
   (remove-hook 'doom-modeline-mode-hook #'size-indication-mode)
   (setq doom-modeline-major-mode-icon t))
 
-;; hl-fill-column
-(add-hook! hl-fill-column-mode
-  (set-face-attribute 'hl-fill-column-face nil
-                      :background (doom-color 'red)
-                      :foreground (doom-color 'fg)))
-
 ;; projectile
 (add-hook! projectile-mode
   (when (eq projectile-indexing-method 'alien)
@@ -140,7 +124,6 @@
   (setq cljr-warn-on-eval nil
         cljr-eagerly-build-asts-on-startup nil
         cider-show-error-buffer 'only-in-repl)
-  (require #'flycheck-clj-kondo)
   (map!
    (:map clojure-mode-map
      (:n "R" #'hydra-cljr-help-menu/body)
@@ -159,7 +142,7 @@
        (:prefix ("r" . "repl")
          "i" #'cider-interrupt)))))
 
-(after! cider
+(after! cider-mode
   (add-hook 'company-completion-started-hook 'ans/set-company-maps)
   (add-hook 'company-completion-finished-hook 'ans/unset-company-maps)
   (add-hook 'company-completion-cancelled-hook 'ans/unset-company-maps)
@@ -190,9 +173,6 @@
       "RET" 'company-complete
       [return] 'company-complete)))
 
-(after! clj-refactor
-  (set-lookup-handlers! 'clj-refactor-mode nil))
-
 ;; elisp
 (add-hook! emacs-lisp-mode
   (map!
@@ -206,6 +186,15 @@
          "b" #'eval-buffer
          "d" #'eval-defun
          "r" #'eval-region)))))
+
+;; lsp
+(add-hook! lsp-mode
+  (set-popup-rule! "^\\*lsp-":site 'bottom :quit t))
+
+;; platuml
+(add-hook! plantuml-mode
+  (setq plantuml-output-type "txt")
+  (set-popup-rule! "^\\*PLANTUML Preview\\*" :side 'right :width 0.5 :quit t))
 
 ;;; CUSTOM PACKAGES
 
@@ -237,20 +226,6 @@
      prettify
      text-objects
      slurp/barf-cp)))
-
-;; lsp-mode
-(use-package! lsp-mode
-  :hook ((clojure-mode . lsp))
-  :commands lsp
-  :init (setq lsp-enable-indentation nil
-              lsp-prefer-flymake nil
-              lsp-log-io t)
-  :config
-  (dolist (m '(clojure-mode
-               clojurec-mode
-               clojurescript-mode
-               clojurex-mode))
-    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
 
 ;; sort-words
 (use-package! sort-words
