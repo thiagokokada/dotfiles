@@ -145,6 +145,17 @@
 ;; Workaround bug in completion
 (add-hook! cider-repl-mode #'evil-normalize-keymaps)
 
+(after! lsp-clojure
+  ;; cider definition handler is superior to lsp
+  (set-lookup-handlers! 'lsp-mode :async t
+    :documentation #'lsp-describe-thing-at-point
+    :definition nil
+    :references #'lsp-find-references))
+
+(after! clj-refactor
+  ;; cljr-find-usages is slow and broken, mostly useless
+  (set-lookup-handlers! 'clj-refactor-mode nil))
+
 ;; elisp
 (add-hook! emacs-lisp-mode
   (map!
@@ -158,10 +169,6 @@
          "b" #'eval-buffer
          "d" #'eval-defun
          "r" #'eval-region)))))
-
-;; lsp
-(add-hook! lsp-mode
-  (set-popup-rule! "^\\*lsp-":site 'bottom :quit t))
 
 ;; platuml
 (add-hook! plantuml-mode
