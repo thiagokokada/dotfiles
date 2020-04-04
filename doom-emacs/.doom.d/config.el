@@ -170,6 +170,9 @@
          "d" #'eval-defun
          "r" #'eval-region)))))
 
+(after! lsp-mode
+  (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :size 0.35 :select t))
+
 ;; platuml
 (add-hook! plantuml-mode
   (setq plantuml-output-type "txt")
