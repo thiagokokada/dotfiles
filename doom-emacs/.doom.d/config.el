@@ -211,11 +211,6 @@
        :desc "Insert UUIDv4"
        "u" #'uuidgen))))
 
-;; vlf
-(use-package! vlf
-  :config
-  (require 'vlf-setup))
-
 ;;; MISC
 
 ;; load local configuration file if exists
