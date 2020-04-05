@@ -21,15 +21,7 @@
 ;; font
 (setq doom-font (font-spec :family "Hack" :size 18)
       doom-big-font-increment 4
-      doom-unicode-font (font-spec :family "DejaVu Sans"))
-
-(add-hook! 'after-make-frame-functions
-  (set-fontset-font t 'unicode
-                    (font-spec :family "Font Awesome 5 Free")
-                    nil 'append)
-  (set-fontset-font t 'unicode
-                    (font-spec :family "Font Awesome 5 Brands")
-                    nil 'append))
+      doom-unicode-font (font-spec :family "Noto Sans Mono"))
 
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
