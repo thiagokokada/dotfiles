@@ -90,4 +90,7 @@ XTerm.vt100.translations: #override \n\
 
 XTerm.vt100.faceName: Hack:size=12
 
+! TODO: Remove this in Emacs 28
+Emacs.fontBackend: ftcrhb
+
 #include ".Xresources.local"
