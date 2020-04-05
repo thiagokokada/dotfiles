@@ -92,11 +92,6 @@
   (make-local-variable 'dired-hide-symlink-targets)
   (dired-hide-details-mode t))
 
-;; doom-modeline
-(after! doom-modeline
-  (remove-hook 'doom-modeline-mode-hook #'size-indication-mode)
-  (setq doom-modeline-major-mode-icon t))
-
 ;; projectile
 (add-hook! projectile-mode
   (when (eq projectile-indexing-method 'alien)
