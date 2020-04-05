@@ -122,8 +122,8 @@ def generate_config(*blocks):
 
 
 def run_i3status_rs(config):
-    with NamedTemporaryFile(suffix=".toml") as config_file:
-        config_file.write(config.encode())
+    with NamedTemporaryFile(mode="w", suffix=".toml") as config_file:
+        config_file.write(config)
         config_file.flush()
 
         debug("Running i3status-rs with config file: ", config_file.name)
