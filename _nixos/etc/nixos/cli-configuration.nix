@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+
   # CLI packages.
   environment.systemPackages = with pkgs; [
     (mpv-with-scripts.override ({
@@ -11,7 +17,7 @@
       vimAlias = true;
       viAlias = true;
     }))
-    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+    ((emacsPackagesNgGen emacsUnstable).emacsWithPackages (epkgs: [
       epkgs.emacs-libvterm
     ]))
     ag
