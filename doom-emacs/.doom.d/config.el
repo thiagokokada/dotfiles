@@ -165,8 +165,7 @@
 
 ;; color-identifiers-mode
 (use-package! color-identifiers-mode
-  :config
-  (add-hook #'after-init-hook #'global-color-identifiers-mode))
+  :hook ((prog-mode . color-identifiers-mode)))
 
 ;; lispyville
 (use-package! lispyville
@@ -179,7 +178,7 @@
          (clojure-mode . lispyville-mode))
   :config
   (lispyville-set-key-theme
-   `(additional
+   '(additional
      additional-insert
      (additional-movement normal visual motion)
      (additional-wrap normal insert)
@@ -194,18 +193,7 @@
 
 ;; sort-words
 (use-package! sort-words
-  :config
-  (require 'sort-words))
-
-;; uuidgen-el
-(use-package! uuidgen
-  :config
-  (require 'uuidgen)
-  (map!
-   (:leader
-     (:prefix ("i" . "insert")
-       :desc "Insert UUIDv4"
-       "u" #'uuidgen))))
+  :defer t)
 
 ;;; MISC
 
