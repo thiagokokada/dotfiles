@@ -163,10 +163,6 @@
 
 ;;; CUSTOM PACKAGES
 
-;; color-identifiers-mode
-(use-package! color-identifiers-mode
-  :hook ((prog-mode . color-identifiers-mode)))
-
 ;; lispyville
 (use-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
