@@ -1,5 +1,14 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
+let
+  unstable = import (builtins.fetchGit {
+    name = "nixos-unstable-2020-04-08";
+    url = https://github.com/nixos/nixpkgs/;
+    rev = "f1090bdaf85581c4e9e1fecfcc30f30bbf7a04d6";
+  }) {
+    config = config.nixpkgs.config;
+  };
+in
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -23,8 +32,8 @@
     ag
     appimage-run
     aria2
-    bind
     bc
+    bind
     curl
     fd
     file
@@ -60,6 +69,7 @@
     telnet
     tig
     unrar
+    unstable.page
     unzip
     usbutils
     wget
