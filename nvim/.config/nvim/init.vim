@@ -15,19 +15,19 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'dietsche/vim-lastplace'
-Plug 'easymotion/vim-easymotion'
 Plug 'gioele/vim-autoswap'
+Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/neco-syntax'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
@@ -41,26 +41,10 @@ call plug#end()
 """"""""""""""""""
 " general config "
 """"""""""""""""""
-" shell fix for NixOS
-set shell=/bin/sh
 
 " remap leader
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
-
-" reload config file
-nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
-
-" unsets the 'last search pattern' register by hitting return
-nnoremap <CR> :noh<CR><CR>
-
-" removes trailing spaces
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-noremap <Leader>w :call TrimWhitespace()<CR>
 
 " enable/disable paste mode
 set pastetoggle=<F4>
@@ -80,11 +64,57 @@ set clipboard=unnamedplus
 " show vertical column
 set colorcolumn=81,121
 
+"""""""""""
+" keymaps "
+"""""""""""
+
+" reload config file
+nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
+
+" unsets the 'last search pattern' register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
+" removes trailing spaces
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+noremap <Leader>w :call TrimWhitespace()<CR>
+
+" make Esc enter Normal mode in term
+tnoremap <Esc> <C-\><C-n>
+tnoremap <M-[> <Esc>
+tnoremap <C-v><Esc> <Esc>
+
 " window movement mappings
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+tnoremap <C-h> <c-\><c-n><c-w>h
+tnoremap <C-j> <c-\><c-n><c-w>j
+tnoremap <C-k> <c-\><c-n><c-w>k
+tnoremap <C-l> <c-\><c-n><c-w>l
+inoremap <C-h> <Esc><c-w>h
+inoremap <C-j> <Esc><c-w>j
+inoremap <C-k> <Esc><c-w>k
+inoremap <C-l> <Esc><c-w>l
+vnoremap <C-h> <Esc><c-w>h
+vnoremap <C-j> <Esc><c-w>j
+vnoremap <C-k> <Esc><c-w>k
+vnoremap <C-l> <Esc><c-w>l
+nnoremap <C-h> <c-w>h
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <C-l> <c-w>l
+
+" shortcut to omnicomplete
+inoremap <expr> <C-Space> "<C-x><C-o>"
+
+" map C-j and C-k to allow moving in completion popups
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 """"""""""""""""""""""""
 " plugin configuration "
@@ -92,56 +122,9 @@ nnoremap <C-l> <C-w>l
 " airline
 let g:airline_powerline_fonts = 1
 
-" coc
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 400
 
 " easymotion
 let g:EasyMotion_do_mapping = 0
@@ -157,8 +140,14 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <Leader><Leader> :Files<cr>
 nnoremap <Leader>b :Buffers<cr>
 nnoremap <Leader>/ :Rg<space>
-nnoremap <Leader>* :Rg <C-R><C-W><CR>
-vnoremap <Leader>* y:Rg <C-R>"<CR>
+nnoremap <silent> <Leader>* :Rg <C-R><C-W><CR>
+vnoremap <silent> <Leader>* y:Rg <C-R>"<CR>
+" undo mappings just for fzf window
+au FileType fzf,Rg tnoremap <buffer> <C-h> <Left>
+au FileType fzf,Rg tnoremap <buffer> <C-j> <Down>
+au FileType fzf,Rg tnoremap <buffer> <C-k> <Up>
+au FileType fzf,Rg tnoremap <buffer> <C-l> <Right>
+au FileType fzf,Rg tnoremap <buffer> <Esc> <c-g>
 
 " gruvbox
 set termguicolors
@@ -174,7 +163,3 @@ nnoremap <Leader>u :UndotreeToggle<cr>
 set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
-
-" vim-easy-align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
