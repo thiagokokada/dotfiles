@@ -6,6 +6,14 @@ fi
 
 alias nixos-clean-up="sudo -- sh -c 'nix-collect-garbage -d && nixos-rebuild boot'"
 
+nix-sha256-github() {
+  local author="${1}"
+  local repo="${2}"
+  local commit="${3}"
+
+  nix-prefetch-url --unpack "https://github.com/${author}/${repo}/archive/${commit}.tar.gz"
+}
+
 nixos-copy-etc() {
   diff --color=auto -r "${NIX_HOME}/etc/nixos" /etc/nixos/
 
