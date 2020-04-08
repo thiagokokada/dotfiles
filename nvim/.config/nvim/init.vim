@@ -20,6 +20,7 @@ Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
@@ -36,6 +37,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/AdvancedSorters'
+Plug 'zackhsi/fzf-tags'
 call plug#end()
 
 """"""""""""""""""
@@ -109,12 +111,9 @@ nnoremap <C-l> <c-w>l
 inoremap <expr> <C-Space> "<C-x><C-o>"
 
 " map C-j and C-k to allow moving in completion popups
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 """"""""""""""""""""""""
 " plugin configuration "
@@ -124,7 +123,7 @@ let g:airline_powerline_fonts = 1
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 400
+let g:deoplete#auto_complete_delay = 250
 
 " easymotion
 let g:EasyMotion_do_mapping = 0
@@ -137,17 +136,25 @@ map <Leader>k <Plug>(easymotion-k)
 " fzf
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-nnoremap <Leader><Leader> :Files<cr>
-nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader><Leader> :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>/ :Rg<space>
-nnoremap <silent> <Leader>* :Rg <C-R><C-W><CR>
-vnoremap <silent> <Leader>* y:Rg <C-R>"<CR>
+nnoremap <silent> <Leader>* :Rg <CR><C-W><CR>
+vnoremap <silent> <Leader>* y:Rg <CR>"<CR>
 " undo mappings just for fzf window
 au FileType fzf,Rg tnoremap <buffer> <C-h> <Left>
 au FileType fzf,Rg tnoremap <buffer> <C-j> <Down>
 au FileType fzf,Rg tnoremap <buffer> <C-k> <Up>
 au FileType fzf,Rg tnoremap <buffer> <C-l> <Right>
-au FileType fzf,Rg tnoremap <buffer> <Esc> <c-g>
+au FileType fzf,Rg tnoremap <buffer> <Esc> <C-g>
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" fzf-tags
+nmap <C-]> <Plug>(fzf_tags)
 
 " gruvbox
 set termguicolors
@@ -155,11 +162,20 @@ set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
 
+" gutentags
+let g:gutentags_cache_dir="~/.config/nvim/gutentags"
+let g:gutentags_file_list_command = {
+    \ 'markers': {
+        \ '.git': 'git ls-files',
+        \ '.hg': 'hg files',
+        \ },
+    \ }
+
 " rainbow
 let g:rainbow_active = 1
 
 " Undotree
-nnoremap <Leader>u :UndotreeToggle<cr>
+nnoremap <Leader>u :UndotreeToggle<CR>
 set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
