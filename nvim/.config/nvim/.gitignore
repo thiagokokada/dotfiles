@@ -1,5 +1,6 @@
 # Ignore vim-plug dirs
 autoload/
 plugged/
+gutentags/
 # Ignore .netrwhist file
 .netrwhist
