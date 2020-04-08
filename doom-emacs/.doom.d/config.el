@@ -4,6 +4,10 @@
 
 ;;; GENERAL
 
+;; small optimization for Emacs 27+
+(when EMACS27+
+ (setq-default bidi-inhibit-bpa t))
+
 ;; theme
 (load-theme 'doom-vibrant t)
 
