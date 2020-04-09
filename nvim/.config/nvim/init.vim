@@ -13,17 +13,17 @@ endif
 call plug#begin()
 " general
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
 Plug 'dietsche/vim-lastplace'
 Plug 'gioele/vim-autoswap'
 Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'luochen1990/rainbow'
+Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
-Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim'
@@ -118,8 +118,6 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 """"""""""""""""""""""""
 " plugin configuration "
 """"""""""""""""""""""""
-" airline
-let g:airline_powerline_fonts = 1
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -156,20 +154,41 @@ omap <leader><tab> <plug>(fzf-maps-o)
 " fzf-tags
 nmap <C-]> <Plug>(fzf_tags)
 
-" gruvbox
-set termguicolors
-set background=dark
-let g:gruvbox_italic=1
-colorscheme gruvbox
-
 " gutentags
 let g:gutentags_cache_dir="~/.config/nvim/gutentags"
 let g:gutentags_file_list_command = {
     \ 'markers': {
-        \ '.git': 'git ls-files',
-        \ '.hg': 'hg files',
-        \ },
+    \   '.git': 'git ls-files',
+    \   '.hg': 'hg files',
+    \ },
     \ }
+
+" lightline
+let g:lightline = {
+    \ 'colorscheme': 'onedark',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'filename', 'readonly', 'modified' ],
+    \             [ 'gitbranch' ],
+    \           ],
+    \   'right': [
+    \             [ 'percent' ],
+    \             [ 'lineinfo' ],
+    \             [ 'fileformat', 'fileencoding' ],
+    \             [ 'gutentags'],
+    \            ],
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head',
+    \   'gutentags': 'gutentags#statusline',
+    \ },
+    \ }
+
+" onedark
+set termguicolors
+syntax on
+let g:onedark_terminal_italics=1
+colorscheme onedark
 
 " rainbow
 let g:rainbow_active = 1
