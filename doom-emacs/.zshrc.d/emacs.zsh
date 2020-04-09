@@ -1,8 +1,10 @@
-ZIT_MODULES_PATH="${HOME}" ZIT_DISABLE_UPGRADE=1 \
-  zit-in "https://github.com/hlissner/doom-emacs#develop" ".emacs.d"
+EMACS_PATH="${HOME}/.config/emacs"
+
+ZIT_MODULES_PATH="${HOME}/.config" ZIT_DISABLE_UPGRADE=1 \
+  zit-in "https://github.com/hlissner/doom-emacs#develop" "emacs"
 
 path=(
-  ~/.emacs.d/bin
+  ${EMACS_PATH}/bin
   ${path}
 )
 
@@ -25,7 +27,5 @@ install-clojure-lsp() {
   curl -L "${download_url}" -o "${clojure_lsp_path}"
   chmod +x "${clojure_lsp_path}"
 }
-
-EMACS_PATH="${HOME}/.emacs.d"
 
 UPGRADE_CMDS+="doom upgrade -f"
