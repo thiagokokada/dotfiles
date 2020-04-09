@@ -21,6 +21,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+Plug 'justinmk/vim-dirvish'
+Plug 'justinmk/vim-sneak'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-trailing-whitespace'
@@ -29,11 +31,11 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/AdvancedSorters'
 Plug 'zackhsi/fzf-tags'
 call plug#end()
@@ -115,17 +117,14 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " plugin configuration "
 """"""""""""""""""""""""
 
+" endwise
+let g:endwise_no_mappings = v:true
+inoremap <script> <C-X><CR> <CR><SID>AlwaysEnd
+inoremap <CR> <CR><Plug>DiscretionaryEnd
+
 " easyalign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-" easymotion
-let g:EasyMotion_do_mapping = 0
-nmap f <Plug>(easymotion-overwin-f)
-nmap s <Plug>(easymotion-overwin-f2)
-let g:EasyMotion_smartcase = 1
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
@@ -217,3 +216,8 @@ nnoremap <Leader>u :UndotreeToggle<CR>
 set undofile
 set undodir=~/.config/nvim/undotree
 let undotree_WindowLayout = 3
+
+" sneak
+let g:sneak#label = 1
+map f <Plug>Sneak_t
+map F <Plug>Sneak_T
