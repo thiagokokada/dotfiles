@@ -1,8 +1,23 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
+# Use unstable for proprietary applications since they always have security
+# issues :sadpanda:
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
 {
-  # For Slack.
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    # For Slack/Zoom.
+    allowUnfree = true;
+
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     (openfortivpn.overrideAttrs (oldAttrs: rec {
@@ -38,10 +53,9 @@
     nssTools
     python36Packages.jupyter_core
     sassc
-    slack
-    tigervnc
+    unstable.slack
+    unstable.zoom-us
     vagrant
-    zoom-us
   ];
 
   # Enable Java.
