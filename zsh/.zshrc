@@ -88,7 +88,8 @@ run-bg() { "${@}" </dev/null &>/dev/null &! }
 open() { run-bg xdg-open "${@}" }
 try-run() { (( $+commands[${1}] )) && "${@}" }
 to-string() { awk '{print "\""$0"\""}' }
-get-ip() { curl -s https://ifconfig.co/json | jq -r . }
+get-ip() { curl -Ss "https://ifconfig.me" }
+get-ip!() { curl -Ss "https://ipapi.co/$(get-ip)/yaml" }
 
 # upgrade-all cmd
 export -ua UPGRADE_CMDS=("dotfiles-pull" "zit-up")
@@ -108,7 +109,6 @@ alias http-server="python3 -m http.server"
 alias ln-clean-up="rm -- **/*(-@D)"
 alias nvimdiff="nvim -d"
 alias ssh="TERM=xterm-256color ssh"
-alias ip!="curl -Ss https://ipapi.co/"$(curl -Ss ifconfig.me)"/yaml"
 
 # source contents from ~/.zshrc.d/*.zsh
 for file in ${HOME}/.zshrc.d/*.zsh; do
