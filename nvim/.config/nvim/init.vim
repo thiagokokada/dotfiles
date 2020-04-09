@@ -69,12 +69,18 @@ set colorcolumn=81,121
 " managed by lightline
 set noshowmode
 
+" turn on omnicomplete
+set omnifunc=syntaxcomplete#Complete
+
 """""""""""
 " keymaps "
 """""""""""
 
 " reload config file
 nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
+
+" open config file
+nnoremap <Leader>c :e ~/.config/nvim/init.vim<CR>
 
 " unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
@@ -105,10 +111,8 @@ nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 
-" shortcut to omnicomplete
+" completion
 inoremap <expr> <C-Space> "<C-x><C-o>"
-
-" map C-j and C-k to allow moving in completion popups
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
