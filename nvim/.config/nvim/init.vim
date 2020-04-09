@@ -26,11 +26,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neco-syntax'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
@@ -118,10 +114,6 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 """"""""""""""""""""""""
 " plugin configuration "
 """"""""""""""""""""""""
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 250
 
 " easymotion
 let g:EasyMotion_do_mapping = 0
