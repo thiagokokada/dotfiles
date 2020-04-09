@@ -15,7 +15,7 @@ if [[ -n "${EMACS}" ]]; then
 fi
 
 alias em="GDK_BACKEND=x11 run-bg emacs"
-alias et="TERM=xterm-24bit emacs -nw"
+alias et="emacs -nw"
 alias ec="GDK_BACKEND=x11 close-fd emacsclient -a '' -nqc"
 
 install-clojure-lsp() {
