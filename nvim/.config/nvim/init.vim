@@ -23,11 +23,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'luochen1990/rainbow'
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-trailing-whitespace'
 Plug 'mbbill/undotree'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -73,12 +74,7 @@ nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
 nnoremap <CR> :noh<CR><CR>
 
 " removes trailing spaces
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-noremap <Leader>w :call TrimWhitespace()<CR>
+noremap <Leader>w :StripWhitespace<CR>
 
 " make Esc enter Normal mode in term
 tnoremap <Esc> <C-\><C-n>
@@ -115,6 +111,10 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " plugin configuration "
 """"""""""""""""""""""""
 
+" easyalign
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 " easymotion
 let g:EasyMotion_do_mapping = 0
 nmap f <Plug>(easymotion-overwin-f)
@@ -131,14 +131,14 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>/ :Rg<space>
 nnoremap <silent> <Leader>* :Rg <CR><C-W><CR>
 vnoremap <silent> <Leader>* y:Rg <CR>"<CR>
-" undo mappings just for fzf window
+"" undo terminal mappings just for fzf window
 au FileType fzf,Rg tnoremap <buffer> <C-h> <Left>
 au FileType fzf,Rg tnoremap <buffer> <C-j> <Down>
 au FileType fzf,Rg tnoremap <buffer> <C-k> <Up>
 au FileType fzf,Rg tnoremap <buffer> <C-l> <Right>
 au FileType fzf,Rg tnoremap <buffer> <Esc> <C-g>
 
-" Mapping selecting mappings
+"" selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
@@ -164,15 +164,23 @@ let g:lightline = {
     \             [ 'gitbranch' ],
     \           ],
     \   'right': [
+    \             [ 'trailing' ],
     \             [ 'percent' ],
     \             [ 'lineinfo' ],
     \             [ 'fileformat', 'fileencoding' ],
     \             [ 'gutentags'],
     \            ],
     \ },
+    \ 'component_expand': {
+    \   'trailing': 'lightline#trailing_whitespace#component',
+    \ },
     \ 'component_function': {
     \   'gitbranch': 'fugitive#head',
     \   'gutentags': 'gutentags#statusline',
+    \   'trailing': 'lightline#trailing_whitespace#component'
+    \ },
+    \ 'component_type': {
+    \   'trailing': 'error'
     \ },
     \ }
 
@@ -181,6 +189,7 @@ set termguicolors
 syntax on
 let g:onedark_terminal_italics=1
 colorscheme onedark
+let g:better_whitespace_guicolor = g:terminal_color_1
 
 " rainbow
 let g:rainbow_active = 1
