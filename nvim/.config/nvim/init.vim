@@ -109,7 +109,6 @@ nnoremap <C-l> <c-w>l
 inoremap <expr> <C-Space> "<C-x><C-o>"
 
 " map C-j and C-k to allow moving in completion popups
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
@@ -119,8 +118,8 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " endwise
 let g:endwise_no_mappings = v:true
-inoremap <script> <C-X><CR> <CR><SID>AlwaysEnd
-inoremap <CR> <CR><Plug>DiscretionaryEnd
+imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR><Plug>DiscretionaryEnd"
+imap <script> <C-X><CR> <CR><SID>AlwaysEnd
 
 " easyalign
 xmap ga <Plug>(EasyAlign)
