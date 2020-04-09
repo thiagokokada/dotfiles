@@ -29,6 +29,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -62,6 +63,9 @@ set clipboard=unnamedplus
 
 " show vertical column
 set colorcolumn=81,121
+
+" managed by lightline
+set noshowmode
 
 """""""""""
 " keymaps "
@@ -144,7 +148,7 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " fzf-tags
-nmap <C-]> <Plug>(fzf_tags)
+nmap g] <Plug>(fzf_tags)
 
 " gutentags
 let g:gutentags_cache_dir="~/.config/nvim/gutentags"
@@ -182,7 +186,21 @@ let g:lightline = {
     \ 'component_type': {
     \   'trailing': 'error'
     \ },
+    \ 'separator': {
+    \   'left': '',
+    \   'right': '',
+    \ },
+    \ 'subseparator': {
+    \   'left': '',
+    \   'right': '',
+    \ },
     \ }
+
+augroup UpdateLightlineForGutentags
+    autocmd!
+    autocmd User GutentagsUpdating call lightline#update()
+    autocmd User GutentagsUpdated call lightline#update()
+augroup END
 
 " onedark
 set termguicolors
