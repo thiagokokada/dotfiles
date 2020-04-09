@@ -19,12 +19,12 @@ Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'luochen1990/rainbow'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-trailing-whitespace'
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'sheerun/vim-polyglot'
@@ -192,7 +192,7 @@ colorscheme onedark
 let g:better_whitespace_guicolor = g:terminal_color_1
 
 " rainbow
-let g:rainbow_active = 1
+au VimEnter * RainbowParentheses!!
 
 " Undotree
 nnoremap <Leader>u :UndotreeToggle<CR>
