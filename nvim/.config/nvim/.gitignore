@@ -1,6 +1,5 @@
-# Ignore vim-plug dirs
+# Ignore runtime directories
 autoload/
 plugged/
 gutentags/
-# Ignore .netrwhist file
-.netrwhist
+undotree/
