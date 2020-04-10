@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     discord
+    piper
 
     # With bumblebee.
     # (steam.override ({
@@ -17,6 +18,11 @@
     steam
     steam-run-native
   ];
+
+  # Enable ratbagd (for piper).
+  services.ratbagd = {
+    enable = true;
+  };
 
   hardware = {
     opengl = {

@@ -52,7 +52,6 @@
   environment.systemPackages = with pkgs; [
     btrfs-progs
     hdparm
-    piper
     rtorrent
     samba
     smartmontools
@@ -70,11 +69,6 @@
     plex = {
       enable = true;
       openFirewall = true;
-    };
-
-    # Enable ratbagd (for piper).
-    ratbagd = {
-      enable = true;
     };
 
     # Enable Samba.
