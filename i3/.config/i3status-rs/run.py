@@ -49,6 +49,8 @@ music_play = "  "
 music_pause = "  "
 music_next = "  "
 music_prev = "  "
+eco_on=" "
+eco_off=" "
 """
 
 BLOCK_TEMPLATE = """\
@@ -167,6 +169,14 @@ def main():
             command="xkblayout-state print ' %s'",
             on_click="xkblayout-state set +1",
             interval=1,
+        ),
+        block(
+            "toggle",
+            command_state="xset q | grep -Fo 'DPMS is Enabled'",
+            command_on="xset s on +dpms",
+            command_off="xset s off -dpms",
+            icon_on="eco_on",
+            icon_off="eco_off",
         ),
         backlight_block,
         block("sound", on_click="pavucontrol"),
