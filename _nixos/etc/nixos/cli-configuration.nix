@@ -34,6 +34,8 @@ in
     bind
     curl
     fd
+    ffmpeg
+    ffmpegthumbnailer
     file
     fzf
     ghostscript
@@ -44,6 +46,7 @@ in
     ispell
     jq
     linuxPackages.cpupower
+    lm_sensors
     lshw
     lsof
     manpages
@@ -55,6 +58,7 @@ in
     p7zip
     pandoc
     pciutils
+    playerctl
     powertop
     psmisc
     pv
@@ -72,6 +76,7 @@ in
     unzip
     usbutils
     wget
+    wmctrl
     xclip
   ];
 

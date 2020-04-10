@@ -6,80 +6,6 @@
       # Export modules to allow PCManFM to use gvfs.
       GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
     };
-
-    # Desktop packages.
-    systemPackages = with pkgs; [
-      arandr
-      arc-icon-theme
-      arc-theme
-      calibre
-      chromium
-      desktop-file-utils
-      ffmpegthumbnailer
-      firefox
-      gimp
-      gnome3.adwaita-icon-theme
-      gnome3.baobab
-      gnome3.evince
-      gnome3.file-roller
-      gnome3.gnome-disk-utility
-      gnome3.gnome-themes-standard
-      gthumb
-      gtk-engine-murrine
-      hicolor-icon-theme
-      inkscape
-      insync
-      keepassx-community
-      kitty
-      libreoffice-fresh
-      lxappearance-gtk3
-      lxmenu-data
-      mcomix
-      pcmanfm
-      peek
-      perlPackages.FileMimeInfo
-      qalculate-gtk
-      qt5.qttools
-      ranger
-      redshift
-      shared-mime-info
-      termite
-      unstable.spotify
-      unstable.tdesktop
-      xdotool
-    ];
-  };
-
-  # Added fonts used by i3.
-  fonts = {
-    enableDefaultFonts = true;
-    enableFontDir = true;
-
-    fonts = with pkgs; [
-      cantarell-fonts
-      corefonts
-      font-awesome_4
-      font-awesome_5
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      roboto
-      ttf_bitstream_vera
-      ubuntu_font_family
-    ];
-
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "Noto Mono" ];
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
-      };
-    };
-  };
-
-  hardware ={
-    # Enable sound.
-    pulseaudio.enable = true;
   };
 
   services = {
@@ -138,24 +64,15 @@
           extraPackages = with pkgs; [
             compton-git
             dex
-            dmenu
             dunst
-            ffmpeg
             i3lock
             i3status-rust
             libnotify
-            lm_sensors
             maim
             nitrogen
-            pavucontrol
-            playerctl
             rofi
-            wmctrl
             xdg-user-dirs
             xkblayout-state
-            xorg.xdpyinfo
-            xorg.xkill
-            xorg.xset
             xsecurelock
             xss-lock
           ];
