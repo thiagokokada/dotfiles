@@ -135,7 +135,6 @@ def run_i3status_rs(config):
 
 def main():
     backlight_block = [block("backlight", device=b) for b in get_backlights()]
-    battery_block = [block("battery", device=b, show="both") for b in get_batteries()]
     disk_block = [
         block(
             "disk_space",
@@ -147,29 +146,30 @@ def main():
         for p in get_mounted_partitions()
     ]
     net_block = [
-        block("net", device=n, speed_up=True, speed_down=True, hide_inactive=True)
+        block(
+            "net",
+            device=n,
+            speed_up=True,
+            speed_down=True,
+            hide_missing=True,
+            hide_inactive=True,
+        )
         for n in get_net_interfaces()
     ]
 
     config = generate_config(
-        block("music", max_width=0, buttons=["play", "next"]),
         block("focused_window", max_width=41),
-        disk_block,
+        block("music", max_width=0, buttons=["play", "next"]),
         net_block,
+        disk_block,
         block(
             "memory",
             format_mem="{MAg}GiB",
             format_swap="{SFg}GiB",
             display_type="memory",
         ),
-        block("load", interval=5),
+        block("load"),
         block("temperature", format="{average}°C", collapsed=False),
-        block(
-            "custom",
-            command="xkblayout-state print ' %s'",
-            on_click="xkblayout-state set +1",
-            interval=1,
-        ),
         block(
             "toggle",
             command_state="xset q | grep -Fo 'DPMS is Enabled'",
@@ -177,10 +177,17 @@ def main():
             command_off="xset s off -dpms",
             icon_on="eco_on",
             icon_off="eco_off",
+            interval=5,
         ),
         backlight_block,
         block("sound", on_click="pavucontrol"),
-        battery_block,
+        block(
+            "battery",
+            device="DisplayDevice",
+            driver="upower",
+            format="{percentage}% {time}",
+        ),
+        block("keyboard_layout", driver="kbddbus"),
         block("time", interval=1, format="%a %T"),
     )
 

@@ -12,6 +12,9 @@
     # Allow automounting.
     gvfs.enable = true;
 
+    # For battery status reporting.
+    upower.enable = true;
+
     xserver = {
       enable = true;
 
@@ -66,11 +69,12 @@
             dex
             dunst
             i3lock
-            i3status-rust
+            kbdd
             libnotify
             maim
             nitrogen
             rofi
+            unstable.i3status-rust
             xdg-user-dirs
             xkblayout-state
             xsecurelock
@@ -79,8 +83,8 @@
         };
       };
 
-      # Remap Caps Lock to Esc
-      xkbOptions = "caps:escape";
+      # Remap Caps Lock to Esc, and use Alt+Shift to change layouts
+      xkbOptions = "grp:alt_shift_toggle,caps:escape";
     };
   };
 

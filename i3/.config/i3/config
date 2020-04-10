@@ -308,17 +308,6 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# keyboard layout stuff
-set $mode_keyboard : [b]r, [u]s-intl
-mode "$mode_keyboard" {
-    bindsym u mode "default", exec setxkbmap us -variant intl
-    bindsym b mode "default", exec setxkbmap br
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+b mode "$mode_keyboard"
-
 # take screenshots
 bindsym Print exec $fs_screenshot
 
@@ -341,13 +330,16 @@ client.background       $base07
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 
-# start compositor (since i3 does not support natively)
+# compositor (since i3 does not support natively)
 exec --no-startup-id compton
 
 # notification manager
 exec --no-startup-id dunst
 
-# run PCmanFM in daemon mode (to manage external media)
+# keyboard layout daemon
+exec --no-startup-id kbdd
+
+# PCmanFM in daemon mode (to manage external media)
 exec --no-startup-id pcmanfm --daemon-mode
 
 # restore wallpaper
