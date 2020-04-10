@@ -84,6 +84,13 @@
     };
   };
 
+  # Enable Qt5 integration.
+  qt5 = {
+    enable = true;
+    platformTheme = "gtk2";
+    style = "gtk2";
+  };
+
   # Configure special programs (i.e. hardware access).
   programs = {
     # Enable dconf.
@@ -91,8 +98,5 @@
 
     # Backlight control.
     light.enable = true;
-
-    # Enable Qt5 integration.
-    qt5ct.enable = true;
   };
 }
