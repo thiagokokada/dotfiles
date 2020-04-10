@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import (builtins.fetchGit {
-    name = "nixos-unstable-2020-04-08";
+  snapshot = import (builtins.fetchGit {
+    name = "nixpkgs-snapshot-2020-04-08";
     url = https://github.com/nixos/nixpkgs/;
     rev = "f1090bdaf85581c4e9e1fecfcc30f30bbf7a04d6";
   }) {
@@ -18,10 +18,7 @@ in
 
   # CLI packages.
   environment.systemPackages = with pkgs; [
-    (mpv-with-scripts.override ({
-      scripts = [ mpvScripts.mpris ];
-    }))
-    (neovim.override ({
+    (unstable.neovim.override ({
       withNodeJs = true;
       vimAlias = true;
       viAlias = true;
@@ -29,8 +26,9 @@ in
     ((emacsPackagesNgGen emacsUnstable).emacsWithPackages (epkgs: [
       epkgs.emacs-libvterm
     ]))
-    ag
-    appimage-run
+    (mpv-with-scripts.override ({
+      scripts = [ mpvScripts.mpris ];
+    }))
     aria2
     bc
     bind
@@ -45,7 +43,6 @@ in
     htop
     ispell
     jq
-    libvterm-neovim
     linuxPackages.cpupower
     lshw
     lsof
@@ -63,13 +60,15 @@ in
     pv
     python3Packages.youtube-dl
     ripgrep
+    sloccount
+    snapshot.page
     sshuttle
     stow
     tealdeer
     telnet
     tig
+    universal-ctags
     unrar
-    unstable.page
     unzip
     usbutils
     wget

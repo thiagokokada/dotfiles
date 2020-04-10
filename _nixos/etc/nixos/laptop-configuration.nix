@@ -61,6 +61,9 @@
       interval = "weekly";
     };
 
+    # Use systemd-resolved DNS resolver.
+    resolved.enable = true;
+
     # Lock screen when lid is closed.
     logind.lidSwitch = "lock";
 

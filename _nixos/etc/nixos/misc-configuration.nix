@@ -1,6 +1,20 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
 {
+  nixpkgs.config = {
+    # Added unstable to allow package backports.
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
+
   boot = {
     # Mount /tmp using tmpfs for performance.
     tmpOnTmpfs = true;

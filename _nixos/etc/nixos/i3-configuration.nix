@@ -43,9 +43,9 @@
       ranger
       redshift
       shared-mime-info
-      spotify
-      tdesktop
       termite
+      unstable.spotify
+      unstable.tdesktop
       xdotool
     ];
   };

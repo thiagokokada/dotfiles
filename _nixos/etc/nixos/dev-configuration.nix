@@ -7,6 +7,7 @@
     }))
     binutils
     cmake
+    elixir
     gcc
     gnumake
     libtool
@@ -17,8 +18,6 @@
     python2Full
     python3Full
     shellcheck
-    sloccount
-    universal-ctags
     xxd
   ];
 
