@@ -86,7 +86,7 @@ nnoremap <Leader>c :e ~/.config/nvim/init.vim<CR>
 nnoremap <CR> :noh<CR><CR>
 
 " removes trailing spaces
-noremap <Leader>w :StripWhitespace<CR>
+nnoremap <Leader>w :StripWhitespace<CR>
 
 " make Esc enter Normal mode in term
 tnoremap <Esc> <C-\><C-n>
@@ -112,9 +112,9 @@ nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 
 " completion
-inoremap <expr> <C-Space> "<C-x><C-o>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+noremap! <expr> <C-Space> "<C-x><C-o>"
+noremap! <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+noremap! <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 """"""""""""""""""""""""
 " plugin configuration "
@@ -145,9 +145,9 @@ au FileType fzf,Rg tnoremap <buffer> <C-l> <Right>
 au FileType fzf,Rg tnoremap <buffer> <Esc> <C-g>
 
 "" selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+nmap <Leader><Tab> <Plug>(fzf-maps-n)
+xmap <Leader><Tab> <Plug>(fzf-maps-x)
+omap <Leader><Tab> <Plug>(fzf-maps-o)
 
 " fzf-tags
 nmap g] <Plug>(fzf_tags)
