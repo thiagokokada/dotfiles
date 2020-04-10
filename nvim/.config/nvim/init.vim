@@ -54,14 +54,14 @@ set pastetoggle=<F4>
 " show line number
 set number
 
-" hidden unused buffers
-set hidden
-
 " live substitutions as you type
 set inccommand=nosplit
 
+" remove underscore from word separator
+set iskeyword-=_
+
 " copy and paste
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 
 " show vertical column
 set colorcolumn=81,121
