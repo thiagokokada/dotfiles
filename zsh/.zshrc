@@ -44,6 +44,7 @@ zit-lo "pure" "async.zsh"
 zit-lo "pure" "pure.zsh"
 
 # misc
+zit-il "https://github.com/rupa/z/" "z" "z.sh"
 zit-il "https://github.com/hlissner/zsh-autopair" "autopair" "autopair.zsh"
 zit-il "https://github.com/Tarrasch/zsh-autoenv" \
   "zsh-autoenv" "autoenv.zsh"
