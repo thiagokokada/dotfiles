@@ -27,8 +27,8 @@ zit-il "https://github.com/zimfw/utility" "utility" "init.zsh"
 
 zit-in "https://github.com/zimfw/archive" "archive" "init.zsh"
 
-archive() { zsh "${ZIT_MODULES_PATH}/archive/functions/archive" }
-unarchive() { zsh "${ZIT_MODULES_PATH}/archive/functions/unarchive" }
+archive() { zsh "${ZIT_MODULES_PATH}/archive/functions/archive" "${@}" }
+unarchive() { zsh "${ZIT_MODULES_PATH}/archive/functions/unarchive" "${@}" }
 
 # zsh-users
 zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
