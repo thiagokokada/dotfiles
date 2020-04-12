@@ -164,8 +164,8 @@ def main():
         disk_block,
         block(
             "memory",
-            format_mem="{MAg}GiB",
-            format_swap="{SFg}GiB",
+            format_mem="{Mupi}%",
+            format_swap="{SUpi}%",
             display_type="memory",
         ),
         block("load"),
