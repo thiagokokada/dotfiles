@@ -8,6 +8,7 @@
     # Use Network Manager.
     networkmanager = {
       enable = true;
+      dns = "dnsmasq";
     };
   };
 
@@ -61,8 +62,18 @@
       interval = "weekly";
     };
 
-    # Use systemd-resolved DNS resolver.
-    resolved.enable = true;
+    # Use dnsmasq DNS resolver.
+    dnsmasq = {
+      enable = true;
+
+      # Set some configuration to improve performance.
+      extraConfig = ''
+        domain-needed
+        bogus-priv
+        dns-forward-max=150
+        cache-size=1000
+      '';
+    };
 
     # Lock screen when lid is closed.
     logind.lidSwitch = "lock";

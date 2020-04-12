@@ -1,7 +1,17 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;
+
+  let
+    custom-python-packages = python-packages: with python-packages; [
+      black
+      flake8
+    ];
+
+    python3Custom = python3Full.withPackages custom-python-packages;
+  in
+  [
     (yarn.override ({
       nodejs = nodejs-10_x;
     }))
@@ -16,7 +26,8 @@
     nodejs-10_x
     pipenv
     python2Full
-    python3Full
+    python3Custom
+    rustup
     shellcheck
     xxd
   ];
