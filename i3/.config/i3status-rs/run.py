@@ -32,11 +32,11 @@ idle_bg = "{BASE00}"
 idle_fg = "{BASE05}"
 info_bg = "{BASE0D}"
 info_fg = "{BASE00}"
-good_bg = "{BASE0B}"
-good_fg = "{BASE00}"
+good_bg = "{BASE00}"
+good_fg = "{BASE05}"
 warning_bg = "{BASE0A}"
 warning_fg = "{BASE00}"
-critical_bg = "{BASE06}"
+critical_bg = "{BASE08}"
 critical_fg = "{BASE00}"
 separator_bg = "{BASE00}"
 separator = " "
@@ -140,8 +140,10 @@ def main():
             "disk_space",
             path=p,
             alias=" /" + "/".join([x[0] for x in p.split("/") if x]),
-            info_type="available",
-            unit="GiB",
+            info_type="used",
+            unit="Percent",
+            warning=75,
+            alert=90,
         )
         for p in get_mounted_partitions()
     ]
@@ -163,13 +165,19 @@ def main():
         net_block,
         disk_block,
         block(
-            "memory",
-            format_mem="{Mupi}%",
-            format_swap="{SUpi}%",
-            display_type="memory",
+            "memory", format_mem="{Mupi}%", format_swap="{SUpi}%", display_type="memory"
         ),
         block("load"),
-        block("temperature", format="{average}°C", collapsed=False),
+        block(
+            "temperature",
+            format="{average}°C",
+            collapsed=False,
+            chip="coretemp-*",
+            good=20,
+            idle=55,
+            info=70,
+            warning=80,
+        ),
         block(
             "toggle",
             command_state="xset q | grep -Fo 'DPMS is Enabled'",
