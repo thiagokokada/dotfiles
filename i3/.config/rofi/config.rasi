@@ -1,0 +1,15 @@
+configuration {
+	font: "Roboto 14";
+	separator-style: "solid";
+	color-normal: "#1d1f21, #c5c8c6, #1d1f21, #81a2be, #1d1f21";
+	color-urgent: "#1d1f21, #cc6666, #1d1f21, #cc6666, #ffffff";
+	color-active: "#1d1f21, #8abeb7, #1d1f21, #81a2be, #ffffff";
+	color-window: "#1d1f21, #1d1f21, #c5c8c6";
+	kb-remove-char-back: "BackSpace";
+	kb-remove-to-eol: "Control+Shift+e";
+	kb-accept-entry: "Control+m,Return,KP_Enter";
+	kb-mode-next: "Shift+Right,Control+Tab,Control+l";
+	kb-mode-previous: "Shift+Left,Control+Shift+Tab,Control+h";
+	kb-row-up: "Up,Control+k";
+	kb-row-down: "Down,Control+j";
+}
