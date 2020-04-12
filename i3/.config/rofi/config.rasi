@@ -1,10 +1,7 @@
 configuration {
 	font: "Roboto 14";
-	separator-style: "solid";
-	color-normal: "#1d1f21, #c5c8c6, #1d1f21, #81a2be, #1d1f21";
-	color-urgent: "#1d1f21, #cc6666, #1d1f21, #cc6666, #ffffff";
-	color-active: "#1d1f21, #8abeb7, #1d1f21, #81a2be, #ffffff";
-	color-window: "#1d1f21, #1d1f21, #c5c8c6";
+	theme: "custom";
+	show-icons: true;
 	kb-remove-char-back: "BackSpace";
 	kb-remove-to-eol: "Control+Shift+e";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
