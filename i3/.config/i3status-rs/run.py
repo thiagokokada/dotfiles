@@ -49,8 +49,8 @@ music_play = "  "
 music_pause = "  "
 music_next = "  "
 music_prev = "  "
-eco_on=" "
-eco_off=" "
+eco_on="  "
+eco_off="  "
 """
 
 BLOCK_TEMPLATE = """\
