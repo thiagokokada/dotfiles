@@ -1,19 +1,9 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs;
-
-  let
-    custom-python-packages = python-packages: with python-packages; [
-      black
-      flake8
-    ];
-
-    python3Custom = python3Full.withPackages custom-python-packages;
-  in
-  [
+  environment.systemPackages = with pkgs; [
     (yarn.override ({
-      nodejs = nodejs-10_x;
+      nodejs = nodejs-12_x;
     }))
     binutils
     cmake
@@ -23,10 +13,12 @@
     libtool
     m4
     ncurses.dev
-    nodejs-10_x
+    nodejs-12_x
     pipenv
     python2Full
-    python3Custom
+    python3Full
+    python3Packages.black
+    python3Packages.flake8
     rustup
     shellcheck
     xxd
