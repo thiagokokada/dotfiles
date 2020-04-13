@@ -198,4 +198,4 @@
 ;;; MISC
 
 ;; load local configuration file if exists
-(load! "local.el" "~/.doom.d" t)
+(load! "local.el" "~/.config/doom" t)
