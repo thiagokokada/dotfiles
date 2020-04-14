@@ -83,8 +83,8 @@
         };
       };
 
-      # Remap Caps Lock to Esc, and use Alt+Shift to change layouts
-      xkbOptions = "grp:alt_shift_toggle,caps:escape";
+      # Remap Caps Lock to Esc, and use Super+Space to change layouts
+      xkbOptions = "caps:escape,grp:win_space_toggle";
     };
   };
 

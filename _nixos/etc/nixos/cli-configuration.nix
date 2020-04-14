@@ -12,7 +12,7 @@ in
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/thiagokokada/emacs-overlay/archive/harfbuzz.tar.gz;
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
     }))
   ];
 
