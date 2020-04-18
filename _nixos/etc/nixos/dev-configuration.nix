@@ -5,9 +5,10 @@
     (yarn.override ({
       nodejs = nodejs-12_x;
     }))
+    elixir
+    erlang
     binutils
     cmake
-    elixir
     gcc
     gnumake
     libtool

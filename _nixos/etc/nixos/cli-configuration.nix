@@ -72,6 +72,7 @@ in
     telnet
     tig
     universal-ctags
+    unstable.any-nix-shell
     unrar
     unzip
     usbutils
@@ -103,7 +104,12 @@ in
       terminal = "screen-256color";
       secureSocket = false;
     };
-    zsh.enable = true;
+    zsh = {
+      enable = true;
+      promptInit = ''
+        any-nix-shell zsh --info-right | source /dev/stdin
+      '';
+    };
   };
 
   # Enable services.

@@ -339,8 +339,8 @@ exec --no-startup-id dunst
 # keyboard layout daemon
 exec --no-startup-id kbdd
 
-# PCmanFM in daemon mode (to manage external media)
-exec --no-startup-id pcmanfm --daemon-mode
+# SpaceFM in daemon mode (to manage external media)
+exec --no-startup-id spacefm --daemon-mode
 
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
