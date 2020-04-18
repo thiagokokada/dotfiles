@@ -102,5 +102,8 @@
 
     # Backlight control.
     light.enable = true;
+
+    # SpaceFM.
+    spacefm.enable = true;
   };
 }

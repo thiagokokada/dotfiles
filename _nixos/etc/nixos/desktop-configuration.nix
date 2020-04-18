@@ -7,7 +7,6 @@
     arc-theme
     calibre
     chromium
-    desktop-file-utils
     firefox
     gimp
     gnome3.adwaita-icon-theme
@@ -17,24 +16,19 @@
     gnome3.gnome-disk-utility
     gnome3.gnome-themes-standard
     gthumb
-    gtk-engine-murrine
-    hicolor-icon-theme
     inkscape
     insync
     keepassx-community
     kitty
     libreoffice-fresh
     lxappearance-gtk3
-    lxmenu-data
     mcomix
-    pcmanfm
     pavucontrol
     peek
     perlPackages.FileMimeInfo
     qalculate-gtk
     ranger
     redshift
-    shared-mime-info
     termite
     unstable.spotify
     unstable.tdesktop

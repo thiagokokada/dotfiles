@@ -56,12 +56,6 @@
     # Enable Blueman to manage Bluetooth.
     blueman.enable = true;
 
-    # Trim SSD weekly.
-    fstrim = {
-      enable = true;
-      interval = "weekly";
-    };
-
     # Use dnsmasq DNS resolver.
     dnsmasq = {
       enable = true;
@@ -72,6 +66,17 @@
         bogus-priv
         dns-forward-max=150
         cache-size=1000
+      '';
+    };
+
+    # Suspend when power key is pressed
+    logind = {
+      lidSwitch = "suspend-then-hibernate";
+      lidSwitchDocked = "ignore";
+      lidSwitchExternalPower = "ignore";
+
+      extraConfig = ''
+        HandlePowerKey=suspend-then-hibernate
       '';
     };
 

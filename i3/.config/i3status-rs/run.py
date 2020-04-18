@@ -134,6 +134,10 @@ def run_i3status_rs(config):
 
 
 def main():
+    battery_block = [
+        block("battery", device=b, driver="upower", format="{percentage}% {time}")
+        for b in get_batteries()
+    ]
     backlight_block = [block("backlight", device=b) for b in get_backlights()]
     disk_block = [
         block(
@@ -188,13 +192,8 @@ def main():
             interval=5,
         ),
         backlight_block,
+        battery_block,
         block("sound", on_click="pavucontrol"),
-        block(
-            "battery",
-            device="DisplayDevice",
-            driver="upower",
-            format="{percentage}% {time}",
-        ),
         block("keyboard_layout", driver="kbddbus"),
         block("time", interval=1, format="%a %T"),
     )
