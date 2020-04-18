@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import os, sys
+import os
+import shutil
+import sys
 from functools import partial
-from subprocess import run
 from tempfile import NamedTemporaryFile
 
 # Base 16 Tomorrow Night
@@ -124,13 +125,14 @@ def generate_config(*blocks):
 
 
 def run_i3status_rs(config):
-    with NamedTemporaryFile(mode="w", suffix=".toml") as config_file:
+    with NamedTemporaryFile(mode="w", prefix="i3status-rs_", suffix=".toml") as config_file:
         config_file.write(config)
         config_file.flush()
 
         debug("Running i3status-rs with config file: ", config_file.name)
 
-        return run(["i3status-rs", config_file.name])
+        path = shutil.which("i3status-rs")
+        os.execv(path, ["i3status-rs", config_file.name])
 
 
 def main():
