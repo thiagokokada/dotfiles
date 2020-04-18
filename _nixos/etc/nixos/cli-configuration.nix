@@ -78,6 +78,7 @@ in
     wget
     wmctrl
     xclip
+    zip
   ];
 
   # Fonts used in terminal.

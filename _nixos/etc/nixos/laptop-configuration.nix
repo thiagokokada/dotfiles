@@ -75,9 +75,6 @@
       '';
     };
 
-    # Lock screen when lid is closed.
-    logind.lidSwitch = "lock";
-
     # Enable TLP to reduce power consumption.
     tlp = {
       enable = true;

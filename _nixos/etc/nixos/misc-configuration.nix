@@ -77,25 +77,17 @@ in
       SystemMaxUse=500M
     '';
 
-    # Suspend when power key is pressed
-    logind.extraConfig = ''
-      HandlePowerKey=suspend
-    '';
-
-    # Enable Intel Thermald.
-    thermald.enable = true;
-
     # Enable NTP.
     timesyncd.enable = true;
 
     # Set blk-mq scheduler depending on disk type.
     udev.extraRules = ''
-    # set scheduler for NVMe
-    ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/scheduler}="mq-deadline"
-    # set scheduler for SSD and eMMC
-    ACTION=="add|change", KERNEL=="sd[a-z]|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="bfq"
-    # set scheduler for rotating disks
-    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+      # set scheduler for NVMe
+      ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/scheduler}="mq-deadline"
+      # set scheduler for SSD and eMMC
+      ACTION=="add|change", KERNEL=="sd[a-z]|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="bfq"
+      # set scheduler for rotating disks
+      ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
     '';
   };
 }

@@ -13,6 +13,7 @@
     libtool
     m4
     ncurses.dev
+    nim
     nodejs-12_x
     pipenv
     python2Full
