@@ -23,7 +23,7 @@ set $base0F #a3685a
 # default applications
 set $terminal kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)"
 set $browser firefox
-set $file_manager spaceman
+set $file_manager spacefm
 set $lock_screen env \
   XSECURELOCK_FORCE_GRAB=2 \
   XSECURELOCK_BLANK_DPMS_STATE=off \
