@@ -12,22 +12,22 @@
     }))
     apacheKafka
     awscli
-    clj-kondo # TODO: Use unstable version in 20.03
+    clj-kondo
     clojure
+    clojure-lsp
     docker-compose
     gitAndTools.hub
     jetbrains.idea-community
+    joker
     jupyter
     kubectl
     minikube
     nss
     nssTools
+    openfortivpn
     python37Packages.jupyter_core
     sassc
-    unstable.clojure-lsp
-    unstable.joker
     unstable.lumo
-    unstable.openfortivpn
     unstable.slack
     unstable.zoom-us
     vagrant

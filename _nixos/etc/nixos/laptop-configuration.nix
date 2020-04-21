@@ -8,7 +8,6 @@
     # Use Network Manager.
     networkmanager = {
       enable = true;
-      dns = "dnsmasq";
     };
   };
 
@@ -55,19 +54,6 @@
   services = {
     # Enable Blueman to manage Bluetooth.
     blueman.enable = true;
-
-    # Use dnsmasq DNS resolver.
-    dnsmasq = {
-      enable = true;
-
-      # Set some configuration to improve performance.
-      extraConfig = ''
-        domain-needed
-        bogus-priv
-        dns-forward-max=150
-        cache-size=1000
-      '';
-    };
 
     # Suspend when power key is pressed
     logind = {

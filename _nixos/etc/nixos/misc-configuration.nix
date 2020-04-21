@@ -19,6 +19,9 @@ in
     # Mount /tmp using tmpfs for performance.
     tmpOnTmpfs = true;
 
+    # Enable NTFS support.
+    supportedFilesystems = [ "ntfs" ];
+
     kernel.sysctl = {
       # Enable Magic keys.
       "kernel.sysrq" = 1;

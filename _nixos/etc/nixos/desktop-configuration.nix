@@ -22,7 +22,6 @@
     kitty
     libreoffice-fresh
     lxappearance-gtk3
-    mcomix
     pavucontrol
     peek
     perlPackages.FileMimeInfo

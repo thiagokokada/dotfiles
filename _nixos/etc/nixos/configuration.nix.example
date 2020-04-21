@@ -37,20 +37,16 @@
   networking.hostName = "<hostname>";
 
   # Root of encrypt device.
-  boot.initrd.luks.devices = [
-    {
-      name = "enc-pv";
+  boot.initrd.luks.devices = {
+    env-pv = {
       device = "/dev/disk/by-uuid/<disk-uuid>";
       preLVM = true;
       allowDiscards = true;
-    }
-  ];
+    };
+  };
 
   # Select internationalisation properties.
-  i18n = {
-    consoleKeyMap = "us-acentos";
-    defaultLocale = "en_US.UTF-8";
-  };
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Set X11 keyboard layout.
   services.xserver = {
@@ -95,6 +91,5 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.09"; # Did you read the comment?
-
+  system.stateVersion = "20.03"; # Did you read the comment?
 }

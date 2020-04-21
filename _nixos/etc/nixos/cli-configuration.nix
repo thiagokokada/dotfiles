@@ -18,7 +18,7 @@ in
 
   # CLI packages.
   environment.systemPackages = with pkgs; [
-    (unstable.neovim.override ({
+    (neovim.override ({
       withNodeJs = true;
       vimAlias = true;
       viAlias = true;
@@ -29,6 +29,7 @@ in
     (mpv-with-scripts.override ({
       scripts = [ mpvScripts.mpris ];
     }))
+    any-nix-shell
     aria2
     bc
     bind
@@ -72,7 +73,6 @@ in
     telnet
     tig
     universal-ctags
-    unstable.any-nix-shell
     unrar
     unzip
     usbutils

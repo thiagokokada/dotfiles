@@ -8,9 +8,15 @@
     };
   };
 
+  # Configure the virtual console keymap from the xserver keyboard settings.
+  console.useXkbConfig = true;
+
   services = {
     # Allow automounting.
     gvfs.enable = true;
+
+    # Load libinput.
+    udev.packages = [ pkgs.libinput.out ];
 
     # For battery status reporting.
     upower.enable = true;
@@ -18,24 +24,29 @@
     xserver = {
       enable = true;
 
-      # Enable libinput.
-      libinput = {
-        enable = true;
-        naturalScrolling = true;
-      };
+      # Enable libinput in X11.
+      modules = [ pkgs.xorg.xf86inputlibinput ];
 
       # Set input config to libinput devices
       inputClassSections = [
         ''
-        Identifier "mouse"
-        Driver "libinput"
-        MatchIsPointer "on"
-        Option "AccelProfile" "flat"
+          Identifier "mouse"
+          Driver "libinput"
+          MatchIsPointer "on"
+          Option "AccelProfile" "flat"
+        ''
+        ''
+          Identifier "touchpad"
+          Driver "libinput"
+          MatchIsTouchpad "on"
+          Option "NaturalScrolling" "true"
         ''
       ];
 
       # Use LightDM.
       displayManager = with pkgs; {
+        defaultSession = "none+i3";
+
         lightdm = {
           enable = true;
           greeters = {
@@ -59,7 +70,6 @@
 
       # Configure i3-gaps as WM.
       windowManager = {
-        default = "i3";
         i3 = {
           enable = true;
           package = pkgs.i3-gaps;
@@ -69,12 +79,12 @@
             dex
             dunst
             i3lock
+            i3status-rust
             kbdd
             libnotify
             maim
             nitrogen
             rofi
-            unstable.i3status-rust
             xdg-user-dirs
             xkblayout-state
             xsecurelock
