@@ -7,6 +7,7 @@
     arc-theme
     calibre
     chromium
+    desktop-file-utils
     firefox
     gimp
     gnome3.adwaita-icon-theme
