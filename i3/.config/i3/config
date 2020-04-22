@@ -314,8 +314,6 @@ bindsym Print exec $fs_screenshot
 # take screenshot area
 bindsym $mod+Print exec $area_screenshot
 
-bindsym --release $alt+d exec $HOME/.local/bin/party-dau
-
 # color theme
 # Property Name         Border  BG      Text    Indicator Child Border
 client.focused          $base0D $base0D $base00 $base0D $base0C
