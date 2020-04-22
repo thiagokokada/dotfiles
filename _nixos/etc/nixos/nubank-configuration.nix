@@ -24,10 +24,10 @@
     minikube
     nss
     nssTools
-    openfortivpn
     python37Packages.jupyter_core
     sassc
     unstable.lumo
+    unstable.openfortivpn
     unstable.slack
     unstable.zoom-us
     vagrant
