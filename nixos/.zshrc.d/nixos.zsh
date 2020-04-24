@@ -9,7 +9,12 @@ alias nixos-clean-up="sudo -- sh -c 'nix-collect-garbage -d && nixos-rebuild boo
 nix-sha256-github() {
   local author="${1}"
   local repo="${2}"
-  local commit="${3}"
+  local commit="${3:-master}"
+
+  if (( ${#} < 2 )); then
+    echo "Usage: nix-sha256-github <author> <repo> [commit]" 2>&1
+    return
+  fi
 
   nix-prefetch-url --unpack "https://github.com/${author}/${repo}/archive/${commit}.tar.gz"
 }
