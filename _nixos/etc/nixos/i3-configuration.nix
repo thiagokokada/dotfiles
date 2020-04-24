@@ -2,9 +2,21 @@
 
 {
   environment = {
-    variables = {
-      # Export modules to allow PCManFM to use gvfs.
-      GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
+    systemPackages = with pkgs; [
+      arc-icon-theme
+      arc-theme
+      gnome3.adwaita-icon-theme
+      hicolor-icon-theme
+    ];
+    etc."xdg/gtk-3.0/settings.ini" = {
+      text = ''
+        [Settings]
+        gtk-icon-theme-name=Arc
+        gtk-theme-name=Arc-Dark
+        gtk-cursor-theme-name=Adwaita
+        gtk-fallback-icon-theme=gnome
+      '';
+      mode = "444";
     };
   };
 
@@ -65,7 +77,6 @@
             };
           };
         };
-
       };
 
       # Configure i3-gaps as WM.

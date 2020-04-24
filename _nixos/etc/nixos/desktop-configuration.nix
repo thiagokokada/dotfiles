@@ -3,14 +3,11 @@
 {
   environment.systemPackages = with pkgs; [
     arandr
-    arc-icon-theme
-    arc-theme
     calibre
     chromium
     desktop-file-utils
     firefox
     gimp
-    gnome3.adwaita-icon-theme
     gnome3.baobab
     gnome3.evince
     gnome3.file-roller

@@ -14,7 +14,6 @@
     awscli
     clj-kondo
     clojure
-    clojure-lsp
     docker-compose
     gitAndTools.hub
     jetbrains.idea-community
@@ -26,6 +25,7 @@
     nssTools
     python37Packages.jupyter_core
     sassc
+    unstable.clojure-lsp
     unstable.lumo
     unstable.openfortivpn
     unstable.slack
