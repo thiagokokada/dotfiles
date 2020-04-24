@@ -329,7 +329,7 @@ for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 
 # compositor (since i3 does not support natively)
-exec --no-startup-id compton
+exec --no-startup-id picom --experimental-backends
 
 # notification manager
 exec --no-startup-id dunst

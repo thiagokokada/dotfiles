@@ -75,7 +75,6 @@
           package = pkgs.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
-            compton-git
             dex
             dunst
             i3lock
@@ -84,6 +83,7 @@
             libnotify
             maim
             nitrogen
+            picom
             rofi
             xdg-user-dirs
             xkblayout-state

@@ -35,6 +35,9 @@
 
 ;; general mappings
 (map!
+ ; remove default workspace shortcuts
+ :n "C-t" nil
+ :n "C-S-t" nil
  ; move betweeen windows faster in normal mode
  :m "C-h" #'evil-window-left
  :m "C-j" #'evil-window-down
