@@ -161,12 +161,16 @@
          "r" #'eval-region)))))
 
 (after! lsp-mode
-  (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :size 0.35 :select t))
+  (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t))
 
 ;; platuml
 (add-hook! plantuml-mode
   (setq plantuml-output-type "txt")
   (set-popup-rule! "^\\*PLANTUML Preview\\*" :side 'right :width 0.5 :quit t))
+
+;; python
+(add-hook! python-mode
+  (set-popup-rule! "^\\*format-all-errors\\*" :slot 2 :vslot -8 :select t))
 
 ;;; CUSTOM PACKAGES
 
