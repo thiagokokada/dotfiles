@@ -30,9 +30,9 @@ setup() {
 }
 
 setup_i3() {
-  setup compton
   setup i3
   setup kitty
+  setup picom
   setup redshift
   setup termite
 }
