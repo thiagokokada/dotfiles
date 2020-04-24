@@ -21,7 +21,7 @@ set $base0E #b294bb
 set $base0F #a3685a
 
 # default applications
-set $terminal kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)"
+set $terminal kitty
 set $browser firefox
 set $file_manager spacefm
 set $lock_screen env \
@@ -41,7 +41,6 @@ set $area_screenshot maim -s \
   "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && \
   notify-send -u normal -t 5000 'Area screenshot taken'
 set $mons $HOME/.config/i3/scripts/mons.sh
-set $killallx $HOME/.config/i3/scripts/killallx.sh
 
 # status bar
 set $status_bar $HOME/.config/i3status-rs/run.py
@@ -209,11 +208,11 @@ bindsym $mod+Shift+r restart
 set $mode_system  : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
     bindsym l mode "default", exec loginctl lock-session
-    bindsym e mode "default", exec $killallx && loginctl terminate-session $(cat /proc/self/sessionid)
+    bindsym e mode "default", exec loginctl terminate-session "$XDG_SESSION_ID"
     bindsym s mode "default", exec systemctl suspend
     bindsym h mode "default", exec systemctl hibernate
-    bindsym Shift+r mode "default", exec $killallx && systemctl reboot
-    bindsym Shift+s mode "default", exec $killallx && systemctl poweroff
+    bindsym Shift+r mode "default", systemctl reboot
+    bindsym Shift+s mode "default", systemctl poweroff
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
