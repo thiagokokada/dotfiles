@@ -3,7 +3,6 @@
 import os
 import shutil
 import sys
-from functools import partial
 from tempfile import NamedTemporaryFile
 
 # Base 16 Tomorrow Night
@@ -46,6 +45,11 @@ separator = " "
 name = "awesome"
 
 [icons.overrides]
+backlight_empty = "  "
+backlight_partial1 = "  "
+backlight_partial2 = "  "
+backlight_partial3 = "  "
+backlight_full = "  "
 eco_on="  "
 eco_off="  "
 net_up="  "
@@ -56,14 +60,7 @@ BLOCK_TEMPLATE = """\
 [[block]]
 block = "{name}"
 {extra_config}
-
 """
-
-debug = (
-    partial(print, file=sys.stderr)
-    if "DEBUG" in os.environ
-    else lambda *_args, **_kwargs: None
-)
 
 
 # Helpers
@@ -107,27 +104,30 @@ def block(name, **kwargs):
 
     extra_config = "\n".join([f"{k} = {convert(v)}" for k, v in kwargs.items()])
 
-    return BLOCK_TEMPLATE.format(name=name, extra_config=extra_config)
+    return BLOCK_TEMPLATE.format(name=name, extra_config=extra_config).strip()
+
+
+def flatten(l):
+    if isinstance(l, list):
+        return flatten(l[0]) + (flatten(l[1:]) if len(l) > 1 else [])
+    else:
+        return [l]
 
 
 def generate_config(*blocks):
-    config = BASE_TEMPLATE
-
-    for block in blocks:
-        if isinstance(block, list):
-            config += "\n".join(block)
-        else:
-            config += block
-
-    return config
+    return "\n\n".join([BASE_TEMPLATE] + flatten(list(blocks)))
 
 
 def run_i3status_rs(config):
-    with NamedTemporaryFile(mode="w", prefix="i3status-rs_", suffix=".toml") as config_file:
+    with NamedTemporaryFile(
+        mode="w", prefix="i3status-rs_", suffix=".toml"
+    ) as config_file:
         config_file.write(config)
         config_file.flush()
 
-        debug("Running i3status-rs with config file: ", config_file.name)
+        print(
+            "Running i3status-rs with config file: ", config_file.name, file=sys.stderr
+        )
 
         path = shutil.which("i3status-rs")
         os.execv(path, ["i3status-rs", config_file.name])
@@ -197,9 +197,10 @@ def main():
         block("time", interval=1, format="%a %T"),
     )
 
-    debug(config)
-
-    run_i3status_rs(config)
+    if "--dry-run" in sys.argv:
+        print(config, file=sys.stderr)
+    else:
+        run_i3status_rs(config)
 
 
 if __name__ == "__main__":
