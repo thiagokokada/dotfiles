@@ -175,14 +175,10 @@
 ;;; CUSTOM PACKAGES
 
 ;; lispyville
+(after! lispy-mode
+  (lispy-set-key-theme '(lispy c-digits)))
+
 (use-package! lispyville
-  :hook ((common-lisp-mode . lispyville-mode)
-         (emacs-lisp-mode . lispyville-mode)
-         (scheme-mode . lispyville-mode)
-         (racket-mode . lispyville-mode)
-         (hy-mode . lispyville-mode)
-         (lfe-mode . lispyville-mode)
-         (clojure-mode . lispyville-mode))
   :config
   (lispyville-set-key-theme
    '(additional
