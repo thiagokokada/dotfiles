@@ -46,12 +46,10 @@ separator = " "
 name = "awesome"
 
 [icons.overrides]
-music_play = "  "
-music_pause = "  "
-music_next = "  "
-music_prev = "  "
 eco_on="  "
 eco_off="  "
+net_up="  "
+net_down="  "
 """
 
 BLOCK_TEMPLATE = """\
@@ -167,7 +165,6 @@ def main():
 
     config = generate_config(
         block("focused_window", max_width=41),
-        block("music", max_width=0, buttons=["play", "next"]),
         net_block,
         disk_block,
         block(
