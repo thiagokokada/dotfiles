@@ -211,8 +211,8 @@ mode "$mode_system" {
     bindsym e mode "default", exec loginctl terminate-session "$XDG_SESSION_ID"
     bindsym s mode "default", exec systemctl suspend
     bindsym h mode "default", exec systemctl hibernate
-    bindsym Shift+r mode "default", systemctl reboot
-    bindsym Shift+s mode "default", systemctl poweroff
+    bindsym Shift+r mode "default", exec systemctl reboot
+    bindsym Shift+s mode "default", exec systemctl poweroff
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
