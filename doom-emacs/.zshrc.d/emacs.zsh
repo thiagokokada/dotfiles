@@ -28,4 +28,20 @@ install-clojure-lsp() {
   chmod +x "${clojure_lsp_path}"
 }
 
+install-clojure-kondo() {
+  local clojure_kondo_path="${HOME}/.local/bin/clj-kondo"
+  local releases_url="https://api.github.com/repos/borkdude/clj-kondo/releases/latest"
+  # TODO: get static binary using jq's query
+  local download_url="$(curl -s "${releases_url}" | jq -r '[.assets[]][1].browser_download_url')"
+  echo "${download_url}"
+  local tempdir=$(mktemp -d)
+  #trap "rm -rf "${tempdir}"" EXIT
+  local tempfile="${tempdir}/clj-kondo.zip"
+
+  curl -L "${download_url}" -o "${tempfile}"
+  unzip "${tempfile}" -d "${tempdir}"
+  mv "${tempdir}/clj-kondo" "${clojure_kondo_path}"
+  chmod +x "${clojure_kondo_path}"
+}
+
 UPGRADE_CMDS+="doom upgrade -f"

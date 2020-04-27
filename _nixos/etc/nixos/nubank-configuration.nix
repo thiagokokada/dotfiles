@@ -12,7 +12,8 @@
     }))
     apacheKafka
     awscli
-    clj-kondo
+    # TODO: Return to use it when graalVM stops failing to build
+    # clj-kondo
     clojure
     docker-compose
     gitAndTools.hub
