@@ -26,12 +26,6 @@
       package = pkgs.pulseaudioFull;
       # Enable extra bluetooth codecs.
       extraModules = [ pkgs.pulseaudio-modules-bt ];
-      extraConfig = ''
-        # Switch between headset and headphone mode (e.g. for calls and music) automatically
-        load-module module-bluetooth-policy auto_switch=2
-        # Echo cancellation and noise cleanup of mic
-        load-module module-echo-cancel aec_method=webrtc
-      '';
     };
 
     # Extra OpenGL options.
