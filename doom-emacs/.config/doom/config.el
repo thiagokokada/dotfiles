@@ -30,9 +30,6 @@
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
 
-;; enable minibuffer to work correctly in evil mode
-(setq evil-collection-setup-minibuffer t)
-
 ;; general mappings
 (map!
  ; remove default workspace shortcuts
