@@ -27,6 +27,9 @@
       doom-big-font-increment 4
       doom-unicode-font (font-spec :family "Noto Sans Mono"))
 
+;; enable minibuffer to work correctly in evil mode
+(setq evil-collection-setup-minibuffer t)
+
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
 
