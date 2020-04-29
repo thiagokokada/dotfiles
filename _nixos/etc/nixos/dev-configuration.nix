@@ -17,7 +17,6 @@
     nim
     nodejs-12_x
     pipenv
-    python2Full
     python3Full
     python3Packages.black
     python3Packages.flake8
