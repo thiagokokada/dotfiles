@@ -8,6 +8,11 @@
     # Use Network Manager.
     networkmanager = {
       enable = true;
+      wifi.backend = "iwd";
+    };
+    wireless = {
+      enable = false;
+      iwd.enable = true;
     };
   };
 
