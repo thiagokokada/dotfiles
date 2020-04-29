@@ -26,6 +26,7 @@
     nssTools
     python37Packages.jupyter_core
     sassc
+    unstable.circleci-cli
     unstable.clojure-lsp
     unstable.lumo
     unstable.openfortivpn
