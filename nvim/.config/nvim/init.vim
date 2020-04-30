@@ -72,6 +72,9 @@ set noshowmode
 " turn on omnicomplete
 set omnifunc=syntaxcomplete#Complete
 
+" disable syntax highlight if file is too big
+autocmd BufWinEnter * if getfsize(@%) > 100000 | setlocal syntax=off | endif
+
 """""""""""
 " keymaps "
 """""""""""
@@ -212,7 +215,7 @@ colorscheme onedark
 let g:better_whitespace_guicolor = g:terminal_color_1
 
 " rainbow
-au VimEnter * RainbowParentheses!!
+autocmd VimEnter * if &syntax != "off" | RainbowParentheses | endif
 
 " Undotree
 if !isdirectory($HOME . "/.config/nvim/undotree")
