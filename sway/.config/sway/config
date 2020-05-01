@@ -76,7 +76,7 @@ bindsym $mod+Shift+q kill
 bindsym $alt+F4 kill
 
 # start bemenu
-set $dmenu-cmd "bemenu -l 15 -b -i -p 'run' --fn 'Roboto 14' --tb '#1d1f21' --tf '#81a2be' --fb '#1d1f21' --ff '#969896' --nb '#1d1f21' --nf '#c5c8c6' --hf '#1d1f21' --hb '#81a2be'"
+set $dmenu-cmd "bemenu -l 15 -b -i -p 'run' --fn 'Roboto 12' --tb '#1d1f21' --tf '#81a2be' --fb '#1d1f21' --ff '#969896' --nb '#1d1f21' --nf '#c5c8c6' --hf '#1d1f21' --hb '#81a2be'"
 bindsym $mod+d exec env BEMENU_BACKEND=wayland j4-dmenu-desktop --dmenu=$dmenu-cmd
 
 # change focus

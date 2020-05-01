@@ -1,11 +1,5 @@
 ! Display settings
-Xft.dpi: 100
-Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
+Xft.dpi: 96
 
 ! Base16 Tomorrow Night
 ! Scheme: Chris Kempson (http://chriskempson.com)
