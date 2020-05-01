@@ -19,18 +19,15 @@ set $base0E #b294bb
 set $base0F #a3685a
 
 # default applications
-set $terminal termite
+set $terminal kitty -c $HOME/.config/kitty/kitty-wayland.conf
 set $browser firefox
-set $file_manager kitty ranger
+set $file_manager pcmanfm
 set $fs_screenshot grim \
   "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && \
   notify-send -u normal -t 5000 'Full screenshot taken'
 set $area_screenshot grim -g "$(slurp)" \
   "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && \
   notify-send -u normal -t 5000 'Area screenshot taken'
-set $volume $HOME/.config/sway/scripts/pavol.sh
-set $mons $HOME/.config/sway/scripts/mons.sh
-set $import_gsettings $HOME/.config/sway/scripts/import-gsettings.sh
 set $lock_screen swaylock -c 000000
 
 # status bar
@@ -50,7 +47,7 @@ set $left h
 set $right l
 
 # Font for window titles and i3-status
-font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 14
+font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 12
 
 # disable window title
 default_border pixel 1
@@ -251,9 +248,10 @@ bar {
 }
 
 # volume control
-bindsym XF86AudioRaiseVolume exec $volume raise
-bindsym XF86AudioLowerVolume exec $volume lower
-bindsym XF86AudioMute exec $volume mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # screen brightness control
 bindsym XF86MonBrightnessUp exec light -A 5%
@@ -265,21 +263,10 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# keyboard layout stuff
-set $mode_keyboard : [b]r, [u]s-intl
-mode "$mode_keyboard" {
-    bindsym b mode "default", exec swaymsg 'input * xkb_layout br'
-    bindsym u mode "default", exec swaymsg 'input * xkb_layout us(intl)'
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+b mode "$mode_keyboard"
-
 # set default keyboard layout
 input type:keyboard {
   xkb_layout us(intl),br
-  xkb_options caps:escape
+  xkb_options caps:escape,grp:win_space_toggle
 }
 
 # disable accelation for mouses
@@ -316,11 +303,20 @@ client.background       $base07
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 
+# load Xresources
+exec_always xrdb $HOME/.Xresources.wayland
+
 # notification manager
 exec mako
 
 # start redshift
 exec redshift -m wayland
+
+# keyboard layout daemon
+exec kbdd
+
+# PCManFM in daemon mode (to manage external media)
+exec pcmanfm --daemon-mode
 
 # run autostart from .desktop files from LXDE, to avoid starting too much crap
 exec dex --autostart --environment LXDE

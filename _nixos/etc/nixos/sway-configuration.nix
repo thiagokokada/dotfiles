@@ -3,10 +3,14 @@
 {
   environment = {
     systemPackages = with pkgs; [
+      arc-icon-theme
+      arc-theme
+      gnome3.adwaita-icon-theme
       gnome3.dconf-editor
+      hicolor-icon-theme
       qt5.qtwayland
+      pcmanfm
     ];
-
     variables = {
       # Export modules to allow PCManFM to use gvfs.
       GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
@@ -17,7 +21,6 @@
     sway = {
       enable = true;
       extraPackages = with pkgs; [
-        (callPackage ./pkgs/wdisplays.nix {})
         (redshift.overrideAttrs (oldAttrs: rec {
           src = fetchFromGitHub {
             owner = "minus7";
@@ -52,10 +55,11 @@
         # export GDK_BACKEND=wayland
         # export CLUTTER_BACKEND=wayland
 
+        # Enable wayland in Firefox
+        export MOZ_ENABLE_WAYLAND=1
+
         # Enable Qt5 support to Wayland
-        export QT_QPA_PLATFORM=wayland-egl
-        export QT_QPA_PLATFORMTHEME=gtk2
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        export QT_QPA_PLATFORM=wayland
 
         # Enable EFL support to Wayland
         export ECORE_EVAS_ENGINE=wayland_egl
@@ -66,9 +70,6 @@
 
         # Fix Java applications
         export _JAVA_AWT_WM_NONREPARENTING=1
-
-        # Fix tray icons
-        export XDG_CURRENT_DESKTOP=Unity
       '';
     };
 
@@ -79,8 +80,10 @@
     light.enable = true;
   };
 
-  services = {
-    # Allow automounting.
-    gvfs.enable = true;
+  # Enable Qt5 integration.
+  qt5 = {
+    enable = true;
+    platformTheme = "gtk2";
+    style = "gtk2";
   };
 }

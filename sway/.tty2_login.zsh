@@ -1,27 +1,6 @@
-# Enable GNOME support to Wayland
-export GDK_BACKEND=wayland
 export GDK_DPI_SCALE=1.5
-export CLUTTER_BACKEND=wayland
-
-# Enable Qt5 support to Wayland
-export QT_QPA_PLATFORM=wayland-egl
-export QT_QPA_PLATFORMTHEME=gtk2
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export QT_SCALE_FACTOR=1.5
-
-# Enable EFL support to Wayland
-export ECORE_EVAS_ENGINE=wayland_egl
-export ELM_ENGINE=wayland_egl
+# export QT_SCALE_FACTOR=1.5
 export ELM_SCALE=1.5
-
-# Enable SDL support to Wayland
-export SDL_VIDEODRIVER=wayland
-
-# Fix Java applications
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-# Fix tray icons
-export XDG_CURRENT_DESKTOP=Unity
 
 sway
 

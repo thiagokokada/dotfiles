@@ -1,1 +1,0 @@
-../../../../i3/.config/i3/scripts/pavol.sh

@@ -57,9 +57,6 @@ set number
 " live substitutions as you type
 set inccommand=nosplit
 
-" remove underscore from word separator
-set iskeyword-=_
-
 " copy and paste
 set clipboard+=unnamedplus
 
