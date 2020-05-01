@@ -14,8 +14,8 @@ path=(
 # Environment variables
 #
 
-# pager
 export VISUAL="nvim"
 export EDITOR="${VISUAL}"
 export PAGER="less"
+export TERMINAL="kitty"
 export DOTFILES_PATH="${HOME}/.dotfiles"

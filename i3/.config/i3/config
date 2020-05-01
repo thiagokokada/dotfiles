@@ -87,9 +87,10 @@ bindsym $mod+m exec $file_manager
 bindsym $mod+Shift+q kill
 bindsym $alt+F4 kill
 
-# start rofi in dmenu mode
+# start rofi
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Tab exec rofi -show window
+bindsym $mod+c exec $HOME/.config/i3/scripts/=.sh
 
 # change focus
 # vi-like
