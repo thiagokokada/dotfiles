@@ -31,6 +31,7 @@
     unstable.tdesktop
     xdotool
     xorg.xdpyinfo
+    xorg.xhost
     xorg.xkill
     xorg.xset
   ];

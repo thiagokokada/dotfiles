@@ -23,7 +23,7 @@ in
       vimAlias = true;
       viAlias = true;
     }))
-    ((emacsPackagesNgGen emacsUnstable).emacsWithPackages (epkgs: [
+    ((emacsPackagesGen emacsUnstable).emacsWithPackages (epkgs: [
       epkgs.emacs-libvterm
     ]))
     (mpv-with-scripts.override ({
