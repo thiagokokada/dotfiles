@@ -69,9 +69,6 @@ set noshowmode
 " turn on omnicomplete
 set omnifunc=syntaxcomplete#Complete
 
-" disable syntax highlight if file is too big
-autocmd BufWinEnter * if getfsize(@%) > 100000 | setlocal syntax=off | endif
-
 """""""""""
 " keymaps "
 """""""""""
