@@ -51,6 +51,17 @@
   #   ];
   # };
 
+  # Hack for problematic Dell Network Adapter
+  systemd.services.r8152-fix = {
+    description = "Restart RTL-8152 module on resume from suspend";
+    after = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target" ];
+    wantedBy = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target" ];
+    serviceConfig = {
+      ExecStartPre = ''${pkgs.kmod}/bin/modprobe -r r8152'';
+      ExecStart = ''${pkgs.kmod}/bin/modprobe r8152'';
+    };
+  };
+
   virtualisation = {
     # Enable Docker.
     docker.enable = true;
