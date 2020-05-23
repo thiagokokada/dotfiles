@@ -69,6 +69,9 @@ set noshowmode
 " turn on omnicomplete
 set omnifunc=syntaxcomplete#Complete
 
+" reduce updatetime (affects vim-gitgutter)
+set updatetime=100
+
 """""""""""
 " keymaps "
 """""""""""
