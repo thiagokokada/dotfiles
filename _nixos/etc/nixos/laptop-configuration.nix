@@ -9,6 +9,25 @@
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
+      dispatcherScripts = [
+        {
+          source = pkgs.writeText "disable-wifi-on-ethernet" ''
+            #!${pkgs.bash}/bin/bash
+            wired_interfaces="en.*|eth.*"
+            if [[ "$1" =~ $wired_interfaces ]]; then
+              case "$2" in
+                up)
+                  nmcli radio wifi off
+                  ;;
+                down)
+                  nmcli radio wifi on
+                  ;;
+              esac
+            fi
+          '';
+          type = "basic";
+        }
+      ];
     };
     wireless = {
       enable = false;
@@ -62,25 +81,6 @@
 
       extraConfig = ''
         HandlePowerKey=suspend-then-hibernate
-      '';
-    };
-
-    # Enable TLP to reduce power consumption.
-    tlp = {
-      enable = true;
-      extraConfig = ''
-        CPU_SCALING_GOVERNOR_ON_AC=powersave
-        CPU_SCALING_GOVERNOR_ON_BAT=powersave
-
-        # Radio devices to disable on connect.
-        DEVICES_TO_DISABLE_ON_LAN_CONNECT="wifi wwan"
-        DEVICES_TO_DISABLE_ON_WIFI_CONNECT="wwan"
-        DEVICES_TO_DISABLE_ON_WWAN_CONNECT="wifi"
-
-        # Radio devices to enable on disconnect.
-        DEVICES_TO_ENABLE_ON_LAN_DISCONNECT="wifi wwan"
-        DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=""
-        DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
       '';
     };
   };
