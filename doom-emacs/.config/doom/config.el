@@ -119,32 +119,19 @@
         cljr-eagerly-build-asts-on-startup nil
         cider-show-error-buffer 'only-in-repl)
   (map!
-   (:map clojure-mode-map
-     (:n "R" #'hydra-cljr-help-menu/body)
-     (:localleader
-       ("a" #'clojure-align)
-       (:prefix ("e" . "eval")
-         "s" #'cider-eval-sexp-at-point
-         "n" #'cider-eval-ns-form
-         "c" #'cider-read-and-eval-defun-at-point
-         "C" #'user/cider-read-eval-and-call-defun-at-point)
-       (:prefix ("n" . "namespace")
-         "R" #'cider-ns-reload)
-       (:prefix ("t" . "test")
-         "N" #'user/cider-eval-and-run-ns-tests
-         "T" #'user/cider-eval-and-run-test)
-       (:prefix ("r" . "repl")
-         "i" #'cider-interrupt)))))
+   (:map (clojure-mode-map clojurescript-mode-map)
+    (:localleader
+     ("a" #'clojure-align
+      "'" #'cider-jack-in-clj
+      "\"" #'cider-jack-in-cljs
+      "c" #'cider-connect-clj
+      "C" #'cider-connect-cljs)))))
 
 ;; Workaround bug in completion
 (after! cider-mode
   (add-hook #'company-completion-started-hook #'user/set-company-maps)
   (add-hook #'company-completion-finished-hook #'user/unset-company-maps)
   (add-hook #'company-completion-cancelled-hook #'user/unset-company-maps))
-
-(after! clj-refactor
-  ;; cljr-find-usages is slow and broken, mostly useless
-  (set-lookup-handlers! 'clj-refactor-mode nil))
 
 ;; elisp
 (add-hook! emacs-lisp-mode
