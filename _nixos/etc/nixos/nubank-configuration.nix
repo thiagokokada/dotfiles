@@ -8,7 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     (leiningen.override ({
-      jdk = pkgs.jdk8;
+      jdk = pkgs.jdk11;
     }))
     apacheKafka
     awscli
@@ -38,7 +38,7 @@
   # Enable Java.
   programs.java = {
     enable = true;
-    package = pkgs.jdk8;
+    package = pkgs.jdk11;
   };
 
   # Enable Java anti-aliasing.
