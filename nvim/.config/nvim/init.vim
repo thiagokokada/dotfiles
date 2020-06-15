@@ -135,8 +135,8 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <Leader><Leader> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>/ :Rg<space>
-nnoremap <silent> <Leader>* :Rg <CR><C-W><CR>
-vnoremap <silent> <Leader>* y:Rg <CR>"<CR>
+nnoremap <silent> <Leader>* :Rg <C-R><C-W><CR>
+vnoremap <silent> <Leader>* y:Rg <C-R>"<CR>
 "" undo terminal mappings just for fzf window
 au FileType fzf,Rg tnoremap <buffer> <C-h> <Left>
 au FileType fzf,Rg tnoremap <buffer> <C-j> <Down>
