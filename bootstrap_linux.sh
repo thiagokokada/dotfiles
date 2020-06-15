@@ -34,7 +34,6 @@ setup_i3() {
   setup kitty
   setup picom
   setup redshift
-  setup termite
 }
 
 setup_cli() {
