@@ -115,7 +115,7 @@ def flatten(l):
 
 
 def generate_config(*blocks):
-    return "\n\n".join([BASE_TEMPLATE] + flatten(list(blocks)))
+    return "\n\n".join([BASE_TEMPLATE] + flatten(list(b for b in blocks if b)))
 
 
 def run_i3status_rs(config):
