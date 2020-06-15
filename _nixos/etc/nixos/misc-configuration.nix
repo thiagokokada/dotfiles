@@ -7,6 +7,7 @@ let
 in
 {
   nixpkgs.config = {
+    allowUnfree = true;
     # Added unstable to allow package backports.
     packageOverrides = pkgs: {
       unstable = import unstableTarball {

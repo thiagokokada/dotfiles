@@ -122,6 +122,10 @@
   };
 
   networking = {
+    # Needs to disable global DHCP to use bridge interfaces
+    useDHCP = false;
+    interfaces.br0.useDHCP = true;
+
     # Enable bridge.
     bridges = {
       br0 = {
