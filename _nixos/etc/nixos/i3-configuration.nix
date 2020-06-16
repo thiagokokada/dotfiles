@@ -7,9 +7,17 @@
       arc-theme
       gnome3.adwaita-icon-theme
       hicolor-icon-theme
-      pcmanfm
-      xarchiver
     ];
+    etc."xdg/gtk-2.0/gtkrc" = {
+      text = ''
+        gtk-icon-theme-name = "Adwaita"
+        gtk-theme-name = "Arc-Dark"
+        gtk-cursor-theme-name = "Adwaita"
+        gtk-fallback-icon-theme = "gnome"
+        gtk-font-name = "DejaVu Sans 11"
+      '';
+      mode = "444";
+    };
     etc."xdg/gtk-3.0/settings.ini" = {
       text = ''
         [Settings]

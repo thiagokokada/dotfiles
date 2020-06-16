@@ -20,6 +20,7 @@
     libreoffice-fresh
     lxappearance-gtk3
     pavucontrol
+    pcmanfm
     peek
     perlPackages.FileMimeInfo
     qalculate-gtk
@@ -28,6 +29,7 @@
     termite
     unstable.spotify
     unstable.tdesktop
+    xarchiver
     xdotool
     xorg.xdpyinfo
     xorg.xhost
