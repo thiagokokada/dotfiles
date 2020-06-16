@@ -19,6 +19,7 @@
     kitty
     libreoffice-fresh
     lxappearance-gtk3
+    lxmenu-data
     pavucontrol
     pcmanfm
     peek
@@ -26,6 +27,7 @@
     qalculate-gtk
     ranger
     redshift
+    shared-mime-info
     termite
     unstable.spotify
     unstable.tdesktop
