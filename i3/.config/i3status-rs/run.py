@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import itertools
 import os
 import shutil
 import sys
@@ -107,15 +108,13 @@ def block(name, **kwargs):
     return BLOCK_TEMPLATE.format(name=name, extra_config=extra_config).strip()
 
 
+# https://stackoverflow.com/a/5286614
 def flatten(l):
-    if isinstance(l, list):
-        return flatten(l[0]) + (flatten(l[1:]) if len(l) > 1 else [])
-    else:
-        return [l]
+    return itertools.chain.from_iterable([x] if isinstance(x, str) else x for x in l)
 
 
 def generate_config(*blocks):
-    return "\n\n".join([BASE_TEMPLATE] + flatten(list(b for b in blocks if b)))
+    return "\n\n".join([BASE_TEMPLATE] + list(flatten(blocks)))
 
 
 def run_i3status_rs(config):
