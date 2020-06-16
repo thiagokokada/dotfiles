@@ -7,6 +7,8 @@
       arc-theme
       gnome3.adwaita-icon-theme
       hicolor-icon-theme
+      pcmanfm
+      xarchiver
     ];
     etc."xdg/gtk-3.0/settings.ini" = {
       text = ''
@@ -125,8 +127,5 @@
 
     # Backlight control.
     light.enable = true;
-
-    # SpaceFM.
-    spacefm.enable = true;
   };
 }

@@ -23,7 +23,7 @@ set $base0F #a3685a
 # default applications
 set $terminal kitty
 set $browser firefox
-set $file_manager spacefm
+set $file_manager pcmanfm
 set $lock_screen env \
   XSECURELOCK_FORCE_GRAB=2 \
   XSECURELOCK_BLANK_DPMS_STATE=off \
@@ -337,8 +337,8 @@ exec --no-startup-id dunst
 # keyboard layout daemon
 exec --no-startup-id kbdd
 
-# SpaceFM in daemon mode (to manage external media)
-exec --no-startup-id spacefm --daemon-mode
+# file manager in daemon mode (to manage external media)
+exec --no-startup-id $file_manager --daemon-mode
 
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
