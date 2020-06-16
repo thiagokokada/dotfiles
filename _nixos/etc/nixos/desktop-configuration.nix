@@ -42,6 +42,7 @@
     fonts = with pkgs; [
       cantarell-fonts
       corefonts
+      dejavu_fonts
       font-awesome_4
       font-awesome_5
       noto-fonts

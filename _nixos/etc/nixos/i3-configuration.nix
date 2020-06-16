@@ -17,6 +17,7 @@
         gtk-theme-name=Arc-Dark
         gtk-cursor-theme-name=Adwaita
         gtk-fallback-icon-theme=gnome
+        gtk-font-name = Noto Sans 11
       '';
       mode = "444";
     };
