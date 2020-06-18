@@ -121,7 +121,9 @@
   (map!
    (:map (clojure-mode-map clojurescript-mode-map)
     (:localleader
-     ("a" #'clojure-align
+     ("=" #'clojure-align
+      (:prefix ("n" . "namespace")
+       "c" #'lsp-clojure-clean-ns)
       "'" #'cider-jack-in-clj
       "\"" #'cider-jack-in-cljs
       "c" #'cider-connect-clj
