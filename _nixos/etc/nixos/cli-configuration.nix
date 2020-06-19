@@ -1,14 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  snapshot = import (builtins.fetchGit {
-    name = "nixpkgs-snapshot-2020-04-08";
-    url = https://github.com/nixos/nixpkgs/;
-    rev = "f1090bdaf85581c4e9e1fecfcc30f30bbf7a04d6";
-  }) {
-    config = config.nixpkgs.config;
-  };
-in
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -66,7 +57,6 @@ in
     python3Packages.youtube-dl
     ripgrep
     sloccount
-    snapshot.page
     sshuttle
     stow
     tealdeer
@@ -74,6 +64,7 @@ in
     tig
     universal-ctags
     unrar
+    unstable.page
     unzip
     usbutils
     wget
