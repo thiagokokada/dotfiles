@@ -69,8 +69,8 @@ setup_os() {
 
 setup_file_associations() {
   echo "Configuring file associations"
-  xdg-mime default spacefm.desktop inode/directory
-  xdg-mime default org.gnome.gThumb.desktop image/{jpeg,png,gif} 
+  xdg-mime default pcmanfm.desktop inode/directory
+  xdg-mime default org.gnome.gThumb.desktop image/{jpeg,png,gif}
 }
 
 check_dependency "stow"
