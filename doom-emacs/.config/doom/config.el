@@ -124,6 +124,8 @@
      ("=" #'clojure-align
       (:prefix ("n" . "namespace")
        "c" #'lsp-clojure-clean-ns)
+      (:prefix ("e" . "namespace")
+       "n" #'cider-eval-ns-form)
       "'" #'cider-jack-in-clj
       "\"" #'cider-jack-in-cljs
       "c" #'cider-connect-clj
