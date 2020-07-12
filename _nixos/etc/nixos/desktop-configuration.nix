@@ -10,6 +10,7 @@
     gimp
     gnome3.baobab
     gnome3.evince
+    gnome3.file-roller
     gnome3.gnome-disk-utility
     gnome3.gnome-themes-standard
     gthumb
@@ -31,7 +32,6 @@
     termite
     unstable.spotify
     unstable.tdesktop
-    xarchiver
     xdotool
     xorg.xdpyinfo
     xorg.xhost
