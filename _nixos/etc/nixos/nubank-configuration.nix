@@ -1,6 +1,24 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  flutterDir = "$HOME/sdk-flutter";
+  patchFlutter = pkgs.writeShellScriptBin "patch-flutter" ''
+    isScript() {
+        local fn="$1"
+        local fd
+        local magic
+        exec {fd}< "$fn"
+        read -r -n 2 -u "$fd" magic
+        exec {fd}<&-
+        if [[ "$magic" =~ \#! ]]; then return 0; else return 1; fi
+    }
 
-{
+    stopNest() { true; }
+
+    source ${<nixpkgs/pkgs/build-support/setup-hooks/patch-shebangs.sh>}
+    patchShebangs --build ${flutterDir}/bin/
+    find ${flutterDir}/bin/ -executable -type f -exec ${pkgs.patchelf}/bin/patchelf --set-interpreter ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 {} \;
+  '';
+in {
   nixpkgs.config = {
     # For Slack/Zoom.
     allowUnfree = true;
@@ -24,6 +42,7 @@
     minikube
     nss
     nssTools
+    patchFlutter
     python37Packages.jupyter_core
     sassc
     unstable.circleci-cli
