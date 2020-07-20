@@ -152,6 +152,7 @@
          "r" #'eval-region)))))
 
 (after! lsp-mode
+  (setq lsp-auto-guess-root nil)
   (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t))
 
 ;; platuml
