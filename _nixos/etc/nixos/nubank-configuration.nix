@@ -35,6 +35,7 @@ in {
     clojure
     docker-compose
     gitAndTools.hub
+    go
     jetbrains.idea-community
     joker
     jupyter
@@ -62,13 +63,6 @@ in {
 
   # Enable Java anti-aliasing.
   environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
-
-  # Enable FortiSSL VPN support in NetworkManager.
-  # networking.networkmanager = {
-  #   packages = [
-  #     pkgs.networkmanager-fortisslvpn
-  #   ];
-  # };
 
   virtualisation = {
     # Enable Docker.
