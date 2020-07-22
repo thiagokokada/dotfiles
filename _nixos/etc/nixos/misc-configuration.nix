@@ -38,7 +38,6 @@ in
     LC_COLLATE = "C"; # Use C style string sort.
   };
 
-
   # Increase file handler limit.
   security.pam.loginLimits = [{
     domain = "*";
@@ -76,7 +75,7 @@ in
       interval = "weekly";
     };
 
-    # Decrease journal size
+    # Decrease journal size.
     journald.extraConfig = ''
       SystemMaxUse=500M
     '';
@@ -93,5 +92,11 @@ in
       # set scheduler for rotating disks
       ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
     '';
+  };
+
+  # Enable zram to have better memory management.
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
   };
 }
