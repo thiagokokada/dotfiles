@@ -30,6 +30,7 @@
     ffmpegthumbnailer
     file
     fzf
+    gettext
     ghostscript
     gitFull
     glxinfo
