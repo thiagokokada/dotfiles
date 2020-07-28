@@ -71,7 +71,9 @@
 ;;; MODULES
 
 ;; company
-(setq company-selection-wrap-around t)
+(setq company-selection-wrap-around t
+      company-minimum-prefix-length 3
+      company-idle-delay 0.4)
 
 ;; dired
 (add-hook! dired-mode
@@ -149,8 +151,10 @@
          "d" #'eval-defun
          "r" #'eval-region)))))
 
+;; lsp
+(setq +lsp-company-backend 'company-capf)
+
 (after! lsp-mode
-  (setq lsp-auto-guess-root nil)
   (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t))
 
 ;; platuml
