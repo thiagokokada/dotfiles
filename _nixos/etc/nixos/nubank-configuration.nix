@@ -18,7 +18,6 @@ let
     patchShebangs --build ${flutterDir}/bin/
     find ${flutterDir}/bin/ -executable -type f -exec ${pkgs.patchelf}/bin/patchelf --set-interpreter ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 {} \;
   '';
-  hover-flutter = (import (fetchTarball https://github.com/ericdallo/nixpkgs/archive/hover-flutter.tar.gz) {});
 in {
   nixpkgs.config = {
     # For Slack/Zoom.
@@ -37,7 +36,6 @@ in {
     docker-compose
     gitAndTools.hub
     go
-    hover-flutter.hover
     jetbrains.idea-community
     joker
     jupyter
