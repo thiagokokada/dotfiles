@@ -107,8 +107,8 @@
             libnotify
             maim
             nitrogen
-            picom
             rofi
+            unstable.picom
             xdg-user-dirs
             xkblayout-state
             xsecurelock
