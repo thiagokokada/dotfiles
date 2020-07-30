@@ -155,6 +155,7 @@
 (setq +lsp-company-backend 'company-capf)
 
 (after! lsp-mode
+  (setq lsp-modeline-code-actions-mode t)
   (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t))
 
 ;; platuml
@@ -167,6 +168,13 @@
   (set-popup-rule! "^\\*format-all-errors\\*" :slot 2 :vslot -8 :select t))
 
 ;;; CUSTOM PACKAGES
+
+;; hover
+(use-package! hover
+  :after dart-mode
+  :config
+  (setq hover-hot-reload-on-save t
+        hover-screenshot-path "$HOME/Pictures"))
 
 ;; lispyville
 (use-package! lispyville
