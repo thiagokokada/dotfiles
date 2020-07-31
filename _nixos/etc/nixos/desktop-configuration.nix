@@ -78,4 +78,8 @@
       '';
     };
   };
+
+  # Enable Gnome Keyring
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  services.gnome3.gnome-keyring.enable = true;
 }
