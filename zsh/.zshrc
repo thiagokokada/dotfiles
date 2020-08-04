@@ -117,6 +117,9 @@ for file in ${HOME}/.zshrc.d/*.zsh; do
   [[ -f "${file}" ]] && source "${file}"
 done
 
+# load after ~/.zshrc.d files to make sure that ~/.local/bin is the first in $PATH
+export PATH="${HOME}/.local/bin:${PATH}"
+
 # script to compile ZSH files
 # should be called last
 zit-lo "zit" "extras/compile-zsh-files.zsh"
