@@ -192,7 +192,7 @@ def main():
         backlight_block,
         battery_block,
         block("sound", on_click="pavucontrol"),
-        block("keyboard_layout", driver="kbddbus"),
+        block("keyboard_layout", driver="kbddbus", format=" {layout}"),
         block("time", interval=1, format="%a %T"),
     )
 
