@@ -95,6 +95,8 @@
 
 ;; projectile
 (add-hook! projectile-mode
+  (when (eq projectile-indexing-method 'alien)
+    (setq projectile-enable-caching nil))
   (map!
    (:leader
      (:map projectile-mode-map
