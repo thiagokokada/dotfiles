@@ -4,10 +4,6 @@
 
 ;;; GENERAL
 
-;; small optimization for Emacs 27+
-(when EMACS27+
- (setq-default bidi-inhibit-bpa t))
-
 ;; theme
 (load-theme 'doom-vibrant t)
 
@@ -141,7 +137,7 @@
 
 ;; dart
 (after! dart-mode
-  (set-popup-rule! "\\*Hover\\*" :slot 2 :vslot -8 :select t))
+  (set-popup-rule! "\\*Hover\\*" :slot 2 :vslot -8 :select t :quit nil))
 
 ;; elisp
 (add-hook! emacs-lisp-mode
