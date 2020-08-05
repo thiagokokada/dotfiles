@@ -139,6 +139,10 @@
   (add-hook #'company-completion-finished-hook #'user/unset-company-maps)
   (add-hook #'company-completion-cancelled-hook #'user/unset-company-maps))
 
+;; dart
+(after! dart-mode
+  (set-popup-rule! "\\*Hover\\*" :slot 2 :vslot -8 :select t))
+
 ;; elisp
 (add-hook! emacs-lisp-mode
   (map!
@@ -158,6 +162,7 @@
 
 (after! lsp-mode
   (setq lsp-modeline-code-actions-mode t)
+  (set-popup-rule! "\\*LSP Dart tests\\*" :slot 2 :vslot -8 :select t)
   (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t))
 
 ;; platuml

@@ -327,6 +327,7 @@ client.background       $base07
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
+for_window [title="^nubank$"] floating enable
 
 # compositor (since i3 does not support natively)
 exec --no-startup-id picom --experimental-backends
