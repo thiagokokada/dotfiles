@@ -1,22 +1,22 @@
 { pkgs, config, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
+  boot = {
+    # Early load i195 for better resolution in init.
+    initrd.kernelModules = [ "i915" ];
 
-  # Early load i195 for better resolution in init.
-  boot.initrd.kernelModules = [ "i915" ];
+    # Do not load NVIDIA drivers.
+    blacklistedKernelModules = [ "nvidia" "nouveau" ];
 
-  # Do not load NVIDIA drivers.
-  boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
+    # Load VFIO related modules.
+    kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+    extraModprobeConfig = "options vfio-pci ids=10de:1c02,10de:10f1";
 
-  # Load VFIO related modules.
-  boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=10de:1c02,10de:10f1";
-
-  # Enable IOMMU
-  boot.kernelParams = [
-    "intel_iommu=on"
-  ];
+    # Enable IOMMU
+    kernelParams = [
+      "intel_iommu=on"
+    ];
+  };
 
   # Enable libvirtd.
   virtualisation = {
@@ -51,6 +51,7 @@
   # Some misc packages.
   environment.systemPackages = with pkgs; [
     btrfs-progs
+    cpuset
     hdparm
     rtorrent
     samba
@@ -64,6 +65,9 @@
       enable = true;
       interval = "weekly";
     };
+
+    # Enable irqbalance service.
+    irqbalance.enable = true;
 
     # Enable Plex Media Server.
     plex = {
