@@ -48,7 +48,11 @@
  :n "-" #'dired-jump
  :nv "C-a" #'evil-numbers/inc-at-pt
  :nv "C-S-a" #'evil-numbers/dec-at-pt
- :nv "C-SPC" #'+fold/toggle)
+ :nv "C-SPC" #'+fold/toggle
+ (:leader
+   (:prefix "o"
+     :desc "Visualize Undo Tree"
+     "u" #'undo-tree-visualize)))
 
 ;; ivy
 (after! ivy
@@ -131,6 +135,10 @@
   (add-hook #'company-completion-finished-hook #'user/unset-company-maps)
   (add-hook #'company-completion-cancelled-hook #'user/unset-company-maps))
 
+;; dart
+(after! dart-mode
+  (set-popup-rule! "\\*Hover\\*" :slot 2 :vslot -8 :select t :quit nil))
+
 ;; elisp
 (add-hook! emacs-lisp-mode
   (map!
@@ -149,7 +157,18 @@
 (setq +lsp-company-backend 'company-capf)
 
 (after! lsp-mode
-  (setq lsp-modeline-code-actions-mode t))
+  (setq lsp-modeline-code-actions-mode t)
+  (set-popup-rule! "\\*LSP Dart tests\\*" :slot 2 :vslot -8 :select t)
+  (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t))
+
+;; platuml
+(add-hook! plantuml-mode
+  (setq plantuml-output-type "txt")
+  (set-popup-rule! "^\\*PLANTUML Preview\\*" :side 'right :width 0.5 :quit t))
+
+;; python
+(add-hook! python-mode
+  (set-popup-rule! "^\\*format-all-errors\\*" :slot 2 :vslot -8 :select t))
 
 ;;; CUSTOM PACKAGES
 
