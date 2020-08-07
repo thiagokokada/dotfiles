@@ -48,11 +48,7 @@
  :n "-" #'dired-jump
  :nv "C-a" #'evil-numbers/inc-at-pt
  :nv "C-S-a" #'evil-numbers/dec-at-pt
- :nv "C-SPC" #'+fold/toggle
- (:leader
-   (:prefix "o"
-     :desc "Visualize Undo Tree"
-     "u" #'undo-tree-visualize)))
+ :nv "C-SPC" #'+fold/toggle)
 
 ;; ivy
 (after! ivy
@@ -154,8 +150,6 @@
          "r" #'eval-region)))))
 
 ;; lsp
-(setq +lsp-company-backend 'company-capf)
-
 (after! lsp-mode
   (setq lsp-modeline-code-actions-mode t)
   (set-popup-rule! "\\*LSP Dart tests\\*" :slot 2 :vslot -8 :select t)
