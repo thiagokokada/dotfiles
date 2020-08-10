@@ -114,6 +114,7 @@
         cider-show-error-buffer 'only-in-repl)
   (map!
    (:map (clojure-mode-map clojurescript-mode-map)
+    (:n "R" #'hydra-cljr-help-menu/body)
     (:localleader
      ("=" #'clojure-align
       (:prefix ("n" . "namespace")
@@ -124,6 +125,11 @@
       "\"" #'cider-jack-in-cljs
       "c" #'cider-connect-clj
       "C" #'cider-connect-cljs)))))
+
+(use-package! clj-refactor
+  :after clojure-mode
+  :config
+  (set-lookup-handlers! 'clj-refactor-mode nil))
 
 ;; Workaround bug in completion
 (after! cider-mode
@@ -153,7 +159,8 @@
 (after! lsp-mode
   (setq lsp-modeline-code-actions-mode t)
   (set-popup-rule! "\\*LSP Dart tests\\*" :slot 2 :vslot -8 :select t)
-  (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t))
+  (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t)
+  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
 ;; platuml
 (add-hook! plantuml-mode
