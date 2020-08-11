@@ -126,6 +126,11 @@
       "c" #'cider-connect-clj
       "C" #'cider-connect-cljs)))))
 
+(use-package! clj-refactor
+  :after clojure-mode
+  :config
+  (set-lookup-handlers! 'clj-refactor-mode nil))
+
 ;; Workaround bug in completion
 (after! cider-mode
   (add-hook #'company-completion-started-hook #'user/set-company-maps)
