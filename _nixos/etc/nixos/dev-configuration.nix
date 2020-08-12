@@ -2,9 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    (yarn.override ({
-      nodejs = nodejs-12_x;
-    }))
     elixir
     erlang
     binutils
@@ -15,7 +12,7 @@
     m4
     ncurses.dev
     nim
-    nodejs-12_x
+    nodejs-10_x
     pipenv
     python3Full
     python3Packages.black

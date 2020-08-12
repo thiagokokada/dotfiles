@@ -28,6 +28,9 @@ in {
     (leiningen.override ({
       jdk = pkgs.jdk8;
     }))
+    (yarn.override ({
+      nodejs = nodejs-10_x;
+    }))
     apacheKafka
     awscli
     # TODO: Return to use it when graalVM stops failing to build
