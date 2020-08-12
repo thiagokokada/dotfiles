@@ -24,7 +24,8 @@
        ;;ido               ; the other *other* search engine...
        (ivy                ; a search engine for love and life
         +fuzzy
-        +icons)
+        ;;+icons
+        )
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -67,7 +68,8 @@
 
        :emacs
        (dired            ; making dired pretty [functional]
-        +icons)
+        ;;+icons
+        )
        electric          ; smarter, keyword-based electric-indent
        ;;ibuffer           ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes

@@ -26,7 +26,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     (leiningen.override ({
-      jdk = pkgs.jdk11;
+      jdk = pkgs.jdk8;
     }))
     apacheKafka
     awscli
