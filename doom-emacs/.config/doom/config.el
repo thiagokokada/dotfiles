@@ -86,8 +86,9 @@
   (dired-hide-details-mode t))
 
 ;; projectile
-(add-hook! projectile-mode
-  (setq projectile-enable-caching nil)
+(after! projectile
+  (setq projectile-enable-caching nil
+        projectile-indexing-method 'alien)
   (map!
    (:leader
      (:map projectile-mode-map
