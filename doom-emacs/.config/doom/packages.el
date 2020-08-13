@@ -10,3 +10,4 @@
 (package! lispyville)
 (package! lsp-ui :disable t)
 (package! sort-words)
+(package! uuidgen)

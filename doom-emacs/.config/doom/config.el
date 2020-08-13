@@ -20,7 +20,7 @@
 
 ;; font
 (setq doom-font (font-spec :family "Hack" :size 18)
-      doom-big-font-increment 4
+      doom-big-font-increment 2
       doom-unicode-font (font-spec :family "Noto Sans Mono"))
 
 ;; enable minibuffer to work correctly in evil mode
