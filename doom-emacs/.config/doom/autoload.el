@@ -1,9 +1,9 @@
 ;;; ~/.doom.d/autoload.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun user/unset-company-maps (&rest unused)
+(defun user/unset-company-maps (&rest _)
   "Set default mappings (outside of company).
-   Arguments (UNUSED) are ignored."
+Arguments (UNUSED) are ignored."
   (general-def
     :states 'insert
     :keymaps 'override
@@ -27,9 +27,9 @@
     [backtab] nil))
 
 ;;;###autoload
-(defun user/set-company-maps (&rest unused)
+(defun user/set-company-maps (&rest _)
   "Set maps for when you're inside company completion.
-   Arguments (UNUSED) are ignored."
+Arguments (UNUSED) are ignored."
   (general-def
     :states 'insert
     :keymaps 'override
@@ -52,3 +52,15 @@
     "TAB"     #'company-complete-common-or-cycle
     [tab]     #'company-complete-common-or-cycle
     [backtab] #'company-select-previous))
+
+;;;###autoload
+(defun screenshot-svg ()
+  "Save a screenshot of the current frame as an SVG image.
+Saves to a temp file and puts the filename in the kill ring."
+  (interactive)
+  (let* ((filename (make-temp-file "Emacs" nil ".svg"))
+         (data (x-export-frames nil 'svg)))
+    (with-temp-file filename
+      (insert data))
+    (kill-new filename)
+    (message filename)))
