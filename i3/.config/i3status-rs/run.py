@@ -163,7 +163,6 @@ def main():
     ]
 
     config = generate_config(
-        block("focused_window", max_width=41),
         net_block,
         disk_block,
         block(
