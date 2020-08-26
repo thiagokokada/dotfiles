@@ -7,6 +7,8 @@
 ;; (package! builtin-package :disable t)
 (package! adoc-mode)
 (package! evil-escape :disable t)
+(package! flycheck-clj-kondo :disable t)
+(package! graphql-mode)
 (package! lispyville)
 (package! lsp-ui :disable t)
 (package! sort-words)

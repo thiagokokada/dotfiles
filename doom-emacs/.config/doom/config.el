@@ -139,7 +139,7 @@
 
 ;; dart
 (after! dart-mode
-  (set-popup-rule! "\\*Hover\\*" :slot 2 :vslot -8 :select t :quit nil))
+  (set-popup-rule! "\\*Hover\\*" :quit nil))
 
 ;; elisp
 (add-hook! emacs-lisp-mode
@@ -158,8 +158,6 @@
 ;; lsp
 (after! lsp-mode
   (setq lsp-modeline-code-actions-mode t)
-  (set-popup-rule! "\\*LSP Dart tests\\*" :slot 2 :vslot -8 :select t)
-  (set-popup-rule! "^\\*lsp-" :slot 2 :vslot -8 :select t)
   (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
 ;; platuml
@@ -167,11 +165,12 @@
   (setq plantuml-output-type "txt")
   (set-popup-rule! "^\\*PLANTUML Preview\\*" :side 'right :width 0.5 :quit t))
 
-;; python
-(add-hook! python-mode
-  (set-popup-rule! "^\\*format-all-errors\\*" :slot 2 :vslot -8 :select t))
-
 ;;; CUSTOM PACKAGES
+
+;; graphql
+(use-package! graphql-mode
+  :mode ("\\.gql\\'" "\\.graphql\\'")
+  :config (setq-hook! 'graphql-mode-hook tab-width graphql-indent-level))
 
 ;; hover
 (use-package! hover
