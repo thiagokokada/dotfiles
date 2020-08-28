@@ -1,23 +1,17 @@
 { config, lib, pkgs, ... }:
 let
-  flutterDir = "$HOME/sdk-flutter";
-  patchFlutter = pkgs.writeShellScriptBin "patch-flutter" ''
-    isScript() {
-        local fn="$1"
-        local fd
-        local magic
-        exec {fd}< "$fn"
-        read -r -n 2 -u "$fd" magic
-        exec {fd}<&-
-        if [[ "$magic" =~ \#! ]]; then return 0; else return 1; fi
-    }
-
-    stopNest() { true; }
-
-    source ${<nixpkgs/pkgs/build-support/setup-hooks/patch-shebangs.sh>}
-    patchShebangs --build ${flutterDir}/bin/
-    find ${flutterDir}/bin/ -executable -type f -exec ${pkgs.patchelf}/bin/patchelf --set-interpreter ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 {} \;
-  '';
+  mkFlutter = opts: pkgs.callPackage (import ./pkgs/flutter.nix opts) { };
+  getPatches = dir:
+    let files = builtins.attrNames (builtins.readDir dir);
+    in map (f: dir + ("/" + f)) files;
+  flutter-nubank = mkFlutter rec {
+    pname = "flutter";
+    channel = "stable";
+    version = "1.20.2";
+    filename = "flutter_linux_${version}-${channel}.tar.xz";
+    sha256Hash = "12j1p3220319411lxbrqfq297fvzjyha1sbscmjpbqc4c4sssxyr";
+    patches = getPatches ./pkgs/patches;
+  };
 in {
   nixpkgs.config = {
     # For Slack/Zoom.
@@ -37,6 +31,7 @@ in {
     # clj-kondo
     clojure
     docker-compose
+    flutter-nubank
     gitAndTools.hub
     go
     jetbrains.idea-community
@@ -46,7 +41,6 @@ in {
     minikube
     nss
     nssTools
-    patchFlutter
     python37Packages.jupyter_core
     sassc
     unstable.circleci-cli
