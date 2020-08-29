@@ -2,10 +2,10 @@
 
 {
   environment.systemPackages = with pkgs; [
-    elixir
-    erlang
     binutils
     cmake
+    elixir
+    erlang
     gcc
     gnumake
     libtool
@@ -19,6 +19,7 @@
     python3Packages.flake8
     rustup
     shellcheck
+    unstable.python-language-server
     xxd
   ];
 

@@ -157,6 +157,8 @@
 
 ;; lsp
 (after! lsp-mode
+  (setq lsp-python-ms-executable
+        (executable-find "python-language-server"))
   (setq lsp-modeline-code-actions-mode t)
   (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
