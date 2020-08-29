@@ -91,7 +91,7 @@ try-run() { (( $+commands[${1}] )) && "${@}" }
 to-string() { awk '{print "\""$0"\""}' }
 get-ip() { curl -Ss "https://ifconfig.me" }
 get-ip!() { curl -Ss "https://ipapi.co/$(get-ip)/yaml" }
-restart() { pkill "${1}" && run-bg "${@}" }
+restart() { pkill "${1}"; run-bg "${@}" }
 
 # upgrade-all cmd
 export -ua UPGRADE_CMDS=("dotfiles-pull" "zit-up")
