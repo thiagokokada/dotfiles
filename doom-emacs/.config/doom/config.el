@@ -139,6 +139,13 @@
 
 ;; dart
 (after! dart-mode
+  (when-let (dart-exec (executable-find "dart"))
+    (let ((dart-sdk-path (-> dart-exec
+                             file-chase-links
+                             file-name-directory
+                             directory-file-name
+                             file-name-directory)))
+      (setq lsp-dart-sdk-dir dart-sdk-path)))
   (set-popup-rule! "\\*Hover\\*" :quit nil))
 
 ;; elisp
