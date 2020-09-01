@@ -1,6 +1,12 @@
 #!/bin/sh
 
 export TMPDIR=/tmp
-HOVER_COMMAND="${GOPATH}/bin/hover $@"
+GOPATH="$( dirname "$( which "$0" )" )"/.hover
+HOVER_BIN="${GOPATH}/bin/hover"
+HOVER_COMMAND="${HOVER_BIN} $@"
 
-nix-shell -p libGL pkgconfig glfw xorg.libX11 xorg.libXrandr xorg.libXinerama xorg.libXxf86vm xorg.libXi xorg.libXcursor xorg.libXext --run "$HOVER_COMMAND"
+if [ ! -x "${HOVER_BIN}" ]; then
+	GO111MODULE=on go get -u -a github.com/go-flutter-desktop/hover
+fi
+
+nix-shell -p libGL pkgconfig glfw xorg.libX11 xorg.libXrandr xorg.libXinerama xorg.libXxf86vm xorg.libXi xorg.libXcursor xorg.libXext --run "${HOVER_COMMAND}"
