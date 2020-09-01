@@ -1,0 +1,1 @@
+-e git+https://github.com/thiagokokada/i3pyblocks#egg=i3pyblocks[aionotify,i3ipc,psutil,pulsectl]
