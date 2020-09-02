@@ -139,6 +139,15 @@
 
 ;; dart
 (after! dart-mode
+  (map!
+   (:map dart-mode-map
+    (:localleader
+     (:prefix ("h" . "hover")
+      "c" #'hover-clear-buffer
+      "r" #'hover-run-or-hot-reload
+      "R" #'hover-run-or-hot-restart
+      "p" #'hover-take-screenshot))))
+
   (when-let (dart-exec (executable-find "dart"))
     (let ((dart-sdk-path (-> dart-exec
                              file-chase-links
@@ -186,6 +195,7 @@
   :after dart-mode
   :config
   (setq hover-hot-reload-on-save t
+        hover-clear-buffer-on-hot-restart t
         hover-screenshot-path "$HOME/Pictures"))
 
 ;; lispyville
