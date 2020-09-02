@@ -79,6 +79,15 @@
     };
   };
 
+  # Enable Java.
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk11;
+  };
+
+  # Enable Java anti-aliasing.
+  environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
+
   # Enable Gnome Keyring
   security.pam.services.gdm.enableGnomeKeyring = true;
   services.gnome3.gnome-keyring.enable = true;

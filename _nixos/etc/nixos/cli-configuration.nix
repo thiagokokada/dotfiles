@@ -57,6 +57,7 @@
     pv
     python3Packages.youtube-dl
     ripgrep
+    screenkey
     sloccount
     sshuttle
     stow

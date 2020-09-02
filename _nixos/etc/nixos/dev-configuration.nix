@@ -8,6 +8,8 @@
     erlang
     gcc
     gnumake
+    go
+    joker
     libtool
     m4
     ncurses.dev

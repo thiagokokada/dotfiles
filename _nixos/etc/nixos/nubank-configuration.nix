@@ -12,49 +12,19 @@
   };
 
   environment.systemPackages = with pkgs; [
-    (leiningen.override ({
-      jdk = pkgs.jdk8;
-    }))
     (yarn.override ({
       nodejs = nodejs-10_x;
     }))
     apacheKafka
-    awscli
-    # TODO: Return to use it when graalVM stops failing to build
-    # clj-kondo
-    clojure
     docker-compose
     nubank.flutter
     nubank.dart
     nubank.hover
-    gitAndTools.hub
-    go
-    jetbrains.idea-community
-    joker
-    jupyter
-    kubectl
-    minikube
-    nss
-    nssTools
-    python37Packages.jupyter_core
     sassc
-    unstable.circleci-cli
-    unstable.clojure-lsp
-    unstable.lumo
-    unstable.openfortivpn
     unstable.slack
     unstable.zoom-us
-    vagrant
-  ];
-
-  # Enable Java.
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk11;
-  };
-
-  # Enable Java anti-aliasing.
-  environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
+  ]
+  ++ nubank.all-tools;
 
   virtualisation = {
     # Enable Docker.
@@ -65,13 +35,5 @@
   };
 
   # Added user to groups.
-  users.users.thiagoko.extraGroups = [ "docker" "vboxusers" "scanner" ];
-
-  services = {
-    # Enable CUPS.
-    printing = {
-      enable = true;
-      drivers = [ pkgs.postscript-lexmark ];
-    };
-  };
+  users.users.thiagoko.extraGroups = [ "docker" "vboxusers" ];
 }
