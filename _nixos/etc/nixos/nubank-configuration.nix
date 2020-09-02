@@ -24,7 +24,9 @@
     # clj-kondo
     clojure
     docker-compose
-    flutter-nubank
+    nubank.flutter
+    nubank.dart
+    nubank.hover
     gitAndTools.hub
     go
     jetbrains.idea-community
