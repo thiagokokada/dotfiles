@@ -152,6 +152,7 @@ async def main():
     runner.register_block(
         aiohttp.RequestBlock(
             "https://wttr.in/?format=%c+%t",
+            format="{response:.7s}",
             format_error="",
             sleep=60*60,
         ),

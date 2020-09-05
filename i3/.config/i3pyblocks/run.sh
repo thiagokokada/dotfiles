@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd $(dirname "${0}")
-nix-shell --run "python3 config.py" 2>/dev/null
+nix-shell --run "i3pyblocks -c config.py" 2>/dev/null

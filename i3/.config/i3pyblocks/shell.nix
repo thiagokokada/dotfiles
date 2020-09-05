@@ -29,6 +29,6 @@ in mkShell {
 
     source "${venvDir}/bin/activate" 1>&2
 
-    pip install -r requirements.txt 1>&2
+    pip install -U -r requirements.txt 1>&2
   '';
 }
