@@ -43,7 +43,7 @@ set $area_screenshot maim -s \
 set $mons $HOME/.config/i3/scripts/mons.sh
 
 # status bar
-set $status_bar $HOME/.config/i3pyblocks/run.sh
+set $status_bar i3pyblocks -c $HOME/.config/i3pyblocks/config.py
 
 # using Super (Win key) instead of Alt
 set $mod Mod4
