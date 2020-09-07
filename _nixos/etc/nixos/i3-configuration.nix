@@ -3,7 +3,7 @@
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/thiagokokada/i3pyblocks/archive/master.tar.gz;
+      url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
     }))
   ];
 
