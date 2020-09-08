@@ -109,7 +109,6 @@
             dunst
             i3lock
             i3pyblocks
-            kbdd
             libnotify
             maim
             nitrogen
