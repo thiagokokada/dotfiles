@@ -54,7 +54,7 @@ Arguments (UNUSED) are ignored."
     [backtab] #'company-select-previous))
 
 ;;;###autoload
-(defun screenshot-svg ()
+(defun user/screenshot-svg ()
   "Save a screenshot of the current frame as an SVG image.
 Saves to a temp file and puts the filename in the kill ring."
   (interactive)

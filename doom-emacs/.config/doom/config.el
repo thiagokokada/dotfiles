@@ -137,6 +137,14 @@
   (add-hook #'company-completion-finished-hook #'user/unset-company-maps)
   (add-hook #'company-completion-cancelled-hook #'user/unset-company-maps))
 
+(defun find-path-by-executable (exec)
+  (when-let (path (executable-find exec))
+    (-> path
+        file-chase-links
+        file-name-directory
+        directory-file-name
+        file-name-directory)))
+
 ;; dart
 (after! dart-mode
   (map!
@@ -153,13 +161,8 @@
       "R" #'hover-run-or-hot-restart
       "p" #'hover-take-screenshot))))
 
-  (when-let (dart-exec (executable-find "dart"))
-    (let ((dart-sdk-path (-> dart-exec
-                             file-chase-links
-                             file-name-directory
-                             directory-file-name
-                             file-name-directory)))
-      (setq lsp-dart-sdk-dir dart-sdk-path)))
+  (setq lsp-dart-sdk-dir (find-path-by-executable "dart"))
+  (setq lsp-flutter-sdk-dir (find-path-by-executable "flutter"))
   (set-popup-rule! "\\*Hover\\*" :quit nil))
 
 ;; elisp
