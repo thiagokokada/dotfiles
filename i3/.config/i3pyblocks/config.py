@@ -42,11 +42,11 @@ async def main():
     for partition in partitions():
         runner.register_block(
             psutil.DiskUsageBlock(
-                format=" {short_path}: {free:.1f}GiB", path=partition.mountpoint,
+                format=" {short_path}: {free:.1f}G", path=partition.mountpoint,
             )
         )
 
-    runner.register_block(psutil.VirtualMemoryBlock(format=" {available:.1f}GiB"))
+    runner.register_block(psutil.VirtualMemoryBlock(format=" {available:.1f}G"))
 
     runner.register_block(
         psutil.SensorsTemperaturesBlock(
@@ -54,8 +54,6 @@ async def main():
             icons=((0, ""), (25, ""), (50, ""), (75, "")),
         )
     )
-
-    runner.register_block(psutil.CpuPercentBlock(format=" {percent}%"))
 
     runner.register_block(psutil.LoadAvgBlock(format=" {load1}"))
 
