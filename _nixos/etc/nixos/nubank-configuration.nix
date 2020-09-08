@@ -17,10 +17,11 @@
     }))
     apacheKafka
     docker-compose
-    nubank.flutter
     nubank.dart
+    nubank.flutter
     nubank.hover
     sassc
+    unstable.openfortivpn
     unstable.slack
     unstable.zoom-us
   ]
