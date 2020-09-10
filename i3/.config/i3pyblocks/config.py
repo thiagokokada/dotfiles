@@ -29,9 +29,9 @@ def partitions(excludes=("/boot", "/nix/store")):
 async def main():
     runner = Runner()
 
-    runner.register_block(i3ipc.WindowTitleBlock(format=" {window_title:.41s}"))
+    await runner.register_block(i3ipc.WindowTitleBlock(format=" {window_title:.41s}"))
 
-    runner.register_block(
+    await runner.register_block(
         psutil.NetworkSpeedBlock(
             format_up=" {interface:.2s}:  {upload}  {download}",
             format_down="",
@@ -40,24 +40,24 @@ async def main():
     )
 
     for partition in partitions():
-        runner.register_block(
+        await runner.register_block(
             psutil.DiskUsageBlock(
                 format=" {short_path}: {free:.1f}G", path=partition.mountpoint,
             )
         )
 
-    runner.register_block(psutil.VirtualMemoryBlock(format=" {available:.1f}G"))
+    await runner.register_block(psutil.VirtualMemoryBlock(format=" {available:.1f}G"))
 
-    runner.register_block(
+    await runner.register_block(
         psutil.SensorsTemperaturesBlock(
             format="{icon} {current:.0f}°C",
             icons=((0, ""), (25, ""), (50, ""), (75, "")),
         )
     )
 
-    runner.register_block(psutil.LoadAvgBlock(format=" {load1}"))
+    await runner.register_block(psutil.LoadAvgBlock(format=" {load1}"))
 
-    runner.register_block(
+    await runner.register_block(
         psutil.SensorsBatteryBlock(
             format_plugged=" {percent:.0f}%",
             format_unplugged="{icon} {percent:.0f}% {remaining_time}",
@@ -67,7 +67,7 @@ async def main():
         )
     )
 
-    runner.register_block(
+    await runner.register_block(
         subprocess.ToggleBlock(
             command_state="xset q | grep -Fo 'DPMS is Enabled'",
             command_on="xset s on +dpms",
@@ -77,7 +77,7 @@ async def main():
         )
     )
 
-    runner.register_block(
+    await runner.register_block(
         subprocess.ShellBlock(
             command="xkblayout-state print %s",
             format=" {output}",
@@ -88,7 +88,7 @@ async def main():
         )
     )
 
-    runner.register_block(
+    await runner.register_block(
         aionotify.BacklightBlock(
             format=" {percent:.0f}%",
             format_no_backlight="",
@@ -99,12 +99,12 @@ async def main():
         )
     )
 
-    runner.register_block(
+    await runner.register_block(
         pulsectl.PulseAudioBlock(format=" {volume:.0f}%", format_mute=" mute"),
         signals=(signal.SIGUSR1, signal.SIGUSR2),
     )
 
-    runner.register_block(
+    await runner.register_block(
         aiohttp.PollingRequestBlock(
             "https://wttr.in/?format=%c+%t",
             format="{response:.7s}",
@@ -113,7 +113,7 @@ async def main():
         ),
     )
 
-    runner.register_block(
+    await runner.register_block(
         datetime.DateTimeBlock(format_time=" %T", format_date=" %a, %d/%m")
     )
 
