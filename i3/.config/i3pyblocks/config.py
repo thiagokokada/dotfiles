@@ -78,7 +78,7 @@ async def main():
     )
 
     await runner.register_block(
-        dbus.KbddBlock(format=" {full_layout:.2s}")
+        dbus.KbddBlock(format=" {full_layout!l:.2s}")
     )
 
     await runner.register_block(
