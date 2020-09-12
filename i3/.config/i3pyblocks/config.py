@@ -9,10 +9,11 @@ import psutil
 
 from i3pyblocks import Runner, types
 from i3pyblocks.blocks import (
-    http,
-    inotify,
     datetime,
+    dbus,
+    http,
     i3ipc,
+    inotify,
     ps,
     pulse,
     subprocess,
@@ -77,14 +78,7 @@ async def main():
     )
 
     await runner.register_block(
-        subprocess.ShellBlock(
-            command="xkblayout-state print %s",
-            format=" {output}",
-            command_on_click={
-                types.MouseButton.SCROLL_UP: "xkblayout-state set +1",
-                types.MouseButton.SCROLL_DOWN: "xkblayout-state set -1",
-            },
-        )
+        dbus.KbddBlock(format=" {full_layout:.2s}")
     )
 
     await runner.register_block(

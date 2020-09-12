@@ -335,6 +335,9 @@ exec --no-startup-id picom --experimental-backends
 # notification manager
 exec --no-startup-id dunst
 
+# keyboard layout daemon
+exec --no-startup-id kbdd
+
 # file manager in daemon mode (to manage external media)
 exec --no-startup-id $file_manager --daemon-mode
 
