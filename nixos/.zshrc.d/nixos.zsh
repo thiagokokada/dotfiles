@@ -49,4 +49,8 @@ nixos-restore-etc() {
   done
 }
 
+nix-build-derivation() {
+  nix-build -E "with import <nixpkgs> {}; callPackage `realpath "$1"` {}"
+}
+
 UPGRADE_CMDS+="sudo nixos-rebuild switch --upgrade"
