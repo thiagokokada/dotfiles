@@ -6,6 +6,7 @@
     cmake
     elixir
     erlang
+    expect
     gcc
     gnumake
     go

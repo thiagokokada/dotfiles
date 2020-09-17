@@ -21,6 +21,7 @@
     nubank.flutter
     nubank.hover
     sassc
+    unstable.github-cli
     unstable.openfortivpn
     unstable.slack
     unstable.zoom-us
