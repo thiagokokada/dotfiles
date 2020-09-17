@@ -55,7 +55,17 @@ async def main():
         )
     )
 
-    await runner.register_block(ps.LoadAvgBlock(format=" {load1}"))
+    cpu_count = psutil.cpu_count()
+    await runner.register_block(
+        ps.LoadAvgBlock(
+            format=" {load1}",
+            colors={
+                0: types.Color.NEUTRAL,
+                cpu_count / 2: types.Color.WARN,
+                cpu_count: types.Color.URGENT,
+            },
+        ),
+    )
 
     await runner.register_block(
         ps.SensorsBatteryBlock(
@@ -77,9 +87,7 @@ async def main():
         )
     )
 
-    await runner.register_block(
-        dbus.KbddBlock(format=" {full_layout!l:.2s}")
-    )
+    await runner.register_block(dbus.KbddBlock(format=" {full_layout!l:.2s}"))
 
     await runner.register_block(
         inotify.BacklightBlock(
