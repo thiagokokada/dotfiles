@@ -31,7 +31,7 @@ set $area_screenshot grim -g "$(slurp)" \
 set $lock_screen swaylock -c 000000
 
 # status bar
-set $status_bar $HOME/.config/i3status-rs/run.py
+set $status_bar i3pyblocks -c $HOME/.config/i3pyblocks/config.py
 
 # using Super (Win key) instead of Alt
 set $mod Mod4

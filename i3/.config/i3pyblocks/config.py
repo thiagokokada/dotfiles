@@ -17,6 +17,7 @@ from i3pyblocks.blocks import (
     ps,
     pulse,
     shell,
+    x11,
 )
 
 logging.basicConfig(filename=Path.home() / ".i3pyblocks.log", level=logging.DEBUG)
@@ -77,15 +78,7 @@ async def main():
         )
     )
 
-    await runner.register_block(
-        shell.ToggleBlock(
-            command_state="xset q | grep -Fo 'DPMS is Enabled'",
-            command_on="xset s on +dpms",
-            command_off="xset s off -dpms",
-            format_on="  ",
-            format_off="  ",
-        )
-    )
+    await runner.register_block(x11.DPMSBlock(format_on="  ", format_off="  "))
 
     await runner.register_block(dbus.KbddBlock(format=" {full_layout!l:.2s}"))
 
