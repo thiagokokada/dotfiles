@@ -82,8 +82,6 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # helpers
-dotfiles() { cd "${DOTFILES_PATH}" }
-dotfiles-pull() { git -C "${DOTFILES_PATH}" pull }
 close-fd() { "${@}" </dev/null &>/dev/null }
 run-bg() { "${@}" </dev/null &>/dev/null &! }
 open() { run-bg xdg-open "${@}" }
@@ -104,8 +102,10 @@ upgrade-all() {
 alias up!="upgrade-all"
 
 # aliases
-alias reload!="source ${HOME}/.zshrc"
-alias clean-cache!="rm -f ${HOME}/.*.zwc"
+alias dotfiles="cd \"${DOTFILES_PATH}\""
+alias dotfiles-pull="git -C \"${DOTFILES_PATH}\" pull"
+alias reload!="source \"${HOME}/.zshrc\""
+alias clean-cache!="rm -f \"${HOME}/.*.zwc\""
 alias gk="run-bg gitk"
 alias http-server="python3 -m http.server"
 alias ln-clean-up="rm -- **/*(-@D)"
