@@ -1,7 +1,7 @@
 ZIT_MODULES_PATH="${HOME}/.config" \
   zit-in "https://github.com/jarun/nnn" "nnn"
 export NNN_PLUG='c:fzcd;f:finder;o:fzopen;d:diffs;t:nmount;v:imgview'
-export NNN_BMS='D:~/Downloads/;P:~/Projects;m:/mnt;r:/'
+export NNN_BMS='D:~/Downloads/;I:~/Pictures;P:~/Projects;m:/mnt;r:/'
 
 n ()
 {
