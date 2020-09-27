@@ -20,8 +20,14 @@
     (mpv-with-scripts.override ({
       scripts = [ mpvScripts.mpris ];
     }))
-    (nnn.overrideAttrs (oldAttrs: {
-      makeFlags = oldAttrs.makeFlags ++ [ "O_NERD=1" ];
+    (unstable.nnn.overrideAttrs (oldAttrs: {
+      src = fetchFromGitHub {
+        owner = "jarun";
+        repo = "nnn";
+        rev = "627c5cfc36461dc20f1e8c903148324fa15b063b";
+        sha256 = "1kil2kx3wqbdzdshhg8js903528gl7zpa1i72nl7k9ypr1qkza4m";
+      };
+      buildFlags = [ "O_NERD=1" ];
     }))
     any-nix-shell
     aria2
