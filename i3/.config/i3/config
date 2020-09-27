@@ -23,7 +23,7 @@ set $base0F #a3685a
 # default applications
 set $terminal kitty
 set $browser firefox
-set $file_manager pcmanfm
+set $file_manager kitty nnn
 set $lock_screen env \
   XSECURELOCK_FORCE_GRAB=2 \
   XSECURELOCK_BLANK_DPMS_STATE=off \
