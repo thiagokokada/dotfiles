@@ -20,6 +20,9 @@
     (mpv-with-scripts.override ({
       scripts = [ mpvScripts.mpris ];
     }))
+    (nnn.overrideAttrs (oldAttrs: {
+      makeFlags = oldAttrs.makeFlags ++ [ "O_NERD=1" ];
+    }))
     any-nix-shell
     aria2
     bc
@@ -61,6 +64,7 @@
     sloccount
     sshuttle
     stow
+    sxiv
     tealdeer
     telnet
     tig
@@ -78,6 +82,9 @@
   # Fonts used in terminal.
   fonts = {
     fonts = with pkgs; [
+      (unstable.nerdfonts.override {
+        fonts = [ "Hack" ];
+      })
       emacs-all-the-icons-fonts
       hack-font
       inconsolata

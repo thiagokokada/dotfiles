@@ -25,7 +25,6 @@
     peek
     perlPackages.FileMimeInfo
     qalculate-gtk
-    ranger
     redshift
     shared-mime-info
     termite
