@@ -110,7 +110,6 @@ alias gk="run-bg gitk"
 alias http-server="python3 -m http.server"
 alias ln-clean-up="rm -- **/*(-@D)"
 alias nvimdiff="nvim -d"
-alias ssh="TERM=xterm-256color ssh"
 
 # source contents from ~/.zshrc.d/*.zsh
 for file in ${HOME}/.zshrc.d/*.zsh; do
