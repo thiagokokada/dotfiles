@@ -63,6 +63,7 @@ async def main():
         ps.SensorsTemperaturesBlock(
             format="{icon} {current:.0f}°C",
             icons={0: "", 25: "", 50: "", 75: ""},
+            sensor_regex=r"coretemp.*",
         )
     )
 
