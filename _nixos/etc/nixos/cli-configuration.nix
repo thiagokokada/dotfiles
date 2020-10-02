@@ -20,15 +20,6 @@
     (mpv-with-scripts.override ({
       scripts = [ mpvScripts.mpris ];
     }))
-    (unstable.nnn.overrideAttrs (oldAttrs: {
-      src = fetchFromGitHub {
-        owner = "jarun";
-        repo = "nnn";
-        rev = "627c5cfc36461dc20f1e8c903148324fa15b063b";
-        sha256 = "1kil2kx3wqbdzdshhg8js903528gl7zpa1i72nl7k9ypr1qkza4m";
-      };
-      buildFlags = [ "O_NERD=1" ];
-    }))
     any-nix-shell
     aria2
     bc
@@ -55,6 +46,7 @@
     mediainfo
     ncdu
     netcat-gnu
+    nnn
     nox
     openssl
     p7zip
@@ -88,9 +80,6 @@
   # Fonts used in terminal.
   fonts = {
     fonts = with pkgs; [
-      (unstable.nerdfonts.override {
-        fonts = [ "Hack" ];
-      })
       emacs-all-the-icons-fonts
       hack-font
       inconsolata
