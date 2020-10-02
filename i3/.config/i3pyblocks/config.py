@@ -25,9 +25,13 @@ logging.basicConfig(filename=Path.home() / ".i3pyblocks.log", level=logging.DEBU
 
 async def weather_callback(resp):
     if resp.status != 200:
-        return
+        return ""
 
     text = await resp.text()
+
+    if "unknown" in text.lower():
+        return ""
+
     return " ".join(text.split())
 
 
