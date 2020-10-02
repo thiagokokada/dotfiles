@@ -24,6 +24,7 @@ set $base0F #a3685a
 set $terminal kitty
 set $browser firefox
 set $file_manager kitty zsh -ic n
+set $file_manager_gui pcmanfm
 set $lock_screen env \
   XSECURELOCK_FORCE_GRAB=2 \
   XSECURELOCK_BLANK_DPMS_STATE=off \
@@ -339,7 +340,7 @@ exec --no-startup-id dunst
 exec --no-startup-id kbdd
 
 # file manager in daemon mode (to manage external media)
-exec --no-startup-id $file_manager --daemon-mode
+exec --no-startup-id $file_manager_gui --daemon-mode
 
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
