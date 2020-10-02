@@ -23,6 +23,14 @@ from i3pyblocks.blocks import (
 logging.basicConfig(filename=Path.home() / ".i3pyblocks.log", level=logging.DEBUG)
 
 
+async def weather_callback(resp):
+    if resp.status != 200:
+        return
+
+    text = await resp.text()
+    return " ".join(text.split())
+
+
 def partitions(excludes=("/boot", "/nix/store")):
     partitions = psutil.disk_partitions()
     return [p for p in partitions if p.mountpoint not in excludes]
@@ -44,7 +52,8 @@ async def main():
     for partition in partitions():
         await runner.register_block(
             ps.DiskUsageBlock(
-                format=" {short_path}: {free:.1f}G", path=partition.mountpoint,
+                format=" {short_path}: {free:.1f}G",
+                path=partition.mountpoint,
             )
         )
 
@@ -52,7 +61,8 @@ async def main():
 
     await runner.register_block(
         ps.SensorsTemperaturesBlock(
-            format="{icon} {current:.0f}°C", icons={0: "", 25: "", 50: "", 75: ""},
+            format="{icon} {current:.0f}°C",
+            icons={0: "", 25: "", 50: "", 75: ""},
         )
     )
 
@@ -105,9 +115,9 @@ async def main():
 
     await runner.register_block(
         http.PollingRequestBlock(
-            "https://wttr.in/?format=%c+%t",
-            format="{response:.7s}",
+            "https://wttr.in/?format=1",
             format_error="",
+            response_callback=weather_callback,
             sleep=60 * 60,
         ),
     )
