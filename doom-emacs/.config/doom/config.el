@@ -146,24 +146,9 @@
         file-name-directory)))
 
 ;; dart
-(after! dart-mode
-  (map!
-   (:map dart-mode-map
-    (:localleader
-     (:prefix ("t" . "test")
-      "t" #'lsp-dart-run-test-at-point
-      "a" #'lsp-dart-run-all-tests
-      "f" #'lsp-dart-run-test-file
-      "l" #'lsp-dart-run-last-test)
-     (:prefix ("h" . "hover")
-      "c" #'hover-clear-buffer
-      "r" #'hover-run-or-hot-reload
-      "R" #'hover-run-or-hot-restart
-      "p" #'hover-take-screenshot))))
-
-  (setq lsp-dart-sdk-dir (find-path-by-executable "dart"))
-  (setq lsp-flutter-sdk-dir (find-path-by-executable "flutter"))
-  (set-popup-rule! "\\*Hover\\*" :quit nil))
+(setq lsp-dart-sdk-dir (find-path-by-executable "dart"))
+(setq lsp-flutter-sdk-dir (find-path-by-executable "flutter"))
+(set-popup-rule! "\\*Hover\\*" :quit nil)
 
 ;; elisp
 (add-hook! emacs-lisp-mode
