@@ -112,6 +112,7 @@
             kbdd
             libnotify
             maim
+            mons
             nitrogen
             rofi
             unstable.picom

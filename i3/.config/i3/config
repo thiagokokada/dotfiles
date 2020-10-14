@@ -41,7 +41,6 @@ set $fs_screenshot maim \
 set $area_screenshot maim -s \
   "$(xdg-user-dir PICTURES)/$(date +%Y-%m-%d_%H-%M-%S)-screenshot.png" && \
   notify-send -u normal -t 5000 'Area screenshot taken'
-set $mons $HOME/.config/i3/scripts/mons.sh
 
 # status bar
 set $status_bar i3pyblocks -c $HOME/.config/i3pyblocks/config.py
@@ -251,22 +250,22 @@ bindsym $mod+r mode "$resize"
 set $display_layout  : [h]  , [j]  , [k]  , [l]  , [d]uplicate, [m]irror, [s]econd-only, [o]ff
 mode "$display_layout" {
     # vi-like
-    bindsym $left mode "default", exec $mons -e left && $set_wallpaper
-    bindsym $down mode "default", exec $mons -e bottom && $set_wallpaper
-    bindsym $up mode "default", exec $mons -e top && $set_wallpaper
-    bindsym $right mode "default", exec $mons -e right && $set_wallpaper
+    bindsym $left mode "default", exec mons -e left && $set_wallpaper
+    bindsym $down mode "default", exec mons -e bottom && $set_wallpaper
+    bindsym $up mode "default", exec mons -e top && $set_wallpaper
+    bindsym $right mode "default", exec mons -e right && $set_wallpaper
 
     # arrow keys
-    bindsym Left mode "default", exec $mons -e left && $set_wallpaper
-    bindsym Down mode "default", exec $mons -e bottom && $set_wallpaper
-    bindsym Up mode "default", exec $mons -e top && $set_wallpaper
-    bindsym Right mode "default", exec $mons -e right && $set_wallpaper
+    bindsym Left mode "default", exec mons -e left && $set_wallpaper
+    bindsym Down mode "default", exec mons -e bottom && $set_wallpaper
+    bindsym Up mode "default", exec mons -e top && $set_wallpaper
+    bindsym Right mode "default", exec mons -e right && $set_wallpaper
 
     # misc
-    bindsym d mode "default", exec $mons -d && $set_wallpaper
-    bindsym m mode "default", exec $mons -m && $set_wallpaper
-    bindsym s mode "default", exec $mons -s && $set_wallpaper
-    bindsym o mode "default", exec $mons -o && $set_wallpaper
+    bindsym d mode "default", exec mons -d && $set_wallpaper
+    bindsym m mode "default", exec mons -m && $set_wallpaper
+    bindsym s mode "default", exec mons -s && $set_wallpaper
+    bindsym o mode "default", exec mons -o && $set_wallpaper
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -338,6 +337,9 @@ exec --no-startup-id dunst
 
 # keyboard layout daemon
 exec --no-startup-id kbdd
+
+# start mons in daemon mode
+exec --no-startup-id mons -a
 
 # file manager in daemon mode (to manage external media)
 exec --no-startup-id $file_manager_gui --daemon-mode
