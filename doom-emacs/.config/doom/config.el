@@ -139,11 +139,10 @@
 
 (defun find-path-by-executable (exec)
   (when-let (path (executable-find exec))
-    (-> path
-        file-chase-links
-        file-name-directory
-        directory-file-name
-        file-name-directory)))
+    (file-name-directory
+     (directory-file-name
+      (file-name-directory
+       (file-chase-links path))))))
 
 ;; dart
 (setq lsp-dart-sdk-dir (find-path-by-executable "dart"))
