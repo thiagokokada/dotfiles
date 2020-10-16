@@ -131,12 +131,7 @@
   :config
   (set-lookup-handlers! 'clj-refactor-mode nil))
 
-;; Workaround bug in completion
-(after! cider-mode
-  (add-hook #'company-completion-started-hook #'user/set-company-maps)
-  (add-hook #'company-completion-finished-hook #'user/unset-company-maps)
-  (add-hook #'company-completion-cancelled-hook #'user/unset-company-maps))
-
+;; dart
 (defun find-path-by-executable (exec)
   (when-let (path (executable-find exec))
     (file-name-directory
@@ -144,7 +139,6 @@
       (file-name-directory
        (file-chase-links path))))))
 
-;; dart
 (setq lsp-dart-sdk-dir (find-path-by-executable "dart"))
 (setq lsp-flutter-sdk-dir (find-path-by-executable "flutter"))
 (set-popup-rule! "\\*Hover\\*" :quit nil)
