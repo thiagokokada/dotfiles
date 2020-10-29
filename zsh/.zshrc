@@ -24,6 +24,7 @@ zit-il "https://github.com/zimfw/git" "git" "init.zsh"
 zit-il "https://github.com/zimfw/ssh" "ssh" "init.zsh"
 zit-il "https://github.com/zimfw/termtitle" "termtitle" "init.zsh"
 zit-il "https://github.com/zimfw/utility" "utility" "init.zsh"
+zit-il "https://github.com/zimfw/steeef" "steeef" "steeef.zsh-theme"
 
 zit-in "https://github.com/zimfw/archive" "archive" "init.zsh"
 
@@ -37,11 +38,6 @@ zit-il "https://github.com/zsh-users/zsh-syntax-highlighting" \
   "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
 zit-il "https://github.com/zsh-users/zsh-history-substring-search" \
   "zsh-history-substring-search" "zsh-history-substring-search.plugin.zsh"
-
-# pure
-zit-in "https://github.com/sindresorhus/pure" "pure"
-zit-lo "pure" "async.zsh"
-zit-lo "pure" "pure.zsh"
 
 # misc
 zit-il "https://github.com/rupa/z/" "z" "z.sh"
