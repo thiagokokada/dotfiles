@@ -24,7 +24,6 @@ zit-il "https://github.com/zimfw/git" "git" "init.zsh"
 zit-il "https://github.com/zimfw/ssh" "ssh" "init.zsh"
 zit-il "https://github.com/zimfw/termtitle" "termtitle" "init.zsh"
 zit-il "https://github.com/zimfw/utility" "utility" "init.zsh"
-zit-il "https://github.com/zimfw/steeef" "steeef" "steeef.zsh-theme"
 
 zit-in "https://github.com/zimfw/archive" "archive" "init.zsh"
 
@@ -34,10 +33,11 @@ unarchive() { zsh "${ZIT_MODULES_PATH}/archive/functions/unarchive" "${@}" }
 # zsh-users
 zit-il "https://github.com/zsh-users/zsh-autosuggestions" \
   "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
-zit-il "https://github.com/zsh-users/zsh-syntax-highlighting" \
-  "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
-zit-il "https://github.com/zsh-users/zsh-history-substring-search" \
-  "zsh-history-substring-search" "zsh-history-substring-search.plugin.zsh"
+
+# pure
+zit-in "https://github.com/sindresorhus/pure" "pure"
+zit-lo "pure" "async.zsh"
+zit-lo "pure" "pure.zsh"
 
 # misc
 zit-il "https://github.com/rupa/z/" "z" "z.sh"
@@ -58,19 +58,13 @@ setopt noflowcontrol
 bindkey -v
 export KEYTIMEOUT=1
 
-# zsh-autosuggestions
-bindkey '^ ' autosuggest-accept
-zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-
-# zsh-history-substring-search
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
 # pure
 prompt_pure_set_title() { return } # monkeypatch fn to disable title update
 
-# zsh-syntax-highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+bindkey '^ ' autosuggest-accept
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # edit current line
 autoload -U edit-command-line
@@ -118,3 +112,17 @@ export PATH="${HOME}/.local/bin:${PATH}"
 # script to compile ZSH files
 # should be called last
 zit-lo "zit" "extras/compile-zsh-files.zsh"
+
+# Must be sourced at the end of the file:
+# https://github.com/zsh-users/zsh-syntax-highlighting#why-must-zsh-syntax-highlightingzsh-be-sourced-at-the-end-of-the-zshrc-file
+zit-il "https://github.com/zsh-users/zsh-syntax-highlighting" \
+  "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
+zit-il "https://github.com/zsh-users/zsh-history-substring-search" \
+  "zsh-history-substring-search" "zsh-history-substring-search.plugin.zsh"
+
+# zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
+
+# zsh-history-substring-search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
