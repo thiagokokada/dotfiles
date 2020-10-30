@@ -29,13 +29,10 @@
   ++ nubank.all-tools;
 
   virtualisation = {
-    # Enable Docker.
-    docker.enable = true;
-
     # Enable VirtualBox.
     virtualbox.host.enable = true;
   };
 
   # Added user to groups.
-  users.users.thiagoko.extraGroups = [ "docker" "vboxusers" ];
+  users.users.thiagoko.extraGroups = [ "vboxusers" ];
 }

@@ -27,4 +27,12 @@
   ];
 
   programs.adb.enable = true;
+
+  virtualisation = {
+    # Enable Docker.
+    docker.enable = true;
+  };
+
+  # Added user to groups.
+  users.users.thiagoko.extraGroups = [ "docker" ];
 }
