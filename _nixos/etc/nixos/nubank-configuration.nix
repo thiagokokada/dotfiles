@@ -17,12 +17,12 @@
     }))
     apacheKafka
     docker-compose
+    github-cli
     nubank.dart
     nubank.flutter
     nubank.hover
+    openfortivpn
     sassc
-    unstable.github-cli
-    unstable.openfortivpn
     unstable.slack
     unstable.zoom-us
   ]

@@ -28,8 +28,6 @@
     opengl = {
       # Enable 32 bit support since most Steam games are compiled to 32-bit only.
       driSupport32Bit = true;
-      # Enable S3TC (S3 Texture Compression) via libtxc_dxtn.
-      s3tcSupport = true;
     };
 
     pulseaudio = {

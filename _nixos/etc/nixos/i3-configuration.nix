@@ -114,8 +114,8 @@
             maim
             mons
             nitrogen
+            picom
             rofi
-            unstable.picom
             xdg-user-dirs
             xkblayout-state
             xsecurelock

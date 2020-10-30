@@ -14,8 +14,8 @@
       vimAlias = true;
       viAlias = true;
     }))
-    ((emacsPackagesGen emacsUnstable).emacsWithPackages (epkgs: [
-      epkgs.emacs-libvterm
+    ((emacsPackagesGen emacs).emacsWithPackages (epkgs: [
+      epkgs.vterm
     ]))
     (mpv-with-scripts.override ({
       scripts = [ mpvScripts.mpris ];
@@ -55,6 +55,7 @@
     playerctl
     powertop
     psmisc
+    page
     pv
     python3Packages.youtube-dl
     ripgrep
@@ -68,7 +69,6 @@
     tig
     universal-ctags
     unrar
-    unstable.page
     unzip
     usbutils
     wget

@@ -17,8 +17,8 @@
     insync
     keepassx-community
     kitty
-    libreoffice-fresh
-    lxappearance-gtk3
+    # libreoffice-fresh
+    lxappearance
     lxmenu-data
     pavucontrol
     pcmanfm

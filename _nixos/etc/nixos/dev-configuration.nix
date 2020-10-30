@@ -17,12 +17,12 @@
     nim
     nodejs-10_x
     pipenv
+    python-language-server
     python3Full
     python3Packages.black
     python3Packages.flake8
     rustup
     shellcheck
-    unstable.python-language-server
     xxd
   ];
 
