@@ -11,21 +11,28 @@
       wifi.backend = "iwd";
       dispatcherScripts = [
         {
-          source = pkgs.writeText "disable-wifi-on-ethernet" ''
+          source = pkgs.writeScript "disable-wifi-on-ethernet" ''
             #!${pkgs.bash}/bin/bash
-            wired_interfaces="en.*|eth.*"
-            if [[ "$1" =~ $wired_interfaces ]]; then
-              case "$2" in
-                up)
-                  nmcli radio wifi off
-                  ;;
-                down)
-                  nmcli radio wifi on
-                  ;;
-              esac
+
+            interface="$1"
+            iface_mode="$2"
+            iface_type=$(nmcli dev | grep "$interface" | tr -s ' ' | cut -d' ' -f2)
+            iface_state=$(nmcli dev | grep "$interface" | tr -s ' ' | cut -d' ' -f3)
+
+            enable_wifi() {
+              nmcli radio wifi on
+            }
+
+            disable_wifi() {
+              nmcli radio wifi off
+            }
+
+            if [ "$iface_type" = "ethernet" ] && [ "$iface_mode" = "down" ]; then
+              enable_wifi
+            elif [ "$iface_type" = "ethernet" ] && [ "$iface_mode" = "up"  ] && [ "$iface_state" = "connected" ]; then
+              disable_wifi
             fi
           '';
-          type = "basic";
         }
       ];
     };
