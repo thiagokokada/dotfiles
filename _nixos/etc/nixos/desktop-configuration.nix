@@ -27,7 +27,9 @@
     qalculate-gtk
     redshift
     shared-mime-info
+    smartmontools
     termite
+    unstable.discord
     unstable.spotify
     unstable.tdesktop
     xarchiver
@@ -90,4 +92,10 @@
   # Enable Gnome Keyring
   security.pam.services.gdm.enableGnomeKeyring = true;
   services.gnome3.gnome-keyring.enable = true;
+
+  # Enable SMART monitoring.
+  services.smartd = {
+    enable = true;
+    notifications.x11.enable = true;
+  };
 }
