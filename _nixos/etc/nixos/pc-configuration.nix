@@ -55,7 +55,6 @@
     hdparm
     rtorrent
     samba
-    smartmontools
     virtmanager
   ];
 
@@ -118,11 +117,19 @@
       };
     };
 
-    # Enable SMART monitoring.
-    smartd = {
+    # Enable rtorrent
+    rtorrent = {
       enable = true;
-      notifications.x11.enable = true;
+      downloadDir = "/mnt/archive/thiagoko/Downloads";
+      user = "thiagoko";
+      port = 60001;
+      openFirewall = true;
+      configText = ''
+        schedule2 = watch_directory,5,5,load.start=/home/thiagoko/Torrents/*.torrent
+        schedule2 = untied_directory,5,5,stop_untied=
+      '';
     };
+
   };
 
   networking = {
@@ -141,45 +148,6 @@
     firewall = {
       allowedTCPPorts = [ 139 445 ];
       allowedUDPPorts = [ 137 138 ];
-    };
-  };
-
-  # rtorrent daemon.
-  systemd.user.services.rtorrent-with-tmux = {
-    description = "rtorrent: An ncurses client for libtorrent, running inside tmux";
-    after = [ "network.target" ];
-    wantedBy = [ "default.target" ];
-    environment = {
-      HOME = "%h";
-      TERMINFO = "${pkgs.kitty}/lib/kitty/terminfo";
-    };
-    path = [ pkgs.bash pkgs.tmux pkgs.procps ];
-
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "${pkgs.tmux}/bin/tmux -2 -L rtorrent new-session -d -s rtorrent ${pkgs.rtorrent}/bin/rtorrent";
-      ExecStop = "${pkgs.procps}/bin/pkill rtorrent";
-      Restart = "on-failure";
-    };
-  };
-
-  systemd.user.services.rtorrent-update-ipv4-blocklist = {
-    description = "Update IPv4 blocklist for rtorrent";
-    after = [ "network.target" ];
-
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.curl}/bin/curl https://silo.glasz.org/antip2p.list.gz' | ${pkgs.gzip}/bin/gunzip > ~/.session/antip2p.list";
-    };
-  };
-
-  systemd.user.timers.rtorrent-update-ipv4-blocklist = {
-    description = "Update IPv4 blocklist for rtorrent daily";
-    wantedBy = [ "timers.target" ];
-
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = "true";
     };
   };
 
