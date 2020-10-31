@@ -72,6 +72,7 @@
     plex = {
       enable = true;
       openFirewall = true;
+      group = "users";
     };
 
     # Enable Samba.
@@ -122,6 +123,7 @@
       enable = true;
       downloadDir = "/mnt/archive/thiagoko/Downloads";
       user = "thiagoko";
+      group = "users";
       port = 60001;
       openFirewall = true;
       configText = ''
