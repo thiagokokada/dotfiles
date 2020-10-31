@@ -41,7 +41,7 @@ setup_cli() {
   setup git
   setup mpv
   setup nvim
-  setup ranger
+  setup nnn
   setup ssh
   setup tig
   setup tmux
