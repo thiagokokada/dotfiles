@@ -1,22 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-    }))
-  ];
-
   # CLI packages.
   environment.systemPackages = with pkgs; [
-    (neovim.override ({
-      withNodeJs = true;
-      vimAlias = true;
-      viAlias = true;
-    }))
-    ((emacsPackagesGen emacs).emacsWithPackages (epkgs: [
-      epkgs.vterm
-    ]))
     (mpv-with-scripts.override ({
       scripts = [ mpvScripts.mpris ];
     }))
@@ -50,12 +36,12 @@
     nox
     openssl
     p7zip
+    page
     pandoc
     pciutils
     playerctl
     powertop
     psmisc
-    page
     pv
     python3Packages.youtube-dl
     ripgrep
