@@ -4,12 +4,12 @@
   # Emacs overlay
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      url = https://github.com/nix-community/emacs-overlay/archive/f514da087e27289b158ebbf12e5d06df2d89a32e.tar.gz;
     }))
   ];
 
   environment.systemPackages = with pkgs; [
-    ((emacsPackagesGen emacs).emacsWithPackages (epkgs: [
+    ((emacsPackagesGen emacsGcc).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]))
     (neovim.override ({
