@@ -19,7 +19,8 @@ Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
-Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'commit': 'e2ae1b249cf2d5258b552cfd682c7c0911981e9b' } |
+Plug 'junegunn/fzf.vim', { 'commit': '0fe8e198a3a501b54dbc4f9587526c097599f95a' }
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 Plug 'justinmk/vim-dirvish'
