@@ -159,15 +159,15 @@
 
 ;; lsp
 (after! lsp-mode
-  (setq lsp-python-ms-executable
-        (executable-find "python-language-server"))
   ; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-  (setq lsp-modeline-code-actions-mode t)
-  (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-doc-show-with-cursor nil)
-  (setq lsp-ui-doc-show-with-mouse nil)
-  (setq lsp-signature-render-documentation nil)
+  (setq lsp-modeline-code-actions-mode t
+        lsp-enable-symbol-highlighting nil
+        lsp-ui-doc-enable nil
+        lsp-ui-doc-show-with-cursor nil
+        lsp-ui-doc-show-with-mouse nil
+        lsp-signature-render-documentation nil
+        lsp-python-ms-executable (executable-find "python-language-server")
+        lsp-file-watch-threshold 10000)
   (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
 ;; platuml
