@@ -1,7 +1,11 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   flood = pkgs.callPackage ./pkgs/flood {  };
+  user = "thiagoko";
+  group = "users";
+  homePath = lib.strings.concatStrings [ "/home/" user ];
+  archivePath = lib.strings.concatStrings [ "/mnt/archive/" user ];
 in {
   boot = {
     # Early load i195 for better resolution in init.
@@ -75,7 +79,7 @@ in {
     plex = {
       enable = true;
       openFirewall = true;
-      group = "users";
+      group = group;
     };
 
     # Enable Samba.
@@ -99,24 +103,24 @@ in {
       '';
       shares = {
         home = {
-          path = "/home/thiagoko";
+          path = homePath;
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
           "create mask" = "0644";
           "directory mask" = "0755";
-          "force user" = "thiagoko";
-          "force group" = "users";
+          "force user" = user;
+          "force group" = group;
         };
         archive = {
-          path = "/mnt/archive/thiagoko";
+          path = archivePath;
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
           "create mask" = "0644";
           "directory mask" = "0755";
-          "force user" = "thiagoko";
-          "force group" = "users";
+          "force user" = user;
+          "force group" = group;
         };
       };
     };
@@ -124,17 +128,31 @@ in {
     # Enable rtorrent
     rtorrent = {
       enable = true;
-      downloadDir = "/mnt/archive/thiagoko/Downloads";
-      user = "thiagoko";
-      group = "users";
+      downloadDir =  lib.strings.concatStrings [ archivePath "/Downloads" ];
+      user = user;
+      group = group;
       port = 60001;
       openFirewall = true;
       configText = ''
-        schedule2 = watch_directory,5,5,load.start=/home/thiagoko/Torrents/*.torrent
+        schedule2 = watch_directory,5,5,load.start="${homePath}/Torrents/*.torrent"
         schedule2 = untied_directory,5,5,stop_untied=
       '';
     };
 
+  };
+
+  systemd.services.flood = {
+    description = "A web UI for rTorrent with a Node.js backend and React frontend.";
+    after = [ "rtorrent.service" ];
+    path = [ flood pkgs.bash ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      User = user;
+      Group = group;
+      Type = "simple";
+      Restart = "on-failure";
+      ExecStart="${flood}/bin/flood";
+    };
   };
 
   networking = {
