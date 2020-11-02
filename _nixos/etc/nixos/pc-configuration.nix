@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 
-{
+let
+  flood = pkgs.callPackage ./pkgs/flood {  };
+in {
   boot = {
     # Early load i195 for better resolution in init.
     initrd.kernelModules = [ "i915" ];
@@ -52,6 +54,7 @@
   environment.systemPackages = with pkgs; [
     btrfs-progs
     cpuset
+    flood
     hdparm
     rtorrent
     samba
