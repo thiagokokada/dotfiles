@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 let
-  flood = pkgs.callPackage ./pkgs/flood {  };
+  flood = pkgs.callPackage ./pkgs/flood { };
   user = "thiagoko";
   group = "users";
   homePath = lib.strings.concatStrings [ "/home/" user ];
@@ -134,6 +134,15 @@ in {
       port = 60001;
       openFirewall = true;
       configText = ''
+        # Enable the default ratio group.
+        ratio.enable=
+
+        # Change the limits, the defaults should be sufficient.
+        ratio.min.set=100
+        ratio.max.set=300
+        ratio.upload.set=500M
+
+        # Watch directory
         schedule2 = watch_directory,5,5,load.start="${homePath}/Torrents/*.torrent"
         schedule2 = untied_directory,5,5,stop_untied=
       '';
