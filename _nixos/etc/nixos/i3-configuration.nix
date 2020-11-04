@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
-{
+let
+  gtk-theme = "Arc-Dark";
+  icon-theme = "Arc";
+  cursor-theme = "Adwaita";
+  fallback-theme = "gnome";
+  font-name = "Noto Sans 11";
+in {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
@@ -16,22 +22,22 @@
     ];
     etc."xdg/gtk-2.0/gtkrc" = {
       text = ''
-        gtk-icon-theme-name = "Adwaita"
-        gtk-theme-name = "Arc-Dark"
-        gtk-cursor-theme-name = "Adwaita"
-        gtk-fallback-icon-theme = "gnome"
-        gtk-font-name = "DejaVu Sans 11"
+        gtk-icon-theme-name = "${icon-theme}"
+        gtk-theme-name = "${gtk-theme}"
+        gtk-cursor-theme-name = "${cursor-theme}"
+        gtk-fallback-icon-theme = "${fallback-theme}"
+        gtk-font-name = "${font-name}"
       '';
       mode = "444";
     };
     etc."xdg/gtk-3.0/settings.ini" = {
       text = ''
         [Settings]
-        gtk-icon-theme-name=Arc
-        gtk-theme-name=Arc-Dark
-        gtk-cursor-theme-name=Adwaita
-        gtk-fallback-icon-theme=gnome
-        gtk-font-name = Noto Sans 11
+        gtk-icon-theme-name=${icon-theme}
+        gtk-theme-name=${gtk-theme}
+        gtk-cursor-theme-name=${cursor-theme}
+        gtk-fallback-icon-theme=${fallback-theme}
+        gtk-font-name=${font-name}
       '';
       mode = "444";
     };
