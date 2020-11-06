@@ -50,13 +50,6 @@
  :nv "C-S-a" #'evil-numbers/dec-at-pt
  :nv "C-SPC" #'+fold/toggle)
 
-;; ivy
-(after! ivy
-  (set-face-attribute
-   'ivy-minibuffer-match-face-1 nil :foreground nil)
-  (set-face-attribute
-   'ivy-minibuffer-match-face-2 nil :background nil))
-
 ;; which-key
 (setq which-key-idle-delay 0.4)
 
@@ -129,18 +122,6 @@
   :config
   (set-lookup-handlers! 'clj-refactor-mode nil))
 
-;; dart
-(defun find-path-by-executable (exec)
-  (when-let (path (executable-find exec))
-    (file-name-directory
-     (directory-file-name
-      (file-name-directory
-       (file-chase-links path))))))
-
-(setq lsp-dart-sdk-dir (find-path-by-executable "dart"))
-(setq lsp-flutter-sdk-dir (find-path-by-executable "flutter"))
-(set-popup-rule! "\\*Hover\\*" :quit nil)
-
 ;; elisp
 (add-hook! emacs-lisp-mode
   (map!
@@ -156,6 +137,13 @@
          "r" #'eval-region)))))
 
 ;; lsp
+(defun find-path-by-executable (exec)
+  (when-let (path (executable-find exec))
+    (file-name-directory
+     (directory-file-name
+      (file-name-directory
+       (file-chase-links path))))))
+
 (after! lsp-mode
   ; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
   (setq lsp-modeline-code-actions-mode t
@@ -165,13 +153,10 @@
         lsp-ui-doc-show-with-mouse nil
         lsp-signature-render-documentation nil
         lsp-python-ms-executable (executable-find "python-language-server")
+        lsp-dart-sdk-dir (find-path-by-executable "dart")
+        lsp-flutter-sdk-dir (find-path-by-executable "flutter")
         lsp-file-watch-threshold 10000)
   (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
-
-;; platuml
-(add-hook! plantuml-mode
-  (setq plantuml-output-type "txt")
-  (set-popup-rule! "^\\*PLANTUML Preview\\*" :side 'right :width 0.5 :quit t))
 
 ;;; CUSTOM PACKAGES
 
@@ -186,7 +171,8 @@
   :config
   (setq hover-hot-reload-on-save t
         hover-clear-buffer-on-hot-restart t
-        hover-screenshot-path "$HOME/Pictures"))
+        hover-screenshot-path "$HOME/Pictures")
+  (set-popup-rule! "\\*Hover\\*" :quit nil))
 
 ;; lispyville
 (use-package! lispyville
