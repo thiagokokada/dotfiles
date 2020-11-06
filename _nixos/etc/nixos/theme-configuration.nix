@@ -37,6 +37,26 @@ in {
     };
   };
 
+  systemd = {
+    user.services = {
+      xsettingsd = let
+        configFile = pkgs.writeText "xsettingsd" ''
+          Net/IconThemeName "${icon-theme}"
+          Net/ThemeName "${gtk-theme}"
+          Gtk/CursorThemeName "${cursor-theme}"
+        '';
+      in {
+        description = "Provides settings to X11 applications via the XSETTINGS specification";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        serviceConfig = {
+          Restart = "on-failure";
+          ExecStart="${pkgs.xsettingsd}/bin/xsettingsd --config=${configFile}";
+        };
+      };
+    };
+  };
+
   fonts = {
     enableDefaultFonts = true;
     enableFontDir = true;
