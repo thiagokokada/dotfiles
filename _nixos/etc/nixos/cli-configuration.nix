@@ -24,6 +24,7 @@
     htop
     ispell
     jq
+    libnotify
     linuxPackages.cpupower
     lm_sensors
     lshw

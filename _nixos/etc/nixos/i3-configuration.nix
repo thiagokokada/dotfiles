@@ -1,47 +1,11 @@
 { pkgs, ... }:
 
-let
-  gtk-theme = "Arc-Dark";
-  icon-theme = "Arc";
-  cursor-theme = "Adwaita";
-  fallback-theme = "gnome";
-  font-name = "Noto Sans 11";
-in {
+{
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
     }))
   ];
-
-  environment = {
-    systemPackages = with pkgs; [
-      arc-icon-theme
-      arc-theme
-      gnome3.adwaita-icon-theme
-      hicolor-icon-theme
-    ];
-    etc."xdg/gtk-2.0/gtkrc" = {
-      text = ''
-        gtk-icon-theme-name = "${icon-theme}"
-        gtk-theme-name = "${gtk-theme}"
-        gtk-cursor-theme-name = "${cursor-theme}"
-        gtk-fallback-icon-theme = "${fallback-theme}"
-        gtk-font-name = "${font-name}"
-      '';
-      mode = "444";
-    };
-    etc."xdg/gtk-3.0/settings.ini" = {
-      text = ''
-        [Settings]
-        gtk-icon-theme-name=${icon-theme}
-        gtk-theme-name=${gtk-theme}
-        gtk-cursor-theme-name=${cursor-theme}
-        gtk-fallback-icon-theme=${fallback-theme}
-        gtk-font-name=${font-name}
-      '';
-      mode = "444";
-    };
-  };
 
   # Configure the virtual console keymap from the xserver keyboard settings.
   console.useXkbConfig = true;
@@ -125,6 +89,7 @@ in {
             xdg-user-dirs
             xkblayout-state
             xsecurelock
+            xsettingsd
             xss-lock
           ];
         };
@@ -133,13 +98,6 @@ in {
       # Remap Caps Lock to Esc, and use Super+Space to change layouts
       xkbOptions = "caps:escape,grp:win_space_toggle";
     };
-  };
-
-  # Enable Qt5 integration.
-  qt5 = {
-    enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
   };
 
   # Configure special programs (i.e. hardware access).

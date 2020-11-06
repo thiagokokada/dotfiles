@@ -7,6 +7,7 @@
     chromium
     desktop-file-utils
     firefox
+    gammastep
     gimp
     gnome3.baobab
     gnome3.evince
@@ -25,7 +26,6 @@
     peek
     perlPackages.FileMimeInfo
     qalculate-gtk
-    redshift
     shared-mime-info
     smartmontools
     termite
@@ -39,33 +39,6 @@
     xorg.xkill
     xorg.xset
   ];
-
-  fonts = {
-    enableDefaultFonts = true;
-    enableFontDir = true;
-
-    fonts = with pkgs; [
-      cantarell-fonts
-      corefonts
-      dejavu_fonts
-      font-awesome_4
-      font-awesome_5
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      roboto
-      ttf_bitstream_vera
-      ubuntu_font_family
-    ];
-
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "Noto Mono" ];
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
-      };
-    };
-  };
 
   hardware = {
     # Enable sound.
@@ -85,9 +58,6 @@
     enable = true;
     package = pkgs.jdk11;
   };
-
-  # Enable Java anti-aliasing.
-  environment.variables._JAVA_OPTIONS = "-Dswing.aatext=TRUE -Dawt.useSystemAAFontSettings=on";
 
   # Enable Gnome Keyring
   security.pam.services.gdm.enableGnomeKeyring = true;
