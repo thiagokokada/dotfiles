@@ -23,6 +23,8 @@
     nubank.hover
     openfortivpn
     sassc
+    # unstable.clj-kondo
+    unstable.clojure-lsp
     unstable.slack
     unstable.zoom-us
   ]
