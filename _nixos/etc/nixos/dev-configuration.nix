@@ -1,6 +1,15 @@
 { pkgs, ... }:
 
-{
+let
+  emacsCustom = (pkgs.emacsPackagesGen pkgs.emacsGcc).emacsWithPackages (epkgs: [
+    epkgs.vterm
+  ]);
+  neovimCustom = pkgs.neovim.override ({
+    withNodeJs = true;
+    vimAlias = true;
+    viAlias = true;
+  });
+in {
   # Emacs overlay
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -9,17 +18,10 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    ((emacsPackagesGen emacsGcc).emacsWithPackages (epkgs: [
-      epkgs.vterm
-    ]))
-    (neovim.override ({
-      withNodeJs = true;
-      vimAlias = true;
-      viAlias = true;
-    }))
     binutils
     cmake
     elixir
+    emacsCustom
     erlang
     expect
     gcc
@@ -29,6 +31,7 @@
     libtool
     m4
     ncurses.dev
+    neovimCustom
     nim
     nodejs-10_x
     pipenv
