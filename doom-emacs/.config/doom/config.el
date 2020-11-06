@@ -63,9 +63,7 @@
 ;;; MODULES
 
 ;; company
-(setq company-selection-wrap-around t
-      company-minimum-prefix-length 3
-      company-idle-delay 0.4)
+(setq company-selection-wrap-around t)
 
 ;; dired
 (add-hook! dired-mode
