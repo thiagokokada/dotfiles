@@ -111,6 +111,59 @@ in {
     };
   };
 
+  # User services
+  systemd.user.services = {
+    gammastep = let
+      configFile = pkgs.writeText "config.ini" ''
+        [general]
+        temp-day=5500
+        temp-night=3700
+        fade=1
+        gamma=0.8
+        dusk-time=18:30
+        dawn-time=6:30
+      '';
+    in {
+      description = "Gammastep color temperature adjuster";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+
+      serviceConfig = {
+        ExecStart = "${pkgs.gammastep}/bin/gammastep-indicator -c ${configFile}";
+        RestartSec = 3;
+        Restart = "on-failure";
+      };
+    };
+
+    picom = let
+      configFile = pkgs.writeText "picom.conf" ''
+        # Fading
+        fading = true;
+        fade-in-step = 0.15;
+        fade-out-step = 0.15;
+
+        # Other
+        backend = "glx";
+        vsync = true;
+
+        # GLX backend
+        glx-no-stencil = true;
+        glx-no-rebind-pixmap = true;
+        use-damage = true;
+      '';
+    in {
+      description = "Picom composite manager";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+
+      serviceConfig = {
+        ExecStart = "${picomBackport}/bin/picom --config ${configFile} --experimental-backends";
+        RestartSec = 3;
+        Restart = "on-failure";
+      };
+    };
+  };
+
   # Configure special programs (i.e. hardware access).
   programs = {
     # Enable dconf.

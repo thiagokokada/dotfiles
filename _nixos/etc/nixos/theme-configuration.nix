@@ -37,22 +37,21 @@ in {
     };
   };
 
-  systemd = {
-    user.services = {
-      xsettingsd = let
-        configFile = pkgs.writeText "xsettingsd" ''
+  systemd.user.services = {
+    xsettingsd = let
+      configFile = pkgs.writeText "xsettingsd" ''
           Net/IconThemeName "${icon-theme}"
           Net/ThemeName "${gtk-theme}"
           Gtk/CursorThemeName "${cursor-theme}"
-        '';
-      in {
-        description = "Provides settings to X11 applications via the XSETTINGS specification";
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        serviceConfig = {
-          Restart = "on-failure";
-          ExecStart="${pkgs.xsettingsd}/bin/xsettingsd --config=${configFile}";
-        };
+      '';
+    in {
+      description = "Provides settings to X11 applications via the XSETTINGS specification";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart="${pkgs.xsettingsd}/bin/xsettingsd --config=${configFile}";
+        RestartSec = 3;
+        Restart = "on-failure";
       };
     };
   };

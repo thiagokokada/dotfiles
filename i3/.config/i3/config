@@ -328,9 +328,6 @@ for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 for_window [title="^nubank$"] floating enable
 
-# compositor (since i3 does not support natively)
-exec --no-startup-id picom --experimental-backends
-
 # notification manager
 exec --no-startup-id dunst
 
@@ -351,9 +348,6 @@ exec --no-startup-id xss-lock -l -- $lock_screen
 
 # enable autolock in 10 minutes
 exec --no-startup-id xset s 600
-
-# start gammastep
-exec --no-startup-id gammastep-indicator
 
 # run autostart.sh script
 exec --no-startup-id $HOME/.config/i3/scripts/autostart.sh
