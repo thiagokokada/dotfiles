@@ -1,6 +1,17 @@
 { pkgs, ... }:
 
-{
+let
+  picomBackport = pkgs.picom.overrideAttrs (oldAttrs: rec {
+    version = "8.2";
+    src = pkgs.fetchFromGitHub {
+      owner  = "yshui";
+      repo   = "picom";
+      rev    = "v${version}";
+      sha256 = "0gjksayz2xpmgglvw17ppsan2imrd1fijs579kbf27xwp503xgfl";
+      fetchSubmodules = true;
+    };
+  });
+in {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
@@ -84,7 +95,7 @@
             maim
             mons
             nitrogen
-            picom
+            picomBackport
             rofi
             xdg-user-dirs
             xkblayout-state
