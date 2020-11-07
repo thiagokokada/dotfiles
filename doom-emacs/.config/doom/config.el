@@ -122,20 +122,6 @@
   :config
   (set-lookup-handlers! 'clj-refactor-mode nil))
 
-;; elisp
-(add-hook! emacs-lisp-mode
-  (map!
-   (:map emacs-lisp-mode-map
-     (:localleader
-       "e" nil ; Unmap macrostep-expand
-       "x" #'macrostep-expand
-       :desc "REPL"
-       "r" #'+emacs-lisp/open-repl
-       (:prefix ("e" . "eval")
-         "b" #'eval-buffer
-         "d" #'eval-defun
-         "r" #'eval-region)))))
-
 ;; lsp
 (defun find-path-by-executable (exec)
   (when-let (path (executable-find exec))
