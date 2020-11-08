@@ -132,7 +132,7 @@ in {
       partOf = [ "graphical-session.target" ];
 
       serviceConfig = {
-        ExecStart = "${gammastepFix}/bin/gammastep-indicator -c ${configFile}";
+        ExecStart = "${gammastepFix}/bin/gammastep-indicator -c ${configFile} -P";
         RestartSec = 3;
         Restart = "on-failure";
       };
