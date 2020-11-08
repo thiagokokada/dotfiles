@@ -2,7 +2,13 @@
 
 let
   gammastepFix = pkgs.gammastep.overrideAttrs (oldAttrs: rec {
-    patches = [ ./patches/0001-gammastep-indicator-Fix-Enable-Info.patch ];
+    patches = [
+      (pkgs.fetchpatch {
+        name = "gammastep-indicator-Fix-Enable-Info.patch";
+        url = "https://gitlab.com/thiagokokada/gammastep/-/commit/14b9e652358f5c5820856e9f549246571264af1e.patch";
+        sha256 = "1wlmznsmqq532lianfcxx1llirrq73z82f0i7fc7y925hbb4w0k5";
+      })
+    ];
   });
   picomBackport = pkgs.picom.overrideAttrs (oldAttrs: rec {
     version = "8.2";
