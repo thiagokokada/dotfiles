@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 let
+  gammastepFix = pkgs.gammastep.overrideAttrs (oldAttrs: rec {
+    patches = [ ./patches/0001-gammastep-indicator-Fix-Enable-Info.patch ];
+  });
   picomBackport = pkgs.picom.overrideAttrs (oldAttrs: rec {
     version = "8.2";
     src = pkgs.fetchFromGitHub {
@@ -120,8 +123,8 @@ in {
         temp-night=3700
         fade=1
         gamma=0.8
-        dusk-time=18:30
-        dawn-time=6:30
+        dawn-time=6:00-7:45
+        dusk-time=18:35-20:15
       '';
     in {
       description = "Gammastep color temperature adjuster";
@@ -129,7 +132,7 @@ in {
       partOf = [ "graphical-session.target" ];
 
       serviceConfig = {
-        ExecStart = "${pkgs.gammastep}/bin/gammastep-indicator -c ${configFile}";
+        ExecStart = "${gammastepFix}/bin/gammastep-indicator -c ${configFile}";
         RestartSec = 3;
         Restart = "on-failure";
       };

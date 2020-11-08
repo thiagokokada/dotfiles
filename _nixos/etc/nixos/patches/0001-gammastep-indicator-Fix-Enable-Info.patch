@@ -1,0 +1,65 @@
+From 14b9e652358f5c5820856e9f549246571264af1e Mon Sep 17 00:00:00 2001
+From: Thiago Kenji Okada <thiagokokada@gmail.com>
+Date: Sun, 8 Nov 2020 12:00:10 -0300
+Subject: [PATCH] gammastep-indicator: Fix "Enable"/"Info"
+
+This is related to the recent log changes:
+https://gitlab.com/chinstrap/gammastep/-/commit/6e785e65f074dd74889b06901c3a314d98411122
+
+The log format changed in two ways:
+- Each entry of the log is prefixed by the loglevel
+    + *Before*: `Something: Value`
+    + *After*: `Loglevel: Something: Value`
+- All log output is now in stderr instead of a combination of stdout
+  (for info messages) and stderr (for error messages)
+
+However, `gammastep-indicator` needs to parse the log to work, and since
+no modification was done in it the output was broken, specially in
+"Enable" and "Info" items. This commit fixes it.
+---
+ src/gammastep_indicator/controller.py | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/src/gammastep_indicator/controller.py b/src/gammastep_indicator/controller.py
+index e4a5958..5afe3ec 100644
+--- a/src/gammastep_indicator/controller.py
++++ b/src/gammastep_indicator/controller.py
+@@ -177,11 +177,13 @@ class RedshiftController(GObject.GObject):
+             if new_location != self._location:
+                 self._location = new_location
+                 self.emit('location-changed', *new_location)
++        else:
++            self._errors += value + '\n'
+ 
+     def _child_stdout_line_cb(self, line):
+         """Called when the child process outputs a line to stdout."""
+         if line:
+-            m = re.match(r'([\w ]+): (.+)', line)
++            m = re.match(r'[\w ]+: ([\w ]+): (.+)', line)
+             if m:
+                 key = m.group(1)
+                 value = m.group(2)
+@@ -189,7 +191,7 @@ class RedshiftController(GObject.GObject):
+ 
+     def _child_data_cb(self, f, cond, data):
+         """Called when the child process has new data on stdout/stderr."""
+-        stdout, ib = data
++        _stdout, ib = data
+         ib.buf += os.read(f, 256).decode('utf-8')
+ 
+         # Split input at line break
+@@ -198,10 +200,7 @@ class RedshiftController(GObject.GObject):
+             if sep == '':
+                 break
+             ib.buf = last
+-            if stdout:
+-                self._child_stdout_line_cb(first)
+-            else:
+-                self._errors += first + '\n'
++            self._child_stdout_line_cb(first)
+ 
+         return True
+ 
+-- 
+2.28.0
+
