@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     piper
+    unstable.osu-lazer
   ];
 
   # Enable steam

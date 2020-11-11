@@ -11,6 +11,7 @@
     bc
     bind
     curl
+    dos2unix
     fd
     ffmpeg
     ffmpegthumbnailer
