@@ -1,14 +1,14 @@
 { pkgs, ... }:
 
 let
-  gammastepFix = pkgs.gammastep.overrideAttrs (oldAttrs: rec {
-    patches = [
-      (pkgs.fetchpatch {
-        name = "gammastep-indicator-Fix-Enable-Info.patch";
-        url = "https://gitlab.com/thiagokokada/gammastep/-/commit/14b9e652358f5c5820856e9f549246571264af1e.patch";
-        sha256 = "1wlmznsmqq532lianfcxx1llirrq73z82f0i7fc7y925hbb4w0k5";
-      })
-    ];
+  gammastepBackport = pkgs.gammastep.overrideAttrs (oldAttrs: rec {
+    version = "2.0.5";
+    src = pkgs.fetchFromGitLab {
+      owner = "chinstrap";
+      repo = "gammastep";
+      rev = "v${version}";
+      sha256 = "1l3x4gnichwzbb0529bhm723xpryn5svhhsfdiwlw122q1vmz2q7";
+    };
   });
   picomBackport = pkgs.picom.overrideAttrs (oldAttrs: rec {
     version = "8.2";
@@ -138,7 +138,7 @@ in {
       partOf = [ "graphical-session.target" ];
 
       serviceConfig = {
-        ExecStart = "${gammastepFix}/bin/gammastep-indicator -c ${configFile} -P";
+        ExecStart = "${gammastepBackport}/bin/gammastep-indicator -c ${configFile} -P";
         RestartSec = 3;
         Restart = "on-failure";
       };
