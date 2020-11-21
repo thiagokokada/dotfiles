@@ -9,36 +9,6 @@
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
-      dispatcherScripts = [
-        {
-          source = pkgs.writeScript "disable-wifi-on-ethernet" ''
-            #!${pkgs.bash}/bin/bash
-
-            interface="$1"
-            iface_mode="$2"
-            iface_type=$(nmcli dev | grep "$interface" | tr -s ' ' | cut -d' ' -f2)
-            iface_state=$(nmcli dev | grep "$interface" | tr -s ' ' | cut -d' ' -f3)
-
-            enable_wifi() {
-              nmcli radio wifi on
-            }
-
-            disable_wifi() {
-              nmcli radio wifi off
-            }
-
-            if [ "$iface_type" = "ethernet" ] && [ "$iface_mode" = "down" ]; then
-              enable_wifi
-            elif [ "$iface_type" = "ethernet" ] && [ "$iface_mode" = "up"  ] && [ "$iface_state" = "connected" ]; then
-              disable_wifi
-            fi
-          '';
-        }
-      ];
-    };
-    wireless = {
-      enable = false;
-      iwd.enable = true;
     };
   };
 
@@ -73,6 +43,14 @@
   programs = {
     # Enable NetworkManager applet.
     nm-applet.enable = true;
+  };
+
+  # Make nm-applet restart in case of failure
+  systemd.user.services.nm-applet = {
+    serviceConfig = {
+      RestartSec = 3;
+      Restart = "on-failure";
+    };
   };
 
   # Enable laptop specific services.
