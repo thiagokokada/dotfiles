@@ -289,10 +289,10 @@ in
   flood = nodeEnv.buildNodePackage {
     name = "flood";
     packageName = "flood";
-    version = "4.2.0";
+    version = "4.3.0";
     src = fetchurl {
-      url = "https://registry.npmjs.org/flood/-/flood-4.2.0.tgz";
-      sha512 = "xdfiYucaiUEmaScEDZr24vq5qkBe7cC51YeFG9gSFZF0ccGtoVG1RMw55vA06VyMxLUlYVqR9uYxyKVmk/xDBg==";
+      url = "https://registry.npmjs.org/flood/-/flood-4.3.0.tgz";
+      sha512 = "+SgygDdGTnKaZA2N0VzaUKVqAV8S4KrisdL9+DtIWweJwP/mYQ7WIhIJVMiJWbyYjtPTGoUqvxYqEP/QiFgfNw==";
     };
     dependencies = [
       sources."async-2.6.3"
