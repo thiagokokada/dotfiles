@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     arandr
+    bitwarden
     calibre
     chromium
     desktop-file-utils
@@ -15,8 +16,6 @@
     gnome3.gnome-themes-standard
     gthumb
     inkscape
-    insync
-    keepassx-community
     kitty
     libreoffice-fresh
     lxappearance
