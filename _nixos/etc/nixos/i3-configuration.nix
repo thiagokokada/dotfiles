@@ -20,6 +20,13 @@ let
       fetchSubmodules = true;
     };
   });
+  i3Backport = pkgs.i3-gaps.overrideAttrs (oldAttrs: rec {
+    version = "4.18.3";
+    src = pkgs.fetchurl {
+      url = "https://github.com/Airblader/i3/releases/download/${version}/i3-${version}.tar.bz2";
+      sha256 = "1hcakwyz78lgp8mhqv7pw86jlb3m415pfql1q19rkijnhm3fn3ci";
+    };
+  });
 in {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -92,7 +99,7 @@ in {
       windowManager = {
         i3 = {
           enable = true;
-          package = pkgs.i3-gaps;
+          package = i3Backport;
           # i3 dependencies.
           extraPackages = with pkgs; [
             dex
