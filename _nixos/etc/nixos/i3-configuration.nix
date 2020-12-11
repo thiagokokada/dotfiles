@@ -1,33 +1,6 @@
 { pkgs, ... }:
 
-let
-  gammastepBackport = pkgs.gammastep.overrideAttrs (oldAttrs: rec {
-    version = "2.0.5";
-    src = pkgs.fetchFromGitLab {
-      owner = "chinstrap";
-      repo = "gammastep";
-      rev = "v${version}";
-      sha256 = "1l3x4gnichwzbb0529bhm723xpryn5svhhsfdiwlw122q1vmz2q7";
-    };
-  });
-  picomBackport = pkgs.picom.overrideAttrs (oldAttrs: rec {
-    version = "8.2";
-    src = pkgs.fetchFromGitHub {
-      owner  = "yshui";
-      repo   = "picom";
-      rev    = "v${version}";
-      sha256 = "0gjksayz2xpmgglvw17ppsan2imrd1fijs579kbf27xwp503xgfl";
-      fetchSubmodules = true;
-    };
-  });
-  i3Backport = pkgs.i3-gaps.overrideAttrs (oldAttrs: rec {
-    version = "4.18.3";
-    src = pkgs.fetchurl {
-      url = "https://github.com/Airblader/i3/releases/download/${version}/i3-${version}.tar.bz2";
-      sha256 = "1hcakwyz78lgp8mhqv7pw86jlb3m415pfql1q19rkijnhm3fn3ci";
-    };
-  });
-in {
+{
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
@@ -99,7 +72,7 @@ in {
       windowManager = {
         i3 = {
           enable = true;
-          package = i3Backport;
+          package = pkgs.unstable.i3-gaps;
           # i3 dependencies.
           extraPackages = with pkgs; [
             dex
@@ -111,7 +84,7 @@ in {
             maim
             mons
             nitrogen
-            picomBackport
+            unstable.picom
             rofi
             xdg-user-dirs
             xkblayout-state
@@ -145,7 +118,7 @@ in {
       partOf = [ "graphical-session.target" ];
 
       serviceConfig = {
-        ExecStart = "${gammastepBackport}/bin/gammastep-indicator -c ${configFile} -P";
+        ExecStart = "${pkgs.unstable.gammastep}/bin/gammastep-indicator -c ${configFile} -P";
         RestartSec = 3;
         Restart = "on-failure";
       };
@@ -173,7 +146,7 @@ in {
       partOf = [ "graphical-session.target" ];
 
       serviceConfig = {
-        ExecStart = "${picomBackport}/bin/picom --config ${configFile} --experimental-backends";
+        ExecStart = "${pkgs.unstable.picom}/bin/picom --config ${configFile} --experimental-backends";
         RestartSec = 3;
         Restart = "on-failure";
       };
