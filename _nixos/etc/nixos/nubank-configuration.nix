@@ -16,6 +16,7 @@
       nodejs = nodejs-10_x;
     }))
     apacheKafka
+    circleci-cli
     docker-compose
     github-cli
     nubank.dart
@@ -23,18 +24,19 @@
     nubank.hover
     openfortivpn
     sassc
-    # unstable.clj-kondo
+    unstable.babashka
+    unstable.clj-kondo
     unstable.clojure-lsp
     unstable.slack
     unstable.zoom-us
   ]
   ++ nubank.all-tools;
 
-  virtualisation = {
-    # Enable VirtualBox.
-    virtualbox.host.enable = true;
-  };
+  # virtualisation = {
+  #   # Enable VirtualBox.
+  #   virtualbox.host.enable = true;
+  # };
 
   # Added user to groups.
-  users.users.thiagoko.extraGroups = [ "vboxusers" ];
+  # users.users.thiagoko.extraGroups = [ "vboxusers" ];
 }

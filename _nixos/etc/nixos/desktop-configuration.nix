@@ -29,7 +29,6 @@
     smartmontools
     termite
     unstable.discord
-    unstable.spotify
     unstable.tdesktop
     xarchiver
     xdotool
