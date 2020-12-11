@@ -1,7 +1,6 @@
 { pkgs, config, lib, ... }:
 
 let
-  flood = pkgs.callPackage ./pkgs/flood { };
   user = "thiagoko";
   group = "users";
   homePath = lib.strings.concatStrings [ "/home/" user ];
@@ -58,7 +57,6 @@ in {
   environment.systemPackages = with pkgs; [
     btrfs-progs
     cpuset
-    flood
     hdparm
     rtorrent
     samba
@@ -148,19 +146,21 @@ in {
       '';
     };
 
+     # Enable support for tablets
+     xserver.digimend.enable = true;
   };
 
   systemd.services.flood = {
     description = "A web UI for rTorrent with a Node.js backend and React frontend.";
     after = [ "rtorrent.service" ];
-    path = [ flood pkgs.bash ];
+    path = [ pkgs.unstable.nodePackages.flood pkgs.bash ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       User = user;
       Group = group;
       Type = "simple";
       Restart = "on-failure";
-      ExecStart="${flood}/bin/flood";
+      ExecStart="${pkgs.unstable.nodePackages.flood}/bin/flood";
     };
   };
 
