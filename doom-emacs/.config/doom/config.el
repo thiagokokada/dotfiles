@@ -55,6 +55,18 @@
 
 ;;; MODULES
 
+;; better-jump
+;; https://github.com/hlissner/doom-emacs/issues/2826#issuecomment-746167171
+(after! better-jumper
+  :config
+  (defun doom-prevent-persp-jump (orig-fn &rest args)
+    "Ensure ORIG-FN doesn't set any jump points in buffers from other perspectives."
+    (unless (and (markerp (car args))
+                 (not (+workspace-contains-buffer-p (marker-buffer (car args)))))
+      (apply orig-fn args)))
+  (advice-add #'evil-set-jump :around #'doom-prevent-persp-jump)
+  (advice-add #'better-jumper-set-jump :around #'doom-prevent-persp-jump))
+
 ;; company
 (setq company-selection-wrap-around t)
 
