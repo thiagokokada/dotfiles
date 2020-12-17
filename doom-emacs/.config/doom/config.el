@@ -99,9 +99,9 @@
          :desc "Find implementation or test in other window"
          "A" #'projectile-find-implementation-or-test-other-window
          :desc "Replace literal"
-         "R" #'projectile-replace
+         "C-r" #'projectile-replace
          :desc "Replace using regexp"
-         "X" #'projectile-replace-regexp)))))
+         "C-R" #'projectile-replace-regexp)))))
 
 ;;; LANGUAGES
 
