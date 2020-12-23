@@ -55,6 +55,9 @@ in {
 
   # Some misc packages.
   environment.systemPackages = with pkgs; [
+    (cpuset.overrideAttrs (oldAttrs: {
+      patches = [ ./patches/cpuset.patch ];
+    }))
     btrfs-progs
     cpuset
     hdparm
