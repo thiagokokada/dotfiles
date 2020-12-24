@@ -19,7 +19,6 @@
     fzf
     gettext
     ghostscript
-    gitFull
     glxinfo
     graphicsmagick-imagemagick-compat
     htop

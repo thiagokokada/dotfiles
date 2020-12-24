@@ -25,6 +25,8 @@ in {
     erlang
     expect
     gcc
+    gitAndTools.gh
+    gitFull
     gnumake
     go
     joker
