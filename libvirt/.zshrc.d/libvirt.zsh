@@ -1,8 +1,9 @@
-# This function generates all the functions to control the VMs managed by
-# libvirt
+# This function generates all the functions to control the VMs managed by libvirt
+# Many things extract from https://rokups.github.io/#!pages/gaming-vm-performance.md
 make-vm() {
 	local vm_name="${1}"
-	local reserved_guest_cpus="${2:-none}"
+	local reserved_host_cpus="${2}"
+	local reserved_guest_cpus="${3}"
 	local vm_functions
 
 	read -r -d '' vm_functions <<EOF
@@ -15,23 +16,33 @@ define-${vm_name}() {
 }
 
 start-${vm_name}() {
+	# Make sure we have sufficient memory for hugepages
+	sync
 	sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
-	if [[ "${reserved_guest_cpus}" != "none" ]]; then
-		sudo cset shield --reset
-		sudo cset shield --cpu "${reserved_guest_cpus}" --kthread=on
-	fi
+	sudo sh -c 'echo 1 > /proc/sys/vm/compact_memory'
+
+	# Reduce VM jitter: https://www.kernel.org/doc/Documentation/kernel-per-CPU-kthreads.txt
+	sudo sysctl vm.stat_interval=120
+	# the kernel's dirty page writeback mechanism uses kthread workers. They introduce
+	# massive arbitrary latencies when doing disk writes on the host and aren't
+	# migrated by cset. Restrict the workqueue to use only cpu 0.
+	sudo sh -c 'echo 00 > /sys/bus/workqueue/devices/writeback/cpumask'
+
+	sudo cset shield --reset
+	sudo cset shield --cpu "${reserved_guest_cpus}" --kthread=on
 	sudo virsh start "${vm_name}"
 }
 
 stop-${vm_name}() {
 	sudo virsh shutdown "${vm_name}"
-	if [[ "${reserved_guest_cpus}" != "none" ]]; then
-		sudo cset shield --reset
-	fi
+	# All VMs offline
+	sudo sh -c 'echo ff > /sys/bus/workqueue/devices/writeback/cpumask'
+	sudo sysctl vm.stat_interval=1
+	sudo cset shield --reset
 	sudo virsh start "${vm_name}"
 }
 EOF
 	eval "${vm_functions}"
 }
 
-make-vm win10 2-5
+make-vm win10 0-1 2-5
