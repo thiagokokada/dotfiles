@@ -34,15 +34,15 @@ define-${vm_name}() {
 start-${vm_name}() {
 	# Make sure we have sufficient memory for hugepages
 	sync
-	sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
-	sudo sh -c 'echo 1 > /proc/sys/vm/compact_memory'
+	echo 3 | sudo tee /proc/sys/vm/drop_caches
+	echo 1 | sudo tee /proc/sys/vm/compact_memory
 
 	# Reduce VM jitter: https://www.kernel.org/doc/Documentation/kernel-per-CPU-kthreads.txt
 	sudo sysctl vm.stat_interval=120
 	# the kernel's dirty page writeback mechanism uses kthread workers. They introduce
 	# massive arbitrary latencies when doing disk writes on the host and aren't
 	# migrated by cset. Restrict the workqueue to use only cpu 0.
-	sudo sh -c 'echo 00 > /sys/bus/workqueue/devices/writeback/cpumask'
+	echo 00 | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
 
 	sudo cset shield --reset
 	sudo cset shield --cpu "${reserved_guest_cpus}" --kthread=on
@@ -52,7 +52,7 @@ start-${vm_name}() {
 stop-${vm_name}() {
 	sudo virsh shutdown "${vm_name}"
 	# All VMs offline
-	sudo sh -c 'echo ff > /sys/bus/workqueue/devices/writeback/cpumask'
+	echo ff | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
 	sudo sysctl vm.stat_interval=1
 	sudo cset shield --reset
 }
