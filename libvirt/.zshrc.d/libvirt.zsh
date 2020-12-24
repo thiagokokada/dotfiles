@@ -1,13 +1,17 @@
 set-vm-mouse() {
-	mouse_path=$(ls -d /dev/input/by-id/* | fzf)
+	local mouse_path=$(ls -d /dev/input/by-id/* | fzf)
+	[[ -z "${mouse_path}" ]] && return
 	echo "Selected mouse: ${mouse_path}"
+	sudo mkdir -p /var/lib/libvirt/inputs
 	sudo ln -sf "${mouse_path}" /var/lib/libvirt/inputs/event-mouse
 }
 
 set-vm-keyboard() {
-	keyboard_path=$(ls -d /dev/input/by-id/* | fzf)
+	local keyboard_path=$(ls -d /dev/input/by-id/* | fzf)
+	[[ -z "${keyboard_path}" ]] && return
 	echo "Selected keyboard: ${keyboard_path}"
-	sudo ln -sf "${keyboard_path}" /var/lib/libvirt/inputs/event-keyboard
+	sudo mkdir -p /var/lib/libvirt/inputs
+	sudo ln -sf "${keyboard_path}" /var/lib/libvirt/inputs/event-kbd
 }
 
 # This function generates all the functions to control the VMs managed by libvirt
