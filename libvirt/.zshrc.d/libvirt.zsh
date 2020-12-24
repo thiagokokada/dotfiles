@@ -51,7 +51,6 @@ stop-${vm_name}() {
 	sudo sh -c 'echo ff > /sys/bus/workqueue/devices/writeback/cpumask'
 	sudo sysctl vm.stat_interval=1
 	sudo cset shield --reset
-	sudo virsh start "${vm_name}"
 }
 EOF
 	eval "${vm_functions}"
