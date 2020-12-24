@@ -36,6 +36,8 @@ start-${vm_name}() {
 	sync
 	echo 3 | sudo tee /proc/sys/vm/drop_caches
 	echo 1 | sudo tee /proc/sys/vm/compact_memory
+	echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
+	echo 8192 | sudo tee /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages
 
 	# Reduce VM jitter: https://www.kernel.org/doc/Documentation/kernel-per-CPU-kthreads.txt
 	sudo sysctl vm.stat_interval=120
@@ -53,6 +55,8 @@ stop-${vm_name}() {
 	sudo virsh shutdown "${vm_name}"
 	# All VMs offline
 	echo ff | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
+	echo 0 | sudo tee /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages
+	echo madvise | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
 	sudo sysctl vm.stat_interval=1
 	sudo cset shield --reset
 }

@@ -8,6 +8,11 @@
   </metadata>
   <memory unit='KiB'>16777216</memory>
   <currentMemory unit='KiB'>16777216</currentMemory>
+  <memoryBacking>
+    <hugepages/>
+    <nosharepages/>
+    <locked/>
+  </memoryBacking>
   <vcpu placement='static'>3</vcpu>
   <iothreads>1</iothreads>
   <cputune>
