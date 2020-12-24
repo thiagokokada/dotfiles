@@ -1,3 +1,15 @@
+set-vm-mouse() {
+	mouse_path=$(ls -d /dev/input/by-id/* | fzf)
+	echo "Selected mouse: ${mouse_path}"
+	sudo ln -sf "${mouse_path}" /var/lib/libvirt/inputs/event-mouse
+}
+
+set-vm-keyboard() {
+	keyboard_path=$(ls -d /dev/input/by-id/* | fzf)
+	echo "Selected keyboard: ${keyboard_path}"
+	sudo ln -sf "${keyboard_path}" /var/lib/libvirt/inputs/event-keyboard
+}
+
 # This function generates all the functions to control the VMs managed by libvirt
 # Many things extract from https://rokups.github.io/#!pages/gaming-vm-performance.md
 make-vm() {
