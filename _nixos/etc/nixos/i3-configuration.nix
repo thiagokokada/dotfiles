@@ -29,18 +29,38 @@
       # Set input config to libinput devices
       inputClassSections = [
         ''
-          Identifier "mouse"
-          Driver "libinput"
+          Identifier "libinput mouse catchall"
           MatchIsPointer "on"
+          MatchDevicePath "/dev/input/event*"
+          Driver "libinput"
           Option "AccelProfile" "flat"
         ''
         ''
-          Identifier "touchpad"
+          Identifier "libinput keyboard catchall"
+          MatchIsKeyboard "on"
+          MatchDevicePath "/dev/input/event*"
           Driver "libinput"
+        ''
+        ''
+          Identifier "libinput touchpad catchall"
           MatchIsTouchpad "on"
+          MatchDevicePath "/dev/input/event*"
+          Driver "libinput"
           Option "NaturalScrolling" "on"
           Option "Tapping" "on"
           Option "TappingButtonMap" "lmr"
+        ''
+        ''
+          Identifier "libinput touchscreen catchall"
+          MatchIsTouchscreen "on"
+          MatchDevicePath "/dev/input/event*"
+          Driver "libinput"
+        ''
+        ''
+          Identifier "libinput tablet catchall"
+          MatchIsTablet "on"
+          MatchDevicePath "/dev/input/event*"
+          Driver "libinput"
         ''
       ];
 
