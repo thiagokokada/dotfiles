@@ -5,6 +5,14 @@ let
   group = "users";
   homePath = lib.strings.concatStrings [ "/home/" user ];
   archivePath = lib.strings.concatStrings [ "/mnt/archive/" user ];
+  unstable = import (builtins.fetchTarball {
+    url = "https://github.com/nixos/nixpkgs/tarball/e60fc2ca56ca3aad77d42818839529fe12fcbcf3";
+    sha256 = "1gj9m4rvzwwjzl9ln8yf48rjm7ixv0a001plbwg5afps4c7rn94l";
+  }) {};
+  opentabletdriver = unstable.pkgs.callPackage ./pkgs/opentabletdriver {
+    dotnet-sdk = unstable.dotnetCorePackages.sdk_5_0;
+    dotnet-netcore = unstable.dotnetCorePackages.net_5_0;
+  };
 in {
   boot = {
     # Early load i195 for better resolution in init.
@@ -61,6 +69,7 @@ in {
     btrfs-progs
     cpuset
     hdparm
+    opentabletdriver
     rtorrent
     samba
     virtmanager
@@ -82,6 +91,8 @@ in {
       openFirewall = true;
       group = group;
     };
+
+    udev.packages = [ opentabletdriver.udev ];
 
     # Enable Samba.
     samba = {
@@ -148,15 +159,11 @@ in {
         schedule2 = untied_directory,5,5,stop_untied=
       '';
     };
-
-     # Enable support for tablets
-     xserver.digimend.enable = true;
   };
 
   systemd.services.flood = {
     description = "A web UI for rTorrent with a Node.js backend and React frontend.";
     after = [ "rtorrent.service" ];
-    path = [ pkgs.unstable.nodePackages.flood pkgs.bash ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       User = user;
@@ -164,6 +171,17 @@ in {
       Type = "simple";
       Restart = "on-failure";
       ExecStart="${pkgs.unstable.nodePackages.flood}/bin/flood";
+    };
+  };
+
+  systemd.user.services.opentabletdriver = {
+    description = "Open source, cross-platform, user-mode tablet driver";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = 3;
+      ExecStart="${opentabletdriver}/bin/OpenTabletDriver.Daemon -c ${opentabletdriver}/lib/OpenTabletDriver/Configurations";
     };
   };
 
