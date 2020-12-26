@@ -14,35 +14,16 @@
     # Allow automounting.
     gvfs.enable = true;
 
-    # Load libinput.
-    udev.packages = [ pkgs.libinput.out ];
-
     # For battery status reporting.
     upower.enable = true;
 
     xserver = {
       enable = true;
 
-      # Enable libinput in X11.
-      modules = [ pkgs.xorg.xf86inputlibinput ];
-
-      # Set input config to libinput devices
-      inputClassSections = [
-        ''
-          Identifier "mouse"
-          Driver "libinput"
-          MatchIsPointer "on"
-          Option "AccelProfile" "flat"
-        ''
-        ''
-          Identifier "touchpad"
-          Driver "libinput"
-          MatchIsTouchpad "on"
-          Option "NaturalScrolling" "on"
-          Option "Tapping" "on"
-          Option "TappingButtonMap" "lmr"
-        ''
-      ];
+      libinput = {
+        enable = true;
+        accelProfile = "flat";
+      };
 
       # Use LightDM.
       displayManager = with pkgs; {
