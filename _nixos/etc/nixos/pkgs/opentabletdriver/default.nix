@@ -14,7 +14,7 @@
 , libappindicator
 , libevdev
 , libnotify
-, libudev
+, udev
 , makeDesktopItem
 , wrapGAppsHook
 }:
@@ -74,7 +74,7 @@ stdenv.mkDerivation rec {
     libappindicator
     libevdev
     libnotify
-    libudev
+    udev
   ];
 
   configurePhase = ''
