@@ -11,9 +11,10 @@
 , gtk3
 , libX11
 , libXrandr
-, libevdev
 , libappindicator
+, libevdev
 , libnotify
+, libudev
 , wrapGAppsHook
 }:
 
@@ -69,9 +70,10 @@ stdenv.mkDerivation rec {
     gtk3
     libX11
     libXrandr
-    libevdev
     libappindicator
+    libevdev
     libnotify
+    libudev
   ];
 
   configurePhase = ''

@@ -19,7 +19,7 @@ in {
     initrd.kernelModules = [ "i915" ];
 
     # Do not load NVIDIA drivers.
-    blacklistedKernelModules = [ "nvidia" "nouveau" ];
+    blacklistedKernelModules = [ "nvidia" "nouveau" "hid-uclogic" ];
 
     # Load VFIO related modules.
     kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
