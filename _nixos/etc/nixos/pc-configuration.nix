@@ -181,7 +181,7 @@ in {
     serviceConfig = {
       Restart = "on-failure";
       RestartSec = 3;
-      ExecStart="${opentabletdriver}/bin/OpenTabletDriver.Daemon -c ${opentabletdriver}/lib/OpenTabletDriver/Configurations";
+      ExecStart="${opentabletdriver}/bin/otd-daemon -c ${opentabletdriver}/lib/OpenTabletDriver/Configurations";
     };
   };
 

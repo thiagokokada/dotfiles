@@ -15,6 +15,7 @@
 , libevdev
 , libnotify
 , libudev
+, makeDesktopItem
 , wrapGAppsHook
 }:
 
@@ -102,10 +103,10 @@ stdenv.mkDerivation rec {
     done
   '';
 
-
   installPhase = ''
     mkdir -p $out/lib/OpenTabletDriver/
     cp -r ./OpenTabletDriver/Configurations/ $out/lib/OpenTabletDriver/
+
     for project in OpenTabletDriver.{Console,Daemon,UX.Gtk}; do
       dotnet publish $project \
           --no-build \
@@ -113,12 +114,40 @@ stdenv.mkDerivation rec {
           --configuration Release \
           --framework net5 \
           --output $out/lib
-      makeWrapper $out/lib/$project $out/bin/$project \
-          "''${gappsWrapperArgs[@]}" \
-          --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${gtk3.name}/" \
-          --set DOTNET_ROOT "${dotnet-netcore}" \
-          --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDeps}"
     done
+
+    # Give a more "*nix" name to the binaries
+    makeWrapper $out/lib/OpenTabletDriver.Console $out/bin/otd \
+        "''${gappsWrapperArgs[@]}" \
+        --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${gtk3.name}/" \
+        --set DOTNET_ROOT "${dotnet-netcore}" \
+        --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDeps}"
+
+    makeWrapper $out/lib/OpenTabletDriver.Daemon $out/bin/otd-daemon \
+        "''${gappsWrapperArgs[@]}" \
+        --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${gtk3.name}/" \
+        --set DOTNET_ROOT "${dotnet-netcore}" \
+        --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDeps}"
+
+    makeWrapper $out/lib/OpenTabletDriver.UX.Gtk $out/bin/otd-gui \
+        "''${gappsWrapperArgs[@]}" \
+        --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${gtk3.name}/" \
+        --set DOTNET_ROOT "${dotnet-netcore}" \
+        --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDeps}"
+
+    mkdir -p $out/share/{applications,pixmaps}
+
+    cp -r $src/OpenTabletDriver.UX/Assets/* $out/share/pixmaps
+
+    cp -r ${makeDesktopItem {
+      desktopName = "OpenTabletDriver";
+      name = "OpenTabletDriver";
+      exec = "otd-gui";
+      icon = "otd";
+      comment = meta.description;
+      type = "Application";
+      categories = "Utility;";
+    }}/share/applications/* $out/share/applications
   '';
 
   dontWrapGApps = true;
