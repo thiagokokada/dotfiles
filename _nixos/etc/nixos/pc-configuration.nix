@@ -92,7 +92,7 @@ in {
       group = group;
     };
 
-    udev.packages = [ opentabletdriver.udev ];
+    udev.packages = [ opentabletdriver ];
 
     # Enable Samba.
     samba = {

@@ -30,31 +30,15 @@ stdenv.mkDerivation rec {
     sha256 = "048y7gjlk2yw4vh62px1d9w0va6ap1a0cndcpbirlyj9q6b8jxax";
   };
 
-  # TODO: Ideally this should be build from InfinityGhost/OpenTabletDriver-udev instead
-  udev = stdenv.mkDerivation rec {
-    pname = "OpenTabletDriver-udev";
-    version = "0.4.2";
-
-    nativeBuildInputs = [ dpkg ];
-
-    src = fetchurl {
-      url = "https://github.com/InfinityGhost/OpenTabletDriver/releases/download/v${version}/OpenTabletDriver.deb";
-      sha256 = "13gg0dhvjy88h9lhcrp30fjiwgb9dzjsgk1k760pi1ki71a5vz2r";
-    };
-
-    unpackCmd = ''
-      dpkg-deb -x $src out
-    '';
-
-    installPhase = ''
-      mkdir -p $out/lib/udev/rules.d
-      cp usr/lib/udev/rules.d/*.rules $out/lib/udev/rules.d/
-    '';
+  debPkg = fetchurl {
+    url = "https://github.com/InfinityGhost/OpenTabletDriver/releases/download/v${version}/OpenTabletDriver.deb";
+    sha256 = "13gg0dhvjy88h9lhcrp30fjiwgb9dzjsgk1k760pi1ki71a5vz2r";
   };
 
   nativeBuildInputs = [
     dotnet-sdk
     dotnetPackages.Nuget
+    dpkg
     makeWrapper
     wrapGAppsHook
   ];
@@ -148,6 +132,11 @@ stdenv.mkDerivation rec {
       type = "Application";
       categories = "Utility;";
     }}/share/applications/* $out/share/applications
+
+    # TODO: Ideally this should be build from InfinityGhost/OpenTabletDriver-udev instead
+    dpkg-deb --fsys-tarfile ${debPkg} | tar xf - ./usr/lib/udev/rules.d/30-opentabletdriver.rules
+    mkdir -p $out/lib/udev/rules.d
+    cp ./usr/lib/udev/rules.d/* $out/lib/udev/rules.d
   '';
 
   dontWrapGApps = true;
@@ -160,6 +149,4 @@ stdenv.mkDerivation rec {
     maintainers = with maintainers; [ thiagokokada ];
     platforms = [ "x86_64-linux" ];
   };
-
-  passthru.updateScript = ./update.sh;
 }
