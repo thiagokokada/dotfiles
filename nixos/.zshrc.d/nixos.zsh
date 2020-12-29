@@ -53,4 +53,8 @@ nix-build-derivation() {
   nix-build -E "with import <nixpkgs> {}; callPackage `realpath "$1"` {}"
 }
 
+nixpkgs-review() {
+  nix-shell -p nixpkgs-review --run "nixpkgs-review pr "${@}""
+}
+
 UPGRADE_CMDS+="sudo nixos-rebuild switch --upgrade"
