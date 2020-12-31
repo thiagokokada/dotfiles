@@ -6,6 +6,7 @@ let
     config = config.nixpkgs.config;
   };
 in {
+  # Backport module from unstable.
   imports = [ "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix" ];
 
   nixpkgs = {
@@ -15,6 +16,7 @@ in {
     overlays = [
       (self: super: {
         unstable = unstablePkgs;
+        # Make a special opentabletdriver exception since it is needed by module above.
         opentabletdriver = unstablePkgs.opentabletdriver;
       })
     ];
