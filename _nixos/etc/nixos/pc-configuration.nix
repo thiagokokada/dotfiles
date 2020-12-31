@@ -5,13 +5,11 @@ let
   group = "users";
   homePath = lib.strings.concatStrings [ "/home/" user ];
   archivePath = lib.strings.concatStrings [ "/mnt/archive/" user ];
-  opentabletdriver = pkgs.unstable.opentabletdriver;
   cpusetWithPatch = (pkgs.unstable.cpuset.overrideAttrs (oldAttrs: {
     patches = [ ./patches/cpuset.patch ];
   }));
 in {
-  # TODO: Needs to fix infinity loop (look at misc-configuration.nix).
-  # hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.enable = true;
 
   boot = {
     # Early load i195 for better resolution in init.
@@ -66,7 +64,6 @@ in {
     cpuset
     cpusetWithPatch
     hdparm
-    opentabletdriver
     rtorrent
     samba
     virtmanager
@@ -88,8 +85,6 @@ in {
       openFirewall = true;
       group = group;
     };
-
-    udev.packages = [ opentabletdriver ];
 
     # Enable Samba.
     samba = {
@@ -168,17 +163,6 @@ in {
       Type = "simple";
       Restart = "on-failure";
       ExecStart="${pkgs.unstable.nodePackages.flood}/bin/flood";
-    };
-  };
-
-  systemd.user.services.opentabletdriver = {
-    description = "Open source, cross-platform, user-mode tablet driver";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      Restart = "on-failure";
-      RestartSec = 3;
-      ExecStart="${opentabletdriver}/bin/otd-daemon -c ${opentabletdriver}/lib/OpenTabletDriver/Configurations";
     };
   };
 
