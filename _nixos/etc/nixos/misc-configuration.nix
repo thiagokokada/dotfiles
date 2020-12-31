@@ -3,16 +3,20 @@
 let
   unstableTarball =
     fetchTarball
-      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-in
-{
+      https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz;
+in {
+  # Backport module opentabletdriver from unstable.
+  # imports = [ "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix" ];
+
   nixpkgs.config = {
     allowUnfree = true;
     # Added unstable to allow package backports.
-    packageOverrides = pkgs: {
+    packageOverrides = pkgs: rec {
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
+      # TODO: This is entering in infinity loop.
+      # opentabletdriver = unstable.pkgs.opentabletdriver;
     };
   };
 

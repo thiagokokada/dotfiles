@@ -5,15 +5,14 @@ let
   group = "users";
   homePath = lib.strings.concatStrings [ "/home/" user ];
   archivePath = lib.strings.concatStrings [ "/mnt/archive/" user ];
-  unstable = import (builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/tarball/e60fc2ca56ca3aad77d42818839529fe12fcbcf3";
-    sha256 = "1gj9m4rvzwwjzl9ln8yf48rjm7ixv0a001plbwg5afps4c7rn94l";
-  }) {};
-  opentabletdriver = unstable.pkgs.callPackage ./pkgs/opentabletdriver {
-    dotnet-sdk = unstable.dotnetCorePackages.sdk_5_0;
-    dotnet-netcore = unstable.dotnetCorePackages.net_5_0;
-  };
+  opentabletdriver = pkgs.unstable.opentabletdriver;
+  cpusetWithPatch = (pkgs.unstable.cpuset.overrideAttrs (oldAttrs: {
+    patches = [ ./patches/cpuset.patch ];
+  }));
 in {
+  # TODO: Needs to fix infinity loop (look at misc-configuration.nix).
+  # hardware.opentabletdriver.enable = true;
+
   boot = {
     # Early load i195 for better resolution in init.
     initrd.kernelModules = [ "i915" ];
@@ -63,11 +62,9 @@ in {
 
   # Some misc packages.
   environment.systemPackages = with pkgs; [
-    (cpuset.overrideAttrs (oldAttrs: {
-      patches = [ ./patches/cpuset.patch ];
-    }))
     btrfs-progs
     cpuset
+    cpusetWithPatch
     hdparm
     opentabletdriver
     rtorrent
