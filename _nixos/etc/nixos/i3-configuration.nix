@@ -88,11 +88,11 @@
         };
       };
 
-      # Configure i3-gaps as WM.
+      # Configure i3 as WM.
       windowManager = {
         i3 = {
           enable = true;
-          package = pkgs.unstable.i3-gaps;
+          package = pkgs.unstable.i3;
           # i3 dependencies.
           extraPackages = with pkgs; [
             dex

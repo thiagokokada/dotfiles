@@ -64,8 +64,7 @@ font pango:Roboto,Font Awesome 5 Brands,Font Awesome 5 Free Solid 8
 default_border pixel 1
 
 # only draw borders if the container is not the only one in workspace
-# from i3-gaps fork
-smart_borders on
+hide_edge_borders smart
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
