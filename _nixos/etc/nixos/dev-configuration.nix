@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  emacsCustom = (pkgs.emacsPackagesGen pkgs.emacsGcc).emacsWithPackages (epkgs: [
+  emacsCustom = (pkgs.emacsPackagesGen pkgs.emacsPgtkGcc).emacsWithPackages (epkgs: [
     epkgs.vterm
   ]);
   neovimCustom = pkgs.neovim.override ({
