@@ -16,9 +16,9 @@ if [[ -n "${EMACS}" ]]; then
   export RPROMPT=""
 fi
 
-alias em="GDK_BACKEND=x11 run-bg emacs"
+alias em="run-bg emacs"
 alias et="emacs -nw"
-alias ec="GDK_BACKEND=x11 close-fd emacsclient -a '' -nqc"
+alias ec="close-fd emacsclient -a '' -nqc"
 
 install-clojure-lsp() {
   local clojure_lsp_path="${HOME}/.local/bin/clojure-lsp"
