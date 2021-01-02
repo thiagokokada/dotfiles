@@ -61,7 +61,6 @@ in {
   # Some misc packages.
   environment.systemPackages = with pkgs; [
     btrfs-progs
-    cpuset
     cpusetWithPatch
     hdparm
     rtorrent
