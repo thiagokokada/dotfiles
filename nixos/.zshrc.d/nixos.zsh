@@ -4,7 +4,7 @@ if [[ -n "${commands[fzf-share]}" ]]; then
   source "$(fzf-share)/key-bindings.zsh"
 fi
 
-alias nixos-clean-up="sudo -- sh -c 'nix-collect-garbage -d && nixos-rebuild boot'"
+alias nixos-clean-up="sudo -- sh -c 'nix-collect-garbage -d && nixos-rebuild boot --fast'"
 alias nix-remove-stray-roots="nix-store --gc --print-roots | awk '{print $1}' | grep /result$ | sudo xargs rm"
 
 nix-sha256-github() {
