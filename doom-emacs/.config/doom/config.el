@@ -55,12 +55,6 @@
 
 ;;; MODULES
 
-;; persp-mode
-;; https://github.com/hlissner/doom-emacs/issues/2826#issuecomment-747514239
-(after! persp-mode
-  (defadvice persp-delete-other-windows (before better-jumper activate)
-    (select-window (split-window))))
-
 ;; company
 (setq company-selection-wrap-around t)
 
