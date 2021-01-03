@@ -2,9 +2,6 @@
 
 let
   unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz;
-  unstablePkgs = import unstableTarball {
-    config = config.nixpkgs.config;
-  };
 in {
   # Backport module from unstable.
   imports = [
@@ -23,18 +20,7 @@ in {
       allowUnfree = true;
     };
     overlays = [
-      (self: super: {
-        unstable = unstablePkgs;
-        linuxZenWMuQSS = pkgs.linuxPackagesFor (pkgs.linux_zen.override {
-          structuredExtraConfig = with lib.kernel; {
-            SCHED_MUQSS = yes;
-          };
-          ignoreConfigErrors = true;
-        });
-        # Make a special opentabletdriver exception since it is needed by module above.
-        opentabletdriver = unstablePkgs.opentabletdriver;
-        picom = unstablePkgs.picom;
-      })
+      (import ./overlays)
     ];
   };
 
