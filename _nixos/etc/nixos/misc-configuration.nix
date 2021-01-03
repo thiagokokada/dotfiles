@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz;
@@ -8,6 +8,7 @@ let
 in {
   # Backport module from unstable.
   imports = [ "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix" ];
+  # disabledModules = [ "hardware/opentabletdriver.nix" ];
 
   nixpkgs = {
     config = {
@@ -18,6 +19,12 @@ in {
         unstable = unstablePkgs;
         # Make a special opentabletdriver exception since it is needed by module above.
         opentabletdriver = unstablePkgs.opentabletdriver;
+        linuxZenWMuQSS = pkgs.linuxPackagesFor (pkgs.linux_zen.override {
+          structuredExtraConfig = with lib.kernel; {
+            SCHED_MUQSS = yes;
+          };
+          ignoreConfigErrors = true;
+        });
       })
     ];
   };
