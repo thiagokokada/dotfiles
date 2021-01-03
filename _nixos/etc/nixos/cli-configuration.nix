@@ -31,6 +31,7 @@
     lsof
     manpages
     mediainfo
+    moreutils
     ncdu
     netcat-gnu
     nnn
