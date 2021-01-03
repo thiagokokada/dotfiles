@@ -82,10 +82,10 @@ get-ip!() { curl -Ss "https://ipapi.co/$(get-ip)/yaml" }
 restart() { pkill "${1}"; run-bg "${@}" }
 
 # upgrade-all cmd
-export -ua UPGRADE_CMDS=("dotfiles-pull" "zit-up")
+export -ua UPGRADE_CMDS=("dotfiles-pull" "zit-up" "reload!")
 upgrade-all() {
   for cmd in "${UPGRADE_CMDS[@]}"; do
-    printf "\nRunning: %s\n\n" "${cmd}"
+    printf "\nRunning: %s\n" "${cmd}"
     eval "${cmd}"
   done
 }

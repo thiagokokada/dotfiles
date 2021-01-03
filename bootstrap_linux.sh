@@ -32,8 +32,6 @@ setup() {
 setup_i3() {
   setup i3
   setup kitty
-  setup picom
-  setup gammastep
 }
 
 setup_cli() {
@@ -45,7 +43,6 @@ setup_cli() {
   setup ssh
   setup tig
   setup tmux
-  setup youtube-dl
   setup zsh
 }
 

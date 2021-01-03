@@ -8,9 +8,7 @@ if [[ "${TERM}" = "xterm-kitty" ]]; then
     fi
   }
 
-  alias icat="kitty +kitten icat"
-  alias ssh="kitty +kitten ssh"
-  alias d="kitty +kitten diff"
-  alias k="run-bg kitty -1 --instance-group "kitty-session-$(cat /proc/self/sessionid)" -d ."
+  icat() { kitty +kitten icat ${@} }
+  ssh() { kitty +kitten ssh ${@} }
   compdef _kitty kitty
 fi
