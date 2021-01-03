@@ -43,6 +43,9 @@ in {
     python3Packages.flake8
     rustup
     shellcheck
+    unstable.nix-update
+    unstable.nixpkgs-fmt
+    unstable.nixpkgs-review
     xxd
   ];
 
