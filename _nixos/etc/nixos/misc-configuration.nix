@@ -7,8 +7,16 @@ let
   };
 in {
   # Backport module from unstable.
-  imports = [ "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix" ];
-  # disabledModules = [ "hardware/opentabletdriver.nix" ];
+  imports = [
+    "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix"
+    "${unstableTarball}/nixos/modules/services/x11/picom.nix"
+    "${unstableTarball}/nixos/modules/services/x11/redshift.nix"
+  ];
+  disabledModules = [
+    "hardware/opentabletdriver.nix"
+    "services/x11/picom.nix"
+    "services/x11/redshift.nix"
+  ];
 
   nixpkgs = {
     config = {

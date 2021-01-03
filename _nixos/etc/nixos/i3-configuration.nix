@@ -10,6 +10,10 @@
   # Configure the virtual console keymap from the xserver keyboard settings.
   console.useXkbConfig = true;
 
+  location = {
+    provider = "geoclue2";
+  };
+
   services = {
     # Allow automounting.
     gvfs.enable = true;
@@ -19,6 +23,40 @@
 
     # For battery status reporting.
     upower.enable = true;
+
+    picom = {
+      enable = true;
+      experimentalBackends = true;
+      fade = true;
+      fadeDelta = 2;
+      backend = "glx";
+      vSync = true;
+      settings = {
+        unredir-if-possible = true;
+        unredir-if-possible-exclude = [ "name *= 'Firefox'" ];
+        glx-no-stencil = true;
+        glx-no-rebind-pixmap = true;
+      };
+    };
+
+    # Enable gammastep.
+    redshift =
+    let
+      configFile = pkgs.writeText "config.ini" ''
+        [general]
+        fade=1
+        gamma=0.8
+      '';
+    in {
+      enable = true;
+      package = pkgs.unstable.gammastep;
+      extraOptions = [ "-c ${configFile}" ];
+      temperature = {
+        day = 5500;
+        night = 3700;
+      };
+      executable = "/bin/gammastep-indicator";
+    };
 
     xserver = {
       enable = true;
@@ -117,59 +155,6 @@
 
       # Remap Caps Lock to Esc, and use Super+Space to change layouts
       xkbOptions = "caps:escape,grp:win_space_toggle";
-    };
-  };
-
-  # User services
-  systemd.user.services = {
-    gammastep = let
-      configFile = pkgs.writeText "config.ini" ''
-        [general]
-        temp-day=5500
-        temp-night=3700
-        fade=1
-        gamma=0.8
-        dawn-time=6:00-7:45
-        dusk-time=18:35-20:15
-      '';
-    in {
-      description = "Gammastep color temperature adjuster";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-
-      serviceConfig = {
-        ExecStart = "${pkgs.unstable.gammastep}/bin/gammastep-indicator -c ${configFile} -P";
-        RestartSec = 3;
-        Restart = "on-failure";
-      };
-    };
-
-    picom = let
-      configFile = pkgs.writeText "picom.conf" ''
-        # Fading
-        fading = true;
-        fade-in-step = 0.15;
-        fade-out-step = 0.15;
-
-        # Other
-        backend = "glx";
-        vsync = true;
-
-        # GLX backend
-        glx-no-stencil = true;
-        glx-no-rebind-pixmap = true;
-        use-damage = true;
-      '';
-    in {
-      description = "Picom composite manager";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-
-      serviceConfig = {
-        ExecStart = "${pkgs.unstable.picom}/bin/picom --config ${configFile} --experimental-backends";
-        RestartSec = 3;
-        Restart = "on-failure";
-      };
     };
   };
 
