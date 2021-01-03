@@ -142,7 +142,6 @@
             maim
             mons
             nitrogen
-            unstable.picom
             rofi
             xdg-user-dirs
             xkblayout-state

@@ -25,14 +25,15 @@ in {
     overlays = [
       (self: super: {
         unstable = unstablePkgs;
-        # Make a special opentabletdriver exception since it is needed by module above.
-        opentabletdriver = unstablePkgs.opentabletdriver;
         linuxZenWMuQSS = pkgs.linuxPackagesFor (pkgs.linux_zen.override {
           structuredExtraConfig = with lib.kernel; {
             SCHED_MUQSS = yes;
           };
           ignoreConfigErrors = true;
         });
+        # Make a special opentabletdriver exception since it is needed by module above.
+        opentabletdriver = unstablePkgs.opentabletdriver;
+        picom = unstablePkgs.picom;
       })
     ];
   };
