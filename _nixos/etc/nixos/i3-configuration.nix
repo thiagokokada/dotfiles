@@ -31,7 +31,6 @@
       settings = {
         unredir-if-possible = true;
         unredir-if-possible-exclude = [ "name *= 'Firefox'" ];
-        glx-no-stencil = true;
       };
     };
 
