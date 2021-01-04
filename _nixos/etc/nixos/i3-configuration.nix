@@ -18,9 +18,6 @@
     # Allow automounting.
     gvfs.enable = true;
 
-    # Load libinput.
-    udev.packages = [ pkgs.libinput.out ];
-
     # For battery status reporting.
     upower.enable = true;
 
@@ -60,44 +57,22 @@
     xserver = {
       enable = true;
 
-      # Enable libinput in X11.
-      modules = [ pkgs.xorg.xf86inputlibinput ];
+      # Enable libinput.
+      libinput.enable = true;
 
       # Set input config to libinput devices
       inputClassSections = [
         ''
-          Identifier "libinput mouse catchall"
+          Identifier "custom mouse config"
           MatchIsPointer "on"
-          MatchDevicePath "/dev/input/event*"
-          Driver "libinput"
           Option "AccelProfile" "flat"
         ''
         ''
-          Identifier "libinput keyboard catchall"
-          MatchIsKeyboard "on"
-          MatchDevicePath "/dev/input/event*"
-          Driver "libinput"
-        ''
-        ''
-          Identifier "libinput touchpad catchall"
+          Identifier "custom touchpad config"
           MatchIsTouchpad "on"
-          MatchDevicePath "/dev/input/event*"
-          Driver "libinput"
           Option "NaturalScrolling" "on"
           Option "Tapping" "on"
           Option "TappingButtonMap" "lmr"
-        ''
-        ''
-          Identifier "libinput touchscreen catchall"
-          MatchIsTouchscreen "on"
-          MatchDevicePath "/dev/input/event*"
-          Driver "libinput"
-        ''
-        ''
-          Identifier "libinput tablet catchall"
-          MatchIsTablet "on"
-          MatchDevicePath "/dev/input/event*"
-          Driver "libinput"
         ''
       ];
 

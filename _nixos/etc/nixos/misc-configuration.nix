@@ -1,27 +1,32 @@
 { config, pkgs, lib, ... }:
 
 let
-  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz;
+  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
+  libinputModuleRefactor = fetchTarball {
+    url = "https://github.com/thiagokokada/nixpkgs/archive/ee96caebbc51c6620c2f318f76fd848a4a5623a5.tar.gz";
+    sha256 = "1mfpyf7d8d50300z1b523bqaql60q3yyszps176aqs8y04m1hjdr";
+  };
 in {
   # Backport module from unstable.
   imports = [
     "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix"
     "${unstableTarball}/nixos/modules/services/x11/picom.nix"
     "${unstableTarball}/nixos/modules/services/x11/redshift.nix"
+    "${libinputModuleRefactor}/nixos/modules/services/x11/hardware/libinput.nix"
   ];
+
   disabledModules = [
     "hardware/opentabletdriver.nix"
     "services/x11/picom.nix"
     "services/x11/redshift.nix"
+    "services/x11/hardware/libinput.nix"
   ];
 
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      (import ./overlays)
-    ];
+    overlays = [ (import ./overlays) ];
   };
 
   boot = {
