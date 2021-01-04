@@ -2,7 +2,7 @@
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/nubank/nixpkgs/archive/master.tar.gz;
+      url = "https://github.com/nubank/nixpkgs/archive/master.tar.gz";
     }))
   ];
 
@@ -12,21 +12,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    (yarn.override ({
-      nodejs = nodejs-10_x;
-    }))
-    apacheKafka
-    circleci-cli
-    docker-compose
-    github-cli
     nubank.dart
     nubank.flutter
     nubank.hover
-    openfortivpn
-    sassc
-    unstable.babashka
-    unstable.clj-kondo
-    unstable.clojure-lsp
     unstable.slack
     unstable.zoom-us
   ]

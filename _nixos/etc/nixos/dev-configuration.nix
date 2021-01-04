@@ -20,13 +20,14 @@ in {
   environment.systemPackages = with pkgs; [
     binutils
     cmake
+    docker-compose
     elixir
     emacsCustom
     erlang
     expect
     gcc
-    gitAndTools.gh
     gitFull
+    github-cli
     gnumake
     go
     joker
