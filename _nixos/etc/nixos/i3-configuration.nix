@@ -55,6 +55,8 @@
 
     xserver = {
       enable = true;
+      # Recommended for modesetting drivers;
+      useGlamor = true;
 
       # Enable libinput.
       libinput.enable = true;
