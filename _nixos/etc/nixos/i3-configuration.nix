@@ -105,7 +105,7 @@
       windowManager = {
         i3 = {
           enable = true;
-          package = pkgs.unstable.i3;
+          package = pkgs.i3;
           # i3 dependencies.
           extraPackages = with pkgs; [
             dex
