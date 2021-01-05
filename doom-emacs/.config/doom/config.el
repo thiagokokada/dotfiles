@@ -53,8 +53,6 @@
 ;; which-key
 (setq which-key-idle-delay 0.4)
 
-;;; MODULES
-
 ;; company
 (setq company-selection-wrap-around t)
 
@@ -91,60 +89,35 @@
          :desc "Replace using regexp"
          "C-R" #'projectile-replace-regexp)))))
 
-;;; LANGUAGES
+;;; MAJOR MODES
 
-;; custom file extensions
-(add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
-(add-to-list 'auto-mode-alist '("\\.repl\\'" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.joker\\'" . clojure-mode))
+;; adoc-mode
+(use-package! adoc-mode
+  :mode ("\\.adoc\\'"))
 
-;; clojure
-(add-hook! clojure-mode
-  (setq cljr-warn-on-eval nil
-        cljr-eagerly-build-asts-on-startup nil
-        cider-show-error-buffer 'only-in-repl)
+(use-package! clojure-mode
+  :mode ("\\.repl\\'" "\\joker\\'")
+  :init (setq cljr-warn-on-eval nil
+              cljr-eagerly-build-asts-on-startup nil
+              cider-show-error-buffer 'only-in-repl)
+  :config
   (map!
    (:map (clojure-mode-map clojurescript-mode-map)
     (:n "R" #'hydra-cljr-help-menu/body)
     (:localleader
      ("=" #'clojure-align
-      (:prefix ("n" . "namespace")
-       "c" #'lsp-clojure-clean-ns)
-      (:prefix ("e" . "namespace")
-       "n" #'cider-eval-ns-form)
-      "'" #'cider-jack-in-clj
-      "\"" #'cider-jack-in-cljs
-      "c" #'cider-connect-clj
-      "C" #'cider-connect-cljs)))))
+      (:prefix ("e" . "eval")
+       "n" #'cider-eval-ns-form))))))
+
+(use-package! cider
+  :after clojure-mode
+  :config
+  (set-lookup-handlers! 'cider-mode nil))
 
 (use-package! clj-refactor
   :after clojure-mode
   :config
   (set-lookup-handlers! 'clj-refactor-mode nil))
-
-;; lsp
-(defun find-path-by-executable (exec)
-  (when-let (path (executable-find exec))
-    (file-name-directory
-     (directory-file-name
-      (file-name-directory
-       (file-chase-links path))))))
-
-(after! lsp-mode
-  ; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-  (setq lsp-modeline-code-actions-mode t
-        lsp-enable-symbol-highlighting nil
-        lsp-ui-doc-enable nil
-        lsp-ui-doc-show-with-cursor nil
-        lsp-ui-doc-show-with-mouse nil
-        lsp-signature-render-documentation nil
-        lsp-python-ms-executable (executable-find "python-language-server")
-        lsp-dart-sdk-dir (find-path-by-executable "dart")
-        lsp-flutter-sdk-dir (find-path-by-executable "flutter")
-        lsp-file-watch-threshold 10000)
-  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
-
-;;; CUSTOM PACKAGES
 
 ;; graphql
 (use-package! graphql-mode
@@ -184,8 +157,34 @@
      (prettify insert)
      slurp/barf-cp)))
 
+;; lsp
+(defun find-path-by-executable (exec)
+  (when-let (path (executable-find exec))
+    (file-name-directory
+     (directory-file-name
+      (file-name-directory
+       (file-chase-links path))))))
+
+(use-package! lsp-mode
+  ; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+  :init (setq lsp-modeline-code-actions-mode t
+              lsp-enable-symbol-highlighting nil
+              lsp-ui-doc-enable nil
+              lsp-ui-doc-show-with-cursor nil
+              lsp-ui-doc-show-with-mouse nil
+              lsp-signature-render-documentation nil
+              lsp-python-ms-executable (executable-find "python-language-server")
+              lsp-dart-sdk-dir (find-path-by-executable "dart")
+              lsp-flutter-sdk-dir (find-path-by-executable "flutter")
+              lsp-file-watch-threshold 10000)
+  :config (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
+
 ;; sort-words
 (use-package! sort-words
+  :defer t)
+
+;; uuidgen
+(use-package! uuid-gen
   :defer t)
 
 ;;; MISC
