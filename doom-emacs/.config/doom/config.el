@@ -76,6 +76,8 @@
 
 ;; projectile
 (after! projectile
+  (defalias 'projectile-find-projects-in-directory 'projectile-discover-projects-in-directory)
+  (defalias 'projectile-find-projects-in-search-path 'projectile-discover-projects-in-search-path)
   (setq projectile-enable-caching nil
         projectile-indexing-method 'alien)
   (map!
@@ -131,7 +133,10 @@
   (setq hover-hot-reload-on-save t
         hover-clear-buffer-on-hot-restart t
         hover-screenshot-path "$HOME/Pictures")
-  (set-popup-rule! "\\*Hover\\*" :quit nil))
+  (set-popup-rule! "\\*Hover\\*" :quit nil)
+  (defalias 'flutter-pub-get 'lsp-dart-pub-get)
+  (defalias 'flutter-pub-upgrade 'lsp-dart-pub-upgrade)
+  (defalias 'flutter-pub-outdated 'lsp-dart-pub-outdated))
 
 ;; lispyville
 (use-package! lispyville
@@ -172,6 +177,7 @@
               lsp-ui-doc-enable nil
               lsp-ui-doc-show-with-cursor nil
               lsp-ui-doc-show-with-mouse nil
+              lsp-headerline-breadcrumb-enable nil
               lsp-signature-render-documentation nil
               lsp-python-ms-executable (executable-find "python-language-server")
               lsp-dart-sdk-dir (find-path-by-executable "dart")

@@ -20,30 +20,16 @@ alias em="run-bg emacs"
 alias et="emacs -nw"
 alias ec="close-fd emacsclient -a '' -nqc"
 
-install-clojure-lsp() {
-  local clojure_lsp_path="${HOME}/.local/bin/clojure-lsp"
-  local releases_url="https://api.github.com/repos/snoe/clojure-lsp/releases/latest"
-  local download_url="$(curl -s "${releases_url}" | jq -r '[.assets[]][0].browser_download_url')"
-  echo "${download_url}"
-
-  curl -L "${download_url}" -o "${clojure_lsp_path}"
-  chmod +x "${clojure_lsp_path}"
-}
-
-install-clojure-kondo() {
-  local clojure_kondo_path="${HOME}/.local/bin/clj-kondo"
-  local releases_url="https://api.github.com/repos/borkdude/clj-kondo/releases/latest"
-  # TODO: get static binary using jq's query
-  local download_url="$(curl -s "${releases_url}" | jq -r '[.assets[]][1].browser_download_url')"
-  local tempdir=$(mktemp -d)
-  #trap "rm -rf "${tempdir}"" EXIT
-  local tempfile="${tempdir}/clj-kondo.zip"
-
-  echo "${download_url}"
-  curl -L "${download_url}" -o "${tempfile}"
-  unzip "${tempfile}" -d "${tempdir}"
-  mv "${tempdir}/clj-kondo" "${clojure_kondo_path}"
-  chmod +x "${clojure_kondo_path}"
+emp() {
+  local p
+  for p in ${@}; do
+    if [[ -d "${p}" ]]; then
+      touch "${p}"/.projectile
+    elif [[ -f "${p}" ]]; then
+      touch $(dirname "${p}")/.projectile
+    fi
+  done
+  em ${@}
 }
 
 UPGRADE_CMDS+="doom upgrade -f"
