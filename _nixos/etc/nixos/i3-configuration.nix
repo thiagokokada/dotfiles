@@ -10,10 +10,6 @@
   # Configure the virtual console keymap from the xserver keyboard settings.
   console.useXkbConfig = true;
 
-  location = {
-    provider = "geoclue2";
-  };
-
   services = {
     # Allow automounting.
     gvfs.enable = true;
@@ -32,25 +28,6 @@
         unredir-if-possible = true;
         unredir-if-possible-exclude = [ "name *= 'Firefox'" ];
       };
-    };
-
-    # Enable gammastep.
-    redshift =
-    let
-      configFile = pkgs.writeText "config.ini" ''
-        [general]
-        fade=1
-        gamma=0.8
-      '';
-    in {
-      enable = true;
-      package = pkgs.unstable.gammastep;
-      extraOptions = [ "-c ${configFile}" ];
-      temperature = {
-        day = 5500;
-        night = 3700;
-      };
-      executable = "/bin/gammastep-indicator";
     };
 
     xserver = {
@@ -129,6 +106,31 @@
 
       # Remap Caps Lock to Esc, and use Super+Space to change layouts
       xkbOptions = "caps:escape,grp:win_space_toggle";
+    };
+  };
+
+  # User services
+  systemd.user.services = {
+    gammastep = let
+      configFile = pkgs.writeText "config.ini" ''
+        [general]
+        temp-day=5500
+        temp-night=3700
+        fade=1
+        gamma=0.8
+        dawn-time=6:00-7:45
+        dusk-time=18:35-20:15
+      '';
+    in {
+      description = "Gammastep color temperature adjuster";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+
+      serviceConfig = {
+        ExecStart = "${pkgs.unstable.gammastep}/bin/gammastep-indicator -c ${configFile} -P";
+        RestartSec = 3;
+        Restart = "on-failure";
+      };
     };
   };
 

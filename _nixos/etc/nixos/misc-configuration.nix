@@ -11,14 +11,12 @@ in {
   imports = [
     "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix"
     "${unstableTarball}/nixos/modules/services/x11/picom.nix"
-    "${unstableTarball}/nixos/modules/services/x11/redshift.nix"
     "${libinputModuleRefactor}/nixos/modules/services/x11/hardware/libinput.nix"
   ];
 
   disabledModules = [
     "hardware/opentabletdriver.nix"
     "services/x11/picom.nix"
-    "services/x11/redshift.nix"
     "services/x11/hardware/libinput.nix"
   ];
 
