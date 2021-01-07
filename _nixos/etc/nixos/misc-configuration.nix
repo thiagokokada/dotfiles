@@ -6,18 +6,24 @@ let
     url = "https://github.com/thiagokokada/nixpkgs/archive/ee96caebbc51c6620c2f318f76fd848a4a5623a5.tar.gz";
     sha256 = "1mfpyf7d8d50300z1b523bqaql60q3yyszps176aqs8y04m1hjdr";
   };
+  redshiftModuleRefactor = fetchTarball {
+    url = "https://github.com/thiagokokada/nixpkgs/archive/1bea263ca0937e4d7dd08b85545a2426223c7a79.tar.gz";
+    sha256 = "0gawqndyj2n23mhsp93rlacrfb8x86rr6hd7d9waknh6fpqbnixr";
+  };
 in {
   # Backport module from unstable.
   imports = [
     "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix"
     "${unstableTarball}/nixos/modules/services/x11/picom.nix"
     "${libinputModuleRefactor}/nixos/modules/services/x11/hardware/libinput.nix"
+    "${redshiftModuleRefactor}/nixos/modules/services/x11/redshift.nix"
   ];
 
   disabledModules = [
     "hardware/opentabletdriver.nix"
-    "services/x11/picom.nix"
     "services/x11/hardware/libinput.nix"
+    "services/x11/picom.nix"
+    "services/x11/redshift.nix"
   ];
 
   nixpkgs = {
