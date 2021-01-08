@@ -22,13 +22,13 @@
 
     redshift = {
       enable = true;
-      temperature = {
-        day = 5500;
-        night = 3700;
-      };
-      gamma = {
-        day = 1.0;
-        night = 0.8;
+      settings = {
+        general = {
+          temp-day = 5500;
+          temp-night = 3700;
+          gamma = 0.8;
+          fade = 1;
+        };
       };
       package = pkgs.unstable.gammastep;
       executable = "/bin/gammastep-indicator";
