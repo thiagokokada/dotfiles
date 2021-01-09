@@ -2,6 +2,7 @@
 
 let
   minimalServicesHardenedFlags = {
+    LockPersonality = true;
     NoNewPrivileges = true;
     PrivateTmp = true;
     ProtectHostname = true;
@@ -13,7 +14,8 @@ let
   userServicesHardenedFlags = minimalServicesHardenedFlags // {
     ProtectHome = "read-only";
     ProtectSystem = "strict";
-    RestrictAddressFamilies="AF_UNIX AF_INET AF_INET6";
+    # PrivateNetwork doesn't work for user services
+    RestrictAddressFamilies="AF_UNIX";
   };
   servicesHardenedFlags = userServicesHardenedFlags // {
     PrivateControlGroups = true;
@@ -22,6 +24,8 @@ let
     ProtectKernelLogs = true;
     ProtectKernelModules = true;
     ProtectKernelTunables = true;
+    # Relaxing this restriction since I can use PrivateNetwork in system services
+    RestrictAddressFamilies="AF_UNIX AF_INET AF_INET6";
   };
 in {
   # systemd-analyze --user security

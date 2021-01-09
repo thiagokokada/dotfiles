@@ -1,7 +1,7 @@
 self: super:
 
 let
-  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz;
+  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
   pkgs = super.pkgs;
   lib = super.lib;
 in rec {
