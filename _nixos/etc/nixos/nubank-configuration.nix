@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }:
+
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -26,5 +27,5 @@
   # };
 
   # Added user to groups.
-  # users.users.thiagoko.extraGroups = [ "vboxusers" ];
+  # users.users.${config.passthru._me.user}.extraGroups = [ "vboxusers" ];
 }

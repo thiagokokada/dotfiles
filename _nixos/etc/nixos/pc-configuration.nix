@@ -1,8 +1,8 @@
 { pkgs, config, lib, ... }:
 
 let
-  user = "thiagoko";
-  group = "users";
+  user = config.passthru._me.user;
+  group = config.users.users.${user}.group;
   homePath = lib.strings.concatStrings [ "/home/" user ];
   archivePath = lib.strings.concatStrings [ "/mnt/archive/" user ];
   cpusetWithPatch = (pkgs.unstable.cpuset.overrideAttrs (oldAttrs: {
@@ -58,7 +58,7 @@ in {
 
 
   # Add user to libvirtd group.
-  users.users.thiagoko = {
+  users.users.${user} = {
      extraGroups = [ "libvirtd" ];
   };
 
@@ -153,6 +153,12 @@ in {
         schedule2 = watch_directory,5,5,load.start="${homePath}/Torrents/*.torrent"
         schedule2 = untied_directory,5,5,stop_untied=
       '';
+    };
+
+    # Enable OpenSSH
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
     };
   };
 

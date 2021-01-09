@@ -41,5 +41,12 @@ in {
     samba-nmbd.serviceConfig = minimalServicesHardenedFlags;
     samba-smbd.serviceConfig = minimalServicesHardenedFlags;
     samba-winbindd.serviceConfig = minimalServicesHardenedFlags;
+    smartd.serviceConfig = servicesHardenedFlags // { PrivateDevices = false; PrivateNetwork = true; };
   };
+
+  # TODO: Enable usbguard after finding some way to easily manage it
+  # services.usbguard = {
+  #   enable = true;
+  #   presentDevicePolicy = "keep";
+  # };
 }

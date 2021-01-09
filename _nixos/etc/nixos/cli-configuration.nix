@@ -94,9 +94,4 @@
       '';
     };
   };
-
-  # Enable services.
-  services = {
-    cron.enable = true;
-  };
 }

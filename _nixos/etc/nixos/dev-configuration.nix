@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   emacsCustom = (pkgs.emacsPackagesGen pkgs.emacsPgtkGcc).emacsWithPackages (epkgs: [
@@ -59,5 +59,5 @@ in {
   };
 
   # Added user to groups.
-  users.users.thiagoko.extraGroups = [ "docker" ];
+  users.users.${config.passthru._me.user}.extraGroups = [ "docker" ];
 }
