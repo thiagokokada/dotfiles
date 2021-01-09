@@ -25,5 +25,7 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[checkout]
+	defaultRemote=origin
 [branch]
 	sort=-committerdate
