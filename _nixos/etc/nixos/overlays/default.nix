@@ -1,14 +1,9 @@
 self: super:
 
+with super;
 let
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-  pkgs = super.pkgs;
-  lib = super.lib;
 in rec {
-  unstable = import unstableTarball {
-    config = super.pkgs.config;
-  };
-
   linuxZenWMuQSS = pkgs.linuxPackagesFor (pkgs.linux_zen.override {
     structuredExtraConfig = with lib.kernel; {
       PREEMPT = yes;
@@ -17,6 +12,10 @@ in rec {
     };
     ignoreConfigErrors = true;
   });
+
+  unstable = import unstableTarball {
+    config = pkgs.config;
+  };
 
   picom = unstable.picom;
 }

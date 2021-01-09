@@ -55,6 +55,7 @@
     tealdeer
     telnet
     tig
+    tmux
     universal-ctags
     unrar
     unzip
@@ -82,11 +83,6 @@
   programs = {
     iftop.enable = true;
     mtr.enable = true;
-    tmux = {
-      enable = true;
-      terminal = "screen-256color";
-      secureSocket = false;
-    };
     zsh = {
       enable = true;
       promptInit = ''

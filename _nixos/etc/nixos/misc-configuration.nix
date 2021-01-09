@@ -100,6 +100,10 @@ in {
     # Enable NTP.
     timesyncd.enable = true;
 
+    # Kills user process on exit instead of waiting them to finish.
+    # Makes shutdown/reboot faster, but breaks tmux/screen
+    logind.killUserProcesses = true;
+
     # Set I/O scheduler.
     udev.extraRules = ''
       # set scheduler for NVMe
