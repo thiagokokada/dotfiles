@@ -55,7 +55,7 @@
     tealdeer
     telnet
     tig
-    tmux
+    tmux-with-systemd
     universal-ctags
     unrar
     unzip

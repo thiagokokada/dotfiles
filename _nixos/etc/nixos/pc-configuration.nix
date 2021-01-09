@@ -5,9 +5,6 @@ let
   group = config.users.users.${user}.group;
   homePath = lib.strings.concatStrings [ "/home/" user ];
   archivePath = lib.strings.concatStrings [ "/mnt/archive/" user ];
-  cpusetWithPatch = (pkgs.unstable.cpuset.overrideAttrs (oldAttrs: {
-    patches = [ ./patches/cpuset.patch ];
-  }));
 in {
   # Enable opentabletdriver.
   hardware.opentabletdriver = with pkgs; {
@@ -65,7 +62,7 @@ in {
   # Some misc packages.
   environment.systemPackages = with pkgs; [
     btrfs-progs
-    cpusetWithPatch
+    cpuset-with-patch
     hdparm
     rtorrent
     samba
