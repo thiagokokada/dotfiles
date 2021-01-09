@@ -18,8 +18,5 @@ in rec {
     ignoreConfigErrors = true;
   });
 
-  # Backport unstable packages used in modules
-  opentabletdriver = unstable.opentabletdriver;
-
   picom = unstable.picom;
 }

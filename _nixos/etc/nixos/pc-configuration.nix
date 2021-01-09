@@ -9,7 +9,11 @@ let
     patches = [ ./patches/cpuset.patch ];
   }));
 in {
-  hardware.opentabletdriver.enable = true;
+  # Enable opentabletdriver.
+  hardware.opentabletdriver = with pkgs; {
+    enable = true;
+    package = unstable.opentabletdriver;
+  };
 
   boot = {
     # Early load i195 for better resolution in init.
