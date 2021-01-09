@@ -18,6 +18,7 @@
       ./game-configuration.nix
       ./yubikey-configuration.nix
       ./misc-configuration.nix
+      ./security-configuration.nix
       ./nubank-configuration.nix
     ];
 
