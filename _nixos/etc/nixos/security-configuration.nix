@@ -1,51 +1,49 @@
 { pkgs, ... }:
 
 let
-  minimalServicesHardenedFlags = {
+  # Mostly safe to block unless the service is doing something very strange
+  safeHardeningFlags = {
     LockPersonality = true;
     NoNewPrivileges = true;
     PrivateTmp = true;
     ProtectHostname = true;
-    ProtectSystem = "full";
+    ProtectSystem = true;
     RestrictNamespaces = true;
     RestrictRealtime = true;
-    RestrictSUIDSGID = true;
+    SystemCallArchitectures = "native";
   };
-  userServicesHardenedFlags = minimalServicesHardenedFlags // {
-    ProtectHome = "read-only";
-    ProtectSystem = "strict";
-    # PrivateNetwork doesn't work for user services
-    RestrictAddressFamilies="AF_UNIX";
-  };
-  servicesHardenedFlags = userServicesHardenedFlags // {
+  strictHardeningFlags = safeHardeningFlags // {
     PrivateControlGroups = true;
     PrivateDevices = true;
+    ProtectClock = true;
     ProtectHome = true;
     ProtectKernelLogs = true;
     ProtectKernelModules = true;
     ProtectKernelTunables = true;
-    # Relaxing this restriction since I can use PrivateNetwork in system services
-    RestrictAddressFamilies="AF_UNIX AF_INET AF_INET6";
+  };
+  restrictNetworkFlags = {
+    PrivateNetwork = true; # Doesn't work in user services
+    RestrictAddressFamilies="AF_UNIX";
   };
 in {
   # systemd-analyze --user security
   systemd.user.services = {
-    geoclue-agent.serviceConfig = userServicesHardenedFlags;
-    opentabletdriver.serviceConfig = userServicesHardenedFlags // { ProtectHome = false; };
-    picom.serviceConfig = userServicesHardenedFlags;
-    redshift.serviceConfig = userServicesHardenedFlags;
-    xsettingsd.serviceConfig = userServicesHardenedFlags;
+    geoclue-agent.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
+    opentabletdriver.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
+    picom.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
+    redshift.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
+    xsettingsd.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
   };
 
   # systemd-analyze security
   systemd.services = {
-    flood.serviceConfig = servicesHardenedFlags // { ProtectHome = false; };
-    rtorrent.serviceConfig = servicesHardenedFlags // { ProtectSystem = "full"; };
-    plex.serviceConfig = servicesHardenedFlags // { ProtectSystem = "full"; };
-    samba-nmbd.serviceConfig = minimalServicesHardenedFlags;
-    samba-smbd.serviceConfig = minimalServicesHardenedFlags;
-    samba-winbindd.serviceConfig = minimalServicesHardenedFlags;
-    smartd.serviceConfig = servicesHardenedFlags // { PrivateDevices = false; PrivateNetwork = true; };
+    flood.serviceConfig = strictHardeningFlags // { ProtectHome = false; };
+    rtorrent.serviceConfig = strictHardeningFlags;
+    plex.serviceConfig = strictHardeningFlags;
+    samba-nmbd.serviceConfig = safeHardeningFlags;
+    samba-smbd.serviceConfig = safeHardeningFlags;
+    samba-winbindd.serviceConfig = safeHardeningFlags;
+    smartd.serviceConfig = strictHardeningFlags // restrictNetworkFlags // { ProtectClock = false; PrivateDevices = false; };
   };
 
   # TODO: Enable usbguard after finding some way to easily manage it
