@@ -1,11 +1,9 @@
 { pkgs, config, lib, ... }:
 
 let
-  user = config.passthru._me.user;
-  group = config.users.users.${user}.group;
-  homePath = lib.strings.concatStrings [ "/home/" user ];
-  archivePath = lib.strings.concatStrings [ "/mnt/archive/" user ];
-in {
+  username = config.passthru._me.user;
+  archive = "/mnt/archive/${username}";
+in with config.users.users.${username}; {
   # Enable opentabletdriver.
   hardware.opentabletdriver = with pkgs; {
     enable = true;
@@ -53,9 +51,8 @@ in {
     };
   };
 
-
   # Add user to libvirtd group.
-  users.users.${user} = {
+  users.users.${username} = {
      extraGroups = [ "libvirtd" ];
   };
 
@@ -107,23 +104,23 @@ in {
       '';
       shares = {
         home = {
-          path = homePath;
+          path = home;
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
           "create mask" = "0644";
           "directory mask" = "0755";
-          "force user" = user;
+          "force user" = username;
           "force group" = group;
         };
         archive = {
-          path = archivePath;
+          path = archive;
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
           "create mask" = "0644";
           "directory mask" = "0755";
-          "force user" = user;
+          "force user" = username;
           "force group" = group;
         };
       };
@@ -132,8 +129,8 @@ in {
     # Enable rtorrent
     rtorrent = {
       enable = true;
-      downloadDir =  lib.strings.concatStrings [ archivePath "/Downloads" ];
-      user = user;
+      downloadDir =  "${archive}/Downloads";
+      user = username;
       group = group;
       port = 60001;
       openFirewall = true;
@@ -147,7 +144,7 @@ in {
         ratio.upload.set=500M
 
         # Watch directory
-        schedule2 = watch_directory,5,5,load.start="${homePath}/Torrents/*.torrent"
+        schedule2 = watch_directory,5,5,load.start="${home}/Torrents/*.torrent"
         schedule2 = untied_directory,5,5,stop_untied=
       '';
     };
@@ -159,16 +156,16 @@ in {
     };
   };
 
-  systemd.services.flood = {
+  systemd.services.flood = with pkgs.unstable; {
     description = "A web UI for rTorrent with a Node.js backend and React frontend.";
     after = [ "rtorrent.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      User = user;
+      User = username;
       Group = group;
       Type = "simple";
       Restart = "on-failure";
-      ExecStart="${pkgs.unstable.nodePackages.flood}/bin/flood";
+      ExecStart="${nodePackages.flood}/bin/flood";
     };
   };
 

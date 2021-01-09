@@ -1,10 +1,9 @@
 self: super:
 
-with super;
 let
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
 in rec {
-  linux-zen-with-muqss = linuxPackagesFor (linux_zen.override {
+  linux-zen-with-muqss = with super; linuxPackagesFor (linux_zen.override {
     structuredExtraConfig = with lib.kernel; {
       PREEMPT = yes;
       PREEMPT_VOLUNTARY = lib.mkForce no;
@@ -14,9 +13,9 @@ in rec {
   });
 
   # Enable systemd patch to avoid killUserProcess issue
-  tmux-with-systemd = super.tmux.overrideAttrs (oldAttrs: {
+  tmux-with-systemd = with super; tmux.overrideAttrs (oldAttrs: {
     patches = (oldAttrs.patches or []) ++ [
-      (super.fetchpatch {
+      (fetchpatch {
         url = "https://github.com/tmux/tmux/files/4575147/tmux-systemd.diff.txt";
         sha256 = "08kmk28pz2z8hb46z864f01q3b65w7x3ax3kbk9qrqv93rpr93hy";
       })
@@ -31,13 +30,13 @@ in rec {
 
   # Fixed backport to use nixpkgs-unstable packages as pkgs.unstable.<package>
   unstable = import unstableTarball {
-    config = pkgs.config;
+    config = super.config;
   };
 
   # Backport from unstable to have Python 3 version
-  cpuset-with-patch = unstable.cpuset.overrideAttrs (oldAttrs: {
+  cpuset-with-patch = with unstable; cpuset.overrideAttrs (oldAttrs: {
     patches = (oldAttrs.patches or []) ++ [
-      (super.fetchpatch {
+      (fetchpatch {
         url = "https://github.com/lpechacek/cpuset/files/5791728/cpuset.txt";
         sha256 = "1yc1sdb326bcniqha960sfpgvinxxvna3nwn6cc7vdfmlsrf5jns";
       })
