@@ -53,23 +53,16 @@
       useGlamor = true;
 
       # Enable libinput.
-      libinput.enable = true;
-
-      # Set input config to libinput devices
-      inputClassSections = [
-        ''
-          Identifier "custom mouse config"
-          MatchIsPointer "on"
-          Option "AccelProfile" "flat"
-        ''
-        ''
-          Identifier "custom touchpad config"
-          MatchIsTouchpad "on"
-          Option "NaturalScrolling" "on"
-          Option "Tapping" "on"
-          Option "TappingButtonMap" "lmr"
-        ''
-      ];
+      libinput = {
+        enable = true;
+        touchpad = {
+          naturalScrolling = true;
+          tapping = true;
+        };
+        mouse = {
+          accelProfile = "flat";
+        };
+      };
 
       # Use LightDM.
       displayManager = with pkgs; {

@@ -3,8 +3,8 @@
 let
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
   libinputModuleRefactor = fetchTarball {
-    url = "https://github.com/thiagokokada/nixpkgs/archive/ee96caebbc51c6620c2f318f76fd848a4a5623a5.tar.gz";
-    sha256 = "1mfpyf7d8d50300z1b523bqaql60q3yyszps176aqs8y04m1hjdr";
+    url = "https://github.com/thiagokokada/nixpkgs/archive/ffc2d237b4a251486894816f5c45569f234d3a85.tar.gz";
+    sha256 = "1w1j8hvibv2mmllggc9zg8p8vq1jg8yizapj3922k85br9jvmdlm";
   };
   redshiftModuleRefactor = fetchTarball {
     url = "https://github.com/thiagokokada/nixpkgs/archive/fab2665566f4cff50e13596c9b52e8550cf2309b.tar.gz";
