@@ -38,7 +38,7 @@ in {
   # systemd-analyze security
   systemd.services = {
     flood.serviceConfig = strictHardeningFlags // { ProtectHome = false; };
-    rtorrent.serviceConfig = strictHardeningFlags;
+    rtorrent.serviceConfig = strictHardeningFlags // { ProtectHome = "read-only"; };
     plex.serviceConfig = strictHardeningFlags;
     samba-nmbd.serviceConfig = safeHardeningFlags;
     samba-smbd.serviceConfig = safeHardeningFlags;
