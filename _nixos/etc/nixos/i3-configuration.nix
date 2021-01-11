@@ -10,9 +10,6 @@
   # Configure the virtual console keymap from the xserver keyboard settings.
   console.useXkbConfig = true;
 
-  # For gammastep;
-  location.provider = "geoclue2";
-
   services = {
     # Allow automounting.
     gvfs.enable = true;
@@ -28,6 +25,8 @@
           temp-night = 3700;
           gamma = 0.8;
           fade = 1;
+          dawn-time = "6:30-7:30";
+          dusk-time = "18:30-19:30";
         };
       };
       package = pkgs.unstable.gammastep;

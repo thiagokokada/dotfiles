@@ -6,7 +6,6 @@ let
     LockPersonality = true;
     NoNewPrivileges = true;
     PrivateTmp = true;
-    ProtectHostname = true;
     ProtectSystem = true;
     RestrictNamespaces = true;
     RestrictRealtime = true;
@@ -17,18 +16,17 @@ let
     PrivateDevices = true;
     ProtectClock = true;
     ProtectHome = true;
+    ProtectHostname = true;
     ProtectKernelLogs = true;
     ProtectKernelModules = true;
     ProtectKernelTunables = true;
   };
   restrictNetworkFlags = {
-    PrivateNetwork = true; # Doesn't work in user services
     RestrictAddressFamilies="AF_UNIX";
   };
 in {
   # systemd-analyze --user security
   systemd.user.services = {
-    geoclue-agent.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
     opentabletdriver.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
     picom.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
     redshift.serviceConfig = safeHardeningFlags // restrictNetworkFlags;
@@ -37,13 +35,13 @@ in {
 
   # systemd-analyze security
   systemd.services = {
-    flood.serviceConfig = strictHardeningFlags // { ProtectHome = false; RestrictAddressFamilies = "AF_UNIX"; };
+    flood.serviceConfig = strictHardeningFlags // restrictNetworkFlags // { ProtectHome = false; };
     rtorrent.serviceConfig = strictHardeningFlags // { ProtectHome = "read-only"; };
     plex.serviceConfig = strictHardeningFlags;
     samba-nmbd.serviceConfig = safeHardeningFlags;
     samba-smbd.serviceConfig = safeHardeningFlags;
     samba-winbindd.serviceConfig = safeHardeningFlags;
-    smartd.serviceConfig = strictHardeningFlags // restrictNetworkFlags // { ProtectClock = false; PrivateDevices = false; };
+    smartd.serviceConfig = strictHardeningFlags // { ProtectClock = false; PrivateDevices = false; PrivateNetwork = true; };
   };
 
   # TODO: Enable usbguard after finding some way to easily manage it
