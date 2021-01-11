@@ -40,7 +40,6 @@
   ];
 
   hardware = {
-    # Enable sound.
     pulseaudio = {
       enable = true;
       extraConfig = ''
@@ -52,19 +51,19 @@
     };
   };
 
-  # Enable Java.
   programs.java = {
     enable = true;
     package = pkgs.jdk11;
   };
 
-  # Enable Gnome Keyring
-  security.pam.services.gdm.enableGnomeKeyring = true;
-  services.gnome3.gnome-keyring.enable = true;
+  # This allows PulseAudio to run with realtime privileges (i.e: less cracks)
+  security.rtkit.enable = true;
 
-  # Enable SMART monitoring.
-  services.smartd = {
-    enable = true;
-    notifications.x11.enable = true;
+  services = {
+    smartd = {
+      enable = true;
+      notifications.x11.enable = true;
+    };
+    gnome3.gnome-keyring.enable = true;
   };
 }
