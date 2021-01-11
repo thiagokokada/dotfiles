@@ -29,6 +29,7 @@
     smartmontools
     termite
     unstable.discord
+    unstable.pulseeffects
     unstable.tdesktop
     xarchiver
     xdotool
