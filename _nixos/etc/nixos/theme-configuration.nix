@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   gtk-theme = "Arc-Dark";
@@ -6,6 +6,13 @@ let
   cursor-theme = "Adwaita";
   fallback-theme = "gnome";
   font-name = "Noto Sans 11";
+  gtk-config = {
+    gtk-icon-theme-name = icon-theme;
+    gtk-theme-name = gtk-theme;
+    gtk-cursor-theme-name = cursor-theme;
+    gtk-fallback-icon-theme = fallback-theme;
+    gtk-font-name = font-name;
+  };
 in {
   environment = {
     systemPackages = with pkgs; [
@@ -15,24 +22,11 @@ in {
       hicolor-icon-theme
     ];
     etc."xdg/gtk-2.0/gtkrc" = {
-      text = ''
-        gtk-icon-theme-name = "${icon-theme}"
-        gtk-theme-name = "${gtk-theme}"
-        gtk-cursor-theme-name = "${cursor-theme}"
-        gtk-fallback-icon-theme = "${fallback-theme}"
-        gtk-font-name = "${font-name}"
-      '';
+      text = lib.generators.toKeyValue {} gtk-config;
       mode = "444";
     };
     etc."xdg/gtk-3.0/settings.ini" = {
-      text = ''
-        [Settings]
-        gtk-icon-theme-name=${icon-theme}
-        gtk-theme-name=${gtk-theme}
-        gtk-cursor-theme-name=${cursor-theme}
-        gtk-fallback-icon-theme=${fallback-theme}
-        gtk-font-name=${font-name}
-      '';
+      text = lib.generators.toINI {} { Settings = gtk-config; };
       mode = "444";
     };
   };
@@ -40,9 +34,9 @@ in {
   systemd.user.services = {
     xsettingsd = let
       configFile = pkgs.writeText "xsettingsd" ''
-          Net/IconThemeName "${icon-theme}"
-          Net/ThemeName "${gtk-theme}"
-          Gtk/CursorThemeName "${cursor-theme}"
+        Net/IconThemeName "${icon-theme}"
+        Net/ThemeName "${gtk-theme}"
+        Gtk/CursorThemeName "${cursor-theme}"
       '';
     in {
       description = "Provides settings to X11 applications via the XSETTINGS specification";
