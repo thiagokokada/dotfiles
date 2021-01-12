@@ -69,11 +69,15 @@ in {
     cpu.intel.updateMicrocode = true;
   };
 
-  # Enable automatic GC.
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+
+  # Reduce disk usage.
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    autoOptimiseStore = true;
   };
 
   # Enable NixOS auto-upgrade.
