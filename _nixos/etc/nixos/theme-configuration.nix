@@ -69,6 +69,7 @@ in {
     ];
 
     fontconfig = {
+      dpi = 135;
       defaultFonts = {
         monospace = [ "Noto Mono" ];
         serif = [ "Noto Serif" ];

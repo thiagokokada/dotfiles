@@ -15,6 +15,7 @@
     gnome3.gnome-disk-utility
     gnome3.gnome-themes-standard
     gthumb
+    hexchat
     inkscape
     kitty
     libreoffice-fresh
