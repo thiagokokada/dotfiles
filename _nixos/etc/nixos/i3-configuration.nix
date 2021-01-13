@@ -7,6 +7,11 @@
     }))
   ];
 
+  location = {
+    latitude = 0.0;
+    longitude = 0.0;
+  };
+
   # Configure the virtual console keymap from the xserver keyboard settings.
   console.useXkbConfig = true;
 
@@ -20,7 +25,7 @@
     redshift = {
       enable = true;
       settings = {
-        general = {
+        redshift = {
           temp-day = 5500;
           temp-night = 3700;
           gamma = 0.8;
