@@ -44,6 +44,7 @@ start-${vm_name}() {
 	# migrated by cset. Restrict the workqueue to use only cpu 0.
 	echo 00 | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
 
+	sudo systemctl stop rtkit-daemon.service
 	sudo cset shield --reset
 	sudo cset shield --cpu "${reserved_guest_cpus}" --kthread=on
 	sudo virsh start "${vm_name}"
@@ -55,6 +56,7 @@ stop-${vm_name}() {
 	echo ff | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
 	sudo sysctl vm.stat_interval=1
 	sudo cset shield --reset
+	sudo systemctl start rtkit-daemon.service
 }
 EOF
 	eval "${vm_functions}"
