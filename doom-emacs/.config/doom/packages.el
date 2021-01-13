@@ -14,3 +14,4 @@
 (package! lsp-ui :disable t)
 (package! sort-words)
 (package! uuidgen)
+(unpin! lsp-dart)
