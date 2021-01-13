@@ -162,6 +162,12 @@
      (prettify insert)
      slurp/barf-cp)))
 
+;; ix
+(use-package! ix
+  :defer t
+  :config
+  (defalias 'ix-post 'to-pastebin))
+
 ;; lsp
 (defun find-path-by-executable (exec)
   (when-let (path (executable-find exec))

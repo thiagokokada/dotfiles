@@ -9,6 +9,7 @@
 (package! evil-escape :disable t)
 (package! flycheck-clj-kondo :disable t)
 (package! graphql-mode)
+(package! ix)
 (package! lispyville)
 (package! lsp-ui :disable t)
 (package! sort-words)
