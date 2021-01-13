@@ -304,7 +304,7 @@ for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 
 # load Xresources
-exec_always xrdb $HOME/.Xresources.wayland
+exec_always xrdb $HOME/.Xresources
 
 # notification manager
 exec mako
