@@ -32,6 +32,7 @@
     unstable.discord
     unstable.pulseeffects
     unstable.tdesktop
+    unstable.xdragon
     xarchiver
     xdotool
     xorg.xdpyinfo

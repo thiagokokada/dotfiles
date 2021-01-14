@@ -7,8 +7,8 @@ let
     sha256 = "162fd5h7xpig9sabg4l6ldgx8j756w79gcsmh9fwqwp6zvw45qsl";
   };
   redshiftModuleRefactor = fetchTarball {
-    url = "https://github.com/thiagokokada/nixpkgs/archive/9ab3d61060edab09db9bdff2ecddc86816b62f7e.tar.gz";
-    sha256 = "04xw60baw7x94lj2hvpf0nj59iqklrf9livg6qjdd6wkf566y2n5";
+    url = "https://github.com/thiagokokada/nixpkgs/archive/791a14f24d7f69d9018dbfde6cbf2a6f988d29c2.tar.gz";
+    sha256 = "1igxpxnc5jvsish5sgplmr1mpp09q4fxq24g7i9pbym7raskbb1y";
   };
 in {
   # Backport module from unstable.
