@@ -1,7 +1,12 @@
 export NIX_HOME="${DOTFILES_PATH}/_nixos"
 
 alias nixos-clean-up="sudo -- sh -c 'nix-collect-garbage -d && nixos-rebuild boot --fast'"
-alias nix-remove-stray-roots="nix-store --gc --print-roots | awk '{print $1}' | grep /result$ | sudo xargs rm"
+nix-remove-stray-roots() {
+  nix-store --gc --print-roots |\
+    awk '{print $1}' |\
+    grep /result$ |\
+    sudo xargs -I {} rm -I {}
+}
 
 nix-sha256-github() {
   local author="${1}"
