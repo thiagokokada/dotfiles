@@ -85,6 +85,9 @@
     mtr.enable = true;
     zsh = {
       enable = true;
+      interactiveShellInit = with pkgs; ''
+        source "''$(${fzf}/bin/fzf-share)/key-bindings.zsh"
+      '';
       promptInit = ''
         any-nix-shell zsh --info-right | source /dev/stdin
       '';
