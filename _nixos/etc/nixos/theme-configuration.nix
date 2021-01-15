@@ -1,11 +1,13 @@
 { pkgs, lib, ... }:
 
 let
-  gtk-theme = "Adwaita-dark";
-  icon-theme = "Adwaita";
+  gtk-theme = "Arc-Dark";
+  icon-theme = "Arc";
   cursor-theme = "Adwaita";
   fallback-theme = "gnome";
   font-name = "Noto Sans 11";
+  icon-theme-pkg = pkgs.arc-icon-theme;
+  gtk-theme-pkg = pkgs.arc-theme;
   gtk-config = {
     gtk-icon-theme-name = icon-theme;
     gtk-theme-name = gtk-theme;
@@ -17,7 +19,9 @@ in {
   environment = {
     systemPackages = with pkgs; [
       gnome3.adwaita-icon-theme
+      gtk-theme-pkg
       hicolor-icon-theme
+      icon-theme-pkg
     ];
 
     etc."xdg/gtk-2.0/gtkrc" = {
@@ -40,10 +44,12 @@ in {
           enable = true;
           clock-format = "%a %d/%m %H:%M:%S";
           iconTheme = {
+            package = icon-theme-pkg;
             name = "${icon-theme}";
           };
           indicators = [ "~clock" "~session" "~power" ];
           theme = {
+            package = gtk-theme-pkg;
             name = "${gtk-theme}";
           };
         };
@@ -99,6 +105,7 @@ in {
   };
 
   # Enable Qt5 integration.
+  # TODO: This doesn't match GTK theme, but doesn't look horrible and it is native
   qt5 = {
     enable = true;
     platformTheme = "gnome";
