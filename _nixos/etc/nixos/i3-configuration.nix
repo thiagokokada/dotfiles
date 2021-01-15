@@ -7,37 +7,34 @@
     }))
   ];
 
-  location = {
-    latitude = 0.0;
-    longitude = 0.0;
-  };
-
-  # Configure the virtual console keymap from the xserver keyboard settings.
+  # Configure the virtual console keymap from the xserver keyboard settings
   console.useXkbConfig = true;
 
   services = {
-    # Allow automounting.
+    # Allow automounting
     gvfs.enable = true;
 
-    # For battery status reporting.
+    # For battery status reporting
     upower.enable = true;
 
+    # Configure gammastep (change screen color over time)
     redshift = {
       enable = true;
+      dawnTime = "6:30-7:30";
+      duskTime = "18:30-19:30";
       settings = {
         redshift = {
           temp-day = 5500;
           temp-night = 3700;
           gamma = 0.8;
           fade = 1;
-          dawn-time = "6:30-7:30";
-          dusk-time = "18:30-19:30";
         };
       };
       package = pkgs.unstable.gammastep;
       executable = "/bin/gammastep-indicator";
     };
 
+    # Configure picom (for compositing)
     picom = {
       enable = true;
       experimentalBackends = true;
@@ -53,10 +50,10 @@
 
     xserver = {
       enable = true;
-      # Recommended for modesetting drivers;
+      # Recommended for modesetting drivers
       useGlamor = true;
 
-      # Enable libinput.
+      # Enable libinput
       libinput = {
         enable = true;
         touchpad = {
@@ -68,31 +65,10 @@
         };
       };
 
-      # Use LightDM.
-      displayManager = with pkgs; {
-        defaultSession = "none+i3";
+      # Use as default session
+      displayManager.defaultSession = "none+i3";
 
-        lightdm = {
-          enable = true;
-          greeters = {
-            gtk = {
-              enable = true;
-              clock-format = "%a %d/%m %H:%M:%S";
-              iconTheme = {
-                package = arc-icon-theme;
-                name = "Arc";
-              };
-              indicators = [ "~clock" "~session" "~power" ];
-              theme = {
-                package = arc-theme;
-                name = "Arc-Dark";
-              };
-            };
-          };
-        };
-      };
-
-      # Configure i3 as WM.
+      # Configure i3 as WM
       windowManager = {
         i3 = {
           enable = true;
@@ -123,12 +99,9 @@
     };
   };
 
-  # Configure special programs (i.e. hardware access).
+  # Configure special programs (i.e. hardware access)
   programs = {
-    # Enable dconf.
     dconf.enable = true;
-
-    # Backlight control.
     light.enable = true;
   };
 }

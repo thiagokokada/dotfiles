@@ -1,8 +1,8 @@
 { pkgs, lib, ... }:
 
 let
-  gtk-theme = "Arc-Dark";
-  icon-theme = "Arc";
+  gtk-theme = "Adwaita-dark";
+  icon-theme = "Adwaita";
   cursor-theme = "Adwaita";
   fallback-theme = "gnome";
   font-name = "Noto Sans 11";
@@ -16,18 +16,38 @@ let
 in {
   environment = {
     systemPackages = with pkgs; [
-      arc-icon-theme
-      arc-theme
       gnome3.adwaita-icon-theme
       hicolor-icon-theme
     ];
+
     etc."xdg/gtk-2.0/gtkrc" = {
       text = lib.generators.toKeyValue {} gtk-config;
       mode = "444";
     };
+
     etc."xdg/gtk-3.0/settings.ini" = {
       text = lib.generators.toINI {} { Settings = gtk-config; };
       mode = "444";
+    };
+  };
+
+  # Configure LightDM
+  services.xserver.displayManager = {
+    lightdm = {
+      enable = true;
+      greeters = {
+        gtk = {
+          enable = true;
+          clock-format = "%a %d/%m %H:%M:%S";
+          iconTheme = {
+            name = "${icon-theme}";
+          };
+          indicators = [ "~clock" "~session" "~power" ];
+          theme = {
+            name = "${gtk-theme}";
+          };
+        };
+      };
     };
   };
 
@@ -81,7 +101,7 @@ in {
   # Enable Qt5 integration.
   qt5 = {
     enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
+    platformTheme = "gnome";
+    style = "adwaita-dark";
   };
 }
