@@ -8,7 +8,11 @@ if [[ "${TERM}" = "xterm-kitty" ]]; then
     fi
   }
 
+  copy() { kitty +kitten clipboard ${@} }
+  diffk() { kitty +kitten diff ${@} }
   icat() { kitty +kitten icat ${@} }
+  paste() { kitty +kitten clipboard --get-clipboard ${@} }
   ssh() { kitty +kitten ssh ${@} }
+
   compdef _kitty kitty
 fi

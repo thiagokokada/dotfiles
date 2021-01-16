@@ -54,11 +54,21 @@
       window_alert_bell = true;
       bell_on_tab = true;
       editor = "nvim";
+      strip_trailing_spaces = "smart";
+      clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
     };
   };
 
-  programs.zsh.shellAliases = {
-    icat = "kitty +kitten icat";
-    ssh = "kitty +kitten ssh";
-  };
+  programs.zsh.initExtra = ''
+    # Do not enable those alias in non-kitty terminal
+    if [[ "$TERM" == "xterm-kitty" ]]; then
+      alias copy="kitty +kitten clipboard";
+      alias diffk="kitty +kitten diff";
+      alias icat="kitty +kitten icat";
+      alias paste="kitty +kitten clipboard --get-clipboard";
+
+      # If set as alias, auto-completion doesn't work
+      ssh() { kitty +kitten ssh $@ }
+    fi
+  '';
 }
