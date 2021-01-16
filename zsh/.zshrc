@@ -75,8 +75,6 @@ bindkey -M vicmd v edit-command-line
 close-fd() { "${@}" </dev/null &>/dev/null }
 run-bg() { "${@}" </dev/null &>/dev/null &! }
 open() { run-bg xdg-open "${@}" }
-try-run() { (( $+commands[${1}] )) && "${@}" }
-to-string() { awk '{print "\""$0"\""}' }
 get-ip() { curl -Ss "https://ifconfig.me" }
 get-ip!() { curl -Ss "https://ipapi.co/$(get-ip)/yaml" }
 restart() { pkill "${1}"; run-bg "${@}" }
@@ -96,10 +94,7 @@ alias dotfiles="cd \"${DOTFILES_PATH}\""
 alias dotfiles-pull="git -C \"${DOTFILES_PATH}\" pull"
 alias reload!="source \"${HOME}/.zshrc\""
 alias clean-cache!="rm -f \"${HOME}/.*.zwc\""
-alias gk="run-bg gitk"
-alias http-server="python3 -m http.server"
 alias ln-clean-up="rm -- **/*(-@D)"
-alias nvimdiff="nvim -d"
 
 # source contents from ~/.zshrc.d/*.zsh
 for file in ${HOME}/.zshrc.d/*.zsh; do
