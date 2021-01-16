@@ -1,0 +1,7 @@
+*.swp
+*~
+.DS_Store
+.dir-locals.el
+.lsp
+.projectile
+Thumbs.db

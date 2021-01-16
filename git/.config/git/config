@@ -4,7 +4,7 @@
 [push]
 	default = simple
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/ignore
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab
 [merge]
 	tool = nvim -d
@@ -14,11 +14,10 @@
 	verbose = true
 [alias]
 	branch-cleanup = "!git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d #"
-	pushf = push --force-with-lease
-	submodules-upgrade = submodule update --init --recursive --remote
-	logs = log --show-signature
+	pushf = "push --force-with-lease"
+	logs = "log --show-signature"
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.config/git/local
 [github]
 	user = thiagokokada
 [pull]
@@ -26,6 +25,6 @@
 [rebase]
 	autoStash = true
 [checkout]
-	defaultRemote=origin
+	defaultRemote = origin
 [branch]
-	sort=-committerdate
+	sort = -committerdate
