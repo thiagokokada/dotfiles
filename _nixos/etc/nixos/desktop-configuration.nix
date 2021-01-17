@@ -21,6 +21,7 @@
     libreoffice-fresh
     lxappearance
     lxmenu-data
+    mpv-with-vapoursynth
     pavucontrol
     pcmanfm
     peek

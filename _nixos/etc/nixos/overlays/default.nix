@@ -12,6 +12,14 @@ in rec {
     ignoreConfigErrors = true;
   });
 
+  mpv-with-vapoursynth = with super; wrapMpv (pkgs.mpv-unwrapped.override {
+    vapoursynthSupport = true;
+  }) {
+    extraMakeWrapperArgs = [
+      "--prefix" "LD_LIBRARY_PATH" ":" "${vapoursynth-mvtools}/lib/vapoursynth"
+    ];
+  };
+
   # Enable systemd patch to avoid killUserProcess issue
   tmux-with-systemd = with super; tmux.overrideAttrs (oldAttrs: {
     patches = (oldAttrs.patches or []) ++ [

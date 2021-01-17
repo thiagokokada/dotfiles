@@ -3,9 +3,6 @@
 {
   # CLI packages.
   environment.systemPackages = with pkgs; [
-    (mpv-with-scripts.override ({
-      scripts = [ mpvScripts.mpris ];
-    }))
     any-nix-shell
     aria2
     bc

@@ -1,5 +1,6 @@
 import vapoursynth as vs
 core = vs.get_core()
+core.std.LoadPlugin(path="libmvtools.so")
 
 # skip motion interpolation completely for content exceeding the limits below
 max_fps = 60
