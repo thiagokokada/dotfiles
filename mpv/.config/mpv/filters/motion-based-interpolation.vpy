@@ -1,43 +1,75 @@
-import vapoursynth as vs
-core = vs.get_core()
+# vim: set ft=python:
+
+# see the README at https://gist.github.com/phiresky/4bfcfbbd05b3c2ed8645
+# source: https://github.com/mpv-player/mpv/issues/2149
+# source: https://github.com/mpv-player/mpv/issues/566
+# source: https://github.com/haasn/gentoo-conf/blob/nanodesu/home/nand/.mpv/filters/mvtools.vpy
+
+import vapoursynth
+
+core = vapoursynth.get_core()
 core.std.LoadPlugin(path="libmvtools.so")
+# ref: http://avisynth.org.ru/mvtools/mvtools2.html#functions
+# default is 400, less means interpolation will only happen when it will work well
+ignore_threshold=140
+# if n% of blocks change more than threshold then don't interpolate at all (default is 51%)
+scene_change_percentage=15
 
-# skip motion interpolation completely for content exceeding the limits below
-max_fps = 60
-max_mp = 2.5 * (10**6)  # 2.5 megapixels
-# a block is considered as changed when 8*8*x > th_block|flow_diff with 8*8
-# being the size of a block (scaled internally) and x the difference of each
-# pixel within this block, default 400 (8*8*6.25)
-th_block_diff  = int(8*8*6.25)
-# (threshold/255)% blocks have to change to consider this a scene change
-# (= no motion compensation), default 130
-th_block_changed  = 65
-# size of blocks the analyse step is performed on
-blocksize = 32
+dst_fps = display_fps
+# Interpolating to fps higher than 60 is too CPU-expensive, smoothmotion can handle the rest.
+# while (dst_fps > 60):
+#    dst_fps /= 2
 
-# double initial FPS, and let mpv interpolation handle the rest
-target_num = container_fps * 2 if container_fps * 2 < max_fps else max_fps
-target_num = int(target_num * 1e6)
-target_den = int(1e6)
-source_num = int(container_fps * 1e6)
-source_den = int(1e6)
-
-clip = video_in
-
-if not (clip.width * clip.height > max_mp or container_fps > max_fps):
-    clip = core.std.AssumeFPS(clip, fpsnum=source_num, fpsden=source_den)
-    sup  = core.mv.Super(clip, pel=2, hpad=blocksize, vpad=blocksize)
-    bv   = core.mv.Analyse(sup, blksize=blocksize, isb=True , chroma=True, search=3, searchparam=1)
-    fv   = core.mv.Analyse(sup, blksize=blocksize, isb=False, chroma=True, search=3, searchparam=1)
-    clip = core.mv.BlockFPS(clip, sup, bv, fv, num=target_num, den=target_den,
-                            mode=3, thscd1=th_block_diff, thscd2=th_block_changed)
-
-    print('motion-interpolation: {0} -> {1} FPS'
-          .format(source_num / source_den, target_num / target_den))
+if "video_in" in globals():
+    # realtime
+    clip = video_in
+    # Needed because clip FPS is missing
+    src_fps_num = int(container_fps * 1e8)
+    src_fps_den = int(1e8)
+    clip = core.std.AssumeFPS(clip, fpsnum = src_fps_num, fpsden = src_fps_den)
 else:
-    print('motion-interpolation: skipping {0}x{1} {2} FPS video'
-      .format(clip.width, clip.height, container_fps))
+    # run with vspipe
+    clip = core.ffms2.Source(source=in_filename)
+    dst_fps=float(dst_fps)
+
+# resolution in megapixels. 1080p ≈ 2MP, 720p ≈ 1MP
+mpix = clip.width * clip.height / 1000000
+
+# Skip interpolation for >1080p or 60 Hz content due to performance
+if not (mpix > 2.5 or clip.fps_num/clip.fps_den > 59):
+    analParams = {
+        'overlap': 0,
+        'search': 3,
+        'truemotion': True,
+        #'chrome': True,
+        #'blksize':16,
+        #'searchparam':1
+    }
+    blockParams = {
+        'thscd1': ignore_threshold,
+        'thscd2': int(scene_change_percentage*255/100),
+        'mode': 3,
+    }
+
+    if mpix > 1.5:
+        # can't handle these on Full HD with Intel i5-2500k
+        # see the description of these parameters in http://avisynth.org.ru/mvtools/mvtools2.html#functions
+        analParams['search'] = 0
+        blockParams['mode'] = 0
+        quality = 'low'
+    else:
+        quality = 'high'
+
+
+    dst_fps_num = int(dst_fps * 1e4)
+    dst_fps_den = int(1e4)
+    print("Reflowing from {} fps to {} fps (quality={})".format(clip.fps_num/clip.fps_den,dst_fps_num/dst_fps_den,quality))
+
+    sup  = core.mv.Super(clip, pel=2)
+    bvec = core.mv.Analyse(sup, isb=True, **analParams)
+    fvec = core.mv.Analyse(sup, isb=False, **analParams)
+    clip = core.mv.BlockFPS(clip, sup, bvec, fvec,
+            num=dst_fps_num, den=dst_fps_den,
+            **blockParams)
 
 clip.set_output()
-
-# vim: ft=python
