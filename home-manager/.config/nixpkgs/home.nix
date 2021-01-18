@@ -4,9 +4,10 @@
   imports = [
     ./git.nix
     ./kitty.nix
+    ./my.nix
+    ./theme.nix
     ./tmux.nix
     ./zsh.nix
-    ./theme.nix
   ];
 
   # Let Home Manager install and manage itself.
