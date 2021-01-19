@@ -4,16 +4,18 @@ let
   # Aliases
   alt = "Mod1";
   modifier = "Mod4";
-  ws1 = "1:  ";
-  ws2 = "2:  ";
-  ws3 = "3:  ";
-  ws4 = "4:  ";
-  ws5 = "5:  ";
-  ws6 = "6:  ";
-  ws7 = "7:  ";
-  ws8 = "8:  ";
-  ws9 = "9:  ";
-  ws10 = "10:  ";
+  workspaces = [
+    { ws = 1; name = "1:  "; }
+    { ws = 2; name = "2:  "; }
+    { ws = 3; name = "3:  "; }
+    { ws = 4; name = "4:  "; }
+    { ws = 5; name = "5:  "; }
+    { ws = 6; name = "6:  "; }
+    { ws = 7; name = "7:  "; }
+    { ws = 8; name = "8:  "; }
+    { ws = 9; name = "9:  "; }
+    { ws = 0; name = "10:  "; }
+  ];
 
   # Theme
   mainFont = "Roboto";
@@ -77,7 +79,7 @@ let
       "${optionalString (prefixKey != null) "${prefixKey}+"}k" = upCmd;
       "${optionalString (prefixKey != null) "${prefixKey}+"}l" = rightCmd;
     };
-  mapDirectionDefault = { prefixKey, prefixCmd }:
+  mapDirectionDefault = { prefixKey ? null, prefixCmd }:
     (mapDirection {
       inherit prefixKey;
       leftCmd = "${prefixCmd} left";
@@ -85,6 +87,12 @@ let
       upCmd = "${prefixCmd} up";
       rightCmd = "${prefixCmd} right";
     });
+  mapWorkspaces = with lib.attrsets; with lib.strings; { workspaces, prefixKey ? null, prefixCmd }:
+    (listToAttrs
+      (map
+        ({ ws, name }:
+          (nameValuePair "${optionalString (prefixKey != null) "${prefixKey}+"}${toString ws}" ''${prefixCmd} "${name}"''))
+        workspaces));
 
 in {
   xsession.windowManager.i3 = {
@@ -179,26 +187,6 @@ in {
           "${modifier}+Tab" = "exec ${menu} -show window";
           "${modifier}+v" = "split v";
           "${modifier}+b" = "split h";
-          "${modifier}+1" = ''workspace number "${ws1}"'';
-          "${modifier}+2" = ''workspace number "${ws2}"'';
-          "${modifier}+3" = ''workspace number "${ws3}"'';
-          "${modifier}+4" = ''workspace number "${ws4}"'';
-          "${modifier}+5" = ''workspace number "${ws5}"'';
-          "${modifier}+6" = ''workspace number "${ws6}"'';
-          "${modifier}+7" = ''workspace number "${ws7}"'';
-          "${modifier}+8" = ''workspace number "${ws8}"'';
-          "${modifier}+9" = ''workspace number "${ws9}"'';
-          "${modifier}+0" = ''workspace number "${ws10}"'';
-          "${modifier}+Shift+1" = ''move container to workspace number "${ws1}"'';
-          "${modifier}+Shift+2" = ''move container to workspace number "${ws2}"'';
-          "${modifier}+Shift+3" = ''move container to workspace number "${ws3}"'';
-          "${modifier}+Shift+4" = ''move container to workspace number "${ws4}"'';
-          "${modifier}+Shift+5" = ''move container to workspace number "${ws5}"'';
-          "${modifier}+Shift+6" = ''move container to workspace number "${ws6}"'';
-          "${modifier}+Shift+7" = ''move container to workspace number "${ws7}"'';
-          "${modifier}+Shift+8" = ''move container to workspace number "${ws8}"'';
-          "${modifier}+Shift+9" = ''move container to workspace number "${ws9}"'';
-          "${modifier}+Shift+0" = ''move container to workspace number "${ws10}"'';
           "${modifier}+Shift+minus" = "move scratchpad";
           "${modifier}+minus" = "show scratchpad";
           "${modifier}+r" = ''mode "${resizeMode}"'';
@@ -218,6 +206,8 @@ in {
           "Print" = "exec --no-startup-id ${fullScreenShot}";
           "${modifier}+Print" = "exec --no-startup-id ${areaScreenShot}";
         } //
+        (mapWorkspaces { inherit workspaces; prefixKey = modifier; prefixCmd = "workspace number"; }) //
+        (mapWorkspaces { inherit workspaces; prefixKey = "${modifier}+Shift"; prefixCmd = "move container to workspace number"; }) //
         (mapDirectionDefault { prefixKey = modifier; prefixCmd = "focus"; }) //
         (mapDirectionDefault { prefixKey = "${modifier}+Super"; prefixCmd = "move"; }) //
         (mapDirectionDefault { prefixKey = "Ctrl+${alt}"; prefixCmd = "move workspace to output"; })
