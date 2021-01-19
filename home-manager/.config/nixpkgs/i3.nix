@@ -87,11 +87,11 @@ let
       upCmd = "${prefixCmd} up";
       rightCmd = "${prefixCmd} right";
     });
-  mapWorkspaces = with lib.attrsets; with lib.strings; { workspaces, prefixKey ? null, prefixCmd }:
-    (listToAttrs
+  mapWorkspacesStr = with builtins; with lib.strings; { workspaces, prefixKey ? null, prefixCmd }:
+    (concatStringsSep "\n"
       (map
         ({ ws, name }:
-          (nameValuePair "${optionalString (prefixKey != null) "${prefixKey}+"}${toString ws}" ''${prefixCmd} "${name}"''))
+          ''bindsym ${optionalString (prefixKey != null) "${prefixKey}+"}${toString ws} ${prefixCmd} "${name}"'')
         workspaces));
 
 in {
@@ -228,8 +228,6 @@ in {
           "Print" = "exec --no-startup-id ${fullScreenShot}";
           "${modifier}+Print" = "exec --no-startup-id ${areaScreenShot}";
         } //
-        (mapWorkspaces { inherit workspaces; prefixKey = modifier; prefixCmd = "workspace number"; }) //
-        (mapWorkspaces { inherit workspaces; prefixKey = "${modifier}+Shift"; prefixCmd = "move container to workspace number"; }) //
         (mapDirectionDefault { prefixKey = modifier; prefixCmd = "focus"; }) //
         (mapDirectionDefault { prefixKey = "${modifier}+Super"; prefixCmd = "move"; }) //
         (mapDirectionDefault { prefixKey = "Ctrl+${alt}"; prefixCmd = "move workspace to output"; })
@@ -288,6 +286,13 @@ in {
         { command = "${dex} --autostart"; notification = false; }
       ];
     };
+
+    # Until this issue is fixed we need to map workspaces directly to config file
+    # https://github.com/nix-community/home-manager/issues/695
+    extraConfig = builtins.concatStringsSep "\n" [
+      (mapWorkspacesStr { inherit workspaces; prefixKey = modifier; prefixCmd = "workspace number"; })
+      (mapWorkspacesStr { inherit workspaces; prefixKey = "${modifier}+Shift"; prefixCmd = "move container to workspace number"; })
+    ];
   };
 
   xdg.userDirs.enable = true;
