@@ -2,10 +2,6 @@
 
 {
   config.my.theme = {
-    icon = {
-       name = "Arc";
-       package = pkgs.arc-icon-theme;
-    };
     colors = {
       # https://github.com/chriskempson/base16-tomorrow-scheme/blob/master/tomorrow-night.yaml
       base00 = "#1D1F21";
@@ -25,5 +21,34 @@
       base0E = "#B294BB";
       base0F = "#A3685A";
     };
+    icon = {
+       name = "Arc";
+       package = pkgs.arc-icon-theme;
+    };
+    gtk = {
+      name = "Arc-Dark";
+      package = pkgs.arc-theme;
+    };
+  };
+
+  config.fonts.fontconfig.enable = true;
+
+  config.gtk = {
+    enable = true;
+    font = {
+      package = pkgs.noto-fonts;
+      name = "Noto Sans";
+    };
+    iconTheme = with config.my.theme.icon; {
+      inherit name package;
+    };
+    theme = with config.my.theme.gtk; {
+      inherit name package;
+    };
+  };
+
+  config.qt = {
+    enable = true;
+    platformTheme = "gnome";
   };
 }

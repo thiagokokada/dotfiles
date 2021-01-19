@@ -5,16 +5,24 @@ with lib;
 {
   options.my = {
     theme = {
+      colors = mkOption {
+        type = with types; attrsOf str;
+      };
       icon = {
         name = mkOption {
           type = types.str;
         };
         package = mkOption {
-          type = types.package;
+          type = with types; nullOr package;
         };
       };
-      colors = mkOption {
-        type = with types; attrsOf str;
+      gtk = {
+        name = mkOption {
+          type = types.str;
+        };
+        package = mkOption {
+          type = with types; nullOr package;
+        };
       };
     };
   };
