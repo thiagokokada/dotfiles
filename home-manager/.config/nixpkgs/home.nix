@@ -3,6 +3,7 @@
 {
   imports = [
     ./git.nix
+    ./i3.nix
     ./emacs.nix
     ./kitty.nix
     ./my.nix
