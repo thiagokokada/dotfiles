@@ -1,9 +1,0 @@
-[Unit]
-Description=Update rtorrent's IPv4 Blocklist daily
-
-[Timer]
-OnCalendar=daily
-Persistent=true
-
-[Install]
-WantedBy=timers.target
