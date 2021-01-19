@@ -84,7 +84,7 @@
             maim
             mons
             nitrogen
-            rofi
+            rofi.override { plugins = [ rofi-calc rofi-emoji ]; }
             xdg-user-dirs
             xkblayout-state
             xsecurelock

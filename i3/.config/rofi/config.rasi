@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,drun,ssh";
+	modi: "drun,emoji,ssh";
 	font: "Roboto 14";
 	theme: "custom";
 	show-icons: true;

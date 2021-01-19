@@ -194,9 +194,11 @@ in {
           "${alt}+F4" = "kill";
 
           "${modifier}+n" = "exec ${browser}";
-          "${modifier}+d" = "exec ${menu} -show drun";
           "${modifier}+m" = "exec ${fileManager}";
-          "${modifier}+Tab" = "exec ${menu} -show window";
+
+          "${modifier}+c" = "exec ${menu} -show calc -modi calc -no-show-match -no-sort";
+          "${modifier}+d" = "exec ${menu} -show drun";
+          "${modifier}+Tab" = "exec ${menu} -show window -modi window";
 
           "${modifier}+f" = "fullscreen toggle";
           "${modifier}+v" = "split v";
@@ -309,11 +311,12 @@ in {
   programs.rofi = {
     inherit terminal;
     enable = true;
+    package = with pkgs; rofi.override { plugins = [ rofi-calc rofi-emoji ]; };
     font = "${mainFont} 14";
     theme = ../../../i3/.config/rofi/custom.rasi;
     extraConfig = ''
       rofi.show-icons: true
-      rofi.modi: window,drun,ssh
+      rofi.modi: drun,emoji,ssh
       rofi.kb-row-up: Up,Control+k
       rofi.kb-row-down: Down,Control+j
       rofi.kb-accept-entry: Control+m,Return,KP_Enter

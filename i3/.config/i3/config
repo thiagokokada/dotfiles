@@ -87,8 +87,8 @@ bindsym $alt+F4 kill
 
 # start rofi
 bindsym $mod+d exec rofi -show drun
-bindsym $mod+Tab exec rofi -show window
-bindsym $mod+c exec $HOME/.config/i3/scripts/=.sh
+bindsym $mod+Tab exec rofi -show window -modi window
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
 
 # change focus
 # vi-like
