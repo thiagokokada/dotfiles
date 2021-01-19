@@ -30,6 +30,8 @@ let
   fileManager = "${pkgs.nnn}/bin/nnn";
   dex = "${pkgs.dex}/bin/dex";
   kbdd = "${pkgs.kbdd}/bin/kbdd";
+  i3pyblocks = "${pkgs.i3pyblocks}/bin/i3pyblocks";
+  i3pyblocksConfig = ../../../i3/.config/i3pyblocks/config.py;
   # light needs to be installed in system, so not defining a path here
   light = "light";
   lockScreenScript = pkgs.writeScriptBin "lock-screen" ''
@@ -95,6 +97,13 @@ let
         workspaces));
 
 in {
+  nixpkgs.overlays = [
+    (import (fetchGit {
+      url = "https://github.com/thiagokokada/i3pyblocks";
+      ref = "nix-overlay";
+    }))
+  ];
+
   xsession.windowManager.i3 = {
     enable = true;
 
@@ -106,7 +115,7 @@ in {
       bars = with config.my.theme.colors; [
         {
           position = "top";
-          statusCommand = "i3pyblocks -c $HOME/.dotfiles/i3/.config/i3pyblocks/config.py";
+          statusCommand = "${i3pyblocks} -c ${i3pyblocksConfig}";
           colors = {
             background = base00;
             separator = base02;
