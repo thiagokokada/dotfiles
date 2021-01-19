@@ -2,11 +2,13 @@
 
 {
   imports = [
+    ./emacs.nix
     ./git.nix
     ./i3.nix
-    ./emacs.nix
     ./kitty.nix
+    ./misc.nix
     ./my.nix
+    ./nnn.nix
     ./theme.nix
     ./tmux.nix
     ./zsh.nix

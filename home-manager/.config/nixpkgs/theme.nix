@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  config.my.theme = {
+  my.theme = {
     colors = {
       # https://github.com/chriskempson/base16-tomorrow-scheme/blob/master/tomorrow-night.yaml
       base00 = "#1D1F21";
@@ -31,9 +31,9 @@
     };
   };
 
-  config.fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
-  config.gtk = {
+  gtk = {
     enable = true;
     font = {
       package = pkgs.noto-fonts;
@@ -47,7 +47,7 @@
     };
   };
 
-  config.qt = {
+  qt = {
     enable = true;
     platformTheme = "gnome";
   };

@@ -24,10 +24,11 @@
     $DRY_RUN_CMD ${pkgs.stow}/bin/stow -d $DOTFILES_PATH --ignore='.zsh' doom-emacs
   '';
 
+  home.sessionVariables = {
+    PATH = "$HOME/.config/emacs/bin:$PATH";
+  };
+
   programs.zsh = {
-    sessionVariables = {
-      PATH = "$HOME/.config/emacs/bin:$PATH";
-    };
     shellAliases = {
       em = "run-bg emacs";
       et = "emacs -nw";

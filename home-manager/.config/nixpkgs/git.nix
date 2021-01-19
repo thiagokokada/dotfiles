@@ -28,6 +28,9 @@
       color = {
         ui = true;
       };
+      commit = {
+        verbose = true;
+      };
       core = {
         whitespace = "trailing-space,space-before-tab,indent-with-non-tab";
       };

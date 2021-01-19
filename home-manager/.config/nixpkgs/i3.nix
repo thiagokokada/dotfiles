@@ -27,7 +27,7 @@ let
 
   # Programs
   browser = "firefox";
-  fileManager = "${pkgs.nnn}/bin/nnn";
+  fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
   dex = "${pkgs.dex}/bin/dex";
   kbdd = "${pkgs.kbdd}/bin/kbdd";
   i3pyblocks = "${pkgs.i3pyblocks}/bin/i3pyblocks";

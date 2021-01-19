@@ -16,7 +16,6 @@
     };
 
     sessionVariables = {
-      DOTFILES_PATH = "$HOME/.dotfiles";
       # Reduce time to wait for multi-key sequences
       KEYTIMEOUT = 1;
       # Set right prompt to show time
