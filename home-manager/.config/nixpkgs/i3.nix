@@ -179,30 +179,52 @@ in {
         };
       };
 
-      keybindings = lib.mkOptionDefault ({
+      keybindings = ({
+          "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+Shift+q" = "kill";
+          "${alt}+F4" = "kill";
+
           "${modifier}+n" = "exec ${browser}";
           "${modifier}+d" = "exec ${menu} -show drun";
           "${modifier}+m" = "exec ${fileManager}";
-          "${alt}+F4" = "kill";
           "${modifier}+Tab" = "exec ${menu} -show window";
+
+          "${modifier}+f" = "fullscreen toggle";
           "${modifier}+v" = "split v";
           "${modifier}+b" = "split h";
+
+          "${modifier}+s" = "layout stacking";
+          "${modifier}+w" = "layout tabbed";
+          "${modifier}+e" = "layout toggle split";
+
+          "${modifier}+semicolon" = "focus mode_toggle";
+          "${modifier}+Shift+semicolon" = "floating toggle";
+
+          "${modifier}+a" = "focus parent";
+
           "${modifier}+Shift+minus" = "move scratchpad";
           "${modifier}+minus" = "show scratchpad";
+
           "${modifier}+r" = ''mode "${resizeMode}"'';
-          "${modifier}+Shift+e" = ''mode "${powerManagementMode}"'';
           "${modifier}+Escape" = ''mode "${powerManagementMode}"'';
           "${modifier}+p" = ''mode "${displayLayoutMode}"'';
+
+          "${modifier}+Shift+c" = "reload";
+          "${modifier}+Shift+r" = "restart";
+
           "XF86AudioRaiseVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
           "XF86AudioLowerVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
           "XF86AudioMute" = "exec --no-startup-id ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
           "XF86AudioMicMute" = "exec --no-startup-id ${pactl}set-source-mute @DEFAULT_SOURCE@ toggle";
+
           "XF86MonBrightnessUp" = "exec --no-startup-id ${light} -A 5%";
           "XF86MonBrightnessDown" = "exec --no-startup-id ${light} -U 5%";
+
           "XF86AudioPlay" = "exec --no-startup-id ${playerctl} play-pause";
           "XF86AudioStop" = "exec --no-startup-id ${playerctl} stop";
           "XF86AudioNext" = "exec --no-startup-id ${playerctl} next";
           "XF86AudioPrev" = "exec --no-startup-id ${playerctl} previous";
+
           "Print" = "exec --no-startup-id ${fullScreenShot}";
           "${modifier}+Print" = "exec --no-startup-id ${areaScreenShot}";
         } //
