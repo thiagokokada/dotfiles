@@ -1,0 +1,13 @@
+[Unit]
+Description=rtorrent
+After=network.target
+
+[Service]
+Environment="HOME=%h"
+Type=forking
+ExecStart=/usr/bin/tmux -2 -L rtorrent new-session -d -s rtorrent rtorrent
+ExecStop=/usr/bin/pkill rtorrent
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
