@@ -238,7 +238,7 @@ in {
           "${modifier}+Print" = "exec --no-startup-id ${areaScreenShot}";
         } //
         (mapDirectionDefault { prefixKey = modifier; prefixCmd = "focus"; }) //
-        (mapDirectionDefault { prefixKey = "${modifier}+Super"; prefixCmd = "move"; }) //
+        (mapDirectionDefault { prefixKey = "${modifier}+Shift"; prefixCmd = "move"; }) //
         (mapDirectionDefault { prefixKey = "Ctrl+${alt}"; prefixCmd = "move workspace to output"; })
       );
 
