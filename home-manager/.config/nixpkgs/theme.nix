@@ -21,14 +21,6 @@
       base0E = "#B294BB";
       base0F = "#A3685A";
     };
-    icon = {
-       name = "Arc";
-       package = pkgs.arc-icon-theme;
-    };
-    gtk = {
-      name = "Arc-Dark";
-      package = pkgs.arc-theme;
-    };
   };
 
   fonts.fontconfig.enable = true;
@@ -49,11 +41,13 @@
       package = pkgs.noto-fonts;
       name = "Noto Sans";
     };
-    iconTheme = with config.my.theme.icon; {
-      inherit name package;
+    iconTheme = {
+      package = pkgs.arc-icon-theme;
+      name = "Arc";
     };
     theme = with config.my.theme.gtk; {
-      inherit name package;
+      name = "Arc-Dark";
+      package = pkgs.arc-theme;
     };
   };
 

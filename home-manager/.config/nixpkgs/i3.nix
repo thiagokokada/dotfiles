@@ -330,7 +330,7 @@ in {
   services = {
     dunst = {
       enable = true;
-      iconTheme = with config.my.theme.icon; {
+      iconTheme = with config.gtk.iconTheme; {
         inherit name package;
       };
       settings = with config.my.theme.colors; let
