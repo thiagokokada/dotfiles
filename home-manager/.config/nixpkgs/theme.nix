@@ -35,7 +35,12 @@
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
-    pkgs.hack-font
+    font-awesome_5
+    hack-font
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    roboto
   ];
 
   gtk = {
