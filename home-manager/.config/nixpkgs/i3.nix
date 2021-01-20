@@ -292,7 +292,7 @@ in {
 
       startup = [
         { command = "${kbdd}"; notification = false; }
-        { command = "${xss-lock} -s $XDG_SESSION_ID -- ${lockScreen}"; notification = false; }
+        { command = "${xss-lock} -s $XDG_SESSION_ID -l -- ${lockScreen}"; notification = false; }
         { command = "${xset} s 600"; notification = false; }
         { command = "${dex} --autostart"; notification = false; }
       ];
