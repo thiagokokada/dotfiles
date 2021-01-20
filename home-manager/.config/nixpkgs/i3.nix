@@ -17,9 +17,6 @@ let
     { ws = 0; name = "10:  "; }
   ];
 
-  # Theme
-  mainFont = "Roboto";
-
   # Modes
   displayLayoutMode = " : [h]  , [j]  , [k]  , [l]  , [d]uplicate, [m]irror, [s]econd-only, [o]ff";
   powerManagementMode = " : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown";
@@ -34,25 +31,11 @@ let
   i3pyblocksConfig = ../../../i3/.config/i3pyblocks/config.py;
   # light needs to be installed in system, so not defining a path here
   light = "light";
-  lockScreenScript = pkgs.writeScriptBin "lock-screen" ''
-    #!${pkgs.stdenv.shell}
-
-    export XSECURELOCK_FORCE_GRAB=2
-    export XSECURELOCK_BLANK_DPMS_STATE="off"
-    export XSECURELOCK_DATETIME_FORMAT="%H:%M:%S - %a %d/%m"
-    export XSECURELOCK_SHOW_DATETIME=1
-    export XSECURELOCK_SHOW_HOSTNAME=0
-    export XSECURELOCK_SHOW_USERNAME=0
-    export XSECURELOCK_FONT="${mainFont}:style=Regular"
-
-    exec ${pkgs.xsecurelock}/bin/xsecurelock $@
-  '';
-  lockScreen = "${lockScreenScript}/bin/lock-screen";
   menu = "${config.programs.rofi.package}/bin/rofi";
   mons = "${pkgs.mons}/bin/mons";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  terminal = "${pkgs.kitty}/bin/kitty";
+  terminal = config.my.terminal;
   xset = "${pkgs.xorg.xset}/bin/xset";
   xss-lock = "${pkgs.xss-lock}/bin/xss-lock";
 
@@ -97,6 +80,13 @@ let
         workspaces));
 
 in {
+  imports = [
+    ./dunst.nix
+    ./rofi.nix
+  ];
+
+  my.terminal = "${pkgs.kitty}/bin/kitty";
+
   nixpkgs.overlays = [
     (import (fetchGit {
       url = "https://github.com/thiagokokada/i3pyblocks";
@@ -109,8 +99,7 @@ in {
 
     config = rec {
       inherit modifier menu terminal;
-      # TODO: mainFont should be the last one, but for some reason this breaks everything
-      fonts = [ mainFont "Font Awesome 5 Brands Regular 8" "Font Awesome 5 Free Solid 8" ];
+      fonts = with config.my.fonts; [ gui.name "Font Awesome 5 Brands Regular 8" "Font Awesome 5 Free Solid 8" ];
 
       bars = with config.my.theme.colors; [
         {
@@ -291,7 +280,7 @@ in {
       };
 
       startup = [
-        { command = "${xss-lock} -s $XDG_SESSION_ID -l -- ${lockScreen}"; notification = false; }
+        { command = "${xss-lock} -s $XDG_SESSION_ID -l -- ${pkgs.lockscreen}"; notification = false; }
         { command = "${xset} s 600"; notification = false; }
         { command = "${dex} --autostart"; notification = false; }
       ];
@@ -307,79 +296,7 @@ in {
 
   xdg.userDirs.enable = true;
 
-  programs.rofi = {
-    inherit terminal;
-    enable = true;
-    package = with pkgs; rofi.override { plugins = [ rofi-calc rofi-emoji ]; };
-    font = "${mainFont} 14";
-    theme = ../../../i3/.config/rofi/custom.rasi;
-    extraConfig = ''
-      rofi.show-icons: true
-      rofi.modi: drun,emoji,ssh
-      rofi.kb-row-up: Up,Control+k
-      rofi.kb-row-down: Down,Control+j
-      rofi.kb-accept-entry: Control+m,Return,KP_Enter
-      rofi.kb-remove-to-eol: Control+Shift+e
-      rofi.kb-mode-next: Shift+Right,Control+Tab,Control+l
-      rofi.kb-mode-previous: Shift+Left,Control+Shift+Tab,Control+h
-      rofi.kb-remove-char-back: BackSpace
-    '';
-  };
-
   services = {
-    dunst = {
-      enable = true;
-      iconTheme = with config.gtk.iconTheme; {
-        inherit name package;
-      };
-      settings = with config.my.theme.colors; let
-        theme = {
-          background = base00;
-          foreground = base05;
-        };
-      in {
-        global = {
-          font = "${mainFont} 8";
-          markup = true;
-          format = "<b>%s</b>\\n%b";
-          sort = true;
-          indicate_hidden = true;
-          alignment = "center";
-          bounce_freq = 0;
-          show_age_threshold = 60;
-          word_wrap = true;
-          ignore_newline = false;
-          geometry = "200x5-6+30";
-          transparency = 0;
-          idle_threshold = 120;
-          follow = "mouse";
-          sticky_history = true;
-          line_height = 0;
-          padding = 8;
-          horizontal_padding = 8;
-          separator_color = base03;
-          startup_notification = false;
-          frame_width = 1;
-          frame_color = base01;
-        };
-        shortcuts = {
-          close = "ctrl+space";
-          close_all = "ctrl+shift+space";
-          history = "ctrl+Escape";
-          context = "ctrl+shift+period";
-        };
-        urgency_low = {
-          timeout = 5;
-        } // theme;
-        urgency_normal = {
-          timeout = 10;
-        } // theme;
-        urgency_high = {
-          timeout = 20;
-        } // theme;
-      };
-    };
-
     udiskie.enable = true;
   };
 

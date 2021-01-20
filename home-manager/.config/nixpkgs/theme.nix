@@ -1,8 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  my.theme = {
-    colors = {
+  my = {
+    fonts = {
+      gui = {
+        package = pkgs.roboto;
+        name = "Roboto";
+      };
+    };
+
+    theme.colors = {
       # https://github.com/chriskempson/base16-tomorrow-scheme/blob/master/tomorrow-night.yaml
       base00 = "#1D1F21";
       base01 = "#282A2E";
@@ -23,16 +30,17 @@
     };
   };
 
+  # Enable fonts in home.packages to be available to applications
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs; with config.my.fonts; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
     font-awesome_5
+    gui.package
     hack-font
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    roboto
   ];
 
   gtk = {
