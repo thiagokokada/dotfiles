@@ -1,8 +1,6 @@
 self: super:
 
-let
-  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-in rec {
+rec {
   linux-zen-with-muqss = with super; linuxPackagesFor (linux_zen.override {
     structuredExtraConfig = with lib.kernel; {
       PREEMPT = yes;
@@ -37,9 +35,10 @@ in rec {
   });
 
   # Fixed backport to use nixpkgs-unstable packages as pkgs.unstable.<package>
-  unstable = import unstableTarball {
-    config = super.config;
-  };
+  unstable = import
+    (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz") {
+      config = super.config;
+    };
 
   # Backport from unstable to have Python 3 version
   cpuset-with-patch = with unstable; cpuset.overrideAttrs (oldAttrs: {

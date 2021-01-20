@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 let
-  username = config.passthru._me.user;
+  username = config.my.username;
   archive = "/mnt/archive/${username}";
 in with config.users.users.${username}; {
   # Enable opentabletdriver.

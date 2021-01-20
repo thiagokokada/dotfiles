@@ -7,6 +7,7 @@
     calibre
     chromium
     desktop-file-utils
+    discord
     firefox
     gammastep
     gimp
@@ -30,7 +31,6 @@
     shared-mime-info
     smartmontools
     termite
-    unstable.discord
     unstable.pulseeffects
     unstable.tdesktop
     unstable.xdragon

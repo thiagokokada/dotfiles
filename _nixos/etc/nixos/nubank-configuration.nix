@@ -27,5 +27,5 @@
   # };
 
   # Added user to groups.
-  # users.users.${config.passthru._me.user}.extraGroups = [ "vboxusers" ];
+  # users.users.${config.my.username}.extraGroups = [ "vboxusers" ];
 }

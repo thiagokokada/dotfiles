@@ -60,5 +60,5 @@ in {
   };
 
   # Added user to groups.
-  users.users.${config.passthru._me.user}.extraGroups = [ "docker" ];
+  users.users.${config.my.username}.extraGroups = [ "docker" ];
 }

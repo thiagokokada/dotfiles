@@ -20,6 +20,7 @@
       ./misc-configuration.nix
       ./security-configuration.nix
       ./nubank-configuration.nix
+      ./my.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -81,7 +82,7 @@
   # services.printing.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${config.passthru._me.user} = {
+  users.users.${config.my.username} = {
      isNormalUser = true;
      uid = 1000;
      extraGroups = [ "wheel" "networkmanager" "video" ];
@@ -94,5 +95,5 @@
   # should.
   system.stateVersion = "20.09"; # Did you read the comment?
 
-  passthru._me.user = "thiagoko"
+  my.username = "thiagoko"
 }

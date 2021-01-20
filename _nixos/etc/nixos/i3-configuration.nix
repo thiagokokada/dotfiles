@@ -75,6 +75,7 @@
           package = pkgs.i3;
           # i3 dependencies.
           extraPackages = with pkgs; [
+            (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
             dex
             dunst
             i3lock
@@ -84,7 +85,6 @@
             maim
             mons
             nitrogen
-            rofi.override { plugins = [ rofi-calc rofi-emoji ]; }
             xdg-user-dirs
             xkblayout-state
             xsecurelock
