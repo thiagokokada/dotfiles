@@ -8,7 +8,7 @@
     };
     settings = with config.my.theme.colors; {
       # Font
-      font = "Hack";
+      font = "Hack Nerd Font";
       font_size = "12.0";
 
       # Colors

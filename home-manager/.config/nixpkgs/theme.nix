@@ -33,6 +33,11 @@
 
   fonts.fontconfig.enable = true;
 
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+    pkgs.hack-font
+  ];
+
   gtk = {
     enable = true;
     font = {
