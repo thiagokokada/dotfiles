@@ -291,7 +291,6 @@ in {
       };
 
       startup = [
-        { command = "${kbdd}"; notification = false; }
         { command = "${xss-lock} -s $XDG_SESSION_ID -l -- ${lockScreen}"; notification = false; }
         { command = "${xset} s 600"; notification = false; }
         { command = "${dex} --autostart"; notification = false; }
@@ -382,5 +381,21 @@ in {
     };
 
     udiskie.enable = true;
+  };
+
+  systemd.user.services.kbdd = {
+    Unit = {
+      Description = "kbdd daemon";
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Install = { WantedBy = [ "graphical-session.target" ]; };
+
+    Service = {
+      ExecStart = "${pkgs.kbdd}/bin/kbdd -n";
+      Type = "dbus";
+      BusName = "ru.gentoo.KbddService";
+    };
   };
 }
