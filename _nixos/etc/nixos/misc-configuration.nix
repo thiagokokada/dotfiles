@@ -3,8 +3,8 @@
 let
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
   libinputModuleRefactor = fetchTarball {
-    url = "https://github.com/thiagokokada/nixpkgs/archive/264073d585e6051b99c208f96c55e33373d82c99.tar.gz";
-    sha256 = "162fd5h7xpig9sabg4l6ldgx8j756w79gcsmh9fwqwp6zvw45qsl";
+    url = "https://github.com/thiagokokada/nixpkgs/archive/917cade2185ebb576ac055d0c19147bc6cf2374f.tar.gz";
+    sha256 = "0ghnix93wx1gfz9hi6cyj0503sqvm5dx1208wdw0qkmld567bak3";
   };
   redshiftModuleRefactor = fetchTarball {
     url = "https://github.com/thiagokokada/nixpkgs/archive/8e5f670aa2d73964977d17f8c7765cd34cdf8694.tar.gz";
@@ -16,12 +16,14 @@ in {
     "${unstableTarball}/nixos/modules/hardware/opentabletdriver.nix"
     "${unstableTarball}/nixos/modules/services/x11/picom.nix"
     "${libinputModuleRefactor}/nixos/modules/services/x11/hardware/libinput.nix"
+    "${libinputModuleRefactor}/nixos/modules/services/x11/hardware/synaptics.nix"
     "${redshiftModuleRefactor}/nixos/modules/services/x11/redshift.nix"
   ];
 
   disabledModules = [
     "hardware/opentabletdriver.nix"
     "services/x11/hardware/libinput.nix"
+    "services/x11/hardware/synaptics.nix"
     "services/x11/picom.nix"
     "services/x11/redshift.nix"
   ];
