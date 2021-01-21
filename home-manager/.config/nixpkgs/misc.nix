@@ -23,9 +23,7 @@
           exec ${pkgs.xsecurelock}/bin/xsecurelock $@
         '';
 
-        nnn = unstable.nnn.overrideAttrs (oldAttrs: {
-          makeFlags = oldAttrs.makeFlags ++ [ "O_NERD=1" ];
-        });
+        nnn = unstable.nnn.override { withNerdIcons = true; };
       }
     )
   ];
