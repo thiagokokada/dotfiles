@@ -187,7 +187,13 @@
               lsp-dart-sdk-dir (find-path-by-executable "dart")
               lsp-flutter-sdk-dir (find-path-by-executable "flutter")
               lsp-file-watch-threshold 10000)
-  :config (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
+  :config
+  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers)))
+  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+                    :major-modes '(nix-mode)
+                    :server-id 'nix)))
 
 ;; sort-words
 (use-package! sort-words

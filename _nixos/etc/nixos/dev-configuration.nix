@@ -46,8 +46,10 @@ in {
     rustup
     shellcheck
     unstable.nix-update
+    unstable.nixfmt
     unstable.nixpkgs-fmt
     unstable.nixpkgs-review
+    unstable.rnix-lsp
     xxd
   ];
 
