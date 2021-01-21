@@ -37,7 +37,6 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   terminal = config.my.terminal;
   xset = "${pkgs.xorg.xset}/bin/xset";
-  xss-lock = "${pkgs.xss-lock}/bin/xss-lock";
 
   # Screenshots
   screenShotName = "$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S)-screenshot.png";
@@ -94,6 +93,7 @@ in {
     }))
   ];
 
+  xsession.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
 
@@ -280,7 +280,6 @@ in {
       };
 
       startup = [
-        { command = "${xss-lock} -s $XDG_SESSION_ID -l -- ${pkgs.lockscreen}"; notification = false; }
         { command = "${xset} s 600"; notification = false; }
         { command = "${dex} --autostart"; notification = false; }
       ];
@@ -300,19 +299,37 @@ in {
     udiskie.enable = true;
   };
 
-  systemd.user.services.kbdd = {
-    Unit = {
-      Description = "kbdd daemon";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
+  systemd.user.services = {
+    kbdd = {
+      Unit = {
+        Description = "kbdd daemon";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+
+      Install = { WantedBy = [ "graphical-session.target" ]; };
+
+      Service = {
+        ExecStart = "${pkgs.kbdd}/bin/kbdd -n";
+        Type = "dbus";
+        BusName = "ru.gentoo.KbddService";
+        Restart = "on-failure";
+      };
     };
 
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    xss-lock = {
+      Unit = {
+        Description = "Use external locker as X screen saver";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
 
-    Service = {
-      ExecStart = "${pkgs.kbdd}/bin/kbdd -n";
-      Type = "dbus";
-      BusName = "ru.gentoo.KbddService";
+      Install = { WantedBy = [ "graphical-session.target" ]; };
+
+      Service = {
+        ExecStart = "${pkgs.xss-lock}/bin/xss-lock -s $XDG_SESSION_ID -l -- ${pkgs.lockscreen}/bin/lock-screen";
+        Restart = "on-failure";
+      };
     };
   };
 }
