@@ -1,6 +1,7 @@
 export NIX_HOME="${DOTFILES_PATH}/_nixos"
 
 alias nixos-clean-up="sudo -- sh -c 'nix-collect-garbage -d && nixos-rebuild boot --fast'"
+
 nix-remove-stray-roots() {
   nix-store --gc --print-roots |\
     awk '{print $1}' |\
@@ -8,27 +9,17 @@ nix-remove-stray-roots() {
     sudo xargs -I {} rm -I {}
 }
 
-nix-sha256-github() {
-  local author="${1}"
-  local repo="${2}"
-  local commit="${3:-master}"
-
-  if (( ${#} < 2 )); then
-    echo "Usage: nix-sha256-github <author> <repo> [commit]" 2>&1
-    return
-  fi
-
-  nix-prefetch-url --unpack "https://github.com/${author}/${repo}/archive/${commit}.tar.gz"
-}
-
 nixos-copy-etc() {
-  diff --color=auto -r "${NIX_HOME}/etc/nixos" /etc/nixos/
+  local nix_config_path="/etc/nixos"
+  local nix_dotfiles_path="$DOTFILES_PATH/_nixos/etc/nixos"
+
+  diff --color=auto -r "$nix_dotfiles_path" "$nix_config_path"
 
   while true; do
     printf '%s' 'Copy current NixOS configuration (y/n)? '
     read yn
     case $yn in
-        [Yy]* ) cp -r /etc/nixos/^(configuration.nix|hardware-configuration.nix)* ${NIX_HOME}/etc/nixos
+        [yy]* ) cp -r $nix_config_path/* "$nix_dotfiles_path"
                 break;;
         [Nn]* ) break;;
         * ) echo 'Please answer (y)es or (n)o.';;
@@ -37,22 +28,21 @@ nixos-copy-etc() {
 }
 
 nixos-restore-etc() {
-  diff --color=auto -r /etc/nixos/ "${NIX_HOME}/etc/nixos"
+  nix_config_path="/etc/nixos"
+  nix_dotfiles_path="$DOTFILES_PATH/_nixos/etc/nixos"
+
+  diff --color=auto -r "$nix_config_path" "$nix_dotfiles_path"
 
   while true; do
     printf '%s' 'Restore NixOS configuration (y/n)? '
     read yn
     case $yn in
-        [Yy]* ) sudo cp -r ${NIX_HOME}/etc/nixos/* /etc/nixos
+        [yy]* ) sudo cp -r $nix_dotfiles_path/* "$nix_config_path"
                 break;;
         [Nn]* ) break;;
         * ) echo 'Please answer (y)es or (n)o.';;
     esac
   done
-}
-
-nix-build-derivation() {
-  nix-build -E "with import <nixpkgs> {}; callPackage `realpath "$1"` {}"
 }
 
 UPGRADE_CMDS+="sudo nixos-rebuild switch --upgrade"
