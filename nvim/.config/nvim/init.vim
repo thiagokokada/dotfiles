@@ -161,9 +161,6 @@ nmap <Leader><Tab> <Plug>(fzf-maps-n)
 xmap <Leader><Tab> <Plug>(fzf-maps-x)
 omap <Leader><Tab> <Plug>(fzf-maps-o)
 
-" fzf-tags
-nmap g] <Plug>(fzf_tags)
-
 " gutentags
 let g:gutentags_cache_dir="~/.config/nvim/gutentags"
 let g:gutentags_file_list_command = {

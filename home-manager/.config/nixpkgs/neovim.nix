@@ -8,10 +8,7 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    withNodeJs = true;
-    withPython = true;
-    withPython3 = true;
-    withRuby = true;
+    extraPackages = with pkgs; [ coreutils ctags fzf git ];
 
     extraConfig = ''
       " remap leader
@@ -141,6 +138,7 @@
               \             [ 'percent' ],
               \             [ 'lineinfo' ],
               \             [ 'fileformat', 'fileencoding' ],
+              \             [ 'gutentags'],
               \            ],
               \ },
               \ 'component_expand': {
@@ -148,6 +146,7 @@
               \ },
               \ 'component_function': {
               \   'gitbranch': 'fugitive#head',
+              \   'gutentags': 'gutentags#statusline',
               \   'trailing': 'lightline#trailing_whitespace#component'
               \ },
               \ 'component_type': {
@@ -182,6 +181,25 @@
         '';
       }
       {
+        plugin = vim-gutentags;
+        config = ''
+          " gutentags
+          let g:gutentags_cache_dir="~/.config/nvim/gutentags"
+          let g:gutentags_file_list_command = {
+              \ 'markers': {
+              \   '.git': 'git ls-files',
+              \   '.hg': 'hg files',
+              \ },
+              \ }
+
+          augroup UpdateLightlineForGutentags
+              autocmd!
+              autocmd User GutentagsUpdating call lightline#update()
+              autocmd User GutentagsUpdated call lightline#update()
+          augroup END
+        '';
+      }
+      {
         plugin = vim-endwise;
         config = ''
           let g:endwise_no_mappings = v:true
@@ -200,7 +218,6 @@
         '';
       }
       commentary
-      fzf-vim
       gitgutter
       vim-sleuth
       vim-surround
