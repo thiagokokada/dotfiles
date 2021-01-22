@@ -224,11 +224,11 @@
       vim-automkdir
       vim-better-whitespace
       vim-commentary
-      vim-dirvish-git
       vim-fugitive
       vim-lastplace
       vim-polyglot
       vim-repeat
+      vim-vinegar
     ];
   };
 }
