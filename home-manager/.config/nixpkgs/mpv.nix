@@ -14,13 +14,15 @@ in {
   programs.mpv = {
     enable = true;
 
-    package = with pkgs; wrapMpv (pkgs.mpv-unwrapped.override {
-      vapoursynthSupport = true;
-    }) {
-      extraMakeWrapperArgs = [
-        "--prefix" "LD_LIBRARY_PATH" ":" "${vapoursynth-mvtools}/lib/vapoursynth"
-      ];
-    };
+    package = with pkgs;
+      wrapMpv (pkgs.mpv-unwrapped.override { vapoursynthSupport = true; }) {
+        extraMakeWrapperArgs = [
+          "--prefix"
+          "LD_LIBRARY_PATH"
+          ":"
+          "${vapoursynth-mvtools}/lib/vapoursynth"
+        ];
+      };
 
     config = {
       osd-font-size = 14;

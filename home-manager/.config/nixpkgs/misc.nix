@@ -2,14 +2,14 @@
 
 {
   nixpkgs.overlays = [
-    (self: super:
-      rec {
-        unstable = import
-          (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz") {
-            config = super.config;
-          };
+    (self: super: rec {
+      unstable = import (fetchTarball
+        "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz") {
+          config = super.config;
+        };
 
-        lockscreen = with config.my.fonts; pkgs.writeScriptBin "lock-screen" ''
+      lockscreen = with config.my.fonts;
+        pkgs.writeScriptBin "lock-screen" ''
           #!${pkgs.stdenv.shell}
 
           export XSECURELOCK_FORCE_GRAB=2
@@ -23,18 +23,16 @@
           exec ${pkgs.xsecurelock}/bin/xsecurelock $@
         '';
 
-        nnn = unstable.nnn.override { withNerdIcons = true; };
-      }
-    )
+      nnn = unstable.nnn.override { withNerdIcons = true; };
+    })
   ];
 
   home = {
-    sessionVariables = {
-      DOTFILES_PATH = "$HOME/.dotfiles";
-    };
+    sessionVariables = { DOTFILES_PATH = "$HOME/.dotfiles"; };
 
-    activation.systemdUserResetFailed = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      systemctl --user reset-failed
-    '';
+    activation.systemdUserResetFailed =
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        systemctl --user reset-failed
+      '';
   };
 }

@@ -22,7 +22,7 @@
       RPROMPT = "%F{8}%*";
       # zsh-users config
       ZSH_AUTOSUGGEST_USE_ASYNC = 1;
-      ZSH_HIGHLIGHT_HIGHLIGHTERS = ["main" "brackets" "cursor"];
+      ZSH_HIGHLIGHT_HIGHLIGHTERS = [ "main" "brackets" "cursor" ];
     };
 
     shellAliases = {

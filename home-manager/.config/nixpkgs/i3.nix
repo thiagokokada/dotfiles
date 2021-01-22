@@ -178,55 +178,55 @@ in {
       };
 
       keybindings = ({
-          "${modifier}+Return" = "exec ${terminal}";
-          "${modifier}+Shift+q" = "kill";
-          "${alt}+F4" = "kill";
+        "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+Shift+q" = "kill";
+        "${alt}+F4" = "kill";
 
-          "${modifier}+n" = "exec ${browser}";
-          "${modifier}+m" = "exec ${fileManager}";
+        "${modifier}+n" = "exec ${browser}";
+        "${modifier}+m" = "exec ${fileManager}";
 
-          "${modifier}+c" = "exec ${menu} -show calc -modi calc -no-show-match -no-sort";
-          "${modifier}+d" = "exec ${menu} -show drun";
-          "${modifier}+Tab" = "exec ${menu} -show window -modi window";
+        "${modifier}+c" = "exec ${menu} -show calc -modi calc -no-show-match -no-sort";
+        "${modifier}+d" = "exec ${menu} -show drun";
+        "${modifier}+Tab" = "exec ${menu} -show window -modi window";
 
-          "${modifier}+f" = "fullscreen toggle";
-          "${modifier}+v" = "split v";
-          "${modifier}+b" = "split h";
+        "${modifier}+f" = "fullscreen toggle";
+        "${modifier}+v" = "split v";
+        "${modifier}+b" = "split h";
 
-          "${modifier}+s" = "layout stacking";
-          "${modifier}+w" = "layout tabbed";
-          "${modifier}+e" = "layout toggle split";
+        "${modifier}+s" = "layout stacking";
+        "${modifier}+w" = "layout tabbed";
+        "${modifier}+e" = "layout toggle split";
 
-          "${modifier}+semicolon" = "focus mode_toggle";
-          "${modifier}+Shift+semicolon" = "floating toggle";
+        "${modifier}+semicolon" = "focus mode_toggle";
+        "${modifier}+Shift+semicolon" = "floating toggle";
 
-          "${modifier}+a" = "focus parent";
+        "${modifier}+a" = "focus parent";
 
-          "${modifier}+Shift+minus" = "move scratchpad";
-          "${modifier}+minus" = "show scratchpad";
+        "${modifier}+Shift+minus" = "move scratchpad";
+        "${modifier}+minus" = "show scratchpad";
 
-          "${modifier}+r" = ''mode "${resizeMode}"'';
-          "${modifier}+Escape" = ''mode "${powerManagementMode}"'';
-          "${modifier}+p" = ''mode "${displayLayoutMode}"'';
+        "${modifier}+r" = ''mode "${resizeMode}"'';
+        "${modifier}+Escape" = ''mode "${powerManagementMode}"'';
+        "${modifier}+p" = ''mode "${displayLayoutMode}"'';
 
-          "${modifier}+Shift+c" = "reload";
-          "${modifier}+Shift+r" = "restart";
+        "${modifier}+Shift+c" = "reload";
+        "${modifier}+Shift+r" = "restart";
 
-          "XF86AudioRaiseVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86AudioMute" = "exec --no-startup-id ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86AudioMicMute" = "exec --no-startup-id ${pactl}set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86AudioRaiseVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec --no-startup-id ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec --no-startup-id ${pactl}set-source-mute @DEFAULT_SOURCE@ toggle";
 
-          "XF86MonBrightnessUp" = "exec --no-startup-id ${light} -A 5%";
-          "XF86MonBrightnessDown" = "exec --no-startup-id ${light} -U 5%";
+        "XF86MonBrightnessUp" = "exec --no-startup-id ${light} -A 5%";
+        "XF86MonBrightnessDown" = "exec --no-startup-id ${light} -U 5%";
 
-          "XF86AudioPlay" = "exec --no-startup-id ${playerctl} play-pause";
-          "XF86AudioStop" = "exec --no-startup-id ${playerctl} stop";
-          "XF86AudioNext" = "exec --no-startup-id ${playerctl} next";
-          "XF86AudioPrev" = "exec --no-startup-id ${playerctl} previous";
+        "XF86AudioPlay" = "exec --no-startup-id ${playerctl} play-pause";
+        "XF86AudioStop" = "exec --no-startup-id ${playerctl} stop";
+        "XF86AudioNext" = "exec --no-startup-id ${playerctl} next";
+        "XF86AudioPrev" = "exec --no-startup-id ${playerctl} previous";
 
-          "Print" = "exec --no-startup-id ${fullScreenShot}";
-          "${modifier}+Print" = "exec --no-startup-id ${areaScreenShot}";
+        "Print" = "exec --no-startup-id ${fullScreenShot}";
+        "${modifier}+Print" = "exec --no-startup-id ${areaScreenShot}";
         } //
         (mapDirectionDefault { prefixKey = modifier; prefixCmd = "focus"; }) //
         (mapDirectionDefault { prefixKey = "${modifier}+Shift"; prefixCmd = "move"; }) //
