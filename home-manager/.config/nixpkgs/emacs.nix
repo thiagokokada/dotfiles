@@ -19,7 +19,7 @@
   };
 
   # My Emacs configuration is very complex, using stow here
-  home.activation.stowFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.stowEmacs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     [ ! -d $HOME/.config/emacs ] && \
       $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/hlissner/doom-emacs/ $HOME/.config/emacs
     $DRY_RUN_CMD ${pkgs.stow}/bin/stow -d $DOTFILES_PATH --ignore='.zsh' doom-emacs
