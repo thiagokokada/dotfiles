@@ -3,15 +3,11 @@
 {
   programs.ssh = {
     enable = true;
-    matchBlocks = {
-      "*" = {
-        serverAliveInterval = 300;
-        serverAliveCountMax = 2;
-        user = config.home.username;
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
-      };
-    };
+    compression = true;
+    serverAliveInterval = 300;
+    serverAliveCountMax = 2;
+    extraConfig = ''
+      AddKeysToAgent yes
+    '';
   };
 }
