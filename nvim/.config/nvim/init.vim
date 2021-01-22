@@ -161,6 +161,9 @@ nmap <Leader><Tab> <Plug>(fzf-maps-n)
 xmap <Leader><Tab> <Plug>(fzf-maps-x)
 omap <Leader><Tab> <Plug>(fzf-maps-o)
 
+" fzf-tags
+nmap g] <Plug>(fzf_tags)
+
 " gutentags
 let g:gutentags_cache_dir="~/.config/nvim/gutentags"
 let g:gutentags_file_list_command = {
@@ -214,8 +217,9 @@ augroup UpdateLightlineForGutentags
 augroup END
 
 " onedark
-set termguicolors
-syntax on
+if (has("termguicolors"))
+    set termguicolors
+endif
 let g:onedark_terminal_italics=1
 colorscheme onedark
 let g:better_whitespace_guicolor = g:terminal_color_1

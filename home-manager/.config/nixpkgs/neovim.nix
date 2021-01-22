@@ -75,8 +75,9 @@
       imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR><Plug>DiscretionaryEnd"
       imap <script> <C-X><CR> <CR><SID>AlwaysEnd
 
-      set termguicolors
-      syntax on
+      if (has("termguicolors"))
+        set termguicolors
+      endif
     '';
 
     plugins = with pkgs.vimPlugins; [
