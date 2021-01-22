@@ -83,8 +83,8 @@ nnoremap <Leader>R :source ~/.config/nvim/init.vim<CR>
 " open config file
 nnoremap <Leader>c :e ~/.config/nvim/init.vim<CR>
 
-" unsets the 'last search pattern' register by hitting return
-nnoremap <CR> :noh<CR><CR>
+" unsets the 'last search pattern'
+nnoremap <C-g> :noh<CR><CR>
 
 " removes trailing spaces
 nnoremap <Leader>w :StripWhitespace<CR>
