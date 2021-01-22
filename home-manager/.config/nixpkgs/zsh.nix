@@ -124,7 +124,8 @@
       }
       {
         name = "zsh-history-substring-search";
-        src = fetchGit "https://github.com/zsh-users/zsh-history-substring-search";
+        src =
+          fetchGit "https://github.com/zsh-users/zsh-history-substring-search";
       }
     ];
   };

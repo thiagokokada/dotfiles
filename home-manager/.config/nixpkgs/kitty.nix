@@ -3,9 +3,7 @@
 {
   programs.kitty = {
     enable = true;
-    keybindings = {
-      "ctrl+shift+0" = "change_font_size_all 0";
-    };
+    keybindings = { "ctrl+shift+0" = "change_font_size_all 0"; };
     settings = with config.my.theme.colors; {
       # Font
       font = "Hack Nerd Font";
@@ -25,16 +23,16 @@
       inactive_tab_background = base00;
       inactive_tab_foreground = base05;
       tab_bar_background = base00;
-      color0  = base00;
-      color1  = base08;
-      color2  = base0B;
-      color3  = base0A;
-      color4  = base0D;
-      color5  = base0E;
-      color6  = base0C;
-      color7  = base05;
-      color8  = base03;
-      color9  = base09;
+      color0 = base00;
+      color1 = base08;
+      color2 = base0B;
+      color3 = base0A;
+      color4 = base0D;
+      color5 = base0E;
+      color6 = base0C;
+      color7 = base05;
+      color8 = base03;
+      color9 = base09;
       color10 = base01;
       color11 = base02;
       color12 = base04;
@@ -63,7 +61,8 @@
       # Misc
       editor = "nvim";
       strip_trailing_spaces = "smart";
-      clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
+      clipboard_control =
+        "write-clipboard write-primary read-clipboard read-primary";
       background_opacity = "0.9";
     };
   };

@@ -15,15 +15,16 @@
   # Enable fonts in home.packages to be available to applications
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs; with config.my.fonts; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
-    font-awesome_5
-    gui.package
-    hack-font
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
+  home.packages = with pkgs;
+    with config.my.fonts; [
+      (nerdfonts.override { fonts = [ "Hack" ]; })
+      font-awesome_5
+      gui.package
+      hack-font
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+    ];
 
   gtk = {
     enable = true;

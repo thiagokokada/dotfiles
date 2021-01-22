@@ -10,15 +10,12 @@
     }))
   ];
 
-  home.packages = with pkgs; [
-    emacs-all-the-icons-fonts
-  ];
+  home.packages = with pkgs; [ emacs-all-the-icons-fonts ];
 
   programs.emacs = {
     enable = true;
-    package = (pkgs.emacsPackagesGen pkgs.emacsPgtkGcc).emacsWithPackages (epkgs: [
-      epkgs.vterm
-    ]);
+    package = (pkgs.emacsPackagesGen pkgs.emacsPgtkGcc).emacsWithPackages
+      (epkgs: [ epkgs.vterm ]);
   };
 
   # My Emacs configuration is very complex, using stow here
@@ -28,9 +25,7 @@
     $DRY_RUN_CMD ${pkgs.stow}/bin/stow -d $DOTFILES_PATH --ignore='.zsh' doom-emacs
   '';
 
-  home.sessionVariables = {
-    PATH = "$HOME/.config/emacs/bin:$PATH";
-  };
+  home.sessionVariables = { PATH = "$HOME/.config/emacs/bin:$PATH"; };
 
   programs.zsh = {
     shellAliases = {
