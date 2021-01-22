@@ -64,7 +64,8 @@ in {
     };
 
     bindings = let
-      motion-based-interpolation = ../../../mpv/.config/mpv/filters/motion-based-interpolation.vpy;
+      motion-based-interpolation = config.my.dotfiles-dir
+        + "/mpv/.config/mpv/filters/motion-based-interpolation.vpy";
     in {
       F1 = "seek -85";
       F2 = "seek 85";

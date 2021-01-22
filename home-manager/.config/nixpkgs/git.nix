@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   programs.git = {
@@ -8,54 +8,32 @@
     userEmail = "thiagokokada@gmail.com";
 
     aliases = {
-      branch-cleanup = "!git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d #";
+      branch-cleanup = ''
+        !git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d #'';
       pushf = "push --force-with-lease";
       logs = "log --show-signature";
     };
 
-    ignores = lib.splitString "\n" (builtins.readFile ../../../git/.config/git/ignore);
+    ignores = lib.splitString "\n"
+      (builtins.readFile (config.my.dotfiles-dir + "/git/.config/git/ignore"));
 
-    includes = [
-      {
-        path = "~/.config/git/local";
-      }
-    ];
+    includes = [{ path = "~/.config/git/local"; }];
 
     extraConfig = {
-      branch = {
-        sort = "-commiterdate";
-      };
-      color = {
-        ui = true;
-      };
-      commit = {
-        verbose = true;
-      };
+      branch = { sort = "-commiterdate"; };
+      color = { ui = true; };
+      commit = { verbose = true; };
       core = {
         whitespace = "trailing-space,space-before-tab,indent-with-non-tab";
       };
-      checkout = {
-        defaultRemote = "origin";
-      };
-      github = {
-        user = "thiagokokada";
-      };
-      merge = {
-        tool = "nvim -d";
-      };
-      pull = {
-        rebase = true;
-      };
-      push = {
-        default = "simple";
-      };
-      rebase = {
-        autoStash = true;
-      };
+      checkout = { defaultRemote = "origin"; };
+      github = { user = "thiagokokada"; };
+      merge = { tool = "nvim -d"; };
+      pull = { rebase = true; };
+      push = { default = "simple"; };
+      rebase = { autoStash = true; };
     };
   };
 
-  programs.zsh.shellAliases = {
-    gk = "run-bg gitk";
-  };
+  programs.zsh.shellAliases = { gk = "run-bg gitk"; };
 }

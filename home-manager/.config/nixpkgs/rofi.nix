@@ -62,7 +62,6 @@ in {
 
   programs.rofi = {
     enable = true;
-    # theme = ../../../i3/.config/rofi/custom.rasi;
     theme = "custom";
     terminal = "${pkgs.kitty}/bin/kitty";
     package = with pkgs.unstable;
