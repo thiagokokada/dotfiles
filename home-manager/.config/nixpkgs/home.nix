@@ -10,6 +10,7 @@
     ./mpv.nix
     ./my.nix
     ./nnn.nix
+    ./ssh.nix
     ./theme.nix
     ./tmux.nix
     ./zsh.nix
