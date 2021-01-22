@@ -107,7 +107,7 @@ in {
           statusCommand = "${i3pyblocks} -c ${i3pyblocksConfig}";
           colors = {
             background = base00;
-            separator = base02;
+            separator = base01;
             statusline = base04;
             activeWorkspace = {
               border = base03;
@@ -163,7 +163,7 @@ in {
         };
         unfocused = {
           background = base00;
-          border = base00;
+          border = base01;
           childBorder = base01;
           indicator = base01;
           text = base05;
