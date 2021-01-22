@@ -23,14 +23,6 @@
           exec ${pkgs.xsecurelock}/bin/xsecurelock $@
         '';
 
-        mpv = with super; wrapMpv (pkgs.mpv-unwrapped.override {
-          vapoursynthSupport = true;
-        }) {
-          extraMakeWrapperArgs = [
-            "--prefix" "LD_LIBRARY_PATH" ":" "${vapoursynth-mvtools}/lib/vapoursynth"
-          ];
-        };
-
         nnn = unstable.nnn.override { withNerdIcons = true; };
       }
     )

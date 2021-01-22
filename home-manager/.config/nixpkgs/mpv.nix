@@ -1,8 +1,26 @@
 { config, lib, pkgs, ... }:
 
-{
+let
+  mpvRefactor = fetchGit {
+    url = "https://github.com/nix-community/home-manager";
+    ref = "master";
+    rev = "2c0e3f61da903613cc316cb992c8c07d92e1d186";
+  };
+in {
+  imports = [ "${mpvRefactor}/modules/programs/mpv.nix" ];
+
+  disabledModules = [ <home-manager/modules/programs/mpv.nix> ];
+
   programs.mpv = {
     enable = true;
+
+    package = with pkgs; wrapMpv (pkgs.mpv-unwrapped.override {
+      vapoursynthSupport = true;
+    }) {
+      extraMakeWrapperArgs = [
+        "--prefix" "LD_LIBRARY_PATH" ":" "${vapoursynth-mvtools}/lib/vapoursynth"
+      ];
+    };
 
     config = {
       osd-font-size = 14;
