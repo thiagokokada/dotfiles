@@ -7,6 +7,7 @@
     ./i3.nix
     ./kitty.nix
     ./misc.nix
+    ./mpv.nix
     ./my.nix
     ./nnn.nix
     ./theme.nix
