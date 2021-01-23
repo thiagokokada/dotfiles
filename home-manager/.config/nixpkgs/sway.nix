@@ -10,6 +10,9 @@ let
   dex = "${pkgs.dex}/bin/dex";
   makoctl = "${pkgs.mako}/bin/makoctl";
   kbdd = "${pkgs.kbdd}/bin/kbdd";
+  swayidle = "${pkgs.swayidle}/bin/swayidle";
+  swaylock = "${pkgs.swaylock}/bin/swaylock";
+  swaymsg = "${pkgs.sway}/bin/swaymsg";
   statusCommand = "${pkgs.i3pyblocks}/bin/i3pyblocks -c ${
       config.my.dotfiles-dir + "/i3/.config/i3pyblocks/config.py"
     }";
@@ -69,7 +72,19 @@ in {
     inherit extraConfig;
 
     config = commonOptions.config // {
-      startup = [{ command = "${dex} --autostart"; }];
+      startup = [
+        { command = "${dex} --autostart"; }
+        {
+          command = ''
+            ${swayidle} -w \
+            timeout 600 '${swaylock} -f -c 000000' \
+            timeout 605 '${swaymsg} "output * dpms off"' \
+            resume '${swaymsg} "output * dpms on"' \
+            before-sleep '${swaylock} -f -c 000000' \
+            lock '${swaylock} -f -c 000000'
+          '';
+        }
+      ];
 
       input = {
         "type:keyboard" = {
