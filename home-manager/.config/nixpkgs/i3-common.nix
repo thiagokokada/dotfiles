@@ -13,6 +13,8 @@
 , alt ? "Mod1"
 , modifier ? "Mod4"
 , extraBindings ? { }
+, extraWindowOptions ? {  }
+, extraFocusOptions ? {  }
 , extraModes ? { }
 , extraConfig ? ""
 , workspaces ? [
@@ -283,9 +285,9 @@ in
       border = 1;
       hideEdgeBorders = "smart";
       titlebar = false;
-    };
+    } // extraWindowOptions;
 
-    focus = { followMouse = false; };
+    focus = { followMouse = false; } // extraFocusOptions;
   };
 
   # Until this issue is fixed we need to map workspaces directly to config file

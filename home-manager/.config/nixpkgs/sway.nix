@@ -24,6 +24,14 @@ let
   commonOptions = import ./i3-common.nix {
     inherit config lib terminal menu pactl light playerctl fullScreenShot
       areaScreenShot browser fileManager statusCommand;
+
+    outputs = {
+      HDMI-A-1 = { scale = 1.5; };
+    };
+
+    extraConfig = ''
+      hide_edge_borders --i3 smart
+    '';
   };
 in {
   wayland.windowManager.sway = with commonOptions; {
@@ -33,7 +41,22 @@ in {
 
     config = commonOptions.config // {
       startup = [{ command = "${dex} --autostart"; }];
+    };
 
+    extraSessionCommands = ''
+      export GDK_BACKEND=wayland
+      export SDL_VIDEODRIVER=wayland
+      # needs qt5.qtwayland in systemPackages
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
+
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
     };
   };
 }
