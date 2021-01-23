@@ -7,8 +7,8 @@ let
   commonOptions = let
     rofi = "${config.programs.rofi.package}/bin/rofi";
     mons = "${pkgs.mons}/bin/mons";
-    screenShotName =
-      "$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S)-screenshot.png";
+    screenShotName = with config.xdg.userDirs;
+      "${pictures}/$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S)-screenshot.png";
     displayLayoutMode =
       " : [h]  , [j]  , [k]  , [l]  , [d]uplicate, [m]irror, [s]econd-only, [o]ff";
   in import ./i3-common.nix rec {
@@ -27,12 +27,12 @@ let
     terminal = config.my.terminal;
 
     # Screenshots
-    fullScreenShot = with config.xdg.userDirs; ''
-      ${pkgs.maim}/bin/maim "${pictures}/${screenShotName}" && \
+    fullScreenShot = ''
+      ${pkgs.maim}/bin/maim -u "${screenShotName}" && \
       ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Full screenshot taken'
     '';
-    areaScreenShot = with config.xdg.userDirs; ''
-      ${pkgs.maim}/bin/maim -s "${pictures}/${screenShotName}" && \
+    areaScreenShot = ''
+      ${pkgs.maim}/bin/maim -u -s "${screenShotName}" && \
       ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Area screenshot taken'
     '';
 

@@ -28,6 +28,8 @@ let
         export BEMENU_OPTS="''${opts[@]}"
         ${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --dmenu='${pkgs.bemenu}/bin/bemenu'
       '';
+      screenShotName = with config.xdg.userDirs;
+        "${pictures}/$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S)-screenshot.png";
   in import ./i3-common.nix rec {
     inherit config lib modifier alt;
     browser = "firefox";
@@ -42,9 +44,14 @@ let
     playerctl = "${pkgs.playerctl}/bin/playerctl";
     terminal = config.my.terminal;
 
-    # TODO: Screenshots
-    fullScreenShot = "true";
-    areaScreenShot = "true";
+    fullScreenShot = ''
+      ${pkgs.grim}/bin/grim "${screenShotName}" && \
+      ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Full screenshot taken'
+    '';
+    areaScreenShot = ''
+      ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "${screenShotName}" && \
+      ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Area screenshot taken'
+    '';
 
     # TODO: Not working it seems?
     extraBindings = {
