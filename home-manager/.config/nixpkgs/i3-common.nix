@@ -63,7 +63,7 @@
 let
   # Modes
   powerManagementMode =
-    " : Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown";
+    " : Screen [l]ock, [e]xit, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown";
   resizeMode = " : [h]  , [j]  , [k]  , [l] ";
 
   # Helpers
@@ -196,10 +196,7 @@ in
       "${modifier}+n" = "exec ${browser}";
       "${modifier}+m" = "exec ${fileManager}";
 
-      "${modifier}+c" =
-        "exec ${menu} -show calc -modi calc -no-show-match -no-sort";
-      "${modifier}+d" = "exec ${menu} -show drun";
-      "${modifier}+Tab" = "exec ${menu} -show window -modi window";
+      "${modifier}+d" = "exec ${menu}";
 
       "${modifier}+f" = "fullscreen toggle";
       "${modifier}+v" = "split v";

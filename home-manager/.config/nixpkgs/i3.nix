@@ -18,7 +18,8 @@ let
     }";
   # light needs to be installed in system, so not defining a path here
   light = "light";
-  menu = "${config.programs.rofi.package}/bin/rofi";
+  rofi = "${config.programs.rofi.package}/bin/rofi";
+  menu = "${rofi} -show drun";
   mons = "${pkgs.mons}/bin/mons";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
@@ -41,7 +42,12 @@ let
     inherit config lib terminal menu pactl modifier alt light playerctl
       fullScreenShot areaScreenShot browser fileManager statusCommand;
 
-    extraBindings = { "${modifier}+p" = ''mode "${displayLayoutMode}"''; };
+    extraBindings = {
+      "${modifier}+p" = ''mode "${displayLayoutMode}"'';
+      "${modifier}+c" =
+        "exec ${rofi} -show calc -modi calc -no-show-match -no-sort";
+      "${modifier}+Tab" = "exec ${rofi} -show window -modi window";
+    };
 
     extraModes = with commonOptions.helpers; {
       ${displayLayoutMode} = (mapDirection {

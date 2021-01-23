@@ -14,15 +14,36 @@ let
     }";
   # light needs to be installed in system, so not defining a path here
   light = "light";
-  menu = "${config.programs.rofi.package}/bin/rofi";
+  menuScript = with config.my.fonts;
+    with config.my.theme.colors;
+    pkgs.writeShellScriptBin "menu" ''
+      opts=(
+        '--list' '15'
+        '--ignorecase'
+        '--wrap'
+        '--prompt' 'run'
+        '--fn' '"${gui.name} 12"'
+        '--tb' '${base00}'
+        '--tf' '${base0D}'
+        '--fb' '${base00}'
+        '--ff' '${base03}'
+        '--nb' '${base00}'
+        '--nf' '${base05}'
+        '--hf' '${base00}'
+        '--hb' '${base0D}'
+      )
+      export BEMENU_OPTS="''${opts[@]}"
+      ${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --dmenu='${pkgs.bemenu}/bin/bemenu'
+    '';
+  menu = "${menuScript}/bin/menu";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   terminal = config.my.terminal;
   xset = "${pkgs.xorg.xset}/bin/xset";
 
   # TODO: Screenshots
-  fullScreenShot = "";
-  areaScreenShot = "";
+  fullScreenShot = "true";
+  areaScreenShot = "true";
 
   commonOptions = import ./i3-common.nix {
     inherit config lib terminal menu pactl light playerctl fullScreenShot
@@ -77,4 +98,8 @@ in {
       gtk = true;
     };
   };
+
+  home.packages = with pkgs; [
+    wl-clipboard
+  ];
 }
