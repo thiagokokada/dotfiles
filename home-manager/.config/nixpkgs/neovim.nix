@@ -218,6 +218,7 @@
           map T <Plug>Sneak_T
         '';
       }
+      auto-pairs
       commentary
       gitgutter
       vim-sleuth
