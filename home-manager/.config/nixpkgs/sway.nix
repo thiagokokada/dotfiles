@@ -107,15 +107,22 @@ in {
         };
       };
 
-      output = { "*" = { scale = "1.5"; }; };
+      output = { "*" = { scale = "1.35"; }; };
     };
 
     extraSessionCommands = ''
-      export GDK_BACKEND=wayland
-      export SDL_VIDEODRIVER=wayland
-      # needs qt5.qtwayland in systemPackages
-      export QT_QPA_PLATFORM=wayland
+      # Breaks Chromium/Electron
+      # export GDK_BACKEND=wayland
+      # Firefox
+      export MOZ_ENABLE_WAYLAND=1
+      # Qt
+      export XDG_SESSION_TYPE=wayland
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      # SDL
+      export SDL_VIDEODRIVER=wayland
+      # Elementary/EFL
+      export ECORE_EVAS_ENGINE=wayland_egl
+      export ELM_ENGINE=wayland_egl
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
       export _JAVA_AWT_WM_NONREPARENTING=1
@@ -128,6 +135,8 @@ in {
       gtk = true;
     };
   };
+
+  services = { udiskie.enable = true; };
 
   home.packages = with pkgs; [ bemenu dex mako swayidle swaylock wl-clipboard ];
 }
