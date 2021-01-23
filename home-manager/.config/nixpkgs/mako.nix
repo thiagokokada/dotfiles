@@ -26,8 +26,9 @@
       BusName = "org.freedesktop.Notifications";
       ExecStart = "${pkgs.mako}/bin/mako";
       ExecReload = "${pkgs.mako}/bin/makoctl reload";
+      Restart = "on-failure";
     };
 
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Install = { WantedBy = [ "sway-session.target" ]; };
   };
 }

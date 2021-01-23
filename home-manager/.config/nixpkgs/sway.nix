@@ -4,54 +4,47 @@ let
   alt = "Mod1";
   modifier = "Mod4";
 
-  # Programs
-  browser = "firefox";
-  fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
-  dex = "${pkgs.dex}/bin/dex";
-  makoctl = "${pkgs.mako}/bin/makoctl";
-  kbdd = "${pkgs.kbdd}/bin/kbdd";
-  swayidle = "${pkgs.swayidle}/bin/swayidle";
-  swaylock = "${pkgs.swaylock}/bin/swaylock";
-  swaymsg = "${pkgs.sway}/bin/swaymsg";
-  statusCommand = "${pkgs.i3pyblocks}/bin/i3pyblocks -c ${
-      config.my.dotfiles-dir + "/i3/.config/i3pyblocks/config.py"
-    }";
-  # light needs to be installed in system, so not defining a path here
-  light = "light";
-  menuScript = with config.my.fonts;
-    with config.my.theme.colors;
-    pkgs.writeShellScriptBin "menu" ''
-      opts=(
-        '--list' '15'
-        '--ignorecase'
-        '--wrap'
-        '--prompt' 'run'
-        '--fn' '"${gui.name} 12"'
-        '--tb' '${base00}'
-        '--tf' '${base0D}'
-        '--fb' '${base00}'
-        '--ff' '${base03}'
-        '--nb' '${base00}'
-        '--nf' '${base05}'
-        '--hf' '${base00}'
-        '--hb' '${base0D}'
-      )
-      export BEMENU_OPTS="''${opts[@]}"
-      ${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --dmenu='${pkgs.bemenu}/bin/bemenu'
-    '';
-  menu = "${menuScript}/bin/menu";
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  terminal = config.my.terminal;
-  xset = "${pkgs.xorg.xset}/bin/xset";
+  commonOptions = let
+    makoctl = "${pkgs.mako}/bin/makoctl";
 
-  # TODO: Screenshots
-  fullScreenShot = "true";
-  areaScreenShot = "true";
+    menuScript = with config.my.fonts;
+      with config.my.theme.colors;
+      pkgs.writeShellScriptBin "menu" ''
+        opts=(
+          '--list' '15'
+          '--ignorecase'
+          '--wrap'
+          '--prompt' 'run'
+          '--fn' '"${gui.name} 12"'
+          '--tb' '${base00}'
+          '--tf' '${base0D}'
+          '--fb' '${base00}'
+          '--ff' '${base03}'
+          '--nb' '${base00}'
+          '--nf' '${base05}'
+          '--hf' '${base00}'
+          '--hb' '${base0D}'
+        )
+        export BEMENU_OPTS="''${opts[@]}"
+        ${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --dmenu='${pkgs.bemenu}/bin/bemenu'
+      '';
+  in import ./i3-common.nix rec {
+    inherit config lib modifier alt;
+    browser = "firefox";
+    fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
+    statusCommand = "${pkgs.i3pyblocks}/bin/i3pyblocks -c ${
+        config.my.dotfiles-dir + "/i3/.config/i3pyblocks/config.py"
+      }";
+    menu = "${menuScript}/bin/menu";
+    # light needs to be installed in system, so not defining a path here
+    light = "light";
+    pactl = "${pkgs.pulseaudio}/bin/pactl";
+    playerctl = "${pkgs.playerctl}/bin/playerctl";
+    terminal = config.my.terminal;
 
-  commonOptions = import ./i3-common.nix {
-    inherit config lib terminal menu pactl light playerctl fullScreenShot
-      areaScreenShot browser fileManager statusCommand modifier alt;
+    # TODO: Screenshots
+    fullScreenShot = "true";
+    areaScreenShot = "true";
 
     # TODO: Not working it seems?
     extraBindings = {
@@ -73,9 +66,13 @@ in {
 
     config = commonOptions.config // {
       startup = [
-        { command = "${dex} --autostart"; }
+        { command = "${pkgs.dex}/bin/dex --autostart"; }
         {
-          command = ''
+          command = let
+            swayidle = "${pkgs.swayidle}/bin/swayidle";
+            swaylock = "${pkgs.swaylock}/bin/swaylock";
+            swaymsg = "${pkgs.sway}/bin/swaymsg";
+          in ''
             ${swayidle} -w \
             timeout 600 '${swaylock} -f -c 000000' \
             timeout 605 '${swaymsg} "output * dpms off"' \
@@ -117,11 +114,13 @@ in {
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
 
+    systemdIntegration = true;
+
     wrapperFeatures = {
       base = true;
       gtk = true;
     };
   };
 
-  home.packages = with pkgs; [ wl-clipboard ];
+  home.packages = with pkgs; [ bemenu dex mako swayidle swaylock wl-clipboard ];
 }

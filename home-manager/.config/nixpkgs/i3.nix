@@ -4,43 +4,37 @@ let
   alt = "Mod1";
   modifier = "Mod4";
 
-  # Modes
-  displayLayoutMode =
-    " : [h]  , [j]  , [k]  , [l]  , [d]uplicate, [m]irror, [s]econd-only, [o]ff";
+  commonOptions = let
+    rofi = "${config.programs.rofi.package}/bin/rofi";
+    mons = "${pkgs.mons}/bin/mons";
+    screenShotName =
+      "$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S)-screenshot.png";
+    displayLayoutMode =
+      " : [h]  , [j]  , [k]  , [l]  , [d]uplicate, [m]irror, [s]econd-only, [o]ff";
+  in import ./i3-common.nix rec {
+    inherit config lib modifier alt;
 
-  # Programs
-  browser = "firefox";
-  fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
-  dex = "${pkgs.dex}/bin/dex";
-  kbdd = "${pkgs.kbdd}/bin/kbdd";
-  statusCommand = "${pkgs.i3pyblocks}/bin/i3pyblocks -c ${
-      config.my.dotfiles-dir + "/i3/.config/i3pyblocks/config.py"
-    }";
-  # light needs to be installed in system, so not defining a path here
-  light = "light";
-  rofi = "${config.programs.rofi.package}/bin/rofi";
-  menu = "${rofi} -show drun";
-  mons = "${pkgs.mons}/bin/mons";
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  terminal = config.my.terminal;
-  xset = "${pkgs.xorg.xset}/bin/xset";
+    browser = "firefox";
+    fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
+    statusCommand = "${pkgs.i3pyblocks}/bin/i3pyblocks -c ${
+        config.my.dotfiles-dir + "/i3/.config/i3pyblocks/config.py"
+      }";
+    menu = "${rofi} -show drun";
+    # light needs to be installed in system, so not defining a path here
+    light = "light";
+    pactl = "${pkgs.pulseaudio}/bin/pactl";
+    playerctl = "${pkgs.playerctl}/bin/playerctl";
+    terminal = config.my.terminal;
 
-  # Screenshots
-  screenShotName =
-    "$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S)-screenshot.png";
-  fullScreenShot = with config.xdg.userDirs; ''
-    ${pkgs.maim}/bin/maim "${pictures}/${screenShotName}" && \
-    ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Full screenshot taken'
-  '';
-  areaScreenShot = with config.xdg.userDirs; ''
-    ${pkgs.maim}/bin/maim -s "${pictures}/${screenShotName}" && \
-    ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Area screenshot taken'
-  '';
-
-  commonOptions = import ./i3-common.nix {
-    inherit config lib terminal menu pactl modifier alt light playerctl
-      fullScreenShot areaScreenShot browser fileManager statusCommand;
+    # Screenshots
+    fullScreenShot = with config.xdg.userDirs; ''
+      ${pkgs.maim}/bin/maim "${pictures}/${screenShotName}" && \
+      ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Full screenshot taken'
+    '';
+    areaScreenShot = with config.xdg.userDirs; ''
+      ${pkgs.maim}/bin/maim -s "${pictures}/${screenShotName}" && \
+      ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Area screenshot taken'
+    '';
 
     extraBindings = {
       "${modifier}+p" = ''mode "${displayLayoutMode}"'';
@@ -84,11 +78,11 @@ in {
     config = commonOptions.config // {
       startup = [
         {
-          command = "${xset} s 600";
+          command = "${pkgs.xorg.xset}/bin/xset s 600";
           notification = false;
         }
         {
-          command = "${dex} --autostart";
+          command = "${pkgs.dex}/bin/dex --autostart";
           notification = false;
         }
       ];
@@ -127,11 +121,38 @@ in {
 
       Install = { WantedBy = [ "graphical-session.target" ]; };
 
-      Service = {
+      Service = let
+        lockscreen = with config.my.fonts;
+          pkgs.writeShellScriptBin "lock-screen" ''
+            export XSECURELOCK_FORCE_GRAB=2
+            export XSECURELOCK_BLANK_DPMS_STATE="off"
+            export XSECURELOCK_DATETIME_FORMAT="%H:%M:%S - %a %d/%m"
+            export XSECURELOCK_SHOW_DATETIME=1
+            export XSECURELOCK_SHOW_HOSTNAME=0
+            export XSECURELOCK_SHOW_USERNAME=0
+            export XSECURELOCK_FONT="${gui.name}:style=Regular"
+
+            exec ${pkgs.xsecurelock}/bin/xsecurelock $@
+          '';
+      in {
         ExecStart =
-          "${pkgs.xss-lock}/bin/xss-lock -s $XDG_SESSION_ID -l -- ${pkgs.lockscreen}/bin/lock-screen";
+          "${pkgs.xss-lock}/bin/xss-lock -s $XDG_SESSION_ID -l -- ${lockscreen}/bin/lock-screen";
         Restart = "on-failure";
       };
     };
   };
+
+  home.packages = with pkgs; [
+    dex
+    kbdd
+    libnotify
+    maim
+    mons
+    nnn
+    playerctl
+    xorg.xkill
+    xorg.xset
+    xsecurelock
+    xss-lock
+  ];
 }
