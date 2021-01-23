@@ -97,6 +97,7 @@ async def main():
         x11.CaffeineBlock(
             format_on="  ",
             format_off="  ",
+            ignore_errors=True,
         )
     )
 

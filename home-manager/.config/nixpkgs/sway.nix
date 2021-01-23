@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 let
   # Aliases
+  alt = "Mod1";
+  modifier = "Mod4";
+
   # Programs
   browser = "firefox";
   fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
@@ -23,11 +26,7 @@ let
 
   commonOptions = import ./i3-common.nix {
     inherit config lib terminal menu pactl light playerctl fullScreenShot
-      areaScreenShot browser fileManager statusCommand;
-
-    outputs = {
-      HDMI-A-1 = { scale = 1.5; };
-    };
+      areaScreenShot browser fileManager statusCommand modifier alt;
 
     extraConfig = ''
       hide_edge_borders --i3 smart
@@ -41,6 +40,25 @@ in {
 
     config = commonOptions.config // {
       startup = [{ command = "${dex} --autostart"; }];
+
+      input = {
+        "type:keyboard" = {
+          xkb_layout = "us(intl),br";
+          xkb_options = "caps:escape,grp:win_space_toggle";
+        };
+        "type:pointer" = { accel_profile = "flat"; };
+        "type:touchpad" = {
+          drag = "enabled";
+          drag_lock = "enabled";
+          middle_emulation = "enabled";
+          natural_scroll = "enabled";
+          scroll_method = "two_finger";
+          tap = "enabled";
+          tap_button_map = "lmr";
+        };
+      };
+
+      output = { "*" = { scale = "1.5"; }; };
     };
 
     extraSessionCommands = ''
