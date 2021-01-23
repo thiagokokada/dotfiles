@@ -8,6 +8,7 @@ let
   browser = "firefox";
   fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
   dex = "${pkgs.dex}/bin/dex";
+  makoctl = "${pkgs.mako}/bin/makoctl";
   kbdd = "${pkgs.kbdd}/bin/kbdd";
   statusCommand = "${pkgs.i3pyblocks}/bin/i3pyblocks -c ${
       config.my.dotfiles-dir + "/i3/.config/i3pyblocks/config.py"
@@ -49,11 +50,19 @@ let
     inherit config lib terminal menu pactl light playerctl fullScreenShot
       areaScreenShot browser fileManager statusCommand modifier alt;
 
+    # TODO: Not working it seems?
+    extraBindings = {
+      "Ctrl+space" = "${makoctl} dismiss";
+      "Ctrl+Shift+space" = "${makoctl} dismiss -a";
+    };
+
     extraConfig = ''
       hide_edge_borders --i3 smart
     '';
   };
 in {
+  imports = [ ./mako.nix ];
+
   wayland.windowManager.sway = with commonOptions; {
     enable = true;
 
@@ -99,7 +108,5 @@ in {
     };
   };
 
-  home.packages = with pkgs; [
-    wl-clipboard
-  ];
+  home.packages = with pkgs; [ wl-clipboard ];
 }

@@ -64,6 +64,9 @@
       clipboard_control =
         "write-clipboard write-primary read-clipboard read-primary";
       background_opacity = "0.9";
+
+      # Fix for Wayland slow scrolling
+      touch_scroll_multiplier = "5.0";
     };
   };
 
