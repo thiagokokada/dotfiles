@@ -3,7 +3,6 @@
 {
   environment = {
     systemPackages = with pkgs; [
-      gnome3.dconf-editor
       qt5.qtwayland
       pcmanfm
     ];
@@ -31,24 +30,20 @@
       ];
 
       extraSessionCommands = ''
-        # Enable GNOME support to Wayland
+        # Breaks Chromium/Electron
         # export GDK_BACKEND=wayland
-        # export CLUTTER_BACKEND=wayland
-
-        # Enable wayland in Firefox
+        # Firefox
         export MOZ_ENABLE_WAYLAND=1
-
-        # Enable Qt5 support to Wayland
-        export QT_QPA_PLATFORM=wayland
-
-        # Enable EFL support to Wayland
+        # Qt
+        export XDG_SESSION_TYPE=wayland
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+        # SDL
+        export SDL_VIDEODRIVER=wayland
+        # Elementary/EFL
         export ECORE_EVAS_ENGINE=wayland_egl
         export ELM_ENGINE=wayland_egl
-
-        # Enable SDL support to Wayland
-        export SDL_VIDEODRIVER=wayland
-
-        # Fix Java applications
+        # Fix for some Java AWT applications (e.g. Android Studio),
+        # use this if they aren't displayed properly:
         export _JAVA_AWT_WM_NONREPARENTING=1
       '';
     };

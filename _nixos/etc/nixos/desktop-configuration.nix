@@ -28,6 +28,7 @@
     peek
     perlPackages.FileMimeInfo
     qalculate-gtk
+    quassel
     shared-mime-info
     smartmontools
     termite
