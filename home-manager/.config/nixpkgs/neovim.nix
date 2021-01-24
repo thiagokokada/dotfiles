@@ -112,6 +112,7 @@
         if (has("termguicolors"))
           set termguicolors
         endif
+        packadd! onedark-vim
         colorscheme onedark
 
         "" lightline
@@ -191,31 +192,31 @@
         map T <Plug>Sneak_T
       '';
 
-      plug.plugins = with pkgs.vimPlugins; [
-        auto-pairs
-        commentary
-        fzf-vim
-        # TODO: Shouldn't be needed, but doesn't work otherwise
-        fzfWrapper
-        gitgutter
-        lightline-vim
-        onedark-vim
-        rainbow
-        undotree
-        vim-automkdir
-        vim-better-whitespace
-        vim-commentary
-        vim-endwise
-        vim-fugitive
-        vim-gutentags
-        vim-lastplace
-        vim-polyglot
-        vim-repeat
-        vim-sleuth
-        vim-sneak
-        vim-surround
-        vim-vinegar
-      ];
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        opt = [ onedark-vim ];
+        start = [
+          auto-pairs
+          commentary
+          fzf-vim
+          gitgutter
+          lightline-vim
+          rainbow
+          undotree
+          vim-automkdir
+          vim-better-whitespace
+          vim-commentary
+          vim-endwise
+          vim-fugitive
+          vim-gutentags
+          vim-lastplace
+          vim-polyglot
+          vim-repeat
+          vim-sleuth
+          vim-sneak
+          vim-surround
+          vim-vinegar
+        ];
+      };
     };
   };
 }
