@@ -2,8 +2,6 @@
 
 {
   my = {
-    terminal = "${pkgs.kitty}/bin/kitty";
-
     fonts = {
       gui = {
         package = pkgs.roboto;

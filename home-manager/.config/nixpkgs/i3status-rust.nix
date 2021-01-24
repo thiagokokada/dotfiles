@@ -2,16 +2,16 @@
 
 let
   mountPointsToShow = with lib; with config.my;
-    if mountPoints == [ ] then
+    if mountPoints != null then
+      mountPoints
+    else
       let
         hardwareConfiguration = import /etc/nixos/hardware-configuration.nix {
           inherit config lib pkgs;
         };
         allMountPoints =
           attrsets.mapAttrsToList (n: v: n) hardwareConfiguration.fileSystems;
-      in lists.subtractLists [ "/boot" "/tmp" ] allMountPoints
-    else
-      mountPoints;
+      in lists.subtractLists [ "/boot" "/tmp" ] allMountPoints;
 
   shortPath = with lib.strings;
     (path: concatStringsSep "/" (map (substring 0 1) (splitString "/" path)));

@@ -17,8 +17,6 @@
     ];
   };
 
-  my.dotfilesDir = ../../..;
-
   home = {
     sessionVariables = { DOTFILES_PATH = "$HOME/.dotfiles"; };
 
