@@ -18,6 +18,11 @@ in {
       default = "desktop";
     };
 
+    mountPoints = mkOption {
+      type = with types; listOf str;
+      default = [ ];
+    };
+
     fonts = { gui = mkOption { type = types.nullOr themeType; }; };
 
     terminal = mkOption { type = types.str; };

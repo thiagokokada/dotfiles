@@ -1,12 +1,18 @@
 { config, lib, pkgs, ... }:
 
 let
-  # TODO: Add bypass for non-NixOS systems
-  hardwareConfiguration =
-    import /etc/nixos/hardware-configuration.nix { inherit config lib pkgs; };
-  allMountPoints = with lib.attrsets;
-    mapAttrsToList (n: v: n) hardwareConfiguration.fileSystems;
-  mountPoints = with lib.lists; subtractLists [ "/boot" "/tmp" ] allMountPoints;
+  mountPointsToShow = with lib; with config.my;
+    if mountPoints == [ ] then
+      let
+        hardwareConfiguration = import /etc/nixos/hardware-configuration.nix {
+          inherit config lib pkgs;
+        };
+        allMountPoints =
+          attrsets.mapAttrsToList (n: v: n) hardwareConfiguration.fileSystems;
+      in lists.subtractLists [ "/boot" "/tmp" ] allMountPoints
+    else
+      mountPoints;
+
   shortPath = with lib.strings;
     (path: concatStringsSep "/" (map (substring 0 1) (splitString "/" path)));
 
@@ -72,7 +78,7 @@ in {
         info_type = "available";
         unit = "GiB";
         format = "{icon}{alias} {available}G";
-      }) mountPoints;
+      }) mountPointsToShow;
 
       memoryBlock = {
         block = "memory";
