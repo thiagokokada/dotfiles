@@ -1,6 +1,15 @@
 { config, lib, pkgs, ... }:
 
 let
+  # TODO: Add bypass for non-NixOS systems
+  hardwareConfiguration =
+    import /etc/nixos/hardware-configuration.nix { inherit config lib pkgs; };
+  allMountPoints = with lib.attrsets;
+    mapAttrsToList (n: v: n) hardwareConfiguration.fileSystems;
+  mountPoints = with lib.lists; subtractLists [ "/boot" "/tmp" ] allMountPoints;
+  shortPath = with lib.strings;
+    (path: concatStringsSep "/" (map (substring 0 1) (splitString "/" path)));
+
   i3statusRsModule = fetchGit {
     url = "https://github.com/nix-community/home-manager";
     ref = "master";
@@ -36,6 +45,7 @@ in {
         icons = {
           name = "awesome5";
           overrides = {
+            disk_drive = " ";
             eco_on = "  ";
             eco_off = "  ";
           };
@@ -51,16 +61,17 @@ in {
         block = "net";
         hide_missing = true;
         hide_inactive = true;
+        format = "{ssid} {speed_up} {speed_down}";
       };
 
-      diskBlock = {
+      disksBlocks = map (m: {
         block = "disk_space";
-        path = "/";
-        alias = "/";
+        path = m;
+        alias = shortPath m;
         info_type = "available";
         unit = "GiB";
-        format = "{icon}{available}{unit}";
-      };
+        format = "{icon}{alias} {available}{unit}";
+      }) mountPoints;
 
       memoryBlock = {
         block = "memory";
@@ -121,10 +132,7 @@ in {
     in {
       i3 = {
         inherit settings;
-        blocks = [
-          windowBlock
-          netBlock
-          diskBlock
+        blocks = [ windowBlock netBlock ] ++ disksBlocks ++ [
           memoryBlock
           loadBlock
           temperatureBlock
@@ -139,10 +147,7 @@ in {
 
       sway = {
         inherit settings;
-        blocks = [
-          windowBlock
-          netBlock
-          diskBlock
+        blocks = [ windowBlock netBlock ] ++ disksBlocks ++ [
           memoryBlock
           loadBlock
           temperatureBlock
