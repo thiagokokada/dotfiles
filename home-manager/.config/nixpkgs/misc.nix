@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  nixpkgs = {
-    config.allowUnfree = true;
+  nixpkgs.config = import ./nixpkgs-config.nix;
+  xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
 
+  nixpkgs = {
     overlays = [
       (self: super: rec {
         unstable = import (fetchTarball
