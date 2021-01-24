@@ -57,6 +57,7 @@ in {
         max_width = 50;
         show_marks = "visible";
       };
+
       netBlock = {
         block = "net";
         hide_missing = true;
@@ -70,12 +71,12 @@ in {
         alias = shortPath m;
         info_type = "available";
         unit = "GiB";
-        format = "{icon}{alias} {available}{unit}";
+        format = "{icon}{alias} {available}G";
       }) mountPoints;
 
       memoryBlock = {
         block = "memory";
-        format_mem = "{MFg}G";
+        format_mem = "{MAg}G";
         format_swap = "{SFg}G";
       };
 
