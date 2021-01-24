@@ -15,7 +15,7 @@
     };
 
     ignores = lib.splitString "\n"
-      (builtins.readFile (config.my.dotfiles-dir + "/git/.config/git/ignore"));
+      (builtins.readFile (config.my.dotfilesDir + "/git/.config/git/ignore"));
 
     includes = [{ path = "~/.config/git/local"; }];
 

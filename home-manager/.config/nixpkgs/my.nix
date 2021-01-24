@@ -11,7 +11,12 @@ let
   };
 in {
   options.my = {
-    dotfiles-dir = mkOption { type = types.path; };
+    dotfilesDir = mkOption { type = types.path; };
+
+    deviceType = mkOption {
+      type = types.enum [ "desktop" "notebook" ];
+      default = "desktop";
+    };
 
     fonts = { gui = mkOption { type = types.nullOr themeType; }; };
 

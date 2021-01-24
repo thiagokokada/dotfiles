@@ -16,9 +16,8 @@ let
 
     browser = "firefox";
     fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
-    statusCommand = "${pkgs.i3pyblocks}/bin/i3pyblocks -c ${
-        config.my.dotfiles-dir + "/i3/.config/i3pyblocks/config.py"
-      }";
+    statusCommand = with config;
+      "${programs.i3status-rust.package}/bin/i3status-rs ${xdg.configHome}/i3status-rust/config-i3.toml";
     menu = "${rofi} -show drun";
     # light needs to be installed in system, so not defining a path here
     light = "light";
@@ -60,7 +59,7 @@ let
     };
   };
 in {
-  imports = [ ./dunst.nix ./rofi.nix ];
+  imports = [ ./dunst.nix ./i3status-rust.nix ./rofi.nix ];
 
   nixpkgs.overlays = [
     (import (fetchGit {
