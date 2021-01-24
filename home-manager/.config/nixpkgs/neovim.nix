@@ -192,9 +192,22 @@
         map T <Plug>Sneak_T
       '';
 
+      # To install non-packaged plugins, use
+      # pkgs.vimUtils.buildVimPluginFrom2Nix { }
       packages.myVimPackage = with pkgs.vimPlugins; {
         opt = [ onedark-vim ];
+
         start = [
+          (pkgs.vimUtils.buildVimPluginFrom2Nix rec {
+            pname = "autoswap";
+            version = "2019-01-09";
+            src = pkgs.fetchFromGitHub {
+              owner = "gioele";
+              repo = "vim-autoswap";
+              rev = "e587e4b14a605d8921942ba65a37583813289272";
+              sha256 = "0l0ijbdl2s9p5i3cxfkq8jncncz38qprp51whbjcda485d1knk9n";
+            };
+          })
           auto-pairs
           commentary
           fzf-vim
