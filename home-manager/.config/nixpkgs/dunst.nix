@@ -34,6 +34,8 @@
           startup_notification = false;
           frame_width = 1;
           frame_color = base01;
+          show_indicators = false;
+          icon_position = "right";
         };
         shortcuts = {
           close = "ctrl+space";
