@@ -4,6 +4,7 @@
   imports = [
     ./emacs.nix
     ./git.nix
+    ./htop.nix
     ./i3.nix
     ./kitty.nix
     ./misc.nix
