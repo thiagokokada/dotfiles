@@ -51,6 +51,7 @@ in {
         icons = {
           name = "awesome5";
           overrides = {
+            memory_swap = " ";
             disk_drive = " ";
             eco_on = "  ";
             eco_off = "  ";
