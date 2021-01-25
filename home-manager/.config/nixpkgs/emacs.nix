@@ -10,7 +10,18 @@
     }))
   ];
 
-  home.packages = with pkgs; [ emacs-all-the-icons-fonts ];
+  home.packages = with pkgs; [
+    clojure-lsp
+    emacs-all-the-icons-fonts
+    fd
+    findutils
+    fzf
+    leiningen
+    nixfmt
+    python-language-server
+    rnix-lsp
+    shellcheck
+  ];
 
   programs.emacs = {
     enable = true;
