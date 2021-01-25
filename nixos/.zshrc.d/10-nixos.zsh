@@ -1,12 +1,13 @@
 export NIX_HOME="${DOTFILES_PATH}/_nixos"
 
-alias nixos-clean-up="sudo -- sh -c 'nix-collect-garbage -d && nixos-rebuild boot --fast'"
+nixos-clean-up() {
+  find -H /nix/var/nix/gcroots/auto -type l | xargs readlink | grep "/result$" | xargs rm -f
+  nix-collect-garbage -d
 
-nix-remove-stray-roots() {
-  nix-store --gc --print-roots |\
-    awk '{print $1}' |\
-    grep /result$ |\
-    sudo xargs -I {} rm -I {}
+  sudo -s -- <<EOF
+nix-collect-garbage -d
+nixos-rebuild boot --fast
+EOF
 }
 
 nixos-copy-etc() {

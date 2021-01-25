@@ -2,22 +2,24 @@
 
 let
   nixos-clean-up = pkgs.writeShellScriptBin "nixos-clean-up" ''
-    set -eu
+    set -euo pipefail
+
+    find -H /nix/var/nix/gcroots/auto -type l | xargs readlink | grep "/result$" | xargs rm -f
+    nix-collect-garbage -d
 
     sudo -s -- <<EOF
-    nix-store --gc
     nix-collect-garbage -d
-    nix-rebuid boot --fast
+    nixos-rebuild boot --fast
     EOF
   '';
 
   nixos-copy-etc = pkgs.writeShellScriptBin "nixos-copy-etc" ''
-    set -u
+    set -eu
 
     NIX_CONFIG_PATH="/etc/nixos"
     NIX_DOTFILES_PATH="$DOTFILES_PATH/_nixos/etc/nixos"
 
-    ${pkgs.colordiff}/bin/colordiff -r "$NIX_DOTFILES_PATH" "$NIX_CONFIG_PATH"
+    ${pkgs.colordiff}/bin/colordiff -r "$NIX_DOTFILES_PATH" "$NIX_CONFIG_PATH" && true
 
     while true; do
       printf '%s' 'Copy current NixOS configuration (y/n)? '
@@ -32,12 +34,12 @@ let
   '';
 
   nixos-restore-etc = pkgs.writeShellScriptBin "nixos-restore-etc" ''
-    set -u
+    set -eu
 
     NIX_CONFIG_PATH="/etc/nixos"
     NIX_DOTFILES_PATH="$DOTFILES_PATH/_nixos/etc/nixos"
 
-    ${pkgs.colordiff}/bin/colordiff -r "$NIX_CONFIG_PATH" "$NIX_DOTFILES_PATH"
+    ${pkgs.colordiff}/bin/colordiff -r "$NIX_CONFIG_PATH" "$NIX_DOTFILES_PATH" && true
 
     while true; do
       printf '%s' 'Restore NixOS configuration (y/n)? '
