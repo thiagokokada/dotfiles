@@ -2,8 +2,9 @@
 
 {
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = "https://github.com/nubank/nixpkgs/archive/master.tar.gz";
+    (import (fetchGit {
+      url = "https://github.com/nubank/nixpkgs";
+      ref = "master";
     }))
   ];
 
