@@ -53,8 +53,8 @@ in {
           overrides = {
             memory_swap = " ";
             disk_drive = " ";
-            eco_on = "  ";
-            eco_off = "  ";
+            caffeine_on = "  ";
+            caffeine_off = "  ";
           };
         };
       };
@@ -126,8 +126,8 @@ in {
         command_state = "${xset} q | grep -Fo 'DPMS is Enabled'";
         command_on = "${xset} s on +dpms";
         command_off = "${xset} s off -dpms";
-        icon_on = "eco_on";
-        icon_off = "eco_off";
+        icon_on = "caffeine_off";
+        icon_off = "caffeine_on";
         interval = 5;
       };
 
