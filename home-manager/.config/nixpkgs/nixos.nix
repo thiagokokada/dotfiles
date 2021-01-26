@@ -6,8 +6,9 @@ let
 
     sudo -s -- <<EOF
     find -H /nix/var/nix/gcroots/auto -type l | xargs readlink | grep "/result$" | xargs rm -f
+    nix-collect-garbage -d
     nixos-rebuild boot --fast
-    if [[ "$1" == "--optimize" ]]; then
+    if [[ "''${1:-}" == "--optimize" ]]; then
       nix-store --optimize
     fi
     EOF
