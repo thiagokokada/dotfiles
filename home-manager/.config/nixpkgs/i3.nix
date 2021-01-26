@@ -107,7 +107,6 @@ in {
         ExecStart = "${pkgs.kbdd}/bin/kbdd -n";
         Type = "dbus";
         BusName = "ru.gentoo.KbddService";
-        Restart = "on-failure";
       };
     };
 
@@ -134,9 +133,13 @@ in {
             exec ${pkgs.xsecurelock}/bin/xsecurelock $@
           '';
       in {
-        ExecStart =
-          "${pkgs.xss-lock}/bin/xss-lock -s $XDG_SESSION_ID -l -- ${lockscreen}/bin/lock-screen";
-        Restart = "on-failure";
+        ExecStart = lib.concatStringsSep " " [
+          "${pkgs.xss-lock}/bin/xss-lock"
+          "-s $XDG_SESSION_ID"
+          "-l"
+          "--"
+          "${lockscreen}/bin/lock-screen"
+        ];
       };
     };
   };
