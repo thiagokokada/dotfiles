@@ -144,7 +144,7 @@ command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-nnoremap <Leader><Leader> :Files<CR>
+nnoremap <Leader><Leader> :GitFiles --cached --others --exclude-standard<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>/ :RG<space>
 nnoremap <silent> <Leader>* :Rg <C-R><C-W><CR>
