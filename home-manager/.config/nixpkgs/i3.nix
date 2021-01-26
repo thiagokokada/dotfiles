@@ -77,7 +77,7 @@ in {
     config = commonOptions.config // {
       startup = [
         {
-          command = "${pkgs.xorg.xset}/bin/xset s 600";
+          command = "${pkgs.xorg.xset}/bin/xset s 600 30";
           notification = false;
         }
         {
@@ -132,11 +132,15 @@ in {
 
             exec ${pkgs.xsecurelock}/bin/xsecurelock $@
           '';
+        notify = pkgs.writeShellScriptBin "notify" ''
+          ${pkgs.libnotify}/bin/notify-send -t 30 "30 seconds to lock"
+        '';
       in {
         ExecStart = lib.concatStringsSep " " [
           "${pkgs.xss-lock}/bin/xss-lock"
-          "-s $XDG_SESSION_ID"
-          "-l"
+          "--notifier ${notify}/bin/notify"
+          "--transfer-sleep-lock"
+          "--session $XDG_SESSION_ID"
           "--"
           "${lockscreen}/bin/lock-screen"
         ];
