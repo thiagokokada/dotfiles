@@ -1,2 +1,4 @@
 configuration.nix
 hardware-configuration.nix
+cachix.nix
+cachix

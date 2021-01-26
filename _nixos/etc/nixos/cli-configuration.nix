@@ -7,6 +7,7 @@
     aria2
     bc
     bind
+    cachix
     curl
     dos2unix
     fd
