@@ -4,12 +4,12 @@ let
   nixos-clean-up = pkgs.writeShellScriptBin "nixos-clean-up" ''
     set -euo pipefail
 
-    find -H /nix/var/nix/gcroots/auto -type l | xargs readlink | grep "/result$" | xargs rm -f
-    nix-collect-garbage -d
-
     sudo -s -- <<EOF
-    nix-collect-garbage -d
+    find -H /nix/var/nix/gcroots/auto -type l | xargs readlink | grep "/result$" | xargs rm -f
     nixos-rebuild boot --fast
+    if [[ "$1" == "--optimize" ]]; then
+      nix-store --optimize
+    fi
     EOF
   '';
 
