@@ -17,12 +17,12 @@
           format = "<b>%s</b>\\n%b";
           sort = true;
           indicate_hidden = true;
-          alignment = "center";
+          alignment = "left";
           bounce_freq = 0;
           show_age_threshold = 60;
           word_wrap = true;
           ignore_newline = false;
-          geometry = "200x5-6+30";
+          geometry = "300x5-6+30";
           transparency = 0;
           idle_threshold = 120;
           follow = "mouse";
@@ -35,7 +35,9 @@
           frame_width = 1;
           frame_color = base01;
           show_indicators = false;
-          icon_position = "right";
+          icon_position = "left";
+          min_icon_size = 24;
+          max_icon_size = 24;
         };
         shortcuts = {
           close = "ctrl+space";
