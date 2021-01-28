@@ -52,10 +52,9 @@ let
       ${pkgs.libnotify}/bin/notify-send -u normal -t 5000 'Area screenshot taken'
     '';
 
-    # TODO: Not working it seems?
     extraBindings = {
-      "Ctrl+space" = "${makoctl} dismiss";
-      "Ctrl+Shift+space" = "${makoctl} dismiss -a";
+      "Ctrl+space" = "exec ${makoctl} dismiss";
+      "Ctrl+Shift+space" = "exec ${makoctl} dismiss -a";
     };
 
     extraConfig = ''
