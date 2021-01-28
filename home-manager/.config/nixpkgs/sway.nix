@@ -6,28 +6,6 @@ let
 
   commonOptions = let
     makoctl = "${pkgs.mako}/bin/makoctl";
-
-    menuScript = with config.my.fonts;
-      with config.my.theme.colors;
-      pkgs.writeShellScriptBin "menu" ''
-        opts=(
-          '--list' '15'
-          '--ignorecase'
-          '--wrap'
-          '--prompt' 'run'
-          '--fn' '"${gui.name} 12"'
-          '--tb' '${base00}'
-          '--tf' '${base0D}'
-          '--fb' '${base00}'
-          '--ff' '${base03}'
-          '--nb' '${base00}'
-          '--nf' '${base05}'
-          '--hf' '${base00}'
-          '--hb' '${base0D}'
-        )
-        export BEMENU_OPTS="''${opts[@]}"
-        ${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --dmenu='${pkgs.bemenu}/bin/bemenu'
-      '';
     screenShotName = with config.xdg.userDirs;
       "${pictures}/$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S)-screenshot.png";
   in import ./i3-common.nix rec {
@@ -36,7 +14,8 @@ let
     fileManager = "${terminal} ${pkgs.nnn}/bin/nnn";
     statusCommand = with config;
       "${programs.i3status-rust.package}/bin/i3status-rs ${xdg.configHome}/i3status-rust/config-sway.toml";
-    menu = "${menuScript}/bin/menu";
+    menu =
+      "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --dmenu='${pkgs.wofi}/bin/wofi --show drun'";
     # light needs to be installed in system, so not defining a path here
     light = "light";
     pactl = "${pkgs.pulseaudio}/bin/pactl";
@@ -62,7 +41,7 @@ let
     '';
   };
 in {
-  imports = [ ./i3status-rust.nix ./mako.nix ];
+  imports = [ ./i3status-rust.nix ./mako.nix ./wofi.nix ];
 
   wayland.windowManager.sway = with commonOptions; {
     enable = true;
@@ -136,5 +115,5 @@ in {
 
   services = { udiskie.enable = true; };
 
-  home.packages = with pkgs; [ bemenu dex mako swayidle swaylock wl-clipboard ];
+  home.packages = with pkgs; [ dex mako swayidle swaylock wl-clipboard ];
 }
