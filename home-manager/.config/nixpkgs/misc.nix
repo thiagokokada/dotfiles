@@ -25,4 +25,9 @@
         systemctl --user reset-failed
       '';
   };
+
+  programs.zsh.shellAliases = {
+    "hm" = "home-manager";
+    "hm-update" = "nix-channel --update && home-manager switch";
+  };
 }

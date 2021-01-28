@@ -59,8 +59,4 @@ in {
     nixos-copy-etc
     nixos-restore-etc
   ];
-
-  programs.zsh.shellAliases = {
-    "hm" = "home-manager";
-  };
 }

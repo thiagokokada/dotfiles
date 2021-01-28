@@ -36,7 +36,7 @@
     $DRY_RUN_CMD ${pkgs.stow}/bin/stow -d $DOTFILES_PATH --ignore='.zsh' doom-emacs
   '';
 
-  home.sessionVariables = { PATH = "$HOME/.config/emacs/bin:$PATH"; };
+  home.sessionPath = [ "$HOME/.config/emacs/bin" ];
 
   programs.zsh = {
     shellAliases = {
