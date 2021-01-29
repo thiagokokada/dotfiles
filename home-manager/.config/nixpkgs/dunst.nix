@@ -36,8 +36,8 @@
           frame_color = base01;
           show_indicators = false;
           icon_position = "left";
-          min_icon_size = 24;
-          max_icon_size = 24;
+          min_icon_size = 64;
+          max_icon_size = 64;
         };
         shortcuts = {
           close = "ctrl+space";

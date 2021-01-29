@@ -24,8 +24,8 @@
     frame_color = "#282A2E"
     show_indicators = no
     icon_position = "left"
-    min_icon_size = 24
-    max_icon_size = 24
+    min_icon_size = 64
+    max_icon_size = 64
 
 [shortcuts]
     close = ctrl+space
