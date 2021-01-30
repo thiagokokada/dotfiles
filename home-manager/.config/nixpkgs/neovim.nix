@@ -8,7 +8,7 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    extraPackages = with pkgs; [ coreutils ctags fzf git ];
+    extraPackages = with pkgs; [ coreutils ctags pkgs.unstable.fzf git ];
 
     configure = {
       customRC = ''
@@ -71,11 +71,6 @@
         noremap! <expr> <C-Space> "<C-x><C-o>"
         noremap! <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
         noremap! <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-        " endwise
-        let g:endwise_no_mappings = v:true
-        imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR><Plug>DiscretionaryEnd"
-        imap <script> <C-X><CR> <CR><SID>AlwaysEnd
 
         "" fzf
         let g:fzf_layout = { 'down': '40%' }
@@ -199,7 +194,6 @@
 
         start = [
           auto-pairs
-          commentary
           fzf-vim
           gitgutter
           lightline-vim
