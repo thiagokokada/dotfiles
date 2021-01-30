@@ -4,8 +4,9 @@
   programs.ssh = {
     enable = true;
     compression = true;
-    serverAliveInterval = 300;
+    forwardAgent = true;
     serverAliveCountMax = 2;
+    serverAliveInterval = 300;
     extraConfig = ''
       AddKeysToAgent yes
     '';
