@@ -2,9 +2,9 @@
 
 let
   rofiModule = fetchGit {
-    url = "https://github.com/thiagokokada/home-manager";
-    ref = "rofi-add-support-to-custom-themes";
-    rev = "c654c5c6b7943079a8f87d00256665921be5fecb";
+    url = "https://github.com/nix-community/home-manager";
+    ref = "master";
+    rev = "98d030f723e0a4a446e56b276573efb8bef422f5";
   };
 in
 {
@@ -18,50 +18,52 @@ in
     package = with pkgs.unstable;
       rofi.override { plugins = [ rofi-calc rofi-emoji ]; };
     font = with config.my.fonts; "${gui.package} 14";
-    theme = with config.my.theme.colors; {
+    theme = let
+      l = config.lib.formats.rasi.mkLiteral;
+    in with config.my.theme.colors; {
       "*" = {
-        background-color = base00;
-        border-color = base01;
-        text-color = base05;
+        background-color = l base00;
+        border-color = l base01;
+        text-color = l base05;
         spacing = 0;
-        width = "512px";
+        width = l "512px";
       };
 
       inputbar = {
-        border = "0 0 1px 0";
-        children = "[prompt,entry]";
+        border = l "0 0 1px 0";
+        children = l "[prompt,entry]";
       };
 
       prompt = {
-        padding = "16px";
-        border = "0 1px 0 0";
+        padding = l "16px";
+        border = l "0 1px 0 0";
       };
 
       textbox = {
-        background-color = base01;
-        border = "0 0 1px 0";
-        border-color = base00;
-        padding = "8px 16px";
+        background-color = l base01;
+        border = l "0 0 1px 0";
+        border-color = l base00;
+        padding = l "8px 16px";
       };
 
       entry = {
-        padding = "16px";
+        padding = l "16px";
       };
 
       listview = {
-        cycle = "true";
-        margin = "0 0 -1px 0";
-        scrollbar = "false";
+        cycle = true;
+        margin = l "0 0 -1px 0";
+        scrollbar = l "false";
       };
 
       element = {
-        border = "0 0 1px 0";
-        padding = "8px";
+        border = l "0 0 1px 0";
+        padding = l "8px";
       };
 
       "element selected" = {
-        background-color = base0D;
-        color = base00;
+        background-color = l base0D;
+        color = l base00;
       };
     };
     extraConfig = {
