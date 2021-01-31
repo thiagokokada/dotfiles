@@ -91,6 +91,9 @@
          :desc "Replace using regexp"
          "C-R" #'projectile-replace-regexp)))))
 
+(defadvice projectile-project-root (around ignore-remote first activate)
+    (unless (file-remote-p default-directory) ad-do-it))
+
 ;;; MAJOR MODES
 
 ;; adoc-mode
