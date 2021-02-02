@@ -81,7 +81,7 @@ in {
           notification = false;
         }
         {
-          command = "${mons} -a";
+          command = "${pkgs.mons}/bin/mons -a";
           notification = false;
         }
         {
