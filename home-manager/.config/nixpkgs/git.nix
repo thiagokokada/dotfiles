@@ -25,6 +25,7 @@
       commit = { verbose = true; };
       core = {
         whitespace = "trailing-space,space-before-tab,indent-with-non-tab";
+        excludesfile = "~/.config/git/ignore_local";
       };
       checkout = { defaultRemote = "origin"; };
       github = { user = "thiagokokada"; };
