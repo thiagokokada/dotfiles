@@ -81,6 +81,10 @@ in {
           notification = false;
         }
         {
+          command = "${mons} -a";
+          notification = false;
+        }
+        {
           command = "${pkgs.dex}/bin/dex --autostart";
           notification = false;
         }
