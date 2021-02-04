@@ -4,7 +4,7 @@ let
   rofiModule = fetchGit {
     url = "https://github.com/nix-community/home-manager";
     ref = "master";
-    rev = "98d030f723e0a4a446e56b276573efb8bef422f5";
+    rev = "3f2f7f8efa57cb820d947b07a5a513764a45b462";
   };
 in
 {
@@ -31,7 +31,7 @@ in
 
       inputbar = {
         border = l "0 0 1px 0";
-        children = l "[prompt,entry]";
+        children = map l [ "prompt" "entry" ];
       };
 
       prompt = {
