@@ -20,7 +20,7 @@
     includes = [{ path = "~/.config/git/local"; }];
 
     extraConfig = {
-      branch = { sort = "-commiterdate"; };
+      branch = { sort = "-committerdate"; };
       color = { ui = true; };
       commit = { verbose = true; };
       core = {
