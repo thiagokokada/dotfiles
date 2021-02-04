@@ -10,6 +10,7 @@
     cachix
     curl
     dos2unix
+    each
     fd
     ffmpeg
     ffmpegthumbnailer
