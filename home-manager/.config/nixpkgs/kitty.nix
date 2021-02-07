@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.kitty = {
@@ -42,7 +42,7 @@
 
       # Scrollback
       scrollback_lines = 10000;
-      scrollback_pager = "page -f";
+      scrollback_pager = "${pkgs.page}/bin/page -f";
 
       # Reduce lag
       sync_to_monitor = false;
@@ -59,7 +59,7 @@
       bell_on_tab = true;
 
       # Misc
-      editor = "nvim";
+      editor = "${config.programs.neovim.finalPackage}/bin/nvim";
       strip_trailing_spaces = "smart";
       clipboard_control =
         "write-clipboard write-primary read-clipboard read-primary";
