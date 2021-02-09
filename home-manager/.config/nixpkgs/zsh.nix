@@ -77,7 +77,7 @@
         file = "zit.zsh";
       }
       {
-        name = "zim-completions";
+        name = "zim-completion";
         src = fetchGit "https://github.com/zimfw/completion";
         file = "init.zsh";
       }
@@ -108,7 +108,10 @@
       }
       {
         name = "pure";
-        src = fetchGit "https://github.com/sindresorhus/pure";
+        src = fetchGit {
+          url = "https://github.com/sindresorhus/pure";
+          ref = "main";
+        };
       }
       {
         name = "autopair";
