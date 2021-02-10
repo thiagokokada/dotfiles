@@ -9,8 +9,7 @@ let
 in
 {
   imports = [ "${rofiModule}/modules/programs/rofi.nix" ];
-
-  disabledModules = [ <home-manager/modules/programs/rofi.nix> ];
+  disabledModules = [ "programs/rofi.nix" ];
 
   programs.rofi = {
     enable = true;

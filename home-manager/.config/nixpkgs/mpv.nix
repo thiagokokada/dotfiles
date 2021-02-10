@@ -8,8 +8,7 @@ let
   };
 in {
   imports = [ "${mpvRefactor}/modules/programs/mpv.nix" ];
-
-  disabledModules = [ <home-manager/modules/programs/mpv.nix> ];
+  disabledModules = [ "programs/mpv.nix" ];
 
   programs.mpv = {
     enable = true;
