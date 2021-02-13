@@ -10,7 +10,6 @@
     cachix
     curl
     dos2unix
-    each
     fd
     ffmpeg
     ffmpegthumbnailer
@@ -57,6 +56,7 @@
     tmux-with-systemd
     universal-ctags
     unrar
+    unstable.each
     unzip
     usbutils
     wget
