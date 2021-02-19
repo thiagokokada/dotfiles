@@ -32,7 +32,7 @@
     shared-mime-info
     smartmontools
     termite
-    unstable.pulseeffects
+    unstable.pulseeffects-legacy
     unstable.tdesktop
     unstable.xdragon
     xarchiver
