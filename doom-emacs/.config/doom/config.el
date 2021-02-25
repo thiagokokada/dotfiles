@@ -198,6 +198,8 @@
                     :major-modes '(nix-mode)
                     :server-id 'nix)))
 
+(add-hook! nix-mode #'lsp!)
+
 ;; sort-words
 (use-package! sort-words
   :defer t)
