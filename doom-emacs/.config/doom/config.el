@@ -96,10 +96,11 @@
 
 ;;; MAJOR MODES
 
-;; adoc-mode
+;; adoc
 (use-package! adoc-mode
   :mode ("\\.adoc\\'"))
 
+;; clojure
 (use-package! clojure-mode
   :mode ("\\.repl\\'" "\\joker\\'")
   :init (setq cljr-warn-on-eval nil
@@ -123,6 +124,10 @@
   :after clojure-mode
   :config
   (set-lookup-handlers! 'clj-refactor-mode nil))
+
+;; dhall
+(use-package dhall-mode
+  :mode ("\\.dhall\\'"))
 
 ;; graphql
 (use-package! graphql-mode

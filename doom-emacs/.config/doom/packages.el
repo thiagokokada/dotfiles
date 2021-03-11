@@ -6,6 +6,7 @@
 ;; (package! another-package :recipe (:fetcher github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
 (package! adoc-mode)
+(package! dhall-mode)
 (package! evil-escape :disable t)
 (package! flycheck-clj-kondo :disable t)
 (package! graphql-mode)
