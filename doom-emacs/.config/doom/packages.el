@@ -12,7 +12,6 @@
 (package! graphql-mode)
 (package! ix)
 (package! lispyville)
-(package! lsp-dart :pin "be9f979fa9cb098d064c3ab26d1f7ea7c65cbd23")
 (package! lsp-ui :disable t)
 (package! sort-words)
 (package! uuidgen)
