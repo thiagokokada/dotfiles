@@ -11,3 +11,15 @@ Saves to a temp file and puts the filename in the kill ring."
       (insert data))
     (kill-new filename)
     (message filename)))
+
+;; https://github.com/hlissner/doom-emacs/issues/4771#issuecomment-800428858
+;;;###autoload
+(defun +lookup--xref-show-fixed (fn identifier &optional show-fn)
+   (let ((xrefs (funcall fn
+                         (xref-find-backend)
+                         identifier)))
+     (when xrefs
+       (funcall (or show-fn #'xref--show-defs)
+                (lambda () xrefs)
+                nil)
+       'deferred)))

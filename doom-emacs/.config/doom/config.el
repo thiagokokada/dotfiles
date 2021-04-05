@@ -29,6 +29,9 @@
 ;; set localleader the same as Spacemacs
 (setq doom-localleader-key ",")
 
+;; https://github.com/hlissner/doom-emacs/issues/4771#issuecomment-798942656
+(advice-add '+lookup--xref-show :override #'+lookup--xref-show-fixed)
+
 ;; general mappings
 (map!
  ; remove default workspace shortcuts
