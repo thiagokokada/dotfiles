@@ -203,6 +203,10 @@
                     :major-modes '(nix-mode)
                     :server-id 'nix)))
 
+;; https://github.com/hlissner/doom-emacs/issues/4894#issuecomment-828617775
+(add-hook! lsp-mode
+  (defalias '+lookup/references 'lsp-find-references))
+
 (add-hook! nix-mode #'lsp!)
 
 ;; sort-words
