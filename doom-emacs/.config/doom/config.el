@@ -113,6 +113,7 @@
     (:localleader
      ("=" #'clojure-align
       (:prefix ("e" . "eval")
+       "s" #'cider-eval-sexp-at-point
        "n" #'cider-eval-ns-form))))))
 
 (use-package! cider
