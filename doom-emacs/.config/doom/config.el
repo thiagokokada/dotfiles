@@ -197,18 +197,11 @@
               lsp-flutter-sdk-dir (find-path-by-executable "flutter")
               lsp-file-watch-threshold 10000)
   :config
-  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers)))
-  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
-                    :major-modes '(nix-mode)
-                    :server-id 'nix)))
+  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
 ;; https://github.com/hlissner/doom-emacs/issues/4894#issuecomment-828617775
 (add-hook! lsp-mode
   (defalias '+lookup/references 'lsp-find-references))
-
-(add-hook! nix-mode #'lsp!)
 
 ;; sort-words
 (use-package! sort-words
