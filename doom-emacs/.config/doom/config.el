@@ -199,9 +199,10 @@
   :config
   (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
-;; https://github.com/hlissner/doom-emacs/issues/4894#issuecomment-828617775
-(add-hook! lsp-mode
-  (defalias '+lookup/references 'lsp-find-references))
+;; https://github.com/hlissner/doom-emacs/issues/4894#issuecomment-853378431
+(defadvice! fix-lookup-handlers (ret)
+  :filter-return '(+lsp-lookup-references-handler +lsp-lookup-definition-handler)
+  (when ret 'deferred))
 
 ;; sort-words
 (use-package! sort-words
